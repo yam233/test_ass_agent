@@ -22,6 +22,7 @@
 |---|---|
 | 核心环境 `python -m pytest tests -q` | 143 passed |
 | 完整依赖环境 `python -m pytest tests_legacy -q` | 34 passed |
+| 同步回原项目后 `python -m pytest tests tests_legacy -q` | 177 passed；67 个新增、修改、删除路径逐项一致 |
 | `python -m evals.runner --model fixture --repeat 4` | 37 用例 × 4 次，148/148；完整运行 |
 | `python -m evals.runner --model chaos --repeat 4 --seed 17` | 28/28；拦截率 100%，错误放行与正常误拒均 0 |
 | fixture `--record` 后用 `--model replay --replay …` | 7/7 多步链回放；观察或契约不匹配有拒绝测试 |
