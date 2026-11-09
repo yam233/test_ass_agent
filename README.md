@@ -79,7 +79,7 @@ curl http://127.0.0.1:8002/agent/execute -H 'Content-Type: application/json' \
 # 新增测试不访问外部平台或真实模型
 .venv/bin/python -m pytest tests/test_offline_runtime.py -q
 # 旧版架构测试需要完整旧运行依赖；固定离线模型避免费用
-LLM_MODE=offline .venv/bin/python -m pytest tests/test_agent_architecture_guards.py -q
+LLM_MODE=offline .venv/bin/python -m pytest tests_legacy/test_agent_architecture_guards.py -q
 ```
 
 旧网关可显式用 `AGENT_APP=api.mcp_http_server:app` 启动，但仍需要旧依赖与平台权限，不属于当前 mock 运行模式。下方保留历史业务和架构说明。
@@ -173,7 +173,7 @@ curl -X POST http://localhost:8002/agent/langgraph/execute \
 ## Tests
 
 ```bash
-python -m pytest tests/test_agent_architecture_guards.py -q
+python -m pytest tests_legacy/test_agent_architecture_guards.py -q
 python -m compileall agent_core api agent_plugins tests utils
 ```
 
@@ -191,3 +191,10 @@ python -m compileall agent_core api agent_plugins tests utils
 执行类 skill 需要关注参数校验、实体存在性校验、二次确认和审计记录。
 
 当前迁移状态：礼物发放类、后台元信息查询、通用结构化查询、数据库只读校验、测试脚本扫描/源码查询/受控执行已接入 `agent_core/skills` 标准范式；LangGraph 新主链路已具备独立入口，可逐步承接旧 `/agent/execute` 流量。
+
+## 独立环境验证
+
+核心安装：`python -m pip install -r requirements-core.txt`，运行 `python -m pytest tests -q`。
+兼容图入口可安装 `requirements-offline.txt`；无 LangGraph 时旧入口使用明确标注的手动编排。
+旧架构测试另装 `requirements-legacy-test.txt`，运行 `python -m pytest tests_legacy -q`。
+两组测试均使用合成平台和假传输，不需要数据库权限或模型凭证；CI 在仓库外创建虚拟环境。

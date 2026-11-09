@@ -1,0 +1,6 @@
+# Native workflow and offline tests; no graph/database clients.
+fastapi>=0.110,<0.116
+uvicorn>=0.24,<0.35
+pydantic>=2.7.4,<3
+httpx>=0.27,<1
+pytest==7.4.3

@@ -1,0 +1,21 @@
+name: offline-tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile: [core, legacy-test]
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m venv /tmp/testops-env
+      - run: /tmp/testops-env/bin/python -m pip install -r requirements-${{ matrix.profile }}.txt
+      - run: /tmp/testops-env/bin/python -m pytest tests -q
+      - if: matrix.profile == 'legacy-test'
+        run: /tmp/testops-env/bin/python -m pytest tests_legacy -q
+        env:
+          LLM_MODE: offline

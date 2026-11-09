@@ -1,3 +1,4 @@
+import sys
 import asyncio
 import json
 import sqlite3
@@ -119,7 +120,7 @@ agent=offline_agent(sys.argv[1])
 agent.mock_platforms.actions.complete=lambda *a, **k: os._exit(86)
 asyncio.run(agent.ainvoke("确认执行", {"operator":"alice","session_id":"s1","env":"uat","action_id":sys.argv[2]}))
 '''
-    proc = subprocess.run([str(Path('.venv/bin/python').resolve()), "-c", program, str(path), action_id], timeout=20, capture_output=True)
+    proc = subprocess.run([sys.executable, "-c", program, str(path), action_id], timeout=20, capture_output=True)
     assert proc.returncode == 86, proc.stderr.decode()
     assert quantity(path) == 10
     restarted = offline_agent(path)
@@ -159,7 +160,7 @@ def interrupted_connection(*args, **kwargs):
 agent.mock_platforms.actions.connection=interrupted_connection
 asyncio.run(agent.ainvoke("确认执行", {"operator":"alice","session_id":"s1","env":"uat","action_id":sys.argv[2]}))
 '''
-    proc = subprocess.run([str(Path('.venv/bin/python').resolve()), "-c", program, str(path), action_id], timeout=20, capture_output=True)
+    proc = subprocess.run([sys.executable, "-c", program, str(path), action_id], timeout=20, capture_output=True)
     assert proc.returncode == 87, proc.stderr.decode()
     assert quantity(path) == 0
     result = invoke(offline_agent(path), "重试执行", action_id=action_id)

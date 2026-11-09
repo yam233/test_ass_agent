@@ -1,0 +1,5 @@
+# Explicit inherited architecture-test profile, no live-platform requirement.
+-r requirements-offline.txt
+aiohttp>=3.9,<4
+pymysql>=1.1,<2
+requests>=2.31,<3

@@ -3,7 +3,6 @@ import os
 import uuid
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-from agent_core.offline_runtime import build_offline_agent
 from agent_core.workflow import WorkflowRuntime
 from agent_core.workflow_store import Budget
 from agent_core.action_store import ActionError
@@ -71,6 +70,7 @@ def create_app(agent=None, workflow=None):
 
     def get_agent():
         if app.state.agent is None:
+            from agent_core.offline_runtime import build_offline_agent
             app.state.agent = build_offline_agent(os.getenv("MOCK_DB_PATH", ".mock_state/platforms.sqlite"))
         return app.state.agent
 
