@@ -8,6 +8,7 @@ from agent_core.workflow_contracts import SPECS, WRITES, catalog, normalize, fai
 from agent_core.workflow_platform import WorkflowPlatform
 from agent_core.workflow_store import WorkflowStore, Budget
 from agent_core.workflow_model import NativeModel, SYSTEM
+from agent_core.workflow_policy import resolve_policy, check_tool
 from agent_core.langgraph_agent.llm import DeepSeekLLM
 
 from agent_core.workflow_state import TERMINAL
@@ -37,13 +38,16 @@ class WorkflowRuntime:
         state=self.store.create(text,context,budget or Budget())
         return await self.resume(state['task_id'],context)
 
-    async def resume(self,task_id,context,action_id=None,decision=None,reply=None):
+    async def resume(self,task_id,context,action_id=None,decision=None,reply=None,confirm_effect=None,snapshot_hash=None):
         self._check_context(context)
         # File locks are released by the OS even if a process is killed mid-commit.
         with self.store.lock(task_id):
             state=self.store.get(task_id,context)
             if state['status'] in TERMINAL: return state
-            context = {**context, 'dry_run': state['mode'] == 'dry_run'}
+            policy = resolve_policy(context, state.get('policy'))
+            context = {**context, 'dry_run': state['mode'] == 'dry_run','allowed_tools':policy['allowed_tools']}
+            state['policy'] = policy
+            context.update(confirm_effect=confirm_effect,snapshot_hash=snapshot_hash)
             if state['active_since'] is not None:
                 state['elapsed']+=max(0,time.time()-state['active_since'])
                 state['active_since']=None
@@ -51,6 +55,7 @@ class WorkflowRuntime:
                 if decision is None: return state
                 if action_id!=state['pending']['action_id']: raise ActionError('APPROVAL_MISMATCH','必须批准当前动作 ID')
                 if decision not in {'approve','deny'}: raise ValueError('decision 必须为 approve 或 deny')
+                check_tool(state['pending']['tool'],context,state['policy'])
                 self.platform.check_policy(state['pending']['tool'],context)
                 if decision=='deny':
                     self.platform.actions.deny(action_id,context)
@@ -160,6 +165,7 @@ class WorkflowRuntime:
                 state['bad_args']+=1
                 if state['bad_args']>1: return self._stop(state,'bad_args')
                 self.store.save(state); continue
+            check_tool(tool,context,state['policy'])
             if tool=='ask_clarification':
                 self._record(state,tool,args,{'success':False,'status':'need_more_info','code':'AMBIGUOUS','data':args})
                 state['status']='clarification_wait';state['result']=args
@@ -178,6 +184,7 @@ class WorkflowRuntime:
 
     def _prepare_pending(self,state,context):
         pending=state['pending'];tool,args=pending['tool'],pending['args']
+        check_tool(tool,context,state['policy'])
         if state['mode'] == 'dry_run':
             self.platform.check_policy(tool, context)
             state['result'] = {'success':True,'status':'planned','code':'OK','data':{'tool':tool,'params':args,'preview':self.platform.preview(tool,args,context)}}
@@ -186,6 +193,7 @@ class WorkflowRuntime:
         action=self.platform.prepare(tool,args,{**context,'request_id':f"{state['task_id']}:{len(state['steps'])}"})
         pending.update(action_id=action['action_id'],snapshot={'tool':tool,'params':args,'scope':state['scope'],
             'risk':SPECS[tool][1],'impact':self.platform.preview(tool,args,context)},expires_at=action['expires_at'])
+        if action.get('snapshot_hash'): pending['snapshot_hash'] = action['snapshot_hash']
         state['status']='approval_wait'
         self.store.save(state)
         return state
@@ -197,6 +205,7 @@ class WorkflowRuntime:
 
     async def _execute_pending(self,state,context):
         pending=state['pending'];tool,args=pending['tool'],pending['args']
+        check_tool(tool,context,state['policy'])
         ctx={**context,'action_id':pending['action_id']}
         receipt=self.platform.receipt(pending['action_id'],ctx) if tool in WRITES else None
         if receipt is not None: result=receipt

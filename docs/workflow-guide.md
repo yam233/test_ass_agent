@@ -99,3 +99,9 @@ pytest 只收集 tests/，避免误执行历史目录中需要旧平台的脚本
 `context.dry_run=true` 固定为任务模式：运行到第一个写意图时返回 `planned` 和影响预览，不创建可审批动作。后续 resume 无法把它变成正式执行；正式执行需新建任务。预演不声称已验证依赖该写结果的后续步骤。
 
 `read_ref` 每页最多 100 行、16 KiB UTF-8 响应，返回 `returned_count/next_offset/truncated`。使用 `next_offset` 继续读取；单行超限返回 `ROW_TOO_LARGE`。读取页不会再次生成引用。
+
+### 服务端策略
+
+创建任务时固定 operator/session_id/env，续跑与审批需使用相同 scope。写操作显式提供 operator/env；服务端 `config/workflow_policy.json` 决定工具权限，客户端 allowed_tools 仅能收窄。创建时权限与当前权限取交集，撤销即时生效。
+
+`cleanup_data` 还需在 resume 顶层传 `confirm_effect: "delete_batch"` 和待批响应中的 `snapshot_hash`；默认影响量上限 1000 个礼物。执行前影响量变化会拒绝旧审批。prod 禁写不能通过策略配置解除。本地身份声明不等于生产认证。

@@ -4,6 +4,7 @@ from agent_core.action_store import ActionError, canonical, scope
 from agent_core.mock_platforms import MockPlatforms
 from agent_core.workflow_contracts import WRITES, SPECS, normalize, failure
 from agent_core.langgraph_agent.permissions import PermissionGuard
+from agent_core.workflow_policy import check_tool, snapshot_hash
 
 class WorkflowPlatform(MockPlatforms):
     WRITE_TOOLS = WRITES
@@ -15,6 +16,10 @@ class WorkflowPlatform(MockPlatforms):
             CREATE TABLE IF NOT EXISTS workflow_preconditions (action_id TEXT PRIMARY KEY, snapshot TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS workflow_changes (action_id TEXT PRIMARY KEY, env TEXT, key TEXT, before_json TEXT, after_json TEXT);
             ''')
+
+    @staticmethod
+    def check_policy(tool, context):
+        return check_tool(tool, context)
 
     @staticmethod
     def normalize_write(tool, params):
@@ -33,13 +38,22 @@ class WorkflowPlatform(MockPlatforms):
     def prepare(self, tool, params, context):
         args = normalize(tool, params)
         with self.actions.connection() as db: self._source(tool,args,context,db)
-        self.check_policy(tool,context)
+        policy = self.check_policy(tool,context)
+        impact = self.preview(tool,args,context) if tool=='cleanup_data' else None
+        if impact is not None and impact['affected_quantity']>policy['cleanup_max_quantity']:
+            raise ActionError('PERMISSION_DENIED','清理影响量超过服务端阈值')
         with self.actions.connection() as db:
             snapshot=self._config(db,scope(context)[2],args['key']) if tool=='update_config' else None
         action=self.actions.prepare(tool,args,context,supersede=False)
         if snapshot is not None:
             with self.actions.connection(write=True) as db:
                 db.execute('INSERT OR IGNORE INTO workflow_preconditions VALUES (?,?)',(action['action_id'],canonical(snapshot)))
+        if impact is not None:
+            saved={'impact':impact,'hash':snapshot_hash(action['action_id'],tool,args,impact)}
+            with self.actions.connection(write=True) as db:
+                db.execute('INSERT OR IGNORE INTO workflow_preconditions VALUES (?,?)',(action['action_id'],canonical(saved)))
+                saved=json.loads(db.execute('SELECT snapshot FROM workflow_preconditions WHERE action_id=?',(action['action_id'],)).fetchone()[0])
+            action['snapshot_hash']=saved['hash']
         return action
 
     def preview(self, tool, args, context):
@@ -63,6 +77,7 @@ class WorkflowPlatform(MockPlatforms):
         context = context or {}
         try:
             args = normalize(tool,params)
+            check_tool(tool,context)
             d = PermissionGuard().evaluate('execute' if tool in WRITES else 'query', {**context,'tool_name':tool,'execute_confirmed':True})
             if not d.allowed: raise ActionError(d.code,d.message)
             if tool in WRITES: return self._write(tool,args,context)
@@ -104,7 +119,13 @@ class WorkflowPlatform(MockPlatforms):
                 status = 'success' if data['actual']==data['expected'] else 'partial_success'
             elif tool=='cleanup_data':
                 row = db.execute('SELECT payload FROM gifts WHERE id=?',(args['batch_id'],)).fetchone()
-                data = {'batch_id':args['batch_id'],'actual':json.loads(row[0])['quantity'] if row else 0}
+                actual=json.loads(row[0])['quantity'] if row else 0
+                saved=db.execute('SELECT snapshot FROM workflow_preconditions WHERE action_id=?',(aid,)).fetchone()
+                if not saved or json.loads(saved[0])['impact']['affected_quantity']!=actual:
+                    return failure('CONFLICT','清理影响量已改变，请重新预览审批',tool)
+                if actual>check_tool(tool,context)['cleanup_max_quantity']:
+                    return failure('PERMISSION_DENIED','清理影响量超过服务端阈值',tool)
+                data = {'batch_id':args['batch_id'],'actual':actual}
                 db.execute('DELETE FROM gifts WHERE id=?',(args['batch_id'],))
                 status = 'success'
             else:

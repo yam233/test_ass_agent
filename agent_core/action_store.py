@@ -113,6 +113,10 @@ class ActionStore:
                 raise ActionError("APPROVAL_INVALID", "动作已取消、被替换或失败，请重新提交")
             if value["status"] not in {"success", "partial_success"} and value["expires_at"] < time.time():
                 raise ActionError("APPROVAL_EXPIRED", "审批已过期，请重新提交动作")
+            if value['tool']=='cleanup_data' and value['status']=='pending':
+                saved=db.execute('SELECT snapshot FROM workflow_preconditions WHERE action_id=?',(action_id,)).fetchone()
+                if not saved or context.get('confirm_effect')!='delete_batch' or context.get('snapshot_hash')!=json.loads(saved[0])['hash']:
+                    raise ActionError('CONFIRM_REQUIRED','清理需明确确认删除影响快照')
             if value["status"] == "pending":
                 db.execute("UPDATE actions SET status='approved', approved_at=? WHERE action_id=?", (time.time(), action_id))
             return self.get(action_id, context, db)

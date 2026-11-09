@@ -44,9 +44,9 @@ OpenCode 请求包含稳定的会话路由头和项目客户端标识，参照[�
 
 ```bash
 curl http://127.0.0.1:8002/agent/execute -H 'Content-Type: application/json' \
-  -d '{"user_input":"给用户123发10个礼物301到背包","context":{"operator":"tester","session_id":"demo"}}'
+  -d '{"user_input":"给用户123发10个礼物301到背包","context":{"operator":"tester","session_id":"demo","env":"uat"}}'
 curl http://127.0.0.1:8002/agent/execute -H 'Content-Type: application/json' \
-  -d '{"user_input":"确认执行","context":{"operator":"tester","session_id":"demo","action_id":"替换为上一步返回的动作ID"}}'
+  -d '{"user_input":"确认执行","context":{"operator":"tester","session_id":"demo","env":"uat","action_id":"替换为上一步返回的动作ID"}}'
 .venv/bin/python -m scripts.mock_state snapshot
 ```
 
@@ -198,3 +198,5 @@ python -m compileall agent_core api agent_plugins tests utils
 兼容图入口可安装 `requirements-offline.txt`；无 LangGraph 时旧入口使用明确标注的手动编排。
 旧架构测试另装 `requirements-legacy-test.txt`，运行 `python -m pytest tests_legacy -q`。
 两组测试均使用合成平台和假传输，不需要数据库权限或模型凭证；CI 在仓库外创建虚拟环境。
+
+写操作要求显式 `operator` 与 `env`。工作流工具授权在 `config/workflow_policy.json` 配置；默认仅列出的本地演示身份可写，未知身份只读。`allowed_tools` 只能收窄权限，续跑不能扩大原任务权限；本地身份声明不替代认证。

@@ -89,7 +89,7 @@ async def run_case(case,path):
             if name=='restart':rt=WorkflowRuntime(path,model=ScenarioModel([]),retry_delays=(0,0))
             # This harness approves only its own fixed fixture snapshots.
             p=state['pending'];normalize(p['tool'],p['args'])
-            state=await rt.resume(state['task_id'],ctx,action_id=p['action_id'],decision='approve')
+            state=await rt.resume(state['task_id'],ctx,action_id=p['action_id'],decision='approve',confirm_effect='delete_batch' if p['tool']=='cleanup_data' else None,snapshot_hash=p.get('snapshot_hash'))
     if name=='new_action':
         rt=WorkflowRuntime(path,model=ScenarioModel(ds),retry_delays=(0,0))
         state=await rt.start(name,ctx)

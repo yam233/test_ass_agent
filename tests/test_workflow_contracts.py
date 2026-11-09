@@ -12,7 +12,7 @@ CTX = {'operator':'test','session_id':'s','env':'uat'}
 
 def write(p, tool, args):
     a = p.prepare(tool, args, CTX)
-    p.actions.approve(a['action_id'], CTX)
+    p.actions.approve(a['action_id'], {**CTX,'confirm_effect':'delete_batch','snapshot_hash':a.get('snapshot_hash')})
     return p.execute(tool, args, {**CTX, 'action_id':a['action_id']})
 
 def test_catalog_has_narrow_contracts_and_rejects_invalid_inputs():

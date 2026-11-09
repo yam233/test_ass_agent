@@ -104,6 +104,8 @@ class MockPlatforms:
 
     @staticmethod
     def check_policy(tool, context):
+        from agent_core.workflow_policy import require_write_context
+        require_write_context(context)
         # Boolean flags are only used to evaluate policy, never as write authority.
         decision = PermissionGuard().evaluate("execute", {**context, "tool_name": tool, "execute_confirmed": True})
         if not decision.allowed:

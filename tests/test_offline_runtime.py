@@ -11,7 +11,7 @@ from agent_core.mock_platforms import MockPlatforms
 
 
 def run(agent, text, **context):
-    return asyncio.run(agent.ainvoke(text, {"operator": "tester", "session_id": "test", **context}))
+    return asyncio.run(agent.ainvoke(text, {"operator": "tester", "session_id": "test", "env":"uat", **context}))
 
 
 def config(tmp_path, **settings):
@@ -38,6 +38,7 @@ def test_confirmed_gift_is_persisted_and_queryable_after_restart(tmp_path):
 
 
 def execute_approved(mock, tool, params, context):
+    context = {"operator":"tester","env":"uat",**context}
     action = mock.prepare(tool, params, context)
     mock.actions.approve(action["action_id"], context)
     return mock.execute(tool, params, {**context, "action_id": action["action_id"]})
@@ -127,7 +128,7 @@ def test_http_entry_supports_existing_url_without_old_platform_startup(tmp_path)
             health = (await client.get("/health")).json()
             assert health["runtime_mode"] == "mock"
             assert health["llm_mode"] == "offline"
-            context = {"operator": "tester", "session_id": "http-case"}
+            context = {"operator": "tester", "session_id": "http-case", "env":"uat"}
             first = (await client.post("/agent/execute", json={"business_code": "testops", "user_input": "给用户123发10个礼物301到背包", "context": context})).json()
             assert first["code"] == "CONFIRM_REQUIRED"
             approved = (await client.post("/agent/execute", json={"user_input": "确认执行", "context": context})).json()

@@ -38,6 +38,8 @@ class WorkflowStore:
             finally: fcntl.flock(handle,fcntl.LOCK_UN)
 
     def create(self,text,context,budget):
+        from agent_core.workflow_policy import resolve_policy
+        policy = resolve_policy(context)
         owner=canonical(scope(context))
         request_id=context.get('request_id') or None
         with self.db.connection(write=True) as db:
@@ -46,7 +48,7 @@ class WorkflowStore:
                 if row:
                     if row['input']!=text: raise ActionError('REQUEST_CONFLICT','请求 ID 对应不同任务')
                     return migrate_state(json.loads(row['payload']))
-            state={'schema_version':1,'mode':'dry_run' if context.get('dry_run') else 'execute','task_id':str(uuid.uuid4()),'input':text,'scope':list(scope(context)), 'budget':budget.model_dump(),
+            state={'policy':policy,'schema_version':1,'mode':'dry_run' if context.get('dry_run') else 'execute','task_id':str(uuid.uuid4()),'input':text,'scope':list(scope(context)), 'budget':budget.model_dump(),
                    'status':'ready','stop_reason':None,'steps':[],'trace':[],'pending':None,'replies':[],
                    'model_calls':0,'tool_calls':0,'tokens':0,'reported_tokens':0,'usage_complete':True,
                    'elapsed':0.0,'active_since':None,'bad_args':0,'created_at':time.time(),

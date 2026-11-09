@@ -1,0 +1,77 @@
+{
+  "operators": {
+    "alice": [
+      "list_scripts",
+      "query_config",
+      "query_data",
+      "update_config",
+      "seed_test_data",
+      "cleanup_data",
+      "run_script",
+      "ask_clarification",
+      "rollback_config",
+      "read_ref"
+    ],
+    "tester": [
+      "list_scripts",
+      "query_config",
+      "query_data",
+      "update_config",
+      "seed_test_data",
+      "cleanup_data",
+      "run_script",
+      "ask_clarification",
+      "rollback_config",
+      "read_ref"
+    ],
+    "test": [
+      "list_scripts",
+      "query_config",
+      "query_data",
+      "update_config",
+      "seed_test_data",
+      "cleanup_data",
+      "run_script",
+      "ask_clarification",
+      "rollback_config",
+      "read_ref"
+    ],
+    "evaluation": [
+      "list_scripts",
+      "query_config",
+      "query_data",
+      "update_config",
+      "seed_test_data",
+      "cleanup_data",
+      "run_script",
+      "ask_clarification",
+      "rollback_config",
+      "read_ref"
+    ],
+    "regression": [
+      "list_scripts",
+      "query_config",
+      "query_data",
+      "update_config",
+      "seed_test_data",
+      "cleanup_data",
+      "run_script",
+      "ask_clarification",
+      "rollback_config",
+      "read_ref"
+    ],
+    "acceptance": [
+      "list_scripts",
+      "query_config",
+      "query_data",
+      "update_config",
+      "seed_test_data",
+      "cleanup_data",
+      "run_script",
+      "ask_clarification",
+      "rollback_config",
+      "read_ref"
+    ]
+  },
+  "cleanup_max_quantity": 1000
+}

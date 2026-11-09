@@ -23,6 +23,8 @@ class ResumeRequest(BaseModel):
     context: dict = Field(default_factory=dict)
     action_id: str | None = None
     decision: str | None = None
+    confirm_effect: str | None = None
+    snapshot_hash: str | None = None
     reply: str | None = Field(None, max_length=2000)
 
 
@@ -49,7 +51,7 @@ def create_app(agent=None, workflow=None):
     async def start_workflow(request: WorkflowRequest):
         if request.business_code != "testops":
             raise HTTPException(400,"Only testops is supported")
-        context={"env":"uat","operator":"local",**request.context}
+        context=dict(request.context)
         context.setdefault("session_id",str(uuid.uuid4()))
         result=await get_workflow().start(request.user_input,context,request.budget)
         return {**result,"session_id":context["session_id"]}
@@ -58,7 +60,7 @@ def create_app(agent=None, workflow=None):
     async def resume_workflow(task_id: str, request: ResumeRequest):
         if request.decision not in {None,"approve","deny"}:
             raise HTTPException(422,"decision must be approve or deny")
-        return await get_workflow().resume(task_id,request.context,request.action_id,request.decision,request.reply)
+        return await get_workflow().resume(task_id,request.context,request.action_id,request.decision,request.reply,request.confirm_effect,request.snapshot_hash)
 
     @app.post("/workflows/{task_id}/status")
     async def workflow_status(task_id: str, request: ResumeRequest):
@@ -86,7 +88,7 @@ def create_app(agent=None, workflow=None):
     async def execute(request: ExecuteRequest):
         if request.business_code != "testops":
             raise HTTPException(400, "Only testops is supported")
-        context = {"env": "uat", "operator": "local", **request.context}
+        context = dict(request.context)
         context.setdefault("session_id", str(uuid.uuid4()))
         result = await get_agent().ainvoke(request.user_input, context)
         result["data"]["session_id"] = context["session_id"]
