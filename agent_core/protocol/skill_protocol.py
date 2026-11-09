@@ -70,7 +70,7 @@ class SkillInput(BaseModel):
     
     Attributes:
         user_input: 用户原始输入
-        business_code: 业务代码（如 "ear_test"）
+        business_code: 业务代码（如 "testops"）
         session_id: 会话ID（用于标识会话）
         params: 提取并适配后的参数字典
         operator: 操作人账号（用于权限校验）

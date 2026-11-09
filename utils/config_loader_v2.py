@@ -118,7 +118,7 @@ class ConfigLoaderV2:
     
     使用示例：
         # 加载配置
-        config = ConfigLoaderV2.load("ear_test", "skills_registry.json")
+        config = ConfigLoaderV2.load("testops", "skills_registry.json")
         
         # 加载并验证配置
         from pydantic import BaseModel
@@ -127,7 +127,7 @@ class ConfigLoaderV2:
             description: str
         
         config = ConfigLoaderV2.load_and_validate(
-            "ear_test", 
+            "testops", 
             "skills_registry.json",
             SkillConfig
         )

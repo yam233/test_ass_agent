@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 class UniversalQueryExecutor:
     """根据业务元数据将结构化查询路由到本地工具。"""
 
-    def __init__(self, business_code: str = "ear_test"):
+    def __init__(self, business_code: str = "testops"):
         self.business_code = business_code
         try:
             self.schema = ConfigLoader.load_business_config(business_code, "business_schema.json")

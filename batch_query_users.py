@@ -18,7 +18,7 @@ user_ids = [
 def query_user_info(user_id):
     """查询单个用户信息"""
     payload = {
-        "business_code": "ear_test",
+        "business_code": "testops",
         "user_input": f"查询用户{user_id}的信息"
     }
     

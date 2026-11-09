@@ -1,6 +1,6 @@
 """
 MongoDB 连接模块
-参考 MaoerProject02/core/common/mongo_db.py
+参考 testopsProject02/core/common/mongo_db.py
 用于查询礼物ID和直播间ID是否存在
 """
 import json

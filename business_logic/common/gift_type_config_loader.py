@@ -14,7 +14,7 @@ class GiftTypeConfigLoader:
     _config_cache: Dict[str, Dict[str, Any]] = {}
     
     @classmethod
-    def load_config(cls, business_code: str = "ear_test") -> Dict[str, Any]:
+    def load_config(cls, business_code: str = "testops") -> Dict[str, Any]:
         """
         加载礼物类型配置
         
@@ -101,7 +101,7 @@ class GiftTypeConfigLoader:
         }
     
     @classmethod
-    def get_gift_types(cls, business_code: str = "ear_test") -> Dict[str, Dict[str, Any]]:
+    def get_gift_types(cls, business_code: str = "testops") -> Dict[str, Dict[str, Any]]:
         """
         获取礼物类型字典
         
@@ -115,7 +115,7 @@ class GiftTypeConfigLoader:
         return config.get("gift_types", {})
     
     @classmethod
-    def get_gift_type_info(cls, prefix: str, business_code: str = "ear_test") -> Dict[str, Any]:
+    def get_gift_type_info(cls, prefix: str, business_code: str = "testops") -> Dict[str, Any]:
         """
         获取指定前缀的礼物类型信息
         
@@ -130,7 +130,7 @@ class GiftTypeConfigLoader:
         return gift_types.get(str(prefix), {})
     
     @classmethod
-    def get_gift_types_list(cls, business_code: str = "ear_test") -> List[Dict[str, Any]]:
+    def get_gift_types_list(cls, business_code: str = "testops") -> List[Dict[str, Any]]:
         """
         获取礼物类型列表（用于API响应）
         
@@ -159,7 +159,7 @@ class GiftTypeConfigLoader:
         return types_list
     
     @classmethod
-    def get_issue_type_by_prefix(cls, prefix: str, business_code: str = "ear_test") -> str:
+    def get_issue_type_by_prefix(cls, prefix: str, business_code: str = "testops") -> str:
         """
         根据礼物ID前缀获取issue_type
         
@@ -182,7 +182,7 @@ class GiftTypeConfigLoader:
             return "user"
     
     @classmethod
-    def reload_config(cls, business_code: str = "ear_test"):
+    def reload_config(cls, business_code: str = "testops"):
         """
         重新加载配置（支持热更新）
         

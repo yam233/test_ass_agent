@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ear_test_agent 服务管理脚本
+# TestOps_agent 服务管理脚本
 # 用途：启动/停止/重启服务（后台守护进程模式）
 # 使用方法：
 #   ./start_server.sh start   # 启动服务
@@ -16,7 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 # 配置
-SERVICE_NAME="Ear_test_agent"
+SERVICE_NAME="TestOps_agent"
 PID_FILE=".local_main.pid"
 LOG_FILE="logs/server.log"
 PORT="${PORT:-8002}"
@@ -260,7 +260,7 @@ start_service() {
     echo "🧪 测试命令:"
     echo "  curl -X POST http://localhost:$PORT/agent/execute \\"
     echo "    -H \"Content-Type: application/json\" \\"
-    echo "    -d '{\"business_code\": \"ear_test\", \"user_input\": \"查询用户9075333的信息\"}'"
+    echo "    -d '{\"business_code\": \"testops\", \"user_input\": \"查询用户9075333的信息\"}'"
     echo ""
     echo "📝 管理命令:"
     echo "  $0 status         # 查看服务状态"

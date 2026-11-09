@@ -1,5 +1,5 @@
 """
-猫耳 AI 测试助手 Skill 训练数据生成工具
+AI 测试助手 Skill 训练数据生成工具
 
 功能：
 1. 读取 Skill 元数据生成训练样本
@@ -16,7 +16,7 @@ from pathlib import Path
 class SkillTrainer:
     """Skill 训练数据生成器"""
     
-    def __init__(self, business_code: str = "ear_test"):
+    def __init__(self, business_code: str = "testops"):
         self.business_code = business_code
         
         # 配置路径
@@ -337,7 +337,7 @@ class SkillTrainer:
 
 if __name__ == "__main__":
     # 初始化训练器
-    trainer = SkillTrainer(business_code="ear_test")
+    trainer = SkillTrainer(business_code="testops")
     
     # 生成训练数据
     trainer.generate_all_train_data()

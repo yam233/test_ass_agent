@@ -14,7 +14,7 @@ class QueryConfigLoader:
     _config_cache: Dict[str, Dict[str, Any]] = {}
     
     @classmethod
-    def load_config(cls, business_code: str = "ear_test") -> Dict[str, Any]:
+    def load_config(cls, business_code: str = "testops") -> Dict[str, Any]:
         """
         加载查询配置
         
@@ -70,7 +70,7 @@ class QueryConfigLoader:
         }
     
     @classmethod
-    def get_generic_terms(cls, business_code: str = "ear_test") -> List[str]:
+    def get_generic_terms(cls, business_code: str = "testops") -> List[str]:
         """
         获取通用词列表
         
@@ -84,7 +84,7 @@ class QueryConfigLoader:
         return config.get("generic_terms", [])
     
     @classmethod
-    def get_help_message(cls, message_type: str, business_code: str = "ear_test") -> str:
+    def get_help_message(cls, message_type: str, business_code: str = "testops") -> str:
         """
         获取帮助消息（支持模板变量替换）
         
@@ -111,7 +111,7 @@ class QueryConfigLoader:
             return message_template
     
     @classmethod
-    def get_response_icon(cls, icon_type: str, business_code: str = "ear_test") -> str:
+    def get_response_icon(cls, icon_type: str, business_code: str = "testops") -> str:
         """
         获取响应图标
         
@@ -127,7 +127,7 @@ class QueryConfigLoader:
         return icons.get(icon_type, "")
     
     @classmethod
-    def reload_config(cls, business_code: str = "ear_test"):
+    def reload_config(cls, business_code: str = "testops"):
         """
         重新加载配置（支持热更新）
         

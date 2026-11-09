@@ -1,6 +1,6 @@
 """
 奖励配置查询服务
-参考 MaoerProject02/core/config_check/reward_service.py
+参考 testopsProject02/core/config_check/reward_service.py
 
 查询奖励配置的有效期（duration）和最大有效期（end_time）
 数据来源：MongoDB test_rewards 集合

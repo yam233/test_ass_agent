@@ -31,7 +31,7 @@ class GiftTypeManager:
         try:
             config_path = os.path.join(
                 os.path.dirname(__file__),
-                "../../config/business/ear_test/gift_type_rules.json"
+                "../../config/business/testops/gift_type_rules.json"
             )
             config_path = os.path.abspath(config_path)
             

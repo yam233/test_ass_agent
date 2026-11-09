@@ -39,7 +39,7 @@ def execute_command(command, index, total):
     
     try:
         payload = {
-            "business_code": "ear_test",
+            "business_code": "testops",
             "user_input": command,
             "context": {
                 "operator": "batch_test",

@@ -15,12 +15,12 @@ test_cases = [
         "commands": [
             "查询用户9075566的信息",
             "查询直播间9075367的用户id",
-            "查询live@missevan.cn的用户信息",
+            "查询live@testops.cn的用户信息",
             "查询手机号15000000490的用户信息",
             "查询验证码15000000490",
             "查询手机号15000000490的验证码",
             "查询用户9075566的验证码",
-            "查询live@missevan.cn的验证码"
+            "查询live@testops.cn的验证码"
         ]
     },
     {
@@ -43,7 +43,7 @@ def execute_command(command, index, total):
     
     try:
         payload = {
-            "business_code": "ear_test",
+            "business_code": "testops",
             "user_input": command,
             "context": {
                 "operator": "batch_test",

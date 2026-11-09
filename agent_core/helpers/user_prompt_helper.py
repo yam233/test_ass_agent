@@ -139,11 +139,11 @@ class UserPromptHelper:
         # 用户信息查询场景
         if "查询" in user_input and "用户" in user_input and "信息" in user_input:
             if "user_id" in missing_params or "room_id" in missing_params:
-                return "❌ 缺少查询参数\n\n请提供用户ID、直播间ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的信息\n• 查询直播间9075367的用户信息\n• 查询手机号15000000490的用户信息\n• 查询邮箱live@missevan.cn的用户信息"
+                return "❌ 缺少查询参数\n\n请提供用户ID、直播间ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的信息\n• 查询直播间9075367的用户信息\n• 查询手机号15000000490的用户信息\n• 查询邮箱live@testops.cn的用户信息"
         
         # 验证码查询场景
         if "验证码" in user_input:
-            return "❌ 缺少查询参数\n\n请提供用户ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的验证码\n• 查询手机号15000000490的验证码\n• 查询邮箱live@missevan.cn的验证码"
+            return "❌ 缺少查询参数\n\n请提供用户ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的验证码\n• 查询手机号15000000490的验证码\n• 查询邮箱live@testops.cn的验证码"
         
         # 检查是否有礼物ID
         has_gift_id = "gift_id" in extracted_params and extracted_params["gift_id"]
@@ -254,12 +254,12 @@ class UserPromptHelper:
         # 用户信息查询场景
         if "查询" in user_input and "用户" in user_input and "信息" in user_input:
             if param_name in ["user_id", "room_id", "phone", "email"]:
-                return "❌ 缺少查询参数\n\n请提供用户ID、直播间ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的信息\n• 查询直播间9075367的用户信息\n• 查询手机号15000000490的用户信息\n• 查询邮箱live@missevan.cn的用户信息"
+                return "❌ 缺少查询参数\n\n请提供用户ID、直播间ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的信息\n• 查询直播间9075367的用户信息\n• 查询手机号15000000490的用户信息\n• 查询邮箱live@testops.cn的用户信息"
         
         # 验证码查询场景
         if "验证码" in user_input:
             if param_name in ["user_id", "phone", "email"]:
-                return "❌ 缺少查询参数\n\n请提供用户ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的验证码\n• 查询手机号15000000490的验证码\n• 查询邮箱live@missevan.cn的验证码"
+                return "❌ 缺少查询参数\n\n请提供用户ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的验证码\n• 查询手机号15000000490的验证码\n• 查询邮箱live@testops.cn的验证码"
         
         # 礼物发放场景
         if param_name in ["target_id", "user_id", "room_id"]:

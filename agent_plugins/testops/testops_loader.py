@@ -8,10 +8,10 @@ from utils.config_loader import ConfigLoader
 from .skills.skill_factory import SkillFactory
 
 
-class EarTestLoader:
+class TestOpsLoader:
     """AI测试助手业务加载器"""
     
-    def __init__(self, business_code: str = "ear_test"):
+    def __init__(self, business_code: str = "testops"):
         self.business_code = business_code
         self.skills_registry = self._load_skills_registry()
         self.mcp_registry = self._load_mcp_registry()

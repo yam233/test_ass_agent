@@ -12,7 +12,7 @@ from agent_core.workflow_contracts import Ref
 
 class ExecuteRequest(BaseModel):
     user_input: str = Field(min_length=1, max_length=10000)
-    business_code: str = "ear_test"
+    business_code: str = "testops"
     context: dict = Field(default_factory=dict)
 
 
@@ -32,7 +32,7 @@ class ReferenceRequest(Ref):
 
 
 def create_app(agent=None, workflow=None):
-    app = FastAPI(title="Ear Test Agent — local mock", version="2.0")
+    app = FastAPI(title="TestOps Agent — local mock", version="2.0")
     app.state.agent = agent
     app.state.workflow = workflow
 
@@ -48,8 +48,8 @@ def create_app(agent=None, workflow=None):
 
     @app.post("/workflows")
     async def start_workflow(request: WorkflowRequest):
-        if request.business_code != "ear_test":
-            raise HTTPException(400,"Only ear_test is supported")
+        if request.business_code != "testops":
+            raise HTTPException(400,"Only testops is supported")
         context={"env":"uat","operator":"local",**request.context}
         context.setdefault("session_id",str(uuid.uuid4()))
         result=await get_workflow().start(request.user_input,context,request.budget)
@@ -84,8 +84,8 @@ def create_app(agent=None, workflow=None):
     @app.post("/agent/execute")
     @app.post("/agent/langgraph/execute")
     async def execute(request: ExecuteRequest):
-        if request.business_code != "ear_test":
-            raise HTTPException(400, "Only ear_test is supported")
+        if request.business_code != "testops":
+            raise HTTPException(400, "Only testops is supported")
         context = {"env": "uat", "operator": "local", **request.context}
         context.setdefault("session_id", str(uuid.uuid4()))
         result = await get_agent().ainvoke(request.user_input, context)

@@ -17,7 +17,7 @@ test_cases = [
             "给用户9075566充值三百万钻石",
             "给用户 9075566 发送 1000 万钻石",
             "给手机号15000000490充值2000万钻石",
-            "给邮箱live@missevan.cn充值100w钻石"
+            "给邮箱live@testops.cn充值100w钻石"
         ]
     },
     {
@@ -28,7 +28,7 @@ test_cases = [
             "给用户9075566发钻石",
             "给用户907599999充100万钻石",
             "给用户907599999充10万钻石",
-            "给邮箱live@missevan.cn发2亿钻石"
+            "给邮箱live@testops.cn发2亿钻石"
         ]
     }
 ]
@@ -41,7 +41,7 @@ def execute_command(command, index, total):
     
     try:
         payload = {
-            "business_code": "ear_test",
+            "business_code": "testops",
             "user_input": command,
             "context": {
                 "operator": "batch_test",

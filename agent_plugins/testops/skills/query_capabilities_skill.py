@@ -252,11 +252,11 @@ class QueryCapabilitiesSkill(BaseMCPSkill):
                     },
                     {
                         "category": "脚本执行",
-                        "description": "执行missevan_test项目脚本",
+                        "description": "执行testops_test项目脚本",
                         "capabilities": [
                             {
                                 "name": "执行脚本",
-                                "description": "执行missevan_test项目的测试脚本",
+                                "description": "执行testops_test项目的测试脚本",
                                 "examples": [
                                     "执行脚本live/draw01.py"
                                 ]
@@ -276,7 +276,7 @@ class QueryCapabilitiesSkill(BaseMCPSkill):
         }
         
         # 格式化友好的消息（简洁版）
-        message_lines = ["✅ 猫耳AI测试助手能力清单\n"]
+        message_lines = ["✅ AI测试助手能力清单\n"]
         
         categories = capabilities["data"]["categories"]
         for category_info in categories:

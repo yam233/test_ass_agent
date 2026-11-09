@@ -1,6 +1,6 @@
 """
 外观资源查询服务
-参考 MaoerProject02/core/config_check/appearance_service.py
+参考 testopsProject02/core/config_check/appearance_service.py
 
 查询外观资源是否已配置，以及最大有效期设置
 数据来源：

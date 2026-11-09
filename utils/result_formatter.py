@@ -42,7 +42,7 @@ class ResultFormatter:
         }
 
 
-# 企微格式化工具（猫耳测试助手专用）
+# 企微格式化工具（测试助手专用）
 
 def format_wechat_card(card_data: Dict[str, Any]) -> str:
     """

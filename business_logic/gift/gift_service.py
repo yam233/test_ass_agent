@@ -1,6 +1,6 @@
 """
 礼物发放服务
-参考 MaoerProject02/core/gift/gift_service.py
+参考 testopsProject02/core/gift/gift_service.py
 
 插入规则：
 1. create_time、modified_time、start_time 取当前时间戳

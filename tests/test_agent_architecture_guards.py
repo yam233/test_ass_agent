@@ -15,7 +15,7 @@ from agent_core.skills.standard import (
     DatabaseQuerySkill,
     TestScriptSkill,
 )
-from agent_plugins.ear_test.skills.skill_factory import SkillFactory
+from agent_plugins.testops.skills.skill_factory import SkillFactory
 from utils.config_loader import ConfigLoader
 from business_logic.common.universal_query_executor import UniversalQueryExecutor
 from business_logic.common import db as common_db
@@ -187,7 +187,7 @@ def test_backend_metadata_skill_searches_entries():
 
 
 def test_universal_query_blocks_write_actions():
-    executor = UniversalQueryExecutor("ear_test")
+    executor = UniversalQueryExecutor("testops")
 
     result = executor.execute(
         {"entity": "user", "action": "delete", "filters": {"user_id": 1}},
@@ -199,7 +199,7 @@ def test_universal_query_blocks_write_actions():
 
 
 def test_universal_query_returns_metadata_without_handler():
-    executor = UniversalQueryExecutor("ear_test")
+    executor = UniversalQueryExecutor("testops")
 
     result = executor.execute(
         {"entity": "用户", "action": "metadata"},
@@ -444,14 +444,14 @@ def test_test_script_scan_and_read(tmp_path):
 
 
 def test_script_skills_can_be_created_from_registry():
-    skills_registry = ConfigLoader.load_business_config("ear_test", "skills_registry.json")
-    mcp_registry = ConfigLoader.load_business_config("ear_test", "mcp_registry.json")
+    skills_registry = ConfigLoader.load_business_config("testops", "skills_registry.json")
+    mcp_registry = ConfigLoader.load_business_config("testops", "mcp_registry.json")
     script_skill_names = {"scan_test_scripts", "read_test_script", "execute_test_script"}
 
     created = []
     for skill_config in skills_registry["skills"]:
         if skill_config.get("skill_name") in script_skill_names:
-            created.append(SkillFactory.create_skill(skill_config, mcp_registry, "ear_test"))
+            created.append(SkillFactory.create_skill(skill_config, mcp_registry, "testops"))
 
     assert len(created) == 3
 

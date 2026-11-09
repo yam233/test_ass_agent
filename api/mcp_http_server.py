@@ -1,5 +1,5 @@
 """
-HTTP入口层 - 适配猫耳测试助手
+HTTP入口层 - 适配测试助手
 
 接收工作流平台透传的请求，调用 Skill Agent 执行，返回企微格式化结果。
 
@@ -72,7 +72,7 @@ setup_logging(
 logger = get_logger(__name__)
 
 app = FastAPI(
-    title="猫耳AI测试助手HTTP网关",
+    title="AI测试助手HTTP网关",
     description="适配企微→工作流→公网代理→内网UAT的HTTP入口",
     version="1.2.0"
 )
@@ -97,7 +97,7 @@ WECOM_ENCODING_AES_KEY = os.getenv("WECOM_ENCODING_AES_KEY", "")
 WECOM_CORP_ID = os.getenv("WECOM_CORP_ID", "")
 WECOM_AGENT_ID = os.getenv("WECOM_AGENT_ID", "")
 WECOM_SECRET = os.getenv("WECOM_SECRET", "")
-WECOM_DEFAULT_BIZ = os.getenv("WECOM_DEFAULT_BIZ", "ear_test")
+WECOM_DEFAULT_BIZ = os.getenv("WECOM_DEFAULT_BIZ", "testops")
 WECOM_BOT_NAME = os.getenv("WECOM_BOT_NAME", "Ear")
 _wecom_access_token_cache: Dict[str, Any] = {"token": None, "expire_at": 0}
 
@@ -261,7 +261,7 @@ async def startup_event():
     """启动时初始化业务"""
     global skill_core, skill_agents, async_skill_agents, cache_manager, task_queue
     logger.info("=" * 60)
-    logger.info("启动 猫耳AI测试助手HTTP网关")
+    logger.info("启动 AI测试助手HTTP网关")
     logger.info("=" * 60)
     
     # 初始化业务
@@ -346,8 +346,8 @@ async def shutdown_event():
     logger.info("✓ 服务已关闭")
 
 
-class EarTestRequest(BaseModel):
-    """猫耳测试助手请求（适配工作流平台）"""
+class TestOpsRequest(BaseModel):
+    """测试助手请求（适配工作流平台）"""
     user_input: str = Field(..., description="用户指令")
     session_id: Optional[str] = Field(default=None, description="会话ID")
     request_id: Optional[str] = Field(default=None, description="请求ID（用于幂等性）")
@@ -357,8 +357,8 @@ class EarTestRequest(BaseModel):
     business_code: Optional[str] = Field(default=None, description="业务代码（可选；仅注册一个业务时可省略）")
 
 
-class EarTestResponse(BaseModel):
-    """猫耳测试助手响应"""
+class TestOpsResponse(BaseModel):
+    """测试助手响应"""
     code: int = Field(description="状态码：0=成功，非0=失败")
     msg: str = Field(description="提示信息")
     data: Optional[Dict[str, Any]] = Field(default=None, description="业务数据")
@@ -367,12 +367,12 @@ class EarTestResponse(BaseModel):
     operation_log_id: Optional[str] = Field(default=None, description="操作日志ID")
 
 
-@app.post("/api/ear_test/skill/execute", response_model=EarTestResponse)  # 兼容旧入口
-@app.post("/api/{path_business_code}/skill/execute", response_model=EarTestResponse)
+@app.post("/api/testops/skill/execute", response_model=TestOpsResponse)  # 兼容旧入口
+@app.post("/api/{path_business_code}/skill/execute", response_model=TestOpsResponse)
 @trace_span("http_execute_skill")
-async def execute_ear_test_skill(request: EarTestRequest, path_business_code: Optional[str] = None):
+async def execute_testops_skill(request: TestOpsRequest, path_business_code: Optional[str] = None):
     """
-    执行猫耳测试助手 Skill（异步版本 + 全链路追踪）
+    执行测试助手 Skill（异步版本 + 全链路追踪）
     
     接收工作流平台透传的请求，执行 Skill，返回企微格式化结果。
     
@@ -398,7 +398,7 @@ async def execute_ear_test_skill(request: EarTestRequest, path_business_code: Op
     """
     start_time = time.time()
     
-    request_endpoint = f"/api/{path_business_code}/skill/execute" if path_business_code else "/api/ear_test/skill/execute"
+    request_endpoint = f"/api/{path_business_code}/skill/execute" if path_business_code else "/api/testops/skill/execute"
     increment_counter("http_requests_total", labels={"endpoint": request_endpoint})
     
     try:
@@ -467,7 +467,7 @@ async def execute_ear_test_skill(request: EarTestRequest, path_business_code: Op
                     cached_result["data"]["idempotent"] = True
                     cached_result["data"]["cached_at"] = cached_result.get("cached_at")
                 
-                return EarTestResponse(**cached_result)
+                return TestOpsResponse(**cached_result)
         
         # 4. 获取对应业务的 AsyncSkillAgent
         async_agent = async_skill_agents.get(business_code)
@@ -499,7 +499,7 @@ async def execute_ear_test_skill(request: EarTestRequest, path_business_code: Op
             if _is_execute_cancel(user_input):
                 memory.pop("pending_execute", None)
                 session_memory_store[session_key] = memory
-                return EarTestResponse(
+                return TestOpsResponse(
                     code=400,
                     msg="已取消本次待执行操作。",
                     data={"pending_execute": False},
@@ -517,7 +517,7 @@ async def execute_ear_test_skill(request: EarTestRequest, path_business_code: Op
                 pending_execute["updated_at"] = int(time.time())
                 memory["pending_execute"] = pending_execute
                 session_memory_store[session_key] = memory
-                return EarTestResponse(
+                return TestOpsResponse(
                     code=400,
                     msg="已记录补充参数。请回复“确认执行”继续，或回复“取消”放弃。",
                     data={
@@ -553,7 +553,7 @@ async def execute_ear_test_skill(request: EarTestRequest, path_business_code: Op
                 duration_ms=duration_ms
             )
             
-            return EarTestResponse(
+            return TestOpsResponse(
                 code=400,
                 msg=MessageFormatter.sanitize_error_message(result.get("message", "意图识别失败")),
                 data=result.get("data"),
@@ -618,7 +618,7 @@ async def execute_ear_test_skill(request: EarTestRequest, path_business_code: Op
                 increment_counter("idempotent_cache_save", labels={"business_code": business_code})
             
             # 构造 SkillOutput 格式的响应
-            return EarTestResponse(**response_data)
+            return TestOpsResponse(**response_data)
         
         # 6. 格式化结果（适配企微渲染）
         skill_output_data = result.get("data", {})
@@ -669,7 +669,7 @@ async def execute_ear_test_skill(request: EarTestRequest, path_business_code: Op
         # 清空追踪上下文
         clear_trace_context()
         
-        return EarTestResponse(
+        return TestOpsResponse(
             code=0 if result.get("success") else 500,
             msg=MessageFormatter.sanitize_error_message(result.get("message", "执行完成")),
             data=skill_output_data,
@@ -1327,7 +1327,7 @@ async def execute_agent_get(
             success=True,
             message="agent execute get is reachable",
             data={
-                "usage": "GET /agent/execute?message=查询礼物80103&business_code=ear_test",
+                "usage": "GET /agent/execute?message=查询礼物80103&business_code=testops",
                 "default_business_code": _get_default_business_code(),
                 "supported_env": ["uat"]
             },
@@ -1688,7 +1688,7 @@ async def health_check():
     """健康检查"""
     return {
         "status": "healthy",
-        "framework": "猫耳AI测试助手HTTP网关",
+        "framework": "AI测试助手HTTP网关",
         "businesses": list(skill_agents.keys()),
         "skills_registered": len(skill_core.skills) if skill_core else 0
     }
@@ -1844,12 +1844,12 @@ async def capture_request(request: Request):
 async def root():
     """根路径"""
     return {
-        "name": "猫耳AI测试助手HTTP网关",
+        "name": "AI测试助手HTTP网关",
         "version": "1.4.0",
         "description": "适配企微→工作流→公网代理→内网UAT的HTTP入口（支持异步LLM、缓存和热更新）",
         "endpoints": {
             "business_execute": "/api/{business_code}/skill/execute",
-            "legacy_ear_test": "/api/ear_test/skill/execute",
+            "legacy_testops": "/api/testops/skill/execute",
             "execute": "/agent/execute",
             "health": "/health",
             "metrics": "/metrics",

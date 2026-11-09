@@ -2,7 +2,7 @@
 """
 本地 MCP 服务器
 使用 business_logic 模块中的业务逻辑
-参考 MaoerProject 的实现方式，但代码在本项目中
+参考 testopsProject 的实现方式，但代码在本项目中
 """
 import logging
 from fastapi import FastAPI, HTTPException
@@ -21,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="Ear Test Agent - Local MCP Server",
+    title="TestOps Agent - Local MCP Server",
     version="1.0.0",
     description="本地 MCP 服务器，业务逻辑在本项目中实现"
 )
@@ -43,7 +43,7 @@ class ToolCallResponse(BaseModel):
 async def root():
     """根路径"""
     return {
-        "name": "Ear Test Agent - Local MCP Server",
+        "name": "TestOps Agent - Local MCP Server",
         "version": "1.0.0",
         "description": "本地 MCP 服务器，业务逻辑在本项目中实现",
         "endpoints": {

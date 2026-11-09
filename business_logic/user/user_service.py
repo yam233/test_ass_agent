@@ -1,6 +1,6 @@
 """
 用户信息查询服务
-参考 MaoerProject 实现，但使用配置驱动，不硬编码
+参考 testopsProject 实现，但使用配置驱动，不硬编码
 """
 import logging
 from typing import Dict, Any, Optional
@@ -21,7 +21,7 @@ def query_user_info(
 ) -> Dict[str, Any]:
     """
     查询用户信息
-    参考 MaoerProject 的实现方式
+    参考 testopsProject 的实现方式
     
     Args:
         user_id: 用户ID

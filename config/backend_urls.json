@@ -511,12 +511,12 @@
     "category": "UAT 开发后台"
   },
   "grafana_oWB4tP_Hz": {
-    "name": "[UAT] 夏季赛赛程：猫耳娘红包发送监控",
+    "name": "[UAT] 夏季赛赛程：活动角色红包发送监控",
     "url": "https://internal.example.invalid/app/grafana/d/oWB4tP_Hz/uat-xia-ji-sai-sai-cheng-mao-er-niang-hong-bao-fa-song-jian-kong?orgId=1",
     "source": "grafana",
-    "description": "Grafana仪表板: [UAT] 夏季赛赛程：猫耳娘红包发送监控",
+    "description": "Grafana仪表板: [UAT] 夏季赛赛程：活动角色红包发送监控",
     "tags": [
-      "[UAT] 夏季赛赛程：猫耳娘红包发送监控"
+      "[UAT] 夏季赛赛程：活动角色红包发送监控"
     ],
     "category": "UAT 开发后台"
   },
@@ -1128,12 +1128,12 @@
     "category": "UAT 开发后台"
   },
   "grafana_WmGFHuPHz": {
-    "name": "missevan-mall",
-    "url": "https://internal.example.invalid/app/grafana/d/WmGFHuPHz/missevan-mall?orgId=1",
+    "name": "testops-mall",
+    "url": "https://internal.example.invalid/app/grafana/d/WmGFHuPHz/testops-mall?orgId=1",
     "source": "grafana",
-    "description": "Grafana仪表板: missevan-mall",
+    "description": "Grafana仪表板: testops-mall",
     "tags": [
-      "missevan-mall"
+      "testops-mall"
     ],
     "category": "其他"
   },
@@ -1658,12 +1658,12 @@
     "category": "UAT 主站后台管理"
   },
   "grafana_lyrmnEJ7z": {
-    "name": "UAT 查看《猫耳星推官》答案",
+    "name": "UAT 查看《活动答题》答案",
     "url": "https://internal.example.invalid/app/grafana/d/lyrmnEJ7z/uat-cha-kan-mao-er-xing-tui-guan-da-an?orgId=1",
     "source": "grafana",
-    "description": "Grafana仪表板: UAT 查看《猫耳星推官》答案",
+    "description": "Grafana仪表板: UAT 查看《活动答题》答案",
     "tags": [
-      "UAT 查看《猫耳星推官》答案"
+      "UAT 查看《活动答题》答案"
     ],
     "category": "UAT 主站后台管理"
   },
@@ -2867,12 +2867,12 @@
     "category": "直播核心场景保障监控（高保密性）"
   },
   "grafana_mf57pP_Nz": {
-    "name": "夏季赛赛程：猫耳娘红包发送监控",
+    "name": "夏季赛赛程：活动角色红包发送监控",
     "url": "https://internal.example.invalid/app/grafana/d/mf57pP_Nz/xia-ji-sai-sai-cheng-mao-er-niang-hong-bao-fa-song-jian-kong?orgId=1",
     "source": "grafana",
-    "description": "Grafana仪表板: 夏季赛赛程：猫耳娘红包发送监控",
+    "description": "Grafana仪表板: 夏季赛赛程：活动角色红包发送监控",
     "tags": [
-      "夏季赛赛程：猫耳娘红包发送监控"
+      "夏季赛赛程：活动角色红包发送监控"
     ],
     "category": "开发后台"
   },
@@ -3452,22 +3452,22 @@
     "category": "UAT 开发后台"
   },
   "grafana_zZ6eMscnk": {
-    "name": "猫耳联运游戏参数",
+    "name": "测试平台联运游戏参数",
     "url": "https://internal.example.invalid/app/grafana/d/zZ6eMscnk/mao-er-lian-yun-you-xi-can-shu?orgId=1",
     "source": "grafana",
-    "description": "Grafana仪表板: 猫耳联运游戏参数",
+    "description": "Grafana仪表板: 测试平台联运游戏参数",
     "tags": [
-      "猫耳联运游戏参数"
+      "测试平台联运游戏参数"
     ],
     "category": "UAT 开发后台"
   },
   "grafana_fez7doczijbpce": {
-    "name": "猫耳送礼行为监控",
+    "name": "测试平台送礼行为监控",
     "url": "https://internal.example.invalid/app/grafana/d/fez7doczijbpce/mao-er-song-li-xing-wei-jian-kong?orgId=1",
     "source": "grafana",
-    "description": "Grafana仪表板: 猫耳送礼行为监控",
+    "description": "Grafana仪表板: 测试平台送礼行为监控",
     "tags": [
-      "猫耳送礼行为监控"
+      "测试平台送礼行为监控"
     ],
     "category": "UAT 开发后台"
   },

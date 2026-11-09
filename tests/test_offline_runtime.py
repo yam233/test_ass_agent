@@ -128,7 +128,7 @@ def test_http_entry_supports_existing_url_without_old_platform_startup(tmp_path)
             assert health["runtime_mode"] == "mock"
             assert health["llm_mode"] == "offline"
             context = {"operator": "tester", "session_id": "http-case"}
-            first = (await client.post("/agent/execute", json={"business_code": "ear_test", "user_input": "给用户123发10个礼物301到背包", "context": context})).json()
+            first = (await client.post("/agent/execute", json={"business_code": "testops", "user_input": "给用户123发10个礼物301到背包", "context": context})).json()
             assert first["code"] == "CONFIRM_REQUIRED"
             approved = (await client.post("/agent/execute", json={"user_input": "确认执行", "context": context})).json()
             assert approved["data"]["actual"] == 10

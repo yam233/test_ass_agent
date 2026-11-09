@@ -17,7 +17,7 @@ def get_debug_mode() -> bool:
     return debug_mode in ('true', '1', 'yes', 'on')
 
 
-def load_mcp_servers_config(business_code: str = 'ear_test', force_reload: bool = False) -> dict:
+def load_mcp_servers_config(business_code: str = 'testops', force_reload: bool = False) -> dict:
     """
     加载 MCP 服务器配置
     
@@ -60,7 +60,7 @@ def load_mcp_servers_config(business_code: str = 'ear_test', force_reload: bool 
         raise FileNotFoundError(f"配置文件不存在: {target_file}")
 
 
-def switch_mode(debug_mode: bool, business_code: str = 'ear_test'):
+def switch_mode(debug_mode: bool, business_code: str = 'testops'):
     """
     切换运行模式
     

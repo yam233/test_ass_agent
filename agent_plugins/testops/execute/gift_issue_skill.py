@@ -19,7 +19,7 @@ from agent_core.protocol import SkillInput, SkillOutput
 class GiftIssueSkill(BaseSkillTemplate):
     """专属礼物发放 Skill"""
     
-    def __init__(self, mcp_adapter=None, business_code: str = "ear_test"):
+    def __init__(self, mcp_adapter=None, business_code: str = "testops"):
         """
         初始化
         

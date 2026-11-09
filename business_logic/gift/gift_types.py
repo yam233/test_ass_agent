@@ -1,6 +1,6 @@
 """
 礼物类型定义和校验逻辑
-参考 MaoerProject02/core/gift/gift_types.py
+参考 testopsProject02/core/gift/gift_types.py
 """
 from enum import Enum
 from typing import Optional, Tuple

@@ -17,7 +17,7 @@ def load_test_tool_config():
     """加载测试工具配置"""
     config_path = os.path.join(
         os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-        "config/business/ear_test/test_tool_config.json"
+        "config/business/testops/test_tool_config.json"
     )
     try:
         with open(config_path, 'r', encoding='utf-8') as f:
@@ -90,7 +90,7 @@ def top_up_diamond_via_test_tool(
                 examples=[
                     "给用户9075566发300万钻石",
                     "给手机号15000000490充值300万钻石",
-                    "给邮箱live@missevan.cn充值300万钻石"
+                    "给邮箱live@testops.cn充值300万钻石"
                 ]
             ),
             "data": None

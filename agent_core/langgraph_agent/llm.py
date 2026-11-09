@@ -46,7 +46,7 @@ class DeepSeekLLM:
         body.update(options)
         context = context or {}
         session_key = json.dumps([context.get("operator", "local"), context.get("session_id", self._session_id)])
-        headers = {"Authorization": "Bearer " + key, "User-Agent": "ear-test-agent/2.0"}
+        headers = {"Authorization": "Bearer " + key, "User-Agent": "testops-agent/2.0"}
         if parsed.hostname == "opencode.ai":
             headers["x-opencode-session"] = hashlib.sha256(session_key.encode()).hexdigest()
         async with httpx.AsyncClient(timeout=30, transport=self.transport) as client:

@@ -1,6 +1,6 @@
 """
 奖池配置查询服务
-参考 MaoerProject02/core/pool/pool_service.py
+参考 testopsProject02/core/pool/pool_service.py
 支持查询随机礼物/幸运礼物/超能魔方奖池配置
 """
 import os

@@ -1,6 +1,6 @@
 """
 数据库连接模块
-参考 MaoerProject02/core/common/db.py
+参考 testopsProject02/core/common/db.py
 """
 import json
 import os

@@ -53,7 +53,7 @@ class BaseSkillTemplate(ABC):
         metadata_config: 元数据配置
     """
     
-    def __init__(self, skill_name: str, skill_type: str, business_code: str = "ear_test"):
+    def __init__(self, skill_name: str, skill_type: str, business_code: str = "testops"):
         """
         初始化 Skill
         

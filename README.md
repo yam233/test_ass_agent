@@ -1,12 +1,14 @@
-# Ear Test Agent
+# TestOps Agent
 
-基于 LLM 的猫耳测试助手，支持用户查询、礼物发放、奖池配置、钻石充值、后台功能搜索和配置核验。
+基于 LLM 的测试助手，支持用户查询、礼物发放、奖池配置、钻石充值、后台功能搜索和配置核验。
 
 ## 多步工作流入口
 
 四批改造提供 `/workflows`：原生工具调用、三重预算、逐步审批、持久化 checkpoint、配置回滚、批次清理、结果引用与评测。使用方法和边界见 [多步工作流指南](docs/workflow-guide.md)。`/agent/execute` 保留原单动作行为。
 
 ## 当前运行方式：平台 mock + 可替换模型
+
+项目名称统一为 **TestOps Agent**，业务代码为 `testops`。显式传入 `business_code` 的客户端应使用该值；省略时继续使用默认业务。
 
 原平台目前无访问权限。默认入口使用 SQLite 重建的有状态 mock，不连接旧数据库、后台或脚本仓库。样本为合成数据，支持范围依据现有工具元信息重建，不代表真实平台的完整契约。
 
@@ -100,7 +102,7 @@ agent_core/                 # Agent 主链路、全局能力层、Skill 标准�
 agent_core/layers/          # 感知解析、安全配置、执行保障、记忆、格式化
 agent_core/langgraph_agent/ # Python + LangChain/LangGraph 新主链路
 agent_core/skills/          # DB/后台/脚本 Skill 标准家族
-agent_plugins/ear_test/     # 猫耳测试助手业务插件与 skill
+agent_plugins/testops/     # 测试助手业务插件与 skill
 api/                        # HTTP 入口
 business_logic/             # 用户、礼物、奖池、配置核验等业务服务
 config/                     # 框架配置和业务配置
@@ -147,7 +149,7 @@ cp config/local/agent_secrets.example.json config/local/agent_secrets.json
 ```bash
 curl -X POST http://localhost:8002/agent/execute \
   -H "Content-Type: application/json" \
-  -d '{"business_code": "ear_test", "user_input": "查询用户9075333的信息"}'
+  -d '{"business_code": "testops", "user_input": "查询用户9075333的信息"}'
 ```
 
 新架构灰度入口：
@@ -181,10 +183,10 @@ python -m compileall agent_core api agent_plugins tests utils
 
 新增或调整 skill 时，优先检查：
 
-- `config/business/ear_test/skills_registry.json`
-- `config/business/ear_test/mcp_registry.json`
-- `agent_plugins/ear_test/skills/`
-- `agent_plugins/ear_test/local_handlers.py`
+- `config/business/testops/skills_registry.json`
+- `config/business/testops/mcp_registry.json`
+- `agent_plugins/testops/skills/`
+- `agent_plugins/testops/local_handlers.py`
 
 执行类 skill 需要关注参数校验、实体存在性校验、二次确认和审计记录。
 

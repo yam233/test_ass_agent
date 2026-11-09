@@ -628,7 +628,7 @@
     },
     "script-runner-server": {
       "id": "script-runner-server",
-      "name": "脚本执行-missevan_test脚本",
+      "name": "脚本执行-testops_test脚本",
       "type": "streamableHttp",
       "baseUrl": "local",
       "headers": {
@@ -636,10 +636,10 @@
       },
       "tools": [
         {
-          "toolName": "run_missevan_script",
-          "toolDesc": "执行missevan_test项目的脚本（如live/draw01.py）",
+          "toolName": "run_testops_script",
+          "toolDesc": "执行testops_test项目的脚本（如live/draw01.py）",
           "method": "POST",
-          "path": "/tools/run_missevan_script",
+          "path": "/tools/run_testops_script",
           "timeout": 300000,
           "retry": {
             "enabled": false,

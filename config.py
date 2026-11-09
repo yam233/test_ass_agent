@@ -40,7 +40,7 @@ DB_CONFIG = {
 USER_DB_CONFIG = {
     "host": get_env_str("USER_DB_HOST", "localhost"),
     "port": get_env_int("USER_DB_PORT", 3306),
-    "user": get_env_str("USER_DB_USER", "missevan_sso"),
+    "user": get_env_str("USER_DB_USER", "testops_sso"),
     "password": get_env_str("USER_DB_PASSWORD", required=True),  # 必填，从环境变量读取
     "database": get_env_str("USER_DB_DATABASE", "example_db"),
     "charset": get_env_str("USER_DB_CHARSET", "utf8mb3")
@@ -93,8 +93,8 @@ REDIS_CONFIG = {
 REDIS_MANAGER_COOKIE = get_env_str("REDIS_MANAGER_COOKIE", "")
 
 # ============ 本地路径配置 ============
-# 本地 missevan_test 项目根目录（用于运行测试脚本）
-MISSEVAN_TEST_ROOT = get_env_str("MISSEVAN_TEST_ROOT", "/Users/yy/missevan_test")
+# 本地 testops_test 项目根目录（用于运行测试脚本）
+testops_TEST_ROOT = get_env_str("testops_TEST_ROOT", "/Users/yy/testops_test")
 
 # phpMyAdmin / Mongo 管理入口（仅供参考）
 # https://internal.example.invalid/app/pma/index.php?route=/table/search&db=example_db&table=live_custom

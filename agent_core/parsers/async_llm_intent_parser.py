@@ -73,7 +73,7 @@ class AsyncLLMIntentParser:
         
         输入：
             user_input: 用户 query，如 "给用户123456发放礼物40001"
-            business_code: 业务代码，如 "ear_test"
+            business_code: 业务代码，如 "testops"
             available_skills: 可用的 Skill 列表
             context: 上下文信息
             

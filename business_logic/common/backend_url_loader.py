@@ -25,7 +25,7 @@ class BackendUrlLoader:
         return cls._search_engine
     
     @classmethod
-    def load_config(cls, business_code: str = "ear_test") -> Dict[str, Any]:
+    def load_config(cls, business_code: str = "testops") -> Dict[str, Any]:
         """
         加载后台URL配置
         
@@ -87,7 +87,7 @@ class BackendUrlLoader:
         }
     
     @classmethod
-    def search_urls(cls, keyword: str, business_code: str = "ear_test", limit: int = None) -> List[Dict[str, Any]]:
+    def search_urls(cls, keyword: str, business_code: str = "testops", limit: int = None) -> List[Dict[str, Any]]:
         """
         搜索后台URL（使用智能搜索引擎）
         
@@ -113,7 +113,7 @@ class BackendUrlLoader:
             return cls._legacy_search_urls(keyword, business_code, limit)
     
     @classmethod
-    def list_all_urls(cls, business_code: str = "ear_test") -> List[Dict[str, Any]]:
+    def list_all_urls(cls, business_code: str = "testops") -> List[Dict[str, Any]]:
         """
         列出所有后台URL
         
@@ -135,7 +135,7 @@ class BackendUrlLoader:
         return results
     
     @classmethod
-    def get_url_by_key(cls, key: str, business_code: str = "ear_test") -> Dict[str, Any]:
+    def get_url_by_key(cls, key: str, business_code: str = "testops") -> Dict[str, Any]:
         """
         根据key获取URL配置
         
@@ -176,7 +176,7 @@ class BackendUrlLoader:
         }
     
     @classmethod
-    def reload_config(cls, business_code: str = "ear_test"):
+    def reload_config(cls, business_code: str = "testops"):
         """
         重新加载配置（清除缓存）
         
@@ -193,7 +193,7 @@ class BackendUrlLoader:
         logger.info(f"已清除后台URL配置缓存: {business_code}")
     
     @classmethod
-    def _legacy_search_urls(cls, keyword: str, business_code: str = "ear_test", limit: int = None) -> List[Dict[str, Any]]:
+    def _legacy_search_urls(cls, keyword: str, business_code: str = "testops", limit: int = None) -> List[Dict[str, Any]]:
         """
         传统搜索方法（作为备用）
         

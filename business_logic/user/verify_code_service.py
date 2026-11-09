@@ -1,6 +1,6 @@
 """
 验证码查询服务
-参考 MaoerProject 实现，支持直接连接 Redis
+参考 testopsProject 实现，支持直接连接 Redis
 """
 import os
 import logging
@@ -51,7 +51,7 @@ def query_verify_code(
 ) -> Dict[str, Any]:
     """
     查询验证码
-    参考 MaoerProject 的实现方式
+    参考 testopsProject 的实现方式
     
     Args:
         phone: 手机号
@@ -81,7 +81,7 @@ def query_verify_code(
     if not identifier:
         return {
             "success": False,
-            "message": "❌ 缺少查询参数\n\n请提供用户ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的验证码\n• 查询手机号15000000490的验证码\n• 查询邮箱live@missevan.cn的验证码"
+            "message": "❌ 缺少查询参数\n\n请提供用户ID、手机号或邮箱中的至少一个。例如：\n• 查询用户9075566的验证码\n• 查询手机号15000000490的验证码\n• 查询邮箱live@testops.cn的验证码"
         }
     
     # 查询验证码
@@ -91,7 +91,7 @@ def query_verify_code(
 def query_verify_code_direct_redis(identifier: str, is_email: bool = False) -> Dict[str, Any]:
     """
     直接连接 Redis 查询验证码
-    参考 MaoerProject 的实现
+    参考 testopsProject 的实现
     
     Args:
         identifier: 手机号或邮箱

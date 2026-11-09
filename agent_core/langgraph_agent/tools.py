@@ -112,7 +112,7 @@ class BackendFeatureTool(BaseTool):
     @staticmethod
     def _load_entries() -> List[Dict[str, Any]]:
         try:
-            from agent_plugins.ear_test.backend_metadata import BackendUrlLoader
+            from agent_plugins.testops.backend_metadata import BackendUrlLoader
         except Exception:
             return []
         try:

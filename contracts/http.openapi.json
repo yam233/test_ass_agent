@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Ear Test Agent — local mock",
+    "title": "TestOps Agent — local mock",
     "version": "2.0"
   },
   "paths": {
@@ -328,7 +328,7 @@
           "business_code": {
             "type": "string",
             "title": "Business Code",
-            "default": "ear_test"
+            "default": "testops"
           },
           "context": {
             "additionalProperties": true,
@@ -478,7 +478,7 @@
           "business_code": {
             "type": "string",
             "title": "Business Code",
-            "default": "ear_test"
+            "default": "testops"
           },
           "context": {
             "additionalProperties": true,

@@ -1,5 +1,5 @@
 """
-ear_test 业务本地工具处理器注册表
+testops 业务本地工具处理器注册表
 """
 from typing import Dict, Any, Callable
 from agent_core.skills.standard import BackendMetadataSkill, TestScriptSkill
@@ -229,7 +229,7 @@ def build_local_handlers() -> Dict[str, Callable[[Dict[str, Any]], Dict[str, Any
         }
     
     def _universal_query(p: Dict[str, Any]) -> Dict[str, Any]:
-        executor = UniversalQueryExecutor("ear_test")
+        executor = UniversalQueryExecutor("testops")
         handlers = build_local_handlers()
         safe_handlers = {k: v for k, v in handlers.items() if k != "universal_query"}
         return executor.execute(p, safe_handlers)

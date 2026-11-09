@@ -98,7 +98,7 @@ def execute_command(command: str, index: int, total: int) -> Dict:
     
     try:
         payload = {
-            "business_code": "ear_test",
+            "business_code": "testops",
             "user_input": command,
             "context": {
                 "operator": "test_ml_batch",

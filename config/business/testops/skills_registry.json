@@ -1119,10 +1119,10 @@
     {
       "skill_name": "run_script",
       "display_name": "执行本地脚本",
-      "description": "执行本地missevan_test脚本",
+      "description": "执行本地testops_test脚本",
       "skill_type": "execute",
       "server_name": "script-runner-server",
-      "tool_name": "run_missevan_script",
+      "tool_name": "run_testops_script",
       "priority": 10,
       "match_keywords": [
         "执行脚本",
@@ -1131,7 +1131,7 @@
       ],
       "match_entities": [
         "脚本",
-        "missevan",
+        "testops",
         "test"
       ],
       "param_schema": {

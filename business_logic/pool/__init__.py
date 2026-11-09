@@ -1,6 +1,6 @@
 """
 奖池配置模块
-参考 MaoerProject02/core/pool/pool_service.py
+参考 testopsProject02/core/pool/pool_service.py
 """
 from .pool_service import (
     query_pool_config,

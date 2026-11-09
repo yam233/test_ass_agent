@@ -1,6 +1,6 @@
 {
   "businesses": [
-    "ear_test"
+    "testops"
   ],
   "llm": {
     "model": "deepseek-chat",
