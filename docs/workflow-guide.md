@@ -111,3 +111,9 @@ pytest 只收集 tests/，避免误执行历史目录中需要旧平台的脚本
 `workflow_audit` 与动作状态/平台回执在同一事务中记录 prepare、approve、deny、start、receipt、reconcile；每个事件有任务、动作、scope、参数哈希和策略版本。`workflow_artifacts` 保存脱敏提示词、工具契约和模型配置，trace 的 prompt_ver 指向其内容哈希。
 
 模型默认输出上限 1024，可通过服务端 `WORKFLOW_OUTPUT_TOKENS` 配置（最大 2048）。暂态错误最多退避重试两次；截断最多扩大输出重试一次。全部尝试计入步骤、时间与 token 预算；缺失 usage 保守保留预算，不回退为模拟决策。
+
+### 状态维护
+
+checkpoint 带 schema_version 和 revision；旧格式自动迁移，首次结构升级先保存 `.before-v1.sqlite` 备份；未知版本拒绝执行。并发旧 revision 保存返回 STATE_CONFLICT。取消标记独立持久化，不能被旧 checkpoint 覆盖。
+
+`python -m scripts.workflow_maintenance --db PATH` 清扫过期待批动作并预览引用清理；加 `--apply` 才删除终态任务保留 7 天后的引用。活动任务和未对账任务引用保留；动作、回执和审计不随引用清理删除。`python -m scripts.mock_state reset --dry-run` 只显示影响范围；实际 reset 在执行者存在或动作未对账时拒绝。

@@ -66,13 +66,19 @@ class MockPlatforms:
         with closing(sqlite3.connect(self.path)) as db:
             return [json.loads(row[0]) for row in db.execute(f"SELECT payload FROM {table} ORDER BY rowid")]
 
-    def reset(self):
-        """Explicit local reset for reproducible demos and regression trials."""
-        with closing(sqlite3.connect(self.path)) as db, db:
-            tables = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-            for table in ("gifts", "events", "script_runs", "platform_receipts", "actions", "workflow_tasks", "workflow_refs", "workflow_config", "workflow_changes", "workflow_preconditions"):
-                if table in tables:
-                    db.execute(f"DELETE FROM {table}")
+    def reset(self,dry_run=False):
+        """Exclusive explicit reset; never races an executing workflow."""
+        from agent_core.workflow_locks import maintenance_lock
+        with maintenance_lock(self.path,exclusive=True),self.actions.connection(write=True) as db:
+            tables={r[0] for r in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+            names=['gifts','events','script_runs','platform_receipts','actions','workflow_tasks','workflow_refs',
+                   'workflow_config','workflow_changes','workflow_preconditions','workflow_control','workflow_artifacts','workflow_audit','workflow_jobs']
+            counts={t:db.execute(f'SELECT count(*) FROM {t}').fetchone()[0] for t in names if t in tables}
+            if not dry_run:
+                if db.execute("SELECT 1 FROM actions WHERE status IN ('running','unknown') LIMIT 1").fetchone():
+                    raise ActionError('RESOURCE_BUSY','存在未对账动作，不能重置')
+                for table in counts: db.execute(f'DELETE FROM {table}')
+            return {'dry_run':dry_run,'tables':counts}
 
     @staticmethod
     def normalize_write(tool, params):

@@ -45,6 +45,7 @@ class WorkflowRuntime:
         with self.store.lock(task_id):
             state=self.store.get(task_id,context)
             if state['status'] in TERMINAL: return state
+            if self.store.cancel_requested(task_id): return self._stop(state,'cancelled','cancelled')
             policy = resolve_policy(context, state.get('policy'))
             context = {**context, 'dry_run': state['mode'] == 'dry_run','allowed_tools':policy['allowed_tools'],'policy_version':policy['policy_version']}
             state['policy'] = policy
@@ -87,6 +88,7 @@ class WorkflowRuntime:
 
     def _stop(self,state,reason,status='failed'):
         state['status']=status; state['stop_reason']=reason
+        if status in TERMINAL: state['finished_at']=time.time()
         if state['trace']: state['trace'][-1]['stop_reason']=reason
         self.store.save(state)
         return state
@@ -112,6 +114,7 @@ class WorkflowRuntime:
 
     async def _drive(self,state,context):
         while state['model_calls']<=state['budget']['max_steps']:
+            if self.store.cancel_requested(state['task_id']): return self._stop(state,'cancelled','cancelled')
             if self._timed_out(state): return self._stop(state,'timeout')
             if state['pending'] is not None:
                 if state['pending'].get('phase')=='prepare': return self._prepare_pending(state,context)
