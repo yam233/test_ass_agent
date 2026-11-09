@@ -1,0 +1,1033 @@
+{
+  "mcpServers": {
+    "feature-search-server": {
+      "id": "feature-search-server",
+      "name": "地址定位-功能清单查询服务",
+      "type": "streamableHttp",
+      "baseUrl": "local",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "tools": [
+        {
+          "toolName": "search_features",
+          "toolDesc": "搜索后台功能URL（Grafana/Mongo），支持模糊匹配标题、文件夹、功能描述",
+          "method": "POST",
+          "path": "/search_features",
+          "params": [
+            {
+              "name": "keyword",
+              "type": "string",
+              "required": true,
+              "desc": "搜索关键词"
+            },
+            {
+              "name": "source",
+              "type": "string",
+              "required": false,
+              "default": "all",
+              "enum": [
+                "grafana",
+                "mongo",
+                "all"
+              ],
+              "desc": "数据源"
+            },
+            {
+              "name": "folder",
+              "type": "string",
+              "required": false,
+              "desc": "限定文件夹"
+            },
+            {
+              "name": "limit",
+              "type": "integer",
+              "required": false,
+              "default": 10,
+              "desc": "返回条数"
+            }
+          ]
+        },
+        {
+          "toolName": "list_features",
+          "toolDesc": "列出后台功能清单",
+          "method": "POST",
+          "path": "/list_features",
+          "params": [
+            {
+              "name": "source",
+              "type": "string",
+              "required": false,
+              "default": "all",
+              "enum": [
+                "grafana",
+                "mongo",
+                "all"
+              ],
+              "desc": "数据源"
+            },
+            {
+              "name": "limit",
+              "type": "integer",
+              "required": false,
+              "default": 20,
+              "desc": "返回条数"
+            }
+          ]
+        },
+        {
+          "toolName": "get_stats",
+          "toolDesc": "统计Grafana仪表盘和Mongo集合的数量",
+          "method": "GET",
+          "path": "/get_stats",
+          "params": []
+        },
+        {
+          "toolName": "get_enums",
+          "toolDesc": "获取系统枚举值（如外观类型）",
+          "method": "POST",
+          "path": "/get_enums",
+          "params": [
+            {
+              "name": "enum_name",
+              "type": "string",
+              "required": true,
+              "enum": [
+                "appearance_type"
+              ],
+              "desc": "枚举名称"
+            }
+          ]
+        },
+        {
+          "toolName": "universal_query",
+          "toolDesc": "通用结构化查询（基于 business_schema 自动路由）",
+          "method": "POST",
+          "path": "/universal_query",
+          "params": [
+            {
+              "name": "entity",
+              "type": "string",
+              "required": true,
+              "desc": "查询实体，如 user/gift/appearance/pool/feature"
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "required": false,
+              "default": "query",
+              "enum": [
+                "query",
+                "list",
+                "stats",
+                "metadata"
+              ],
+              "desc": "操作类型"
+            },
+            {
+              "name": "filters",
+              "type": "object",
+              "required": false,
+              "desc": "过滤条件，如 {\"user_id\": \"9075566\"}"
+            },
+            {
+              "name": "limit",
+              "type": "integer",
+              "required": false,
+              "default": 10,
+              "desc": "返回条数"
+            }
+          ]
+        }
+      ],
+      "isActive": true,
+      "isTrusted": true
+    },
+    "gift-management-server": {
+      "id": "gift-management-server",
+      "name": "礼物发放-专属礼物/背包礼物服务",
+      "type": "streamableHttp",
+      "baseUrl": "local",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "tools": [
+        {
+          "toolName": "add_gift_to_backpack",
+          "toolDesc": "发礼物到背包（3开头走Grafana后台，4开头走DB插入）",
+          "method": "POST",
+          "path": "/tools/add_gift_to_backpack",
+          "timeout": 5000,
+          "ignoreReadTimeout": true,
+          "retry": {
+            "enabled": true,
+            "maxRetries": 2,
+            "retryDelay": 1000,
+            "retryOn": [
+              "timeout",
+              "5xx",
+              "connection_error"
+            ]
+          },
+          "fallback": {
+            "enabled": false
+          },
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": false,
+              "desc": "礼物ID（3开头=Grafana，4开头=DB）- 单个发放时使用"
+            },
+            {
+              "name": "gift_ids",
+              "type": "array",
+              "required": false,
+              "desc": "礼物ID列表 - 批量发放多个礼物时使用"
+            },
+            {
+              "name": "gift_nums",
+              "type": "object",
+              "required": false,
+              "desc": "礼物ID到数量的映射 - 批量发放不同数量时使用"
+            },
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": true,
+              "desc": "用户ID"
+            },
+            {
+              "name": "num",
+              "type": "integer",
+              "required": false,
+              "default": 1,
+              "desc": "数量"
+            },
+            {
+              "name": "duration_days",
+              "type": "integer",
+              "required": false,
+              "default": 7,
+              "desc": "有效期天数，0=永久"
+            }
+          ]
+        },
+        {
+          "toolName": "add_gift_to_exclusive_tab",
+          "toolDesc": "发放专属tab礼物（2开头=用户专属需user_id，7开头=直播间专属需room_id，8开头=随机礼物）",
+          "method": "POST",
+          "path": "/tools/add_gift_to_exclusive_tab",
+          "timeout": 60000,
+          "ignoreReadTimeout": true,
+          "retry": {
+            "enabled": true,
+            "maxRetries": 2,
+            "retryDelay": 1000,
+            "retryOn": [
+              "timeout",
+              "5xx",
+              "connection_error"
+            ]
+          },
+          "fallback": {
+            "enabled": false
+          },
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": true,
+              "desc": "礼物ID"
+            },
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": false,
+              "desc": "用户ID（用户专属礼物必填）"
+            },
+            {
+              "name": "room_id",
+              "type": "integer",
+              "required": false,
+              "desc": "直播间ID（直播间专属礼物必填）"
+            },
+            {
+              "name": "duration_days",
+              "type": "integer",
+              "required": false,
+              "default": 7,
+              "desc": "有效期天数，0=永久"
+            }
+          ]
+        },
+        {
+          "toolName": "add_gift_to_user",
+          "toolDesc": "发放用户专属礼物（简化接口，无需room_id）",
+          "method": "POST",
+          "path": "/tools/add_gift_to_user",
+          "timeout": 15000,
+          "ignoreReadTimeout": true,
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": true,
+              "desc": "礼物ID（2开头用户专属）"
+            },
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": true,
+              "desc": "用户ID"
+            },
+            {
+              "name": "duration_days",
+              "type": "integer",
+              "required": false,
+              "default": 7,
+              "desc": "有效期天数，0=永久"
+            }
+          ]
+        },
+        {
+          "toolName": "add_gift_to_room",
+          "toolDesc": "发放直播间专属礼物（简化接口，无需user_id）",
+          "method": "POST",
+          "path": "/tools/add_gift_to_room",
+          "timeout": 60000,
+          "ignoreReadTimeout": true,
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": true,
+              "desc": "礼物ID（7开头直播间专属）"
+            },
+            {
+              "name": "room_id",
+              "type": "integer",
+              "required": true,
+              "desc": "直播间ID"
+            },
+            {
+              "name": "duration_days",
+              "type": "integer",
+              "required": false,
+              "default": 7,
+              "desc": "有效期天数，0=永久"
+            }
+          ]
+        },
+        {
+          "toolName": "delete_gift_record",
+          "toolDesc": "撤回专属tab礼物记录",
+          "method": "POST",
+          "path": "/tools/delete_gift_record",
+          "params": [
+            {
+              "name": "record_id",
+              "type": "integer",
+              "required": true,
+              "desc": "记录ID（发放时返回的id）"
+            }
+          ]
+        },
+        {
+          "toolName": "query_gift_records",
+          "toolDesc": "查询专属tab礼物记录",
+          "method": "POST",
+          "path": "/tools/query_gift_records",
+          "params": [
+            {
+              "name": "element_id",
+              "type": "integer",
+              "required": true,
+              "desc": "用户ID或直播间ID"
+            },
+            {
+              "name": "custom_type",
+              "type": "integer",
+              "required": false,
+              "enum": [
+                2,
+                3
+              ],
+              "desc": "类型：2=直播间专属，3=用户专属"
+            }
+          ]
+        },
+        {
+          "toolName": "check_gift_type",
+          "toolDesc": "校验礼物类型及发放规则",
+          "method": "POST",
+          "path": "/tools/check_gift_type",
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": true,
+              "desc": "礼物ID"
+            }
+          ]
+        },
+        {
+          "toolName": "query_gift_by_name",
+          "toolDesc": "根据礼物名称查询礼物信息（支持模糊查询）",
+          "method": "POST",
+          "path": "/tools/query_gift_by_name",
+          "params": [
+            {
+              "name": "gift_name",
+              "type": "string",
+              "required": true,
+              "desc": "礼物名称（支持模糊查询）"
+            },
+            {
+              "name": "limit",
+              "type": "integer",
+              "required": false,
+              "default": 10,
+              "desc": "最多返回的结果数量，默认10"
+            }
+          ]
+        },
+        {
+          "toolName": "query_gift_info",
+          "toolDesc": "查询礼物详细信息（支持按ID、批量ID或名称查询MongoDB）",
+          "method": "POST",
+          "path": "/tools/query_gift_info",
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": false,
+              "desc": "礼物ID（可选，精确查询单个礼物）"
+            },
+            {
+              "name": "gift_ids",
+              "type": "array",
+              "required": false,
+              "desc": "礼物ID列表（可选，批量查询多个礼物）"
+            },
+            {
+              "name": "gift_name",
+              "type": "string",
+              "required": false,
+              "desc": "礼物名称（可选，模糊查询）"
+            },
+            {
+              "name": "limit",
+              "type": "integer",
+              "required": false,
+              "default": 10,
+              "desc": "最多返回结果数（名称查询时使用）"
+            }
+          ]
+        },
+        {
+          "toolName": "list_gift_types",
+          "toolDesc": "列出所有礼物类型规则",
+          "method": "GET",
+          "path": "/tools/list_gift_types",
+          "params": []
+        },
+        {
+          "toolName": "issue_appearance_to_platform",
+          "toolDesc": "通过 Grafana 后台 API 发放外观到外观中心平台",
+          "method": "POST",
+          "path": "/tools/issue_appearance_to_platform",
+          "params": [
+            {
+              "name": "appearance_id",
+              "type": "integer",
+              "required": true,
+              "desc": "外观ID"
+            },
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": false,
+              "desc": "单个用户ID"
+            },
+            {
+              "name": "user_ids",
+              "type": "array",
+              "required": false,
+              "desc": "用户ID列表"
+            },
+            {
+              "name": "duration_days",
+              "type": "integer",
+              "required": false,
+              "default": 7,
+              "desc": "有效期天数"
+            },
+            {
+              "name": "appearance_type",
+              "type": "integer",
+              "required": false,
+              "desc": "外观类型"
+            }
+          ]
+        },
+        {
+          "toolName": "issue_backpack_gift_via_grafana",
+          "toolDesc": "通过 Grafana 后台 API 发放背包礼物（仅支持3开头）",
+          "method": "POST",
+          "path": "/tools/issue_backpack_gift_via_grafana",
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": true,
+              "desc": "礼物ID"
+            },
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": false,
+              "desc": "单个用户ID"
+            },
+            {
+              "name": "user_ids",
+              "type": "array",
+              "required": false,
+              "desc": "用户ID列表"
+            },
+            {
+              "name": "num",
+              "type": "integer",
+              "required": false,
+              "default": 1,
+              "desc": "发放数量"
+            },
+            {
+              "name": "duration_days",
+              "type": "integer",
+              "required": false,
+              "default": 7,
+              "desc": "有效期天数"
+            }
+          ]
+        },
+        {
+          "toolName": "clear_backpack_gift_via_grafana",
+          "toolDesc": "通过 Grafana 后台 API 清空背包免费礼物（仅支持3开头）",
+          "method": "POST",
+          "path": "/tools/clear_backpack_gift_via_grafana",
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": true,
+              "desc": "礼物ID"
+            },
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": false,
+              "desc": "单个用户ID"
+            },
+            {
+              "name": "user_ids",
+              "type": "array",
+              "required": false,
+              "desc": "用户ID列表"
+            }
+          ]
+        }
+      ],
+      "isActive": true,
+      "isTrusted": true
+    },
+    "test-tool-server": {
+      "id": "test-tool-server",
+      "name": "测试工具联动-钻石发放",
+      "type": "streamableHttp",
+      "baseUrl": "local",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "tools": [
+        {
+          "toolName": "top_up_diamond",
+          "toolDesc": "发放钻石（支持通过用户ID、手机号充值，以100万为单位循环调用）",
+          "method": "POST",
+          "path": "/tools/top_up_diamond",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": false,
+              "desc": "用户ID（与phone二选一）"
+            },
+            {
+              "name": "phone",
+              "type": "string",
+              "required": false,
+              "desc": "手机号（会先查询用户ID）"
+            },
+            {
+              "name": "diamond_100w_units",
+              "type": "integer",
+              "required": true,
+              "desc": "以100万为单位的数量"
+            },
+            {
+              "name": "type",
+              "type": "integer",
+              "required": false,
+              "default": 0,
+              "desc": "类型，默认0"
+            },
+            {
+              "name": "sid",
+              "type": "string",
+              "required": false,
+              "desc": "会话sid，留空自动获取"
+            }
+          ]
+        },
+        {
+          "toolName": "top_up_diamond_by_phone",
+          "toolDesc": "通过手机号充值钻石（先查询user_id，再充值，以100万为单位循环调用）",
+          "method": "POST",
+          "path": "/tools/top_up_diamond_by_phone",
+          "params": [
+            {
+              "name": "phone",
+              "type": "string",
+              "required": true,
+              "desc": "手机号"
+            },
+            {
+              "name": "diamond_100w_units",
+              "type": "integer",
+              "required": true,
+              "desc": "以100万为单位的数量"
+            },
+            {
+              "name": "type",
+              "type": "integer",
+              "required": false,
+              "default": 0,
+              "desc": "类型，默认0"
+            },
+            {
+              "name": "sid",
+              "type": "string",
+              "required": false,
+              "desc": "会话sid，留空自动获取"
+            }
+          ]
+        }
+      ],
+      "isActive": true,
+      "isTrusted": true
+    },
+    "script-runner-server": {
+      "id": "script-runner-server",
+      "name": "脚本执行-missevan_test脚本",
+      "type": "streamableHttp",
+      "baseUrl": "local",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "tools": [
+        {
+          "toolName": "run_missevan_script",
+          "toolDesc": "执行missevan_test项目的脚本（如live/draw01.py）",
+          "method": "POST",
+          "path": "/tools/run_missevan_script",
+          "timeout": 300000,
+          "retry": {
+            "enabled": false,
+            "maxRetries": 0,
+            "retryDelay": 1000,
+            "retryOn": []
+          },
+          "fallback": {
+            "enabled": true,
+            "message": "脚本执行服务暂不可用，请稍后重试"
+          },
+          "params": [
+            {
+              "name": "script",
+              "type": "string",
+              "required": true,
+              "desc": "相对脚本路径，如 live/draw01.py"
+            },
+            {
+              "name": "args",
+              "type": "array",
+              "required": false,
+              "desc": "脚本参数列表"
+            }
+          ]
+        }
+      ],
+      "isActive": true,
+      "isTrusted": true
+    },
+    "user-info-server": {
+      "id": "user-info-server",
+      "name": "基础信息-用户/验证码查询",
+      "type": "streamableHttp",
+      "baseUrl": "local",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "tools": [
+        {
+          "toolName": "uat_user_info",
+          "toolDesc": "查询UAT用户信息",
+          "method": "POST",
+          "path": "/tools/uat_user_info",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": true,
+              "desc": "用户ID"
+            }
+          ]
+        },
+        {
+          "toolName": "get_verify_code",
+          "toolDesc": "获取验证码（支持通过手机号、用户ID、邮箱查询）",
+          "method": "POST",
+          "path": "/tools/get_verify_code",
+          "params": [
+            {
+              "name": "phone",
+              "type": "string",
+              "required": false,
+              "desc": "手机号"
+            },
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": false,
+              "desc": "用户ID"
+            },
+            {
+              "name": "email",
+              "type": "string",
+              "required": false,
+              "desc": "邮箱（会先查询用户信息获取手机号）"
+            }
+          ]
+        },
+        {
+          "toolName": "query_user_info",
+          "toolDesc": "查询用户信息（支持通过用户ID、直播间ID、邮箱、手机号查询，返回用户ID、直播间ID、手机号、邮箱、用户昵称、直播间名称等信息）",
+          "method": "POST",
+          "path": "/tools/query_user_info",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "integer",
+              "required": false,
+              "desc": "用户ID"
+            },
+            {
+              "name": "room_id",
+              "type": "integer",
+              "required": false,
+              "desc": "直播间ID"
+            },
+            {
+              "name": "email",
+              "type": "string",
+              "required": false,
+              "desc": "邮箱"
+            },
+            {
+              "name": "phone",
+              "type": "string",
+              "required": false,
+              "desc": "手机号"
+            }
+          ]
+        }
+      ],
+      "isActive": true,
+      "isTrusted": true
+    },
+    "config-check-server": {
+      "id": "config-check-server",
+      "name": "配置核验-外观/奖励有效期",
+      "type": "streamableHttp",
+      "baseUrl": "local",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "tools": [
+        {
+          "toolName": "query_appearance_config",
+          "toolDesc": "查询外观资源配置（ID、类型、名称、有效期、最大有效期），从test_appearances和test_rewards集合查询，无结果提示未配置该外观",
+          "method": "POST",
+          "path": "/tools/query_appearance_config",
+          "ignoreReadTimeout": true,
+          "params": [
+            {
+              "name": "appearance_id",
+              "type": "integer",
+              "required": true,
+              "desc": "外观ID"
+            }
+          ]
+        },
+        {
+          "toolName": "query_appearance_configs_batch",
+          "toolDesc": "批量查询外观资源配置（支持逗号分隔的ID列表）",
+          "method": "POST",
+          "path": "/tools/query_appearance_configs_batch",
+          "ignoreReadTimeout": true,
+          "params": [
+            {
+              "name": "appearance_ids",
+              "type": "string",
+              "required": true,
+              "desc": "外观ID列表，逗号分隔，如 40667,40789"
+            }
+          ]
+        },
+        {
+          "toolName": "query_reward_config",
+          "toolDesc": "查询奖励配置（reward_id、礼物id element_id、活动id event_id、礼物类型、有效期duration、最大有效期end_time），从test_rewards集合查询，无结果提示未配置该奖励",
+          "method": "POST",
+          "path": "/tools/query_reward_config",
+          "params": [
+            {
+              "name": "reward_id",
+              "type": "integer",
+              "required": false,
+              "desc": "奖励ID"
+            },
+            {
+              "name": "element_id",
+              "type": "integer",
+              "required": false,
+              "desc": "礼物ID或外观ID"
+            },
+            {
+              "name": "event_id",
+              "type": "integer",
+              "required": false,
+              "desc": "活动ID"
+            }
+          ]
+        },
+        {
+          "toolName": "query_reward_configs_batch",
+          "toolDesc": "批量查询奖励配置（支持逗号分隔的ID列表）",
+          "method": "POST",
+          "path": "/tools/query_reward_configs_batch",
+          "params": [
+            {
+              "name": "reward_ids",
+              "type": "string",
+              "required": false,
+              "desc": "奖励ID列表，逗号分隔，如 3,4,5"
+            },
+            {
+              "name": "element_ids",
+              "type": "string",
+              "required": false,
+              "desc": "礼物ID或外观ID列表，逗号分隔"
+            },
+            {
+              "name": "event_id",
+              "type": "integer",
+              "required": false,
+              "desc": "活动ID"
+            }
+          ]
+        },
+        {
+          "toolName": "query_pool_config",
+          "toolDesc": "查询随机礼物/幸运礼物/超能魔方奖池配置，支持通过礼物ID或奖池ID查询，返回奖池配置详情及保底信息（miss_limit保底次数、ssr_id大奖ID）",
+          "method": "POST",
+          "path": "/tools/query_pool_config",
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": false,
+              "desc": "礼物ID（与pool_id二选一）"
+            },
+            {
+              "name": "pool_id",
+              "type": "integer",
+              "required": false,
+              "desc": "奖池ID（与gift_id二选一）"
+            }
+          ]
+        },
+        {
+          "toolName": "update_pool_gift_weight_to_max",
+          "toolDesc": "将奖池中某个礼物的权重改为最大（在现有权重后加6个0，即乘以1000000），例如将20抽奖池的礼物91384的概率改成最大",
+          "method": "POST",
+          "path": "/tools/update_pool_gift_weight_to_max",
+          "params": [
+            {
+              "name": "pool_id",
+              "type": "integer",
+              "required": true,
+              "desc": "奖池ID"
+            },
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": true,
+              "desc": "礼物ID"
+            },
+            {
+              "name": "gift_num",
+              "type": "integer",
+              "required": false,
+              "desc": "抽数（可选，用于筛选特定抽数的奖池）"
+            }
+          ]
+        },
+        {
+          "toolName": "update_pool_ssr_weight_to_zero",
+          "toolDesc": "将奖池中保底大奖的权重改为0，例如将大奖ID为91376的权重改为0",
+          "method": "POST",
+          "path": "/tools/update_pool_ssr_weight_to_zero",
+          "params": [
+            {
+              "name": "pool_id",
+              "type": "integer",
+              "required": true,
+              "desc": "奖池ID"
+            },
+            {
+              "name": "ssr_id",
+              "type": "integer",
+              "required": true,
+              "desc": "保底大奖ID"
+            },
+            {
+              "name": "gift_num",
+              "type": "integer",
+              "required": false,
+              "desc": "抽数（可选，用于筛选特定抽数的奖池）"
+            }
+          ]
+        },
+        {
+          "toolName": "verify_random_gift_pool_gifts",
+          "toolDesc": "验证随机礼物和对应奖池礼物的图片和动效：按奖池礼物逐个改权为最高→调抽奖接口（单抽gift_num=1，10抽gift_num=10）→恢复权重；需传room_id并配置DRAW_CONFIG才调抽奖",
+          "method": "POST",
+          "path": "/tools/verify_random_gift_pool_gifts",
+          "params": [
+            {
+              "name": "gift_id",
+              "type": "integer",
+              "required": true,
+              "desc": "随机礼物ID（8开头）"
+            },
+            {
+              "name": "room_id",
+              "type": "integer",
+              "required": false,
+              "desc": "收礼直播间ID；不传则只改权/恢复不调抽奖"
+            }
+          ]
+        }
+      ],
+      "isActive": true,
+      "isTrusted": true
+    },
+    "test-script-server": {
+      "id": "test-script-server",
+      "name": "测试脚本查询与执行服务",
+      "type": "local",
+      "baseUrl": "local",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "tools": [
+        {
+          "toolName": "scan_test_scripts",
+          "toolDesc": "扫描测试脚本并生成功能映射",
+          "method": "POST",
+          "path": "/tools/scan_test_scripts",
+          "params": [
+            {
+              "name": "repo_path",
+              "type": "string",
+              "required": false,
+              "desc": "本地脚本仓库路径"
+            },
+            {
+              "name": "branch",
+              "type": "string",
+              "required": false,
+              "desc": "Git 分支"
+            },
+            {
+              "name": "sync_latest",
+              "type": "boolean",
+              "required": false,
+              "default": false,
+              "desc": "是否先 git pull 同步最新代码"
+            }
+          ]
+        },
+        {
+          "toolName": "read_test_script",
+          "toolDesc": "读取测试脚本源码内容",
+          "method": "POST",
+          "path": "/tools/read_test_script",
+          "params": [
+            {
+              "name": "relative_path",
+              "type": "string",
+              "required": true,
+              "desc": "脚本相对路径"
+            },
+            {
+              "name": "repo_path",
+              "type": "string",
+              "required": false,
+              "desc": "本地脚本仓库路径"
+            }
+          ]
+        },
+        {
+          "toolName": "execute_test_script",
+          "toolDesc": "执行测试脚本，执行前需要二次确认",
+          "method": "POST",
+          "path": "/tools/execute_test_script",
+          "timeout": 120000,
+          "params": [
+            {
+              "name": "relative_path",
+              "type": "string",
+              "required": true,
+              "desc": "脚本相对路径"
+            },
+            {
+              "name": "args",
+              "type": "array",
+              "required": false,
+              "desc": "命令行参数列表"
+            },
+            {
+              "name": "repo_path",
+              "type": "string",
+              "required": false,
+              "desc": "本地脚本仓库路径"
+            }
+          ]
+        }
+      ],
+      "isActive": true,
+      "isTrusted": true
+    }
+  }
+}

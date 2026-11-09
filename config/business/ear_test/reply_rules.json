@@ -1,0 +1,12 @@
+{
+  "templates": {
+    "query_success": "查询成功！找到 {count} 条测试结果。",
+    "query_empty": "未找到相关测试结果。",
+    "execute_success": "测试用例执行成功！结果：{result}",
+    "execute_failed": "测试用例执行失败：{error}"
+  },
+  "error_messages": {
+    "invalid_test_id": "测试ID格式不正确，请使用 TEST-XXX 格式",
+    "test_not_found": "未找到指定的测试用例"
+  }
+}

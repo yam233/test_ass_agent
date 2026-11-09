@@ -1,0 +1,22 @@
+{
+  "format_rules": {
+    "date": {
+      "patterns": ["YYYY-MM-DD", "YYYY/MM/DD"],
+      "default_format": "YYYY-MM-DD"
+    },
+    "time": {
+      "patterns": ["HH:mm:ss", "HH:mm"],
+      "default_format": "HH:mm:ss"
+    }
+  },
+  "alias_rules": {
+    "common_aliases": {
+      "id": ["编号", "ID", "id"],
+      "name": ["名称", "名字"],
+      "date": ["日期", "时间"]
+    }
+  },
+  "reference_rules": {
+    "pronouns": ["它", "这个", "那个", "上面的", "刚才的"]
+  }
+}

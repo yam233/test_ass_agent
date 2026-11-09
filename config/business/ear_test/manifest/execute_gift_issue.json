@@ -1,0 +1,113 @@
+{
+  "skill_id": "execute_gift_issue",
+  "name": "专属礼物发放",
+  "description": "支持用户专属/直播间专属/随机礼物发放，支持批量发放",
+  "type": "execute",
+  "risk_level": "medium",
+  "input_parameters": [
+    {
+      "name": "gift_id",
+      "type": "integer",
+      "required": true,
+      "description": "礼物ID，2开头=用户专属，7开头=直播间专属，8开头=随机礼物",
+      "examples": [20001, 70001, 80001],
+      "alias": ["礼物ID", "礼品ID", "gift_id"],
+      "validation": {
+        "pattern": "^[278]\\d{4,}$",
+        "message": "礼物ID必须以2/7/8开头"
+      }
+    },
+    {
+      "name": "target_id",
+      "type": "integer",
+      "required": true,
+      "description": "目标ID：用户专属=用户ID，直播间专属=直播间ID",
+      "examples": [9075567, 123456],
+      "alias": ["用户ID", "直播间ID", "user_id", "room_id"],
+      "validation": {
+        "min": 1,
+        "max": 99999999,
+        "message": "目标ID必须在1-99999999之间"
+      }
+    },
+    {
+      "name": "issue_type",
+      "type": "string",
+      "required": false,
+      "default": "user",
+      "description": "发放类型：user=用户专属，room=直播间专属，random=随机礼物",
+      "enum": ["user", "room", "random"],
+      "alias": ["发放类型", "类型", "type"]
+    },
+    {
+      "name": "duration_days",
+      "type": "integer",
+      "required": false,
+      "default": 7,
+      "description": "有效期天数，1000=永久有效",
+      "examples": [7, 30, 1000],
+      "alias": ["有效期", "天数", "duration"],
+      "validation": {
+        "min": 1,
+        "max": 1000,
+        "message": "有效期必须在1-1000天之间"
+      },
+      "special_values": {
+        "永久": 1000,
+        "永久有效": 1000,
+        "permanent": 1000
+      }
+    },
+    {
+      "name": "batch_count",
+      "type": "integer",
+      "required": false,
+      "default": 1,
+      "description": "批量发放数量，最大100",
+      "examples": [1, 5, 10],
+      "alias": ["数量", "批量数", "count"],
+      "validation": {
+        "min": 1,
+        "max": 100,
+        "message": "批量数量必须在1-100之间"
+      }
+    }
+  ],
+  "output_format": "wechat_card",
+  "intent_mapping": [
+    "发放专属礼物",
+    "给用户10001发放礼物20001",
+    "批量发礼物给用户10001",
+    "直播间专属礼物发放",
+    "发放随机礼物80001给用户10001"
+  ],
+  "negative_examples": [
+    "查询礼物发放记录",
+    "删除礼物发放记录",
+    "撤回礼物"
+  ],
+  "risk_control": {
+    "need_log": true,
+    "need_confirm": false,
+    "operator_whitelist": [],
+    "sensitive_params": ["batch_count"],
+    "audit_fields": ["gift_id", "target_id", "duration_days", "batch_count"]
+  },
+  "business_rules": {
+    "gift_type_mapping": {
+      "2": "user",
+      "7": "room",
+      "8": "random"
+    },
+    "max_duration_days": 1000,
+    "default_duration_days": 7,
+    "max_batch_count": 100
+  },
+  "error_handling": {
+    "gift_not_found": "礼物ID不存在，请检查礼物ID是否正确",
+    "target_not_found": "目标用户/直播间不存在",
+    "permission_denied": "无权限执行此操作，请联系管理员",
+    "batch_limit_exceeded": "批量数量超过限制（最大100）",
+    "invalid_gift_type": "礼物类型不匹配，请检查礼物ID"
+  }
+}

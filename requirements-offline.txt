@@ -1,0 +1,9 @@
+# Minimal mock runtime (Python 3.10+); no databases, vector store or browser drivers.
+fastapi>=0.110,<0.116
+uvicorn>=0.24,<0.35
+pydantic>=2.7.4,<3
+httpx>=0.27,<1
+langgraph==0.2.76
+langchain-core==0.3.45
+langsmith>=0.1.125,<0.4
+pytest==7.4.3

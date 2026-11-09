@@ -1,0 +1,1557 @@
+{
+  "skills": [
+    {
+      "skill_name": "query_feature_url",
+      "display_name": "查询后台功能URL",
+      "description": "搜索Grafana/Mongo后台功能URL，列出后台功能清单",
+      "skill_type": "query",
+      "server_name": "feature-search-server",
+      "tool_name": "search_features",
+      "priority": 17,
+      "match_keywords": [
+        "外观配置URL",
+        "查询URL",
+        "后台地址",
+        "后台导航",
+        "功能清单",
+        "grafana",
+        "mongo",
+        "配置地址",
+        "url",
+        "地址",
+        "在哪",
+        "怎么找"
+      ],
+      "match_entities": [
+        "外观",
+        "礼物",
+        "奖池",
+        "后台",
+        "配置"
+      ],
+      "param_schema": {
+        "keyword": {
+          "type": "string",
+          "required": true,
+          "description": "搜索关键词"
+        },
+        "source": {
+          "type": "string",
+          "required": false,
+          "default": "all",
+          "enum": [
+            "grafana",
+            "mongo",
+            "all"
+          ],
+          "description": "数据源"
+        }
+      }
+    },
+    {
+      "skill_name": "list_features",
+      "display_name": "列出后台功能清单",
+      "description": "列出指定数据源的所有功能清单",
+      "skill_type": "query",
+      "server_name": "feature-search-server",
+      "tool_name": "list_features",
+      "priority": 13,
+      "match_keywords": [
+        "列出功能",
+        "功能清单",
+        "所有功能",
+        "列表",
+        "有哪些"
+      ],
+      "match_entities": [
+        "grafana",
+        "mongo",
+        "功能",
+        "后台"
+      ],
+      "param_schema": {
+        "source": {
+          "type": "string",
+          "required": false,
+          "default": "all",
+          "enum": [
+            "grafana",
+            "mongo",
+            "all"
+          ],
+          "description": "数据源"
+        }
+      }
+    },
+    {
+      "skill_name": "get_enums",
+      "display_name": "查询系统枚举值",
+      "description": "获取系统枚举值（如外观类型）",
+      "skill_type": "query",
+      "server_name": "feature-search-server",
+      "tool_name": "get_enums",
+      "priority": 20,
+      "match_keywords": [
+        "枚举",
+        "类型",
+        "外观类型",
+        "枚举列表",
+        "外观类型列表",
+        "查看外观类型",
+        "外观类型清单"
+      ],
+      "match_entities": [
+        "外观",
+        "枚举",
+        "类型"
+      ],
+      "param_schema": {
+        "enum_name": {
+          "type": "string",
+          "required": true,
+          "default": "appearance_type",
+          "description": "枚举名称"
+        }
+      }
+    },
+    {
+      "skill_name": "universal_query",
+      "display_name": "通用结构化查询",
+      "description": "基于 business_schema 的通用查询入口，自动路由到对应查询工具",
+      "skill_type": "query",
+      "server_name": "feature-search-server",
+      "tool_name": "universal_query",
+      "priority": 12,
+      "match_keywords": [
+        "通用查询",
+        "结构化查询",
+        "实体查询",
+        "关联查询"
+      ],
+      "match_entities": [
+        "用户",
+        "礼物",
+        "外观",
+        "奖池",
+        "后台"
+      ],
+      "param_schema": {
+        "entity": {
+          "type": "string",
+          "required": true,
+          "description": "实体名，如 user/gift/appearance/pool/feature"
+        },
+        "action": {
+          "type": "string",
+          "required": false,
+          "default": "query",
+          "enum": [
+            "query",
+            "list",
+            "stats",
+            "metadata"
+          ],
+          "description": "操作类型"
+        },
+        "filters": {
+          "type": "object",
+          "required": false,
+          "description": "过滤条件"
+        },
+        "limit": {
+          "type": "integer",
+          "required": false,
+          "default": 10,
+          "description": "返回条数"
+        }
+      }
+    },
+    {
+      "skill_name": "query_capabilities",
+      "display_name": "查询系统能力",
+      "description": "查询系统当前具备的所有业务功能能力",
+      "skill_type": "query",
+      "server_name": "local_capabilities",
+      "tool_name": "get_capabilities",
+      "priority": 21,
+      "match_keywords": [
+        "能力",
+        "具备",
+        "功能",
+        "可以做什么",
+        "支持",
+        "有哪些能力",
+        "系统能力"
+      ],
+      "match_entities": [
+        "能力",
+        "功能",
+        "系统"
+      ],
+      "param_schema": {}
+    },
+    {
+      "skill_name": "execute_gift_issue",
+      "display_name": "专属礼物发放",
+      "description": "支持用户专属/直播间专属/随机礼物发放，支持批量发放给多个用户/直播间",
+      "skill_type": "execute",
+      "server_name": "gift-management-server",
+      "tool_name": "add_gift_to_exclusive_tab",
+      "priority": 18,
+      "risk_level": "medium",
+      "match_keywords": [
+        "发放专属礼物",
+        "专属礼物",
+        "批量发礼物",
+        "发放礼物",
+        "用户专属",
+        "直播间专属",
+        "随机礼物",
+        "批量发放"
+      ],
+      "match_entities": [
+        "专属",
+        "礼物",
+        "用户",
+        "直播间",
+        "批量"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": true,
+          "description": "礼物ID，2开头=用户专属，7开头=直播间专属，8开头=随机礼物",
+          "alias": [
+            "礼物ID",
+            "礼品ID"
+          ],
+          "validation": {
+            "pattern": "^[278]\\d{4,}$",
+            "message": "礼物ID必须以2/7/8开头"
+          }
+        },
+        "target_id": {
+          "type": "integer",
+          "required": false,
+          "description": "目标ID：用户专属=用户ID，直播间专属=直播间ID（单个发放时使用）",
+          "alias": [
+            "用户ID",
+            "直播间ID",
+            "user_id",
+            "room_id"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "目标ID必须在1-99999999999之间"
+          }
+        },
+        "user_ids": {
+          "type": "array",
+          "required": false,
+          "description": "用户ID列表（批量发放给多个用户时使用）",
+          "alias": [
+            "用户列表",
+            "用户ID列表"
+          ]
+        },
+        "gift_ids": {
+          "type": "array",
+          "required": false,
+          "description": "礼物ID列表（给同一目标批量发放多个礼物）",
+          "alias": [
+            "礼物列表",
+            "礼物ID列表"
+          ]
+        },
+        "room_ids": {
+          "type": "array",
+          "required": false,
+          "description": "直播间ID列表（批量发放给多个直播间时使用）",
+          "alias": [
+            "直播间列表",
+            "房间ID列表"
+          ]
+        },
+        "issue_type": {
+          "type": "string",
+          "required": false,
+          "default": "user",
+          "description": "发放类型：user=用户专属，room=直播间专属，random=随机礼物",
+          "enum": [
+            "user",
+            "room",
+            "random"
+          ],
+          "alias": [
+            "发放类型",
+            "类型"
+          ]
+        },
+        "duration_days": {
+          "type": "integer",
+          "required": false,
+          "default": 7,
+          "description": "有效期天数，1000=永久有效",
+          "alias": [
+            "有效期",
+            "天数"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 1000,
+            "message": "有效期必须在1-1000天之间"
+          },
+          "special_values": {
+            "永久": 1000,
+            "永久有效": 1000
+          }
+        },
+        "batch_count": {
+          "type": "integer",
+          "required": false,
+          "default": 1,
+          "description": "批量发放数量（给同一个用户重复发放N次），最大100",
+          "alias": [
+            "数量",
+            "批量数"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 100,
+            "message": "批量数量必须在1-100之间"
+          }
+        }
+      },
+      "batch_config": {
+        "enabled": true,
+        "rules": [
+          {
+            "source_param": "user_ids",
+            "target_param": "target_id"
+          },
+          {
+            "source_param": "room_ids",
+            "target_param": "target_id"
+          },
+          {
+            "source_param": "gift_ids",
+            "target_param": "gift_id"
+          }
+        ]
+      }
+    },
+    {
+      "skill_name": "add_backpack_gift",
+      "display_name": "发放背包礼物",
+      "description": "发礼物到背包（3开头走Grafana后台，4开头走DB插入），支持批量发放",
+      "skill_type": "execute",
+      "server_name": "gift-management-server",
+      "tool_name": "add_gift_to_backpack",
+      "priority": 18,
+      "match_keywords": [
+        "发放背包",
+        "背包礼物",
+        "发背包",
+        "添加背包",
+        "发到背包",
+        "背包里",
+        "批量发放",
+        "发礼物",
+        "发送礼物",
+        "给用户发"
+      ],
+      "match_entities": [
+        "背包",
+        "礼物",
+        "用户",
+        "发",
+        "发送"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": false,
+          "description": "礼物ID（3开头=Grafana，4开头=DB）- 单个礼物发放时使用",
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "礼物ID必须在1-99999999999之间"
+          }
+        },
+        "gift_ids": {
+          "type": "array",
+          "required": false,
+          "description": "礼物ID列表（批量发放多个礼物时使用）",
+          "alias": [
+            "礼物列表",
+            "礼物ID列表"
+          ]
+        },
+        "gift_nums": {
+          "type": "object",
+          "required": false,
+          "description": "礼物ID到数量的映射，如 {301: 10, 30140: 20}",
+          "alias": [
+            "礼物数量映射"
+          ]
+        },
+        "user_id": {
+          "type": "integer",
+          "required": true,
+          "description": "用户ID",
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "用户ID必须大于0"
+          }
+        },
+        "user_ids": {
+          "type": "array",
+          "required": false,
+          "description": "用户ID列表（批量发放给多个用户时使用）",
+          "alias": [
+            "用户列表",
+            "用户ID列表"
+          ]
+        },
+        "num": {
+          "type": "integer",
+          "required": false,
+          "default": 1,
+          "description": "数量（单个礼物发放时使用）",
+          "validation": {
+            "min": 1,
+            "max": 1000,
+            "message": "数量必须在1-1000之间"
+          }
+        },
+        "duration_days": {
+          "type": "integer",
+          "required": false,
+          "default": 7,
+          "description": "有效期天数（1000=永久）",
+          "validation": {
+            "min": 1,
+            "max": 1000,
+            "message": "有效期必须在1-1000天之间"
+          },
+          "special_values": {
+            "永久": 1000,
+            "永久有效": 1000
+          }
+        }
+      },
+      "batch_config": {
+        "enabled": true,
+        "rules": [
+          {
+            "source_param": "user_ids",
+            "target_param": "user_id"
+          },
+          {
+            "source_param": "gift_ids",
+            "target_param": "gift_id"
+          }
+        ]
+      }
+    },
+    {
+      "skill_name": "add_user_gift",
+      "display_name": "发放用户专属礼物",
+      "description": "发放用户专属礼物（2开头）",
+      "skill_type": "execute",
+      "server_name": "gift-management-server",
+      "tool_name": "add_gift_to_user",
+      "priority": 15,
+      "match_keywords": [
+        "发放用户专属",
+        "用户专属礼物",
+        "发给用户",
+        "专属tab"
+      ],
+      "match_entities": [
+        "用户专属",
+        "专属礼物"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": true,
+          "description": "礼物ID（2开头）"
+        },
+        "user_id": {
+          "type": "integer",
+          "required": true,
+          "description": "用户ID"
+        },
+        "duration_days": {
+          "type": "integer",
+          "required": false,
+          "default": 7,
+          "description": "有效期天数",
+          "special_values": {
+            "永久": 1000,
+            "永久有效": 1000
+          }
+        }
+      }
+    },
+    {
+      "skill_name": "add_room_gift",
+      "display_name": "发放直播间专属礼物",
+      "description": "发放直播间专属礼物（7开头）",
+      "skill_type": "execute",
+      "server_name": "gift-management-server",
+      "tool_name": "add_gift_to_room",
+      "priority": 16,
+      "match_keywords": [
+        "发放直播间专属",
+        "直播间专属礼物",
+        "发给直播间"
+      ],
+      "match_entities": [
+        "直播间专属",
+        "房间专属"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": true,
+          "description": "礼物ID（7开头）"
+        },
+        "room_id": {
+          "type": "integer",
+          "required": true,
+          "description": "直播间ID"
+        },
+        "duration_days": {
+          "type": "integer",
+          "required": false,
+          "default": 7,
+          "description": "有效期天数",
+          "special_values": {
+            "永久": 1000,
+            "永久有效": 1000
+          }
+        }
+      }
+    },
+    {
+      "skill_name": "query_gift_records",
+      "display_name": "查询专属礼物记录",
+      "description": "查询专属礼物发放记录（需要用户ID或直播间ID）",
+      "skill_type": "query",
+      "server_name": "gift-management-server",
+      "tool_name": "query_gift_records",
+      "priority": 13,
+      "match_keywords": [
+        "查询礼物记录",
+        "礼物记录",
+        "查看专属记录",
+        "发放记录",
+        "历史记录"
+      ],
+      "match_entities": [
+        "记录",
+        "专属",
+        "历史"
+      ],
+      "param_schema": {
+        "element_id": {
+          "type": "integer",
+          "required": true,
+          "description": "用户ID或直播间ID（必填）"
+        },
+        "custom_type": {
+          "type": "integer",
+          "required": false,
+          "description": "类型：2=直播间专属，3=用户专属",
+          "special_values": {
+            "用户专属": 3,
+            "直播间专属": 2
+          }
+        }
+      }
+    },
+    {
+      "skill_name": "check_gift_type",
+      "display_name": "校验礼物类型",
+      "description": "校验礼物类型（根据礼物ID返回类型），已废弃，使用query_gift_info代替",
+      "skill_type": "query",
+      "server_name": "gift-management-server",
+      "tool_name": "check_gift_type",
+      "priority": 10,
+      "match_keywords": [
+        "DISABLED"
+      ],
+      "match_entities": [
+        "DISABLED"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": true,
+          "description": "礼物ID"
+        }
+      }
+    },
+    {
+      "skill_name": "query_gift_by_name",
+      "display_name": "根据名称查询礼物",
+      "description": "根据礼物名称查询礼物信息（支持模糊查询），仅当用户明确提供了具体礼物名称（非数字）时使用",
+      "skill_type": "query",
+      "server_name": "gift-management-server",
+      "tool_name": "query_gift_by_name",
+      "priority": 12,
+      "match_keywords": [
+        "查询礼物",
+        "礼物名称",
+        "找礼物",
+        "搜索礼物",
+        "包含",
+        "查礼物"
+      ],
+      "match_entities": [
+        "礼物",
+        "名称",
+        "搜索",
+        "查询"
+      ],
+      "negative_keywords": [
+        "发",
+        "发送",
+        "发放",
+        "给",
+        "到背包",
+        "到专属"
+      ],
+      "param_schema": {
+        "gift_name": {
+          "type": "string",
+          "required": true,
+          "description": "礼物名称（支持模糊查询），必须是具体的礼物名称，不能是通用词如'信息'、'类型'等，也不能是纯数字"
+        },
+        "limit": {
+          "type": "integer",
+          "required": false,
+          "default": 10,
+          "description": "最多返回结果数"
+        }
+      }
+    },
+    {
+      "skill_name": "query_gift_info",
+      "display_name": "查询礼物信息",
+      "description": "查询礼物详细信息（支持按ID或名称模糊查询MongoDB），用于检查礼物类型、查询礼物信息等场景",
+      "skill_type": "query",
+      "server_name": "gift-management-server",
+      "tool_name": "query_gift_info",
+      "priority": 22,
+      "match_keywords": [
+        "查询礼物",
+        "礼物信息",
+        "礼物详情",
+        "查礼物",
+        "礼物ID",
+        "礼物名称",
+        "检查礼物",
+        "礼物类型"
+      ],
+      "match_entities": [
+        "礼物",
+        "信息",
+        "查询",
+        "类型"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": false,
+          "description": "礼物ID（可选，精确查询）"
+        },
+        "gift_ids": {
+          "type": "array",
+          "required": false,
+          "description": "礼物ID列表（可选，批量查询）",
+          "alias": [
+            "礼物列表",
+            "礼物ID列表"
+          ]
+        },
+        "gift_name": {
+          "type": "string",
+          "required": false,
+          "description": "礼物名称（可选，模糊查询）"
+        },
+        "limit": {
+          "type": "integer",
+          "required": false,
+          "default": 10,
+          "description": "最多返回结果数（名称查询时使用）"
+        }
+      },
+      "batch_config": {
+        "enabled": false
+      }
+    },
+    {
+      "skill_name": "list_gift_types",
+      "display_name": "列出礼物类型规则",
+      "description": "列出所有礼物类型规则，仅当用户明确要求列出所有类型时使用",
+      "skill_type": "query",
+      "server_name": "gift-management-server",
+      "tool_name": "list_gift_types",
+      "priority": 18,
+      "match_keywords": [
+        "列出礼物类型",
+        "列出所有类型",
+        "所有礼物类型",
+        "礼物类型列表",
+        "类型规则",
+        "有哪些礼物类型"
+      ],
+      "match_entities": [
+        "礼物",
+        "类型",
+        "列表",
+        "列出"
+      ],
+      "negative_keywords": [
+        "外观",
+        "枚举"
+      ],
+      "param_schema": {}
+    },
+    {
+      "skill_name": "check_appearance_config",
+      "display_name": "查询外观资源配置",
+      "description": "查询外观资源配置、最大有效期，支持批量查询",
+      "skill_type": "query",
+      "server_name": "config-check-server",
+      "tool_name": "query_appearance_config",
+      "priority": 16,
+      "match_keywords": [
+        "查外观",
+        "外观配置",
+        "外观有效期",
+        "外观资源"
+      ],
+      "match_entities": [
+        "外观",
+        "配置",
+        "有效期"
+      ],
+      "negative_keywords": [
+        "发放",
+        "发",
+        "给用户",
+        "到平台"
+      ],
+      "batch_config": {
+        "enabled": true,
+        "source_param": "appearance_ids",
+        "target_param": "appearance_id"
+      },
+      "param_schema": {
+        "appearance_id": {
+          "type": "integer",
+          "required": true,
+          "description": "外观ID"
+        }
+      }
+    },
+    {
+      "skill_name": "check_appearance_configs_batch",
+      "display_name": "批量查询外观配置",
+      "description": "批量查询外观资源配置",
+      "skill_type": "query",
+      "server_name": "config-check-server",
+      "tool_name": "query_appearance_configs_batch",
+      "priority": 15,
+      "match_keywords": [
+        "批量查询外观",
+        "查询多个外观"
+      ],
+      "match_entities": [
+        "外观",
+        "批量"
+      ],
+      "param_schema": {
+        "appearance_ids": {
+          "type": "string",
+          "required": true,
+          "description": "外观ID列表，逗号分隔"
+        }
+      }
+    },
+    {
+      "skill_name": "check_reward_config",
+      "display_name": "查询奖励配置",
+      "description": "查询奖励配置、有效期，支持批量查询",
+      "skill_type": "query",
+      "server_name": "config-check-server",
+      "tool_name": "query_reward_config",
+      "priority": 18,
+      "match_keywords": [
+        "奖励配置",
+        "查奖励",
+        "奖励有效期",
+        "礼物有效期"
+      ],
+      "match_entities": [
+        "奖励",
+        "配置",
+        "有效期"
+      ],
+      "batch_config": {
+        "enabled": true,
+        "rules": [
+          {
+            "source_param": "reward_ids",
+            "target_param": "reward_id"
+          },
+          {
+            "source_param": "element_ids",
+            "target_param": "element_id"
+          }
+        ]
+      },
+      "param_schema": {
+        "reward_id": {
+          "type": "integer",
+          "required": false,
+          "description": "奖励ID"
+        },
+        "element_id": {
+          "type": "integer",
+          "required": false,
+          "description": "礼物ID"
+        },
+        "event_id": {
+          "type": "integer",
+          "required": false,
+          "description": "活动ID，用于筛选特定活动的奖励配置"
+        }
+      }
+    },
+    {
+      "skill_name": "check_reward_configs_batch",
+      "display_name": "批量查询奖励配置",
+      "description": "批量查询奖励配置",
+      "skill_type": "query",
+      "server_name": "config-check-server",
+      "tool_name": "query_reward_configs_batch",
+      "priority": 15,
+      "match_keywords": [
+        "批量查询奖励",
+        "查询多个奖励"
+      ],
+      "match_entities": [
+        "奖励",
+        "批量"
+      ],
+      "param_schema": {
+        "reward_ids": {
+          "type": "string",
+          "required": false,
+          "description": "奖励ID列表，逗号分隔"
+        },
+        "element_ids": {
+          "type": "string",
+          "required": false,
+          "description": "礼物ID列表，逗号分隔"
+        },
+        "event_id": {
+          "type": "integer",
+          "required": false,
+          "description": "活动ID，用于筛选特定活动的奖励配置"
+        }
+      }
+    },
+    {
+      "skill_name": "query_pool_config",
+      "display_name": "查询奖池配置",
+      "description": "查询随机礼物/幸运礼物/超能魔方奖池配置",
+      "skill_type": "query",
+      "server_name": "config-check-server",
+      "tool_name": "query_pool_config",
+      "priority": 19,
+      "match_keywords": [
+        "查询奖池",
+        "奖池配置",
+        "随机礼物配置",
+        "超能魔方",
+        "奖池",
+        "礼物的奖池",
+        "奖池信息"
+      ],
+      "match_entities": [
+        "奖池",
+        "配置"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": false,
+          "description": "礼物ID"
+        },
+        "pool_id": {
+          "type": "integer",
+          "required": false,
+          "description": "奖池ID"
+        }
+      }
+    },
+    {
+      "skill_name": "update_pool_gift_weight_to_max",
+      "display_name": "修改奖池礼物权重为最大",
+      "description": "将奖池中某个礼物的权重改为最大值",
+      "skill_type": "execute",
+      "server_name": "config-check-server",
+      "tool_name": "update_pool_gift_weight_to_max",
+      "priority": 15,
+      "match_keywords": [
+        "权重改最大",
+        "权重最大",
+        "改为最大"
+      ],
+      "match_entities": [
+        "奖池",
+        "权重",
+        "礼物"
+      ],
+      "param_schema": {
+        "pool_id": {
+          "type": "integer",
+          "required": true,
+          "description": "奖池ID"
+        },
+        "gift_id": {
+          "type": "integer",
+          "required": true,
+          "description": "礼物ID"
+        }
+      }
+    },
+    {
+      "skill_name": "update_pool_ssr_weight_to_zero",
+      "display_name": "修改奖池大奖权重为0",
+      "description": "将奖池中保底大奖的权重改为0",
+      "skill_type": "execute",
+      "server_name": "config-check-server",
+      "tool_name": "update_pool_ssr_weight_to_zero",
+      "priority": 15,
+      "match_keywords": [
+        "权重改为0",
+        "权重改0",
+        "大奖权重0"
+      ],
+      "match_entities": [
+        "奖池",
+        "权重",
+        "大奖"
+      ],
+      "param_schema": {
+        "pool_id": {
+          "type": "integer",
+          "required": true,
+          "description": "奖池ID"
+        },
+        "ssr_id": {
+          "type": "integer",
+          "required": true,
+          "description": "保底大奖ID"
+        }
+      }
+    },
+    {
+      "skill_name": "verify_random_gift_pool_gifts",
+      "display_name": "验证随机礼物奖池",
+      "description": "验证随机礼物和对应奖池礼物的图片和动效",
+      "skill_type": "execute",
+      "server_name": "config-check-server",
+      "tool_name": "verify_random_gift_pool_gifts",
+      "priority": 14,
+      "match_keywords": [
+        "验证随机礼物",
+        "验证奖池",
+        "奖池验证"
+      ],
+      "match_entities": [
+        "随机礼物",
+        "奖池",
+        "验证"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": true,
+          "description": "随机礼物ID（8开头）"
+        },
+        "room_id": {
+          "type": "integer",
+          "required": false,
+          "description": "收礼直播间ID"
+        }
+      }
+    },
+    {
+      "skill_name": "query_user_info",
+      "display_name": "查询用户信息",
+      "description": "查询用户信息（支持通过用户ID、直播间ID、邮箱、手机号查询）",
+      "skill_type": "query",
+      "server_name": "user-info-server",
+      "tool_name": "query_user_info",
+      "priority": 12,
+      "match_keywords": [
+        "查询用户",
+        "用户信息",
+        "查用户",
+        "用户详情",
+        "手机号",
+        "邮箱"
+      ],
+      "match_entities": [
+        "用户",
+        "信息",
+        "直播间",
+        "邮箱",
+        "手机号"
+      ],
+      "param_schema": {
+        "user_id": {
+          "type": "integer",
+          "required": false,
+          "description": "用户ID"
+        },
+        "room_id": {
+          "type": "integer",
+          "required": false,
+          "description": "直播间ID"
+        },
+        "email": {
+          "type": "string",
+          "required": false,
+          "description": "邮箱地址"
+        },
+        "phone": {
+          "type": "string",
+          "required": false,
+          "description": "手机号"
+        }
+      }
+    },
+    {
+      "skill_name": "get_verify_code",
+      "display_name": "获取验证码",
+      "description": "获取验证码（支持通过手机号、用户ID、邮箱查询）",
+      "skill_type": "query",
+      "server_name": "user-info-server",
+      "tool_name": "get_verify_code",
+      "priority": 20,
+      "match_keywords": [
+        "验证码",
+        "获取验证码",
+        "查验证码",
+        "查询验证码",
+        "验证码是多少",
+        "验证码是什么"
+      ],
+      "match_entities": [
+        "验证码"
+      ],
+      "param_schema": {
+        "phone": {
+          "type": "string",
+          "required": false,
+          "description": "手机号"
+        },
+        "user_id": {
+          "type": "integer",
+          "required": false,
+          "description": "用户ID"
+        },
+        "email": {
+          "type": "string",
+          "required": false,
+          "description": "邮箱地址"
+        }
+      }
+    },
+    {
+      "skill_name": "top_up_diamond",
+      "display_name": "发放钻石",
+      "description": "发放钻石（支持通过用户ID、手机号充值，百万级钻石）",
+      "skill_type": "execute",
+      "server_name": "test-tool-server",
+      "tool_name": "top_up_diamond",
+      "priority": 12,
+      "match_keywords": [
+        "发钻石",
+        "充钻石",
+        "钻石充值",
+        "发放钻石"
+      ],
+      "match_entities": [
+        "钻石",
+        "用户",
+        "手机号"
+      ],
+      "param_schema": {
+        "user_id": {
+          "type": "integer",
+          "required": false,
+          "description": "用户ID（与phone二选一）"
+        },
+        "phone": {
+          "type": "string",
+          "required": false,
+          "description": "手机号"
+        },
+        "diamond_100w_units": {
+          "type": "integer",
+          "required": true,
+          "description": "以100万为单位的数量"
+        }
+      }
+    },
+    {
+      "skill_name": "run_script",
+      "display_name": "执行本地脚本",
+      "description": "执行本地missevan_test脚本",
+      "skill_type": "execute",
+      "server_name": "script-runner-server",
+      "tool_name": "run_missevan_script",
+      "priority": 10,
+      "match_keywords": [
+        "执行脚本",
+        "运行脚本",
+        "跑脚本"
+      ],
+      "match_entities": [
+        "脚本",
+        "missevan",
+        "test"
+      ],
+      "param_schema": {
+        "script": {
+          "type": "string",
+          "required": true,
+          "description": "脚本路径"
+        },
+        "args": {
+          "type": "array",
+          "required": false,
+          "description": "脚本参数"
+        }
+      }
+    },
+    {
+      "skill_name": "issue_appearance_to_platform",
+      "display_name": "发放外观到外观中心平台",
+      "description": "通过 Grafana 后台 API 发放外观到外观中心平台，支持批量发放给多个用户",
+      "skill_type": "execute",
+      "server_name": "gift-management-server",
+      "tool_name": "issue_appearance_to_platform",
+      "priority": 22,
+      "risk_level": "medium",
+      "match_keywords": [
+        "发放外观",
+        "外观发放",
+        "发外观",
+        "外观到平台",
+        "外观中心",
+        "批量发放外观",
+        "发放外观给用户",
+        "外观管理",
+        "给用户发放外观"
+      ],
+      "match_entities": [
+        "外观",
+        "用户",
+        "发放",
+        "平台",
+        "批量"
+      ],
+      "param_schema": {
+        "appearance_id": {
+          "type": "integer",
+          "required": true,
+          "description": "外观ID",
+          "alias": [
+            "外观ID",
+            "外观编号"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "外观ID必须在1-99999999999之间"
+          }
+        },
+        "user_id": {
+          "type": "integer",
+          "required": false,
+          "description": "用户ID（单个用户发放时使用）",
+          "alias": [
+            "用户ID",
+            "用户编号"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "用户ID必须在1-99999999999之间"
+          }
+        },
+        "user_ids": {
+          "type": "array",
+          "required": false,
+          "description": "用户ID列表（批量发放给多个用户时使用）",
+          "alias": [
+            "用户列表",
+            "用户ID列表"
+          ]
+        },
+        "duration_days": {
+          "type": "integer",
+          "required": false,
+          "default": 7,
+          "description": "有效期天数，1000=永久有效",
+          "alias": [
+            "有效期",
+            "天数"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 1000,
+            "message": "有效期必须在1-1000天之间"
+          },
+          "special_values": {
+            "永久": 1000,
+            "永久有效": 1000
+          }
+        },
+        "appearance_type": {
+          "type": "integer",
+          "required": false,
+          "description": "外观类型（可选，不提供时根据外观ID自动判断）",
+          "alias": [
+            "外观类型",
+            "类型"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 11,
+            "message": "外观类型必须在1-11之间"
+          }
+        }
+      },
+      "batch_config": {
+        "enabled": true,
+        "rules": [
+          {
+            "source_param": "user_ids",
+            "target_param": "user_id"
+          }
+        ]
+      }
+    },
+    {
+      "skill_name": "issue_backpack_gift_via_grafana",
+      "display_name": "通过Grafana发放背包礼物",
+      "description": "通过 Grafana 后台 API 发放背包礼物（仅支持3开头），支持批量发放给多个用户",
+      "skill_type": "execute",
+      "server_name": "gift-management-server",
+      "tool_name": "issue_backpack_gift_via_grafana",
+      "priority": 20,
+      "risk_level": "medium",
+      "match_keywords": [
+        "发放背包礼物",
+        "背包礼物发放",
+        "Grafana发放",
+        "后台发放背包",
+        "批量发放背包",
+        "发放背包给用户",
+        "背包礼物管理",
+        "通过Grafana发放"
+      ],
+      "match_entities": [
+        "背包",
+        "礼物",
+        "用户",
+        "发放",
+        "Grafana",
+        "批量"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": true,
+          "description": "礼物ID（必须是3开头的免费礼物）",
+          "alias": [
+            "礼物ID",
+            "礼品ID"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "礼物ID必须在1-99999999999之间"
+          }
+        },
+        "user_id": {
+          "type": "integer",
+          "required": false,
+          "description": "用户ID（单个用户发放时使用）",
+          "alias": [
+            "用户ID",
+            "用户编号"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "用户ID必须在1-99999999999之间"
+          }
+        },
+        "user_ids": {
+          "type": "array",
+          "required": false,
+          "description": "用户ID列表（批量发放给多个用户时使用）",
+          "alias": [
+            "用户列表",
+            "用户ID列表"
+          ]
+        },
+        "num": {
+          "type": "integer",
+          "required": false,
+          "default": 1,
+          "description": "发放数量，默认1",
+          "alias": [
+            "数量",
+            "个数"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 1000,
+            "message": "数量必须在1-1000之间"
+          }
+        },
+        "duration_days": {
+          "type": "integer",
+          "required": false,
+          "default": 7,
+          "description": "有效期天数，1000=永久有效",
+          "alias": [
+            "有效期",
+            "天数"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 1000,
+            "message": "有效期必须在1-1000天之间"
+          },
+          "special_values": {
+            "永久": 1000,
+            "永久有效": 1000
+          }
+        }
+      },
+      "batch_config": {
+        "enabled": true,
+        "rules": [
+          {
+            "source_param": "user_ids",
+            "target_param": "user_id"
+          }
+        ]
+      }
+    },
+    {
+      "skill_name": "clear_backpack_gift_via_grafana",
+      "display_name": "清空背包礼物",
+      "description": "通过 Grafana 后台 API 清空用户背包中的免费礼物（仅支持3开头），支持批量清空",
+      "skill_type": "execute",
+      "server_name": "gift-management-server",
+      "tool_name": "clear_backpack_gift_via_grafana",
+      "priority": 21,
+      "risk_level": "high",
+      "match_keywords": [
+        "清空背包",
+        "清空背包礼物",
+        "清空礼物",
+        "删除背包礼物",
+        "批量清空背包",
+        "清空用户背包",
+        "背包礼物清空"
+      ],
+      "match_entities": [
+        "清空",
+        "背包",
+        "礼物",
+        "用户",
+        "删除",
+        "批量"
+      ],
+      "param_schema": {
+        "gift_id": {
+          "type": "integer",
+          "required": true,
+          "description": "礼物ID（必须是3开头的免费礼物）",
+          "alias": [
+            "礼物ID",
+            "礼品ID"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "礼物ID必须在1-99999999999之间"
+          }
+        },
+        "user_id": {
+          "type": "integer",
+          "required": false,
+          "description": "用户ID（单个用户清空时使用）",
+          "alias": [
+            "用户ID",
+            "用户编号"
+          ],
+          "validation": {
+            "min": 1,
+            "max": 99999999999,
+            "message": "用户ID必须在1-99999999999之间"
+          }
+        },
+        "user_ids": {
+          "type": "array",
+          "required": false,
+          "description": "用户ID列表（批量清空多个用户时使用）",
+          "alias": [
+            "用户列表",
+            "用户ID列表"
+          ]
+        }
+      },
+      "batch_config": {
+        "enabled": true,
+        "rules": [
+          {
+            "source_param": "user_ids",
+            "target_param": "user_id"
+          }
+        ]
+      }
+    },
+    {
+      "skill_name": "scan_test_scripts",
+      "display_name": "扫描测试脚本",
+      "description": "扫描本地测试脚本仓库，返回脚本功能映射表",
+      "skill_type": "query",
+      "server_name": "test-script-server",
+      "tool_name": "scan_test_scripts",
+      "priority": 14,
+      "match_keywords": [
+        "扫描脚本",
+        "脚本列表",
+        "有哪些脚本",
+        "测试脚本清单",
+        "脚本功能映射"
+      ],
+      "match_entities": [
+        "脚本",
+        "测试脚本",
+        "仓库"
+      ],
+      "param_schema": {
+        "repo_path": {
+          "type": "string",
+          "required": false,
+          "description": "本地脚本仓库路径"
+        },
+        "branch": {
+          "type": "string",
+          "required": false,
+          "description": "Git 分支"
+        },
+        "sync_latest": {
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "是否先 git pull 同步最新代码"
+        }
+      }
+    },
+    {
+      "skill_name": "read_test_script",
+      "display_name": "读取测试脚本源码",
+      "description": "读取指定测试脚本源码内容，属于查询分支",
+      "skill_type": "query",
+      "server_name": "test-script-server",
+      "tool_name": "read_test_script",
+      "priority": 15,
+      "match_keywords": [
+        "查看脚本",
+        "读取脚本",
+        "脚本源码",
+        "看看脚本",
+        "脚本内容"
+      ],
+      "match_entities": [
+        "脚本",
+        "源码",
+        "测试脚本"
+      ],
+      "param_schema": {
+        "relative_path": {
+          "type": "string",
+          "required": true,
+          "description": "脚本相对路径，如 regression_tests/execute_test_ml.py"
+        },
+        "repo_path": {
+          "type": "string",
+          "required": false,
+          "description": "本地脚本仓库路径"
+        }
+      }
+    },
+    {
+      "skill_name": "execute_test_script",
+      "display_name": "执行测试脚本",
+      "description": "校验脚本与参数匹配度后执行测试脚本，属于执行分支",
+      "skill_type": "execute",
+      "server_name": "test-script-server",
+      "tool_name": "execute_test_script",
+      "priority": 15,
+      "risk_level": "high",
+      "match_keywords": [
+        "执行脚本",
+        "运行脚本",
+        "跑脚本",
+        "执行测试脚本",
+        "运行测试脚本"
+      ],
+      "match_entities": [
+        "脚本",
+        "执行",
+        "运行",
+        "测试脚本"
+      ],
+      "param_schema": {
+        "relative_path": {
+          "type": "string",
+          "required": true,
+          "description": "脚本相对路径，如 regression_tests/execute_test_ml.py"
+        },
+        "args": {
+          "type": "array",
+          "required": false,
+          "description": "命令行参数列表"
+        },
+        "repo_path": {
+          "type": "string",
+          "required": false,
+          "description": "本地脚本仓库路径"
+        }
+      }
+    }
+  ]
+}

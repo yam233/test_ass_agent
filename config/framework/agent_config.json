@@ -1,0 +1,86 @@
+{
+  "businesses": [
+    "ear_test"
+  ],
+  "llm": {
+    "model": "deepseek-chat",
+    "api_key": "",
+    "api_base": "https://api.deepseek.com",
+    "temperature": 0.1,
+    "top_p": 0.9,
+    "max_tokens": 2000
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8002,
+    "env": "uat"
+  },
+  "env_restriction": {
+    "allowed_envs": [
+      "uat",
+      "prod"
+    ],
+    "description": "系统支持 UAT 和 PROD 环境"
+  },
+  "parser": {
+    "intent_confidence_threshold": 0.7
+  },
+  "intent_routing": {
+    "mode": "hybrid",
+    "rule_direct_threshold": 0.97,
+    "high_precision_skills": [
+      "get_verify_code",
+      "query_capabilities"
+    ],
+    "colloquial_markers": [
+      "帮我看看",
+      "帮我查",
+      "查下",
+      "看一下",
+      "看下",
+      "麻烦查"
+    ]
+  },
+  "intent_safety": {
+    "execute_confidence_threshold": 0.8,
+    "execute_need_confirm": true
+  },
+  "operator_auth": {
+    "mode": "allow_all",
+    "default_operator": "ear_agent/test_user",
+    "description": "第一版默认放行所有来源操作人，仅做审计记录；后续可切换 whitelist 模式"
+  },
+  "extractor": {
+    "max_retry": 3
+  },
+  "param_adapter": {
+    "format_rules": {
+      "gift_id": "^[2-8]\\d{4,}$",
+      "user_id": "^\\d{5,8}$",
+      "mobile": "^1[3-9]\\d{9}$",
+      "room_id": "^\\d{5,8}$"
+    },
+    "alias_rules": {
+      "gift_id": [
+        "礼物ID",
+        "礼品ID",
+        "gift"
+      ],
+      "user_id": [
+        "用户ID",
+        "用户编号",
+        "UID"
+      ],
+      "mobile": [
+        "手机号",
+        "电话",
+        "phone"
+      ],
+      "room_id": [
+        "直播间ID",
+        "房间ID",
+        "room"
+      ]
+    }
+  }
+}

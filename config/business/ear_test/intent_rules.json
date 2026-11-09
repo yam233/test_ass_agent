@@ -1,0 +1,253 @@
+{
+  "rules": [
+    {
+      "skill_name": "execute_gift_issue",
+      "priority": 18,
+      "required_keywords": ["礼物"],
+      "optional_keywords": ["发放", "发", "给", "专属", "批量", "tab"],
+      "exclude_keywords": ["查询", "记录", "撤回", "删除", "查看", "背包", "检查", "信息", "类型", "列出", "权重", "改为", "修改", "改", "最大", "0"],
+      "confidence_base": 0.95,
+      "confidence_boost_per_optional": 0.01,
+      "description": "专属礼物发放 - 必须包含'礼物'，包含'发/发放/给'等动作词，排除'背包'和查询类关键词，排除权重修改"
+    },
+    {
+      "skill_name": "clear_backpack_gift_via_grafana",
+      "priority": 27,
+      "required_keywords": ["清空", "背包"],
+      "optional_keywords": ["清除", "删除", "礼物", "用户"],
+      "exclude_keywords": ["发放", "添加", "发", "给"],
+      "confidence_base": 0.99,
+      "confidence_boost_per_optional": 0.02,
+      "description": "清空背包礼物 - 必须包含'清空'和'背包'，优先级最高"
+    },
+    {
+      "skill_name": "add_backpack_gift",
+      "priority": 24,
+      "required_keywords": ["背包"],
+      "optional_keywords": ["发放", "添加", "礼物", "发", "给"],
+      "exclude_keywords": ["查询", "删除", "撤回", "清空", "清除"],
+      "confidence_base": 0.96,
+      "confidence_boost_per_optional": 0.01,
+      "description": "发放背包礼物（统一入口） - 必须包含'背包'，具体发放链路由服务开关决定"
+    },
+    {
+      "skill_name": "issue_backpack_gift_via_grafana",
+      "priority": 26,
+      "required_keywords": ["背包", "NEVER_MATCH_DIRECT"],
+      "optional_keywords": ["发放", "礼物", "发", "给", "免费", "grafana", "后台"],
+      "exclude_keywords": ["查询", "删除", "撤回", "清空", "清除"],
+      "confidence_base": 0.97,
+      "confidence_boost_per_optional": 0.01,
+      "description": "背包礼物发放（仅保留直调能力，规则默认不命中）"
+    },
+    {
+      "skill_name": "issue_appearance_to_platform",
+      "priority": 25,
+      "required_keywords": ["外观"],
+      "optional_keywords": ["发放", "发", "给", "用户", "平台", "中心"],
+      "exclude_keywords": ["查询", "配置", "有效期", "资源", "查", "检查"],
+      "confidence_base": 0.96,
+      "confidence_boost_per_optional": 0.02,
+      "description": "发放外观到外观中心平台 - 必须包含'外观'和发放动作词，排除查询类关键词"
+    },
+    {
+      "skill_name": "get_verify_code",
+      "priority": 25,
+      "required_keywords": ["验证码"],
+      "optional_keywords": ["获取", "查询", "手机", "邮箱", "查", "是多少", "是什么", "用户"],
+      "exclude_keywords": ["发放", "礼物", "专属", "背包", "钻石", "地址", "url", "链接", "网址", "后台", "grafana"],
+      "confidence_base": 0.98,
+      "confidence_boost_per_optional": 0.01,
+      "description": "获取验证码 - 必须包含'验证码'（名词优先），排除礼物相关操作和URL查询"
+    },
+    {
+      "skill_name": "top_up_diamond",
+      "priority": 24,
+      "required_keywords": ["钻石"],
+      "optional_keywords": ["发放", "充值", "发", "充", "给"],
+      "exclude_keywords": ["查询"],
+      "confidence_base": 0.96,
+      "confidence_boost_per_optional": 0.01,
+      "description": "发放钻石 - 必须包含'钻石'（名词优先）"
+    },
+    {
+      "skill_name": "query_user_info",
+      "priority": 23,
+      "required_keywords": ["用户"],
+      "optional_keywords": ["查询", "信息", "手机号", "邮箱", "直播间", "查", "的"],
+      "exclude_keywords": ["发放", "礼物", "专属", "验证码", "地址", "url", "链接", "网址", "后台", "grafana", "mongo", "背包", "发", "钻石"],
+      "confidence_base": 0.94,
+      "confidence_boost_per_optional": 0.01,
+      "description": "查询用户信息 - 必须包含'用户'（名词优先），排除发放、背包等操作"
+    },
+    {
+      "skill_name": "query_pool_config",
+      "priority": 22,
+      "required_keywords": ["奖池"],
+      "optional_keywords": ["查询", "配置", "随机礼物", "魔方", "礼物", "的"],
+      "exclude_keywords": ["修改", "权重", "改为", "最大", "0", "地址", "url", "链接", "网址", "后台", "grafana", "mongo"],
+      "confidence_base": 0.95,
+      "confidence_boost_per_optional": 0.01,
+      "description": "查询奖池配置 - 必须包含'奖池'（名词优先），优先级高于礼物信息查询"
+    },
+    {
+      "skill_name": "check_appearance_config",
+      "priority": 21,
+      "required_keywords": ["外观"],
+      "optional_keywords": ["查询", "配置", "有效期", "资源", "查", "检查"],
+      "exclude_keywords": ["列出", "所有", "url", "地址", "链接", "网址", "后台", "grafana", "mongo", "枚举", "类型", "列表", "状态"],
+      "confidence_base": 0.95,
+      "confidence_boost_per_optional": 0.01,
+      "description": "查询外观资源配置 - 必须包含'外观'（名词优先）且不包含'url'"
+    },
+    {
+      "skill_name": "get_enums",
+      "priority": 24,
+      "required_keywords": ["枚举"],
+      "optional_keywords": ["查询", "外观", "类型", "列表", "查看", "查"],
+      "exclude_keywords": ["发放", "修改", "删除"],
+      "confidence_base": 0.96,
+      "confidence_boost_per_optional": 0.01,
+      "description": "查询系统枚举值 - 必须包含'枚举'，优先于外观配置查询"
+    },
+    {
+      "skill_name": "check_reward_configs_batch",
+      "priority": 23,
+      "required_keywords": ["、"],
+      "optional_keywords": ["查询", "配置", "有效期", "最大有效期", "批量", "多个", "礼物", "外观", "奖励"],
+      "exclude_keywords": ["列出", "所有类型", "规则"],
+      "confidence_base": 0.97,
+      "confidence_boost_per_optional": 0.01,
+      "description": "批量查询奖励配置 - 必须包含顿号（、），表示多个ID，优先级最高"
+    },
+    {
+      "skill_name": "check_reward_config",
+      "priority": 22,
+      "required_keywords": ["有效期"],
+      "optional_keywords": ["查询", "配置", "最大有效期", "查", "检查", "礼物", "外观", "奖励"],
+      "exclude_keywords": ["列出", "所有", "类型", "规则", "、", "，", "用户", "信息", "手机", "邮箱", "直播间", "验证码", "钻石", "名称", "叫", "搜索", "找", "包含", "模糊"],
+      "confidence_base": 0.96,
+      "confidence_boost_per_optional": 0.01,
+      "description": "查询奖励配置 - 必须包含'有效期'，用于查询礼物/外观的有效期配置，排除批量查询、用户查询和名称搜索"
+    },
+    {
+      "skill_name": "list_gift_types",
+      "priority": 19,
+      "required_keywords": ["类型"],
+      "optional_keywords": ["礼物", "列出", "所有", "规则", "有哪些", "查看", "列表", "看"],
+      "exclude_keywords": ["发放", "删除", "具体", "ID", "名称", "检查", "查询"],
+      "confidence_base": 0.96,
+      "confidence_boost_per_optional": 0.01,
+      "description": "列出礼物类型规则 - 必须包含'类型'（名词优先），排除具体礼物查询（包含'查询'关键词时优先匹配query_gift_info）"
+    },
+    {
+      "skill_name": "query_gift_info",
+      "priority": 20,
+      "required_keywords": ["礼物"],
+      "optional_keywords": ["查询", "检查", "信息", "详情", "查", "的", "类型"],
+      "exclude_keywords": ["发放", "发", "给", "删除", "列出", "所有", "有哪些", "列表", "规则", "奖池", "配置", "地址", "url", "链接", "网址", "在哪", "专属", "tab", "背包", "有效期", "最大有效期"],
+      "confidence_base": 0.94,
+      "confidence_boost_per_optional": 0.01,
+      "description": "查询礼物信息 - 必须包含'礼物'（名词优先），可包含'类型'（查询礼物的类型属性），用于查询具体礼物，排除发放动作和有效期查询"
+    },
+    {
+      "skill_name": "query_gift_by_name",
+      "priority": 17,
+      "required_keywords": ["礼物"],
+      "optional_keywords": ["查询", "名称", "搜索", "找", "包含", "模糊", "叫", "查"],
+      "exclude_keywords": ["发放", "发", "发送", "给", "删除", "类型", "记录", "专属", "背包", "有效期", "配置", "奖池", "权重", "地址", "url", "链接", "网址", "在哪"],
+      "confidence_base": 0.90,
+      "confidence_boost_per_optional": 0.01,
+      "description": "根据名称查询礼物 - 必须包含'礼物'（名词优先），排除其他礼物操作和URL查询"
+    },
+    {
+      "skill_name": "update_pool_gift_weight_to_max",
+      "priority": 26,
+      "required_keywords": ["权重"],
+      "optional_keywords": ["奖池", "礼物", "修改", "改为", "最大", "改"],
+      "exclude_keywords": ["查询", "0"],
+      "confidence_base": 0.96,
+      "confidence_boost_per_optional": 0.02,
+      "description": "修改奖池礼物权重为最大 - 必须包含'权重'（名词优先）且包含'最大'相关词"
+    },
+    {
+      "skill_name": "update_pool_ssr_weight_to_zero",
+      "priority": 26,
+      "required_keywords": ["权重", "0"],
+      "optional_keywords": ["奖池", "大奖", "修改", "改为", "改"],
+      "exclude_keywords": ["查询", "最大"],
+      "confidence_base": 0.96,
+      "confidence_boost_per_optional": 0.01,
+      "description": "修改奖池大奖权重为0 - 必须包含'权重'和'0'（名词优先）"
+    },
+    {
+      "skill_name": "query_feature_url",
+      "priority": 26,
+      "required_keywords": [],
+      "optional_keywords": ["后台", "地址", "配置", "在哪", "url", "链接", "网址", "grafana", "mongo", "状态", "监控", "健康"],
+      "exclude_keywords": ["发放", "删除", "修改", "改为", "权重", "验证码", "钻石"],
+      "match_patterns": [
+        ".*地址.*",
+        ".*url.*",
+        ".*链接.*",
+        ".*网址.*",
+        ".*在哪.*",
+        ".*grafana.*",
+        ".*mongo.*",
+        ".*状态.*",
+        ".*监控.*",
+        ".*健康.*"
+      ],
+      "confidence_base": 0.88,
+      "confidence_boost_per_optional": 0.02,
+      "description": "查询后台功能URL - 包含'地址/url/链接/网址/在哪'等关键词（名词优先），排除具体业务对象查询"
+    },
+    {
+      "skill_name": "universal_query",
+      "priority": 16,
+      "required_keywords": ["通用查询"],
+      "optional_keywords": ["结构化", "实体", "关联", "查询"],
+      "exclude_keywords": ["发放", "删除", "修改", "充值"],
+      "confidence_base": 0.93,
+      "confidence_boost_per_optional": 0.01,
+      "description": "通用结构化查询入口 - 仅在明确表达“通用查询”时触发"
+    },
+    {
+      "skill_name": "query_capabilities",
+      "priority": 14,
+      "required_keywords": ["能力"],
+      "optional_keywords": ["具备", "什么", "有哪些", "功能", "可以", "支持", "查询", "列出", "系统"],
+      "exclude_keywords": [],
+      "confidence_base": 0.98,
+      "confidence_boost_per_optional": 0.01,
+      "description": "查询系统能力 - 必须包含'能力'（名词优先）"
+    },
+    {
+      "skill_name": "query_gift_records_DISABLED",
+      "priority": 1,
+      "required_keywords": ["查询", "记录", "NEVER_MATCH"],
+      "optional_keywords": ["礼物", "专属", "发放", "历史"],
+      "exclude_keywords": ["发放", "添加", "删除"],
+      "confidence_base": 0.95,
+      "confidence_boost_per_optional": 0.01,
+      "description": "查询专属礼物记录 - 临时禁用"
+    },
+    {
+      "skill_name": "check_gift_type",
+      "priority": 1,
+      "required_keywords": ["类型", "礼物", "NEVER_MATCH_DISABLED"],
+      "optional_keywords": ["查询", "校验", "检查"],
+      "exclude_keywords": ["发放", "删除", "列出", "所有"],
+      "confidence_base": 0.90,
+      "confidence_boost_per_optional": 0.02,
+      "description": "校验礼物类型 - 已禁用，使用query_gift_info代替"
+    }
+  ],
+  "config": {
+    "enable_rule_matching": true,
+    "min_confidence_threshold": 0.85,
+    "fallback_to_llm": true,
+    "max_optional_boost": 0.05,
+    "description": "意图识别规则配置 - 名词优先策略：验证码、钻石、用户、礼物等业务对象名词作为必需关键词，查询、列出等动词作为可选关键词"
+  }
+}

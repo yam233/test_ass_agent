@@ -1,0 +1,23 @@
+{
+  "skill_name": "test_case_execute",
+  "display_name": "测试用例执行",
+  "description": "执行指定的测试用例",
+  "skill_type": "execute",
+  "parameters": {
+    "test_case_id": {
+      "type": "string",
+      "required": true,
+      "description": "测试用例ID"
+    },
+    "environment": {
+      "type": "string",
+      "required": false,
+      "description": "执行环境",
+      "default": "test"
+    }
+  },
+  "examples": [
+    "执行TEST-001测试用例",
+    "在生产环境执行TEST-002"
+  ]
+}

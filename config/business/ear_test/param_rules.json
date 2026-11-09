@@ -1,0 +1,13 @@
+{
+  "alias_rules": {
+    "test_id": ["测试ID", "用例ID", "case_id"],
+    "test_case_id": ["用例编号", "测试用例ID"],
+    "environment": ["环境", "测试环境", "env"]
+  },
+  "format_rules": {
+    "test_id": {
+      "pattern": "^TEST-\\d+$",
+      "example": "TEST-001"
+    }
+  }
+}

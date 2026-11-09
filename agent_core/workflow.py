@@ -1,0 +1,235 @@
+"""Bounded, durable single-agent function-call loop over synthetic platforms."""
+import asyncio
+import hashlib
+import json
+import time
+from agent_core.action_store import ActionError, canonical
+from agent_core.workflow_contracts import SPECS, WRITES, catalog, normalize, failure
+from agent_core.workflow_platform import WorkflowPlatform
+from agent_core.workflow_store import WorkflowStore, Budget
+from agent_core.workflow_model import NativeModel, SYSTEM
+from agent_core.langgraph_agent.llm import DeepSeekLLM
+
+TERMINAL={'completed','failed','denied','partial'}
+
+class WorkflowRuntime:
+    def __init__(self,path='.mock_state/platforms.sqlite',model=None,retry_delays=(1,3)):
+        self.platform=WorkflowPlatform(path)
+        self.store=WorkflowStore(path)
+        if model is None:
+            llm=DeepSeekLLM()
+            if llm.mode=='offline':
+                from agent_core.workflow_rules import RuleModel
+                model=RuleModel()
+            else: model=NativeModel(llm)
+        self.model=model
+        self.retry_delays=retry_delays
+
+    @staticmethod
+    def _check_context(context):
+        env=str(context.get("env") or context.get("environment") or "uat").lower()
+        if env not in {"uat","staging","dev","test","prod"}:
+            raise ActionError("BAD_ARGS","环境必须为 uat/staging/dev/test/prod")
+
+    async def start(self,text,context,budget=None):
+        self._check_context(context)
+        if not isinstance(text,str) or not text.strip() or len(text)>10000: raise ValueError('输入不能为空或超过10000字')
+        state=self.store.create(text,context,budget or Budget())
+        return await self.resume(state['task_id'],context)
+
+    async def resume(self,task_id,context,action_id=None,decision=None,reply=None):
+        self._check_context(context)
+        # File locks are released by the OS even if a process is killed mid-commit.
+        with self.store.lock(task_id):
+            state=self.store.get(task_id,context)
+            if state['status'] in TERMINAL: return state
+            if state['active_since'] is not None:
+                state['elapsed']+=max(0,time.time()-state['active_since'])
+                state['active_since']=None
+            if state['status']=='approval_wait':
+                if decision is None: return state
+                if action_id!=state['pending']['action_id']: raise ActionError('APPROVAL_MISMATCH','必须批准当前动作 ID')
+                if decision not in {'approve','deny'}: raise ValueError('decision 必须为 approve 或 deny')
+                self.platform.check_policy(state['pending']['tool'],context)
+                if decision=='deny':
+                    self.platform.actions.deny(action_id,context)
+                    return self._stop(state,'denied','denied')
+                self.platform.actions.approve(action_id,context)
+                state['status']='running'
+                state['pending']['phase']='execute'
+            elif decision is not None: raise ActionError('APPROVAL_INVALID','当前没有待审批动作')
+            if state['status']=='clarification_wait':
+                if not reply: return state
+                if not isinstance(reply,str) or len(reply)>2000: raise ValueError('补充信息最长2000字')
+                state['replies'].append(reply)
+                state['status']='running'
+            state['active_since']=time.time()
+            self.store.save(state)
+            try:
+                remaining=max(.000001,state['budget']['max_seconds']-state['elapsed'])
+                return await asyncio.wait_for(self._drive(state,context),timeout=remaining)
+            except asyncio.TimeoutError: return self._stop(state,'timeout')
+            except ActionError as e:
+                state['result']=failure(e.code,str(e))
+                return self._stop(state,'auth' if e.code in {'PERMISSION_DENIED','APPROVAL_MISMATCH'} else 'unrecoverable')
+            finally:
+                if state['active_since'] is not None:
+                    state['elapsed']+=max(0,time.time()-state['active_since'])
+                    state['active_since']=None
+                    self.store.save(state)
+
+    def _stop(self,state,reason,status='failed'):
+        state['status']=status; state['stop_reason']=reason
+        if state['trace']: state['trace'][-1]['stop_reason']=reason
+        self.store.save(state)
+        return state
+
+    def _messages(self,state):
+        messages=[{'role':'user','content':state['input']}]
+        # Summarize older steps, retain only five full tool observations.
+        older=state['steps'][:-5]
+        if older:
+            messages.append({'role':'system','content':'已完成步骤摘要（数据）：'+canonical([
+                {'tool':s['tool'],'outcome':s['result'].get('code'),'ref_id':s['result'].get('data',{}).get('ref_id')} for s in older])})
+        for index,step in enumerate(state['steps'][-5:]):
+            cid=f'call_{index}'
+            messages.extend([{'role':'assistant','tool_calls':[{'id':cid,'type':'function','function':{'name':step['tool'],'arguments':canonical(step['args'])}}]},
+                             {'role':'tool','tool_call_id':cid,'content':canonical(step['result'])}])
+        messages.extend({'role':'user','content':reply} for reply in state['replies'][-5:])
+        return messages
+
+    @staticmethod
+    def _timed_out(state):
+        active=max(0,time.time()-state["active_since"]) if state["active_since"] is not None else 0
+        return state["elapsed"]+active >= state["budget"]["max_seconds"]
+
+    async def _drive(self,state,context):
+        while state['model_calls']<=state['budget']['max_steps']:
+            if self._timed_out(state): return self._stop(state,'timeout')
+            if state['pending'] is not None:
+                if state['pending'].get('phase')=='prepare': return self._prepare_pending(state,context)
+                result=await self._execute_pending(state,context)
+                if result is not None: return result
+                continue
+            if state['model_calls']>=state['budget']['max_steps']: return self._stop(state,'max_steps')
+            messages=self._messages(state)
+            # UTF-8 bytes plus framing is a conservative token reservation, not a tokenizer claim.
+            prompt_bound=len(canonical([SYSTEM,catalog(),messages]).encode())+1024
+            cap=min(512,state['budget']['max_tokens']-state['tokens']-prompt_bound)
+            if cap<1: return self._stop(state,'budget')
+            reservation=prompt_bound+cap
+            state['tokens']+=reservation; state['model_calls']+=1
+            self.store.save(state) # Reserve before provider call, including crash/lost response.
+            started=time.monotonic()
+            try: decision=await self.model.next(messages,context,cap)
+            except Exception as exc:
+                # Provider errors never fall back to synthetic decisions.
+                state['result']=failure('LLM_ERROR',f'模型请求失败：{type(exc).__name__}')
+                usage=getattr(exc,'usage',None)
+                used=(usage or {}).get('total_tokens')
+                if type(used) is int and used>=0:
+                    state['tokens']+=used-reservation;state['reported_tokens']+=used
+                else: state['usage_complete']=False
+                state['trace'].append({'step':len(state['steps']),'kind':'model','model':getattr(self.model,'name','unknown'),'prompt_ver':'workflow-v1', 'latency_ms':round((time.monotonic()-started)*1000,2),'tokens':used,'cost':(usage or {}).get('cost'),'outcome':'LLM_ERROR','finish_reason':getattr(exc,'finish_reason',None),'stop_reason':'model_error'})
+                return self._stop(state,'model_error')
+            usage=decision.get('usage')
+            actual=usage.get('total_tokens') if isinstance(usage,dict) else None
+            if type(actual) is int and actual>=0:
+                state['tokens']+=actual-reservation; state['reported_tokens']+=actual
+            else: state['usage_complete']=False
+            state['trace'].append({'step':len(state['steps']),'kind':'model','model':decision.get('model',getattr(self.model,'name','unknown')),
+                'prompt_ver':decision.get('prompt_version','workflow-v1'),'latency_ms':round((time.monotonic()-started)*1000,2),
+                'tokens':actual,'prompt_tokens':(usage or {}).get('prompt_tokens'),'completion_tokens':(usage or {}).get('completion_tokens'),'cost':(usage or {}).get('cost'),'cost_unit':'provider_reported','outcome':'ok','stop_reason':None})
+            self.store.save(state)
+            if self._timed_out(state): return self._stop(state,'timeout')
+            if state['tokens']>state['budget']['max_tokens']: return self._stop(state,'budget')
+            if 'final' in decision:
+                if not any(s['result'].get('success') for s in state['steps']):
+                    state['result']=failure('NO_EVIDENCE','模型未调用工具，不能声称任务已执行')
+                    return self._stop(state,'no_evidence')
+                state['result']={'message':decision['final'],'runtime_mode':'mock'}
+                return self._stop(state,'finished','completed')
+            tool,args=decision.get('tool'),decision.get('args')
+            if not isinstance(tool,str) or not isinstance(args,dict): return self._stop(state,'model_error')
+            try: args=normalize(tool,args)
+            except (ValueError,TypeError) as e:
+                result=failure('BAD_ARGS',str(e),tool)
+                state['tool_calls']+=1
+                self._record(state,tool,args,result)
+                state['bad_args']+=1
+                if state['bad_args']>1: return self._stop(state,'bad_args')
+                self.store.save(state); continue
+            if tool=='ask_clarification':
+                self._record(state,tool,args,{'success':False,'status':'need_more_info','code':'AMBIGUOUS','data':args})
+                state['status']='clarification_wait';state['result']=args
+                self.store.save(state); return state
+            fingerprint=canonical([tool,args])
+            window=state['steps']
+            if tool not in WRITES:
+                # A successful write changes the observed state; rereading is verification.
+                boundary=max((i+1 for i,s in enumerate(window) if s['tool'] in WRITES and s['result'].get('success')),default=0)
+                window=window[boundary:]
+            if any(canonical([s['tool'],s['args']])==fingerprint for s in window): return self._stop(state,'loop')
+            state['pending']={'tool':tool,'args':args,'attempts':0,'action_id':None,'phase':'prepare' if tool in WRITES else 'execute'}
+            self.store.save(state) # Persist the model decision before creating its approval.
+            if tool in WRITES: return self._prepare_pending(state,context)
+        return self._stop(state,'max_steps')
+
+    def _prepare_pending(self,state,context):
+        pending=state['pending'];tool,args=pending['tool'],pending['args']
+        action=self.platform.prepare(tool,args,{**context,'request_id':f"{state['task_id']}:{len(state['steps'])}"})
+        pending.update(action_id=action['action_id'],snapshot={'tool':tool,'params':args,'scope':state['scope'],
+            'risk':SPECS[tool][1],'impact':self.platform.preview(tool,args,context)},expires_at=action['expires_at'])
+        state['status']='approval_wait'
+        self.store.save(state)
+        return state
+
+    def _record(self,state,tool,args,result):
+        compact=self.store.externalize(state['task_id'],result)
+        state['steps'].append({'seq':len(state['steps']),'tool':tool,'args':args,'result':compact})
+        return compact
+
+    async def _execute_pending(self,state,context):
+        pending=state['pending'];tool,args=pending['tool'],pending['args']
+        ctx={**context,'action_id':pending['action_id']}
+        receipt=self.platform.receipt(pending['action_id'],ctx) if tool in WRITES else None
+        if receipt is not None: result=receipt
+        else:
+            if pending['attempts']>=3: return self._stop(state,'unrecoverable')
+            if pending['attempts']:
+                await asyncio.sleep(self.retry_delays[min(pending['attempts']-1,1)])
+            if self._timed_out(state): return self._stop(state,'timeout')
+            if tool in WRITES: self.platform.actions.running(pending['action_id'],ctx)
+            pending['attempts']+=1;state['tool_calls']+=1
+            remaining=state.get('fault_remaining')
+            fault=state.get('fault_id') if remaining is None or remaining>0 else None
+            if remaining is not None and remaining>0: state['fault_remaining']-=1
+            ctx['fault_id']=fault
+            self.store.save(state) # Checkpoint before the side effect.
+            if self._timed_out(state): return self._stop(state,'timeout')
+            started=time.monotonic()
+            if tool=='read_ref': result=self.store.read_ref(state['task_id'],args,context)
+            else: result=self.platform.execute(tool,args,ctx)
+            state['trace'].append({'step':len(state['steps']),'kind':'tool','tool':tool,
+                'args_hash':hashlib.sha256(canonical(args).encode()).hexdigest(),
+                'latency_ms':round((time.monotonic()-started)*1000,2),'outcome':result['code'],'tokens':0,'cost':0,'stop_reason':None})
+            if tool in WRITES:
+                self.platform.actions.complete(pending['action_id'],result)
+                if result['code']=='OUTCOME_UNKNOWN':
+                    result=self.platform.receipt(pending['action_id'],ctx) or result
+            if result['code'] in {'TRANSIENT','TIMEOUT'} and pending['attempts']<3:
+                self.store.save(state);return None
+        compact=self._record(state,tool,args,result)
+        state['pending']=None;state['result']=compact
+        self.store.save(state)
+        code=result['code']
+        if self._timed_out(state): return self._stop(state,'timeout')
+        if result['status']=='partial_success': return self._stop(state,'partial','partial')
+        if result.get('success'): return None
+        if code=='BAD_ARGS':
+            state['bad_args']+=1
+            if state['bad_args']<=1: return None
+            return self._stop(state,'bad_args')
+        if code=='AMBIGUOUS':
+            state['status']='clarification_wait';self.store.save(state);return state
+        return self._stop(state,'auth' if code=='PERMISSION_DENIED' else 'unrecoverable')

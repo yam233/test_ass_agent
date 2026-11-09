@@ -1,0 +1,590 @@
+{
+  "mode": "remote_native_function_calls",
+  "model": "deepseek-v4.1-flash",
+  "prompt_version": "workflow-v1",
+  "selection_cases": [
+    {
+      "id": "backpack",
+      "passed": true,
+      "expected_tool": "seed_test_data",
+      "actual_tool": "seed_test_data",
+      "params": {
+        "table": "gifts",
+        "user_id": 123,
+        "gift_id": 301,
+        "quantity": 10
+      },
+      "usage": {
+        "prompt_tokens": 1945,
+        "completion_tokens": 144,
+        "total_tokens": 2089,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1945,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 53
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00037815,
+          "allowance": 0.00022689,
+          "tokens": {
+            "input": 1945,
+            "output": 144,
+            "reasoning": 53,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 2290
+    },
+    {
+      "id": "paraphrase",
+      "passed": true,
+      "expected_tool": "seed_test_data",
+      "actual_tool": "seed_test_data",
+      "params": {
+        "table": "gifts",
+        "user_id": 123,
+        "gift_id": 301,
+        "quantity": 10
+      },
+      "usage": {
+        "prompt_tokens": 1950,
+        "completion_tokens": 113,
+        "total_tokens": 2063,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1950,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 22
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0003603,
+          "allowance": 0.00021618,
+          "tokens": {
+            "input": 1950,
+            "output": 113,
+            "reasoning": 22,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 1816
+    },
+    {
+      "id": "query",
+      "passed": true,
+      "expected_tool": "query_data",
+      "actual_tool": "query_data",
+      "params": {
+        "table": "gifts",
+        "user_id": 123
+      },
+      "usage": {
+        "prompt_tokens": 1941,
+        "completion_tokens": 77,
+        "total_tokens": 2018,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1941,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 21
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00033735,
+          "allowance": 0.00020241,
+          "tokens": {
+            "input": 1941,
+            "output": 77,
+            "reasoning": 21,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 6374
+    },
+    {
+      "id": "scripts",
+      "passed": true,
+      "expected_tool": "list_scripts",
+      "actual_tool": "list_scripts",
+      "params": {},
+      "usage": {
+        "prompt_tokens": 1941,
+        "completion_tokens": 36,
+        "total_tokens": 1977,
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 21,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 3.051e-05,
+          "allowance": 1.831e-05,
+          "tokens": {
+            "input": 21,
+            "output": 36,
+            "reasoning": 13,
+            "cache_read": 1920,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 1948
+    },
+    {
+      "id": "config_read",
+      "passed": true,
+      "expected_tool": "query_config",
+      "actual_tool": "query_config",
+      "params": {
+        "key": "gift_multiplier"
+      },
+      "usage": {
+        "prompt_tokens": 1941,
+        "completion_tokens": 42,
+        "total_tokens": 1983,
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 21,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 3.411e-05,
+          "allowance": 2.047e-05,
+          "tokens": {
+            "input": 21,
+            "output": 42,
+            "reasoning": 0,
+            "cache_read": 1920,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 1084
+    },
+    {
+      "id": "config_write",
+      "passed": true,
+      "expected_tool": "update_config",
+      "actual_tool": "update_config",
+      "params": {
+        "key": "gift_multiplier",
+        "value": 2
+      },
+      "usage": {
+        "prompt_tokens": 1944,
+        "completion_tokens": 75,
+        "total_tokens": 2019,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1944,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 17
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.0003366,
+          "allowance": 0.00020196,
+          "tokens": {
+            "input": 1944,
+            "output": 75,
+            "reasoning": 17,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 1716
+    },
+    {
+      "id": "missing_quantity",
+      "passed": true,
+      "expected_tool": "ask_clarification",
+      "actual_tool": "ask_clarification",
+      "params": {
+        "question": "请补充要发放的数量（范围 1–10000），我再为用户 123 发放礼物 301。"
+      },
+      "usage": {
+        "prompt_tokens": 1943,
+        "completion_tokens": 109,
+        "total_tokens": 2052,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1943,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 48
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00035685,
+          "allowance": 0.00021411,
+          "tokens": {
+            "input": 1943,
+            "output": 109,
+            "reasoning": 48,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 2443
+    },
+    {
+      "id": "missing_user",
+      "passed": true,
+      "expected_tool": "ask_clarification",
+      "actual_tool": "ask_clarification",
+      "params": {
+        "question": "请提供要发放到的用户 ID（user_id）；当前只收到了礼物 ID 301 和数量 10。"
+      },
+      "usage": {
+        "prompt_tokens": 1942,
+        "completion_tokens": 128,
+        "total_tokens": 2070,
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 22,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 66
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 8.586e-05,
+          "allowance": 5.152e-05,
+          "tokens": {
+            "input": 22,
+            "output": 128,
+            "reasoning": 66,
+            "cache_read": 1920,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 1989
+    },
+    {
+      "id": "ambiguous_config",
+      "passed": true,
+      "expected_tool": "ask_clarification",
+      "actual_tool": "ask_clarification",
+      "params": {
+        "question": "请说明要修改哪个配置项及其目标值：gift_multiplier（整数）还是 maintenance_mode（true/false）？"
+      },
+      "usage": {
+        "prompt_tokens": 1937,
+        "completion_tokens": 85,
+        "total_tokens": 2022,
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 17,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 5.931e-05,
+          "allowance": 3.559e-05,
+          "tokens": {
+            "input": 17,
+            "output": 85,
+            "reasoning": 18,
+            "cache_read": 1920,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 1807
+    },
+    {
+      "id": "run",
+      "passed": true,
+      "expected_tool": "run_script",
+      "actual_tool": "run_script",
+      "params": {
+        "script_id": "send_gifts",
+        "user_id": 123,
+        "gift_id": 301,
+        "quantity": 10
+      },
+      "usage": {
+        "prompt_tokens": 1951,
+        "completion_tokens": 133,
+        "total_tokens": 2084,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 39
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00037245,
+          "allowance": 0.00022347,
+          "tokens": {
+            "input": 1951,
+            "output": 133,
+            "reasoning": 39,
+            "cache_read": 0,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 4350
+    },
+    {
+      "id": "cleanup_missing",
+      "passed": true,
+      "expected_tool": "ask_clarification",
+      "actual_tool": "ask_clarification",
+      "params": {
+        "question": "请提供要清理的 batch_id（或对应的 user_id / 礼物信息），以便我定位到具体测试批次；清理只能针对单个明确批次，不能全表删除。"
+      },
+      "usage": {
+        "prompt_tokens": 1939,
+        "completion_tokens": 197,
+        "total_tokens": 2136,
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 19,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 122
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 0.00012681,
+          "allowance": 7.609e-05,
+          "tokens": {
+            "input": 19,
+            "output": 197,
+            "reasoning": 122,
+            "cache_read": 1920,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 2833
+    },
+    {
+      "id": "rollback_missing",
+      "passed": true,
+      "expected_tool": "ask_clarification",
+      "actual_tool": "ask_clarification",
+      "params": {
+        "question": "请提供要回滚的配置变更 ID（change_id）。另外，如需我一并核对，请说明目标是哪个配置项（gift_multiplier 或 maintenance_mode）。"
+      },
+      "usage": {
+        "prompt_tokens": 1938,
+        "completion_tokens": 144,
+        "total_tokens": 2082,
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 18,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 55
+        },
+        "cost": 0,
+        "opencode": {
+          "billing_source": "go",
+          "list_cost": 9.486e-05,
+          "allowance": 5.692e-05,
+          "tokens": {
+            "input": 18,
+            "output": 144,
+            "reasoning": 55,
+            "cache_read": 1920,
+            "cache_write_5m": 0,
+            "cache_write_1h": 0
+          }
+        }
+      },
+      "latency_ms": 2100
+    }
+  ],
+  "selection_passed": 12,
+  "selection_total": 12,
+  "chains": [
+    {
+      "id": 0,
+      "passed": true,
+      "status": "completed",
+      "actual": 10,
+      "tools": [
+        "seed_test_data",
+        "query_data"
+      ],
+      "model_calls": 3,
+      "tokens": 6748,
+      "steps": [
+        {
+          "seq": 0,
+          "tool": "seed_test_data",
+          "args": {
+            "gift_id": 301,
+            "quantity": 10,
+            "table": "gifts",
+            "user_id": 123
+          },
+          "result": {
+            "success": true,
+            "status": "success",
+            "code": "OK",
+            "message": "模拟操作完成",
+            "tool_name": "seed_test_data",
+            "data": {
+              "batch_id": "0a79c677-75aa-4212-99ec-ffc378b829a6",
+              "expected": 10,
+              "actual": 10,
+              "action_id": "0a79c677-75aa-4212-99ec-ffc378b829a6",
+              "runtime_mode": "mock"
+            }
+          }
+        },
+        {
+          "seq": 1,
+          "tool": "query_data",
+          "args": {
+            "table": "gifts",
+            "batch_id": "0a79c677-75aa-4212-99ec-ffc378b829a6"
+          },
+          "result": {
+            "success": true,
+            "status": "success",
+            "code": "OK",
+            "message": "模拟操作完成",
+            "tool_name": "query_data",
+            "data": {
+              "rows": [
+                {
+                  "batch_id": "0a79c677-75aa-4212-99ec-ffc378b829a6",
+                  "gift_id": 301,
+                  "quantity": 10,
+                  "source": "seed_test_data",
+                  "table": "gifts",
+                  "user_id": 123
+                }
+              ],
+              "row_count": 1,
+              "total_quantity": 10,
+              "runtime_mode": "mock"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "passed": true,
+      "status": "completed",
+      "actual": 2,
+      "tools": [
+        "update_config",
+        "query_config"
+      ],
+      "model_calls": 3,
+      "tokens": 6501,
+      "steps": [
+        {
+          "seq": 0,
+          "tool": "update_config",
+          "args": {
+            "key": "gift_multiplier",
+            "value": 2
+          },
+          "result": {
+            "success": true,
+            "status": "success",
+            "code": "OK",
+            "message": "模拟操作完成",
+            "tool_name": "update_config",
+            "data": {
+              "key": "gift_multiplier",
+              "before": 1,
+              "after": 2,
+              "action_id": "29a766c5-89da-40ed-85c4-731bdd2df05e",
+              "runtime_mode": "mock"
+            }
+          }
+        },
+        {
+          "seq": 1,
+          "tool": "query_config",
+          "args": {
+            "key": "gift_multiplier"
+          },
+          "result": {
+            "success": true,
+            "status": "success",
+            "code": "OK",
+            "message": "模拟操作完成",
+            "tool_name": "query_config",
+            "data": {
+              "key": "gift_multiplier",
+              "value": 2,
+              "version": "29a766c5-89da-40ed-85c4-731bdd2df05e",
+              "runtime_mode": "mock"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "reported_tokens_this_run": 13249,
+  "selection_reused": 12,
+  "cost_usd": null,
+  "cost_note": "No verified per-token tariff configured; no invented monetary estimate."
+}

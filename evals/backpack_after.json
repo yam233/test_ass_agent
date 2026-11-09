@@ -1,0 +1,89 @@
+{
+  "mode": "offline_rules",
+  "oracle": "sqlite_platform_state",
+  "passed": 9,
+  "total": 9,
+  "cases": [
+    {
+      "id": "normal",
+      "passed": true,
+      "expected_quantity": 10,
+      "actual_quantity": 10,
+      "expected_status": "success",
+      "actual_status": "success",
+      "code": "OK"
+    },
+    {
+      "id": "missing_quantity",
+      "passed": true,
+      "expected_quantity": 0,
+      "actual_quantity": 0,
+      "expected_status": "need_more_info",
+      "actual_status": "need_more_info",
+      "code": "NEED_MORE_INFO"
+    },
+    {
+      "id": "denied",
+      "passed": true,
+      "expected_quantity": 0,
+      "actual_quantity": 0,
+      "expected_status": "denied",
+      "actual_status": "denied",
+      "code": "APPROVAL_DENIED"
+    },
+    {
+      "id": "platform_403",
+      "passed": true,
+      "expected_quantity": 0,
+      "actual_quantity": 0,
+      "expected_status": "failed",
+      "actual_status": "failed",
+      "code": "PERMISSION_DENIED"
+    },
+    {
+      "id": "partial_write",
+      "passed": true,
+      "expected_quantity": 5,
+      "actual_quantity": 5,
+      "expected_status": "partial_success",
+      "actual_status": "partial_success",
+      "code": "PARTIAL_SUCCESS"
+    },
+    {
+      "id": "response_loss",
+      "passed": true,
+      "expected_quantity": 10,
+      "actual_quantity": 10,
+      "expected_status": "success",
+      "actual_status": "success",
+      "code": "OK"
+    },
+    {
+      "id": "restart_before_confirmation",
+      "passed": true,
+      "expected_quantity": 10,
+      "actual_quantity": 10,
+      "expected_status": "success",
+      "actual_status": "success",
+      "code": "OK"
+    },
+    {
+      "id": "duplicate_confirmation",
+      "passed": true,
+      "expected_quantity": 10,
+      "actual_quantity": 10,
+      "expected_status": "success",
+      "actual_status": "success",
+      "code": "OK"
+    },
+    {
+      "id": "explicit_new_action",
+      "passed": true,
+      "expected_quantity": 20,
+      "actual_quantity": 20,
+      "expected_status": "success",
+      "actual_status": "success",
+      "code": "OK"
+    }
+  ]
+}

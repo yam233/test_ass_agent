@@ -1,0 +1,5897 @@
+{
+  "grafana_kb03DSbMk": {
+    "name": "145 活动送礼情况",
+    "url": "https://internal.example.invalid/app/grafana/d/kb03DSbMk/145-huo-dong-song-li-qing-kuang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 145 活动送礼情况",
+    "tags": [
+      "145 活动送礼情况"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_TWo4cQQMz": {
+    "name": "152 活动用户收集礼物达标统计",
+    "url": "https://internal.example.invalid/app/grafana/d/TWo4cQQMz/152-huo-dong-yong-hu-shou-ji-li-wu-da-biao-tong-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 152 活动用户收集礼物达标统计",
+    "tags": [
+      "152 活动用户收集礼物达标统计"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ex398IAnk": {
+    "name": "175 全站宝箱监控",
+    "url": "https://internal.example.invalid/app/grafana/d/ex398IAnk/175-quan-zhan-bao-xiang-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 175 全站宝箱监控",
+    "tags": [
+      "175 全站宝箱监控"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_4LIq8S0nz": {
+    "name": "175 宝箱超量领取报警",
+    "url": "https://internal.example.invalid/app/grafana/d/4LIq8S0nz/175-bao-xiang-chao-liang-ling-qu-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 175 宝箱超量领取报警",
+    "tags": [
+      "175 宝箱超量领取报警"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_C5sCUS07z": {
+    "name": "175 指定直播间监控",
+    "url": "https://internal.example.invalid/app/grafana/d/C5sCUS07z/175-zhi-ding-zhi-bo-jian-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 175 指定直播间监控",
+    "tags": [
+      "175 指定直播间监控"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_yu20AGqMk": {
+    "name": "223 活动单个直播间宝箱监控",
+    "url": "https://internal.example.invalid/app/grafana/d/yu20AGqMk/223-huo-dong-dan-ge-zhi-bo-jian-bao-xiang-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 223 活动单个直播间宝箱监控",
+    "tags": [
+      "223 活动单个直播间宝箱监控"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_tie45oNVz": {
+    "name": "223 活动宝箱奖品配置",
+    "url": "https://internal.example.invalid/app/grafana/d/tie45oNVz/223-huo-dong-bao-xiang-jiang-pin-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 223 活动宝箱奖品配置",
+    "tags": [
+      "223 活动宝箱奖品配置"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_Pr_TJGqGk": {
+    "name": "223 活动宝箱整体监控",
+    "url": "https://internal.example.invalid/app/grafana/d/Pr_TJGqGk/223-huo-dong-bao-xiang-zheng-ti-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 223 活动宝箱整体监控",
+    "tags": [
+      "223 活动宝箱整体监控"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_HnZ9jMqMz": {
+    "name": "223 活动宝箱超量领取报警",
+    "url": "https://internal.example.invalid/app/grafana/d/HnZ9jMqMz/223-huo-dong-bao-xiang-chao-liang-ling-qu-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 223 活动宝箱超量领取报警",
+    "tags": [
+      "223 活动宝箱超量领取报警"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_P_X6GVL4k": {
+    "name": "295 突袭卡使用记录",
+    "url": "https://internal.example.invalid/app/grafana/d/P_X6GVL4k/295-tu-xi-qia-shi-yong-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 295 突袭卡使用记录",
+    "tags": [
+      "295 突袭卡使用记录"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_8pMPG4L4k": {
+    "name": "295 突袭卡使用记录",
+    "url": "https://internal.example.invalid/app/grafana/d/8pMPG4L4k/295-tu-xi-qia-shi-yong-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 295 突袭卡使用记录",
+    "tags": [
+      "295 突袭卡使用记录"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_SKG_b4ISk": {
+    "name": "463 活动报表",
+    "url": "https://internal.example.invalid/app/grafana/d/SKG_b4ISk/463-huo-dong-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 463 活动报表",
+    "tags": [
+      "463 活动报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_cRF73gHSk": {
+    "name": "493 补数据",
+    "url": "https://internal.example.invalid/app/grafana/d/cRF73gHSk/493-bu-shu-ju?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 493 补数据",
+    "tags": [
+      "493 补数据"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_E8Zjr_dIk": {
+    "name": "499 活动宝箱",
+    "url": "https://internal.example.invalid/app/grafana/d/E8Zjr_dIk/499-huo-dong-bao-xiang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 499 活动宝箱",
+    "tags": [
+      "499 活动宝箱"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_o-8rGNKSk": {
+    "name": "499 活动宝箱",
+    "url": "https://internal.example.invalid/app/grafana/d/o-8rGNKSk/499-huo-dong-bao-xiang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 499 活动宝箱",
+    "tags": [
+      "499 活动宝箱"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_ETLUXmEIk": {
+    "name": "550 活动报表",
+    "url": "https://internal.example.invalid/app/grafana/d/ETLUXmEIk/550-huo-dong-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 550 活动报表",
+    "tags": [
+      "550 活动报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_5aAn6PQSk": {
+    "name": "596 活动补发遗漏积分",
+    "url": "https://internal.example.invalid/app/grafana/d/5aAn6PQSk/596-huo-dong-bu-fa-yi-lou-ji-fen?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 596 活动补发遗漏积分",
+    "tags": [
+      "596 活动补发遗漏积分"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_R93xiErSk": {
+    "name": "602 活动报表",
+    "url": "https://internal.example.invalid/app/grafana/d/R93xiErSk/602-huo-dong-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 602 活动报表",
+    "tags": [
+      "602 活动报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_9ivV8GRHk": {
+    "name": "626 国庆活动抽奖每日任务 用户完成任务统计",
+    "url": "https://internal.example.invalid/app/grafana/d/9ivV8GRHk/626-guo-qing-huo-dong-chou-jiang-mei-ri-ren-wu-yong-hu-wan-cheng-ren-wu-tong-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 626 国庆活动抽奖每日任务 用户完成任务统计",
+    "tags": [
+      "626 国庆活动抽奖每日任务 用户完成任务统计"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_4Cx0lsVNk": {
+    "name": "682 首席应援报表",
+    "url": "https://internal.example.invalid/app/grafana/d/4Cx0lsVNk/682-shou-xi-ying-yuan-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 682 首席应援报表",
+    "tags": [
+      "682 首席应援报表"
+    ],
+    "category": "其他"
+  },
+  "grafana_evNMs9vNk": {
+    "name": "722 活动数据看板",
+    "url": "https://internal.example.invalid/app/grafana/d/evNMs9vNk/722-huo-dong-shu-ju-kan-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 722 活动数据看板",
+    "tags": [
+      "722 活动数据看板"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_PjgtCcSHk": {
+    "name": "769 任务 用户完成任务统计",
+    "url": "https://internal.example.invalid/app/grafana/d/PjgtCcSHk/769-ren-wu-yong-hu-wan-cheng-ren-wu-tong-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 769 任务 用户完成任务统计",
+    "tags": [
+      "769 任务 用户完成任务统计"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_RuWJkxUVk": {
+    "name": "[PRO] 表情包",
+    "url": "https://internal.example.invalid/app/grafana/d/RuWJkxUVk/pro-biao-qing-bao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [PRO] 表情包",
+    "tags": [
+      "[PRO] 表情包"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_U61Mo98Vk": {
+    "name": "[PRO] 表情包",
+    "url": "https://internal.example.invalid/app/grafana/d/U61Mo98Vk/pro-biao-qing-bao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [PRO] 表情包",
+    "tags": [
+      "[PRO] 表情包"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_9RhAkV4Hk": {
+    "name": "[UAT 测试] 粉丝勋章资源列表",
+    "url": "https://internal.example.invalid/app/grafana/d/9RhAkV4Hk/uat-ce-shi-fen-si-xun-zhang-zi-yuan-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT 测试] 粉丝勋章资源列表",
+    "tags": [
+      "[UAT 测试] 粉丝勋章资源列表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_1yWozV4Nk": {
+    "name": "[UAT 测试] 粉丝勋章配置面板",
+    "url": "https://internal.example.invalid/app/grafana/d/1yWozV4Nk/uat-ce-shi-fen-si-xun-zhang-pei-zhi-mian-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT 测试] 粉丝勋章配置面板",
+    "tags": [
+      "[UAT 测试] 粉丝勋章配置面板"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_9zuFHRQ7z": {
+    "name": "[UAT 测试]单位时间大奖掉落明细",
+    "url": "https://internal.example.invalid/app/grafana/d/9zuFHRQ7z/uat-ce-shi-dan-wei-shi-jian-da-jiang-diao-luo-ming-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT 测试]单位时间大奖掉落明细",
+    "tags": [
+      "掉落",
+      "随机礼物"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_a92SIsG7z": {
+    "name": "[UAT 测试]直播间财报",
+    "url": "https://internal.example.invalid/app/grafana/d/a92SIsG7z/uat-ce-shi-zhi-bo-jian-cai-bao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT 测试]直播间财报",
+    "tags": [
+      "[UAT 测试]直播间财报"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_s_HmWlQGk": {
+    "name": "[UAT 测试]随机礼物赠送报表（股票）",
+    "url": "https://internal.example.invalid/app/grafana/d/s_HmWlQGk/uat-ce-shi-sui-ji-li-wu-zeng-song-bao-biao-gu-piao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT 测试]随机礼物赠送报表（股票）",
+    "tags": [
+      "[UAT 测试]随机礼物赠送报表（股票）"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_wp2V0Nu7k": {
+    "name": "[UAT] 223 活动 单个直播间宝箱监控",
+    "url": "https://internal.example.invalid/app/grafana/d/wp2V0Nu7k/uat-223-huo-dong-dan-ge-zhi-bo-jian-bao-xiang-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 223 活动 单个直播间宝箱监控",
+    "tags": [
+      "[UAT] 223 活动 单个直播间宝箱监控"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_OhU5oHu7z": {
+    "name": "[UAT] 223 活动 宝箱整体监控",
+    "url": "https://internal.example.invalid/app/grafana/d/OhU5oHu7z/uat-223-huo-dong-bao-xiang-zheng-ti-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 223 活动 宝箱整体监控",
+    "tags": [
+      "[UAT] 223 活动 宝箱整体监控"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_Xxx5AHXnz": {
+    "name": "[UAT] 223 活动 宝箱超量领取报警",
+    "url": "https://internal.example.invalid/app/grafana/d/Xxx5AHXnz/uat-223-huo-dong-bao-xiang-chao-liang-ling-qu-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 223 活动 宝箱超量领取报警",
+    "tags": [
+      "[UAT] 223 活动 宝箱超量领取报警"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_fMztFoN4k": {
+    "name": "[UAT] 223 活动宝箱奖品配置",
+    "url": "https://internal.example.invalid/app/grafana/d/fMztFoN4k/uat-223-huo-dong-bao-xiang-jiang-pin-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 223 活动宝箱奖品配置",
+    "tags": [
+      "[UAT] 223 活动宝箱奖品配置"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_7zzXkZkSz": {
+    "name": "[UAT] 406 任务模块查询面板",
+    "url": "https://internal.example.invalid/app/grafana/d/7zzXkZkSz/uat-406-ren-wu-mo-kuai-cha-xun-mian-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 406 任务模块查询面板",
+    "tags": [
+      "[UAT] 406 任务模块查询面板"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_r5wKMHzSz": {
+    "name": "[UAT] 406 某直播间听众宝箱数据",
+    "url": "https://internal.example.invalid/app/grafana/d/r5wKMHzSz/uat-406-mou-zhi-bo-jian-ting-zhong-bao-xiang-shu-ju?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 406 某直播间听众宝箱数据",
+    "tags": [
+      "[UAT] 406 某直播间听众宝箱数据"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_a6ZSMNkSz": {
+    "name": "[UAT] 406 活动宝箱整体监控",
+    "url": "https://internal.example.invalid/app/grafana/d/a6ZSMNkSz/uat-406-huo-dong-bao-xiang-zheng-ti-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 406 活动宝箱整体监控",
+    "tags": [
+      "[UAT] 406 活动宝箱整体监控"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_SUC_nrhHz": {
+    "name": "[UAT] 789 许愿池回报率报表",
+    "url": "https://internal.example.invalid/app/grafana/d/SUC_nrhHz/uat-789-xu-yuan-chi-hui-bao-lu-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 789 许愿池回报率报表",
+    "tags": [
+      "[UAT] 789 许愿池回报率报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_qSSQUkZnk": {
+    "name": "[UAT] [163 光夜之歌] 临时领取奖励后台",
+    "url": "https://internal.example.invalid/app/grafana/d/qSSQUkZnk/uat-163-guang-ye-zhi-ge-lin-shi-ling-qu-jiang-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] [163 光夜之歌] 临时领取奖励后台",
+    "tags": [
+      "[UAT] [163 光夜之歌] 临时领取奖励后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_EBgt7ytMz": {
+    "name": "[UAT] 上传、刷新资源文件",
+    "url": "https://internal.example.invalid/app/grafana/d/EBgt7ytMz/uat-shang-chuan-shua-xin-zi-yuan-wen-jian?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 上传、刷新资源文件",
+    "tags": [
+      "[UAT] 上传、刷新资源文件"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_lFcplex4z": {
+    "name": "[UAT] 主播信息背景配置",
+    "url": "https://internal.example.invalid/app/grafana/d/lFcplex4z/uat-zhu-bo-xin-xi-bei-jing-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 主播信息背景配置",
+    "tags": [
+      "[UAT] 主播信息背景配置"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_dXXKc8onk": {
+    "name": "[UAT] 从外观模板同步用户外观",
+    "url": "https://internal.example.invalid/app/grafana/d/dXXKc8onk/uat-cong-wai-guan-mo-ban-tong-bu-yong-hu-wai-guan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 从外观模板同步用户外观",
+    "tags": [
+      "[UAT] 从外观模板同步用户外观"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_oI9sI--Sk": {
+    "name": "[UAT] 信息页修改记录",
+    "url": "https://internal.example.invalid/app/grafana/d/oI9sI--Sk/uat-xin-xi-ye-xiu-gai-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 信息页修改记录",
+    "tags": [
+      "[UAT] 信息页修改记录"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_MGUWqrpMk": {
+    "name": "[UAT] 充钻石",
+    "url": "https://internal.example.invalid/app/grafana/d/MGUWqrpMk/uat-chong-zuan-shi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 充钻石",
+    "tags": [
+      "[UAT] 充钻石"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_KTNiPISnz": {
+    "name": "[UAT] 公会热门列表推荐位管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/KTNiPISnz/uat-gong-hui-re-men-lie-biao-tui-jian-wei-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 公会热门列表推荐位管理后台",
+    "tags": [
+      "[UAT] 公会热门列表推荐位管理后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_RJtraSI7z": {
+    "name": "[UAT] 公会首页 Banner 审核",
+    "url": "https://internal.example.invalid/app/grafana/d/RJtraSI7z/uat-gong-hui-shou-ye-banner-shen-he?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 公会首页 Banner 审核",
+    "tags": [
+      "[UAT] 公会首页 Banner 审核"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_4yHQaIInk": {
+    "name": "[UAT] 公会首页推荐直播间封面图审核",
+    "url": "https://internal.example.invalid/app/grafana/d/4yHQaIInk/uat-gong-hui-shou-ye-tui-jian-zhi-bo-jian-feng-mian-tu-shen-he?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 公会首页推荐直播间封面图审核",
+    "tags": [
+      "[UAT] 公会首页推荐直播间封面图审核"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_7qRHes4nz": {
+    "name": "[UAT] 刷新实例的本地缓存",
+    "url": "https://internal.example.invalid/app/grafana/d/7qRHes4nz/uat-shua-xin-shi-li-de-ben-di-huan-cun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 刷新实例的本地缓存",
+    "tags": [
+      "[UAT] 刷新实例的本地缓存"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_6tUYZ7pGk": {
+    "name": "[UAT] 十万元提现限制",
+    "url": "https://internal.example.invalid/app/grafana/d/6tUYZ7pGk/uat-shi-mo-yuan-ti-xian-xian-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 十万元提现限制",
+    "tags": [
+      "[UAT] 十万元提现限制"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_r0Kjx2E7z": {
+    "name": "[UAT] 发放主播背包礼物",
+    "url": "https://internal.example.invalid/app/grafana/d/r0Kjx2E7z/uat-fa-fang-zhu-bo-bei-bao-li-wu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 发放主播背包礼物",
+    "tags": [
+      "[UAT] 发放主播背包礼物"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_XItvHKoGk": {
+    "name": "[UAT] 后台日志管理",
+    "url": "https://internal.example.invalid/app/grafana/d/XItvHKoGk/uat-hou-tai-ri-zhi-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 后台日志管理",
+    "tags": [
+      "[UAT] 后台日志管理"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_Xaglu12nz": {
+    "name": "[UAT] 图片所在音频确认",
+    "url": "https://internal.example.invalid/app/grafana/d/Xaglu12nz/uat-tu-pian-suo-zai-yin-pin-que-ren?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 图片所在音频确认",
+    "tags": [
+      "[UAT] 图片所在音频确认"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_oWB4tP_Hz": {
+    "name": "[UAT] 夏季赛赛程：猫耳娘红包发送监控",
+    "url": "https://internal.example.invalid/app/grafana/d/oWB4tP_Hz/uat-xia-ji-sai-sai-cheng-mao-er-niang-hong-bao-fa-song-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 夏季赛赛程：猫耳娘红包发送监控",
+    "tags": [
+      "[UAT] 夏季赛赛程：猫耳娘红包发送监控"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_9CBCBzqMk": {
+    "name": "外观资源状态（Grafana）",
+    "url": "https://internal.example.invalid/app/grafana/d/9CBCBzqMk/uat-wai-guan-zi-yuan-zhuang-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 外观资源状态",
+    "tags": [
+      "外观",
+      "外观配置",
+      "外观资源",
+      "外观状态",
+      "appearance",
+      "外观",
+      "外观资源",
+      "外观状态",
+      "appearance",
+      "[UAT] 外观资源状态"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_iJ0sRdKGk": {
+    "name": "[UAT] 封禁解封直播间",
+    "url": "https://internal.example.invalid/app/grafana/d/iJ0sRdKGk/uat-feng-jin-jie-feng-zhi-bo-jian?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 封禁解封直播间",
+    "tags": [
+      "[UAT] 封禁解封直播间"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_AiDIp4pHk": {
+    "name": "[UAT] 小时榜配置信息",
+    "url": "https://internal.example.invalid/app/grafana/d/AiDIp4pHk/uat-xiao-shi-bang-pei-zhi-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 小时榜配置信息",
+    "tags": [
+      "[UAT] 小时榜配置信息"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_rZfdaaIGz": {
+    "name": "[UAT] 开播列表固定",
+    "url": "https://internal.example.invalid/app/grafana/d/rZfdaaIGz/uat-kai-bo-lie-biao-gu-ding?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 开播列表固定",
+    "tags": [
+      "[UAT] 开播列表固定"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_pDb84hJ7z": {
+    "name": "[UAT] 开放搜索构建搜索 query",
+    "url": "https://internal.example.invalid/app/grafana/d/pDb84hJ7z/uat-kai-fang-sou-suo-gou-jian-sou-suo-query?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 开放搜索构建搜索 query",
+    "tags": [
+      "[UAT] 开放搜索构建搜索 query"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_zGXzhz-Sz": {
+    "name": "[UAT] 弹幕的明细查询",
+    "url": "https://internal.example.invalid/app/grafana/d/zGXzhz-Sz/uat-dan-mu-de-ming-xi-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 弹幕的明细查询",
+    "tags": [
+      "[UAT] 弹幕的明细查询"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_nNb26fynk": {
+    "name": "[UAT] 推送日志查询后台，测试临时用",
+    "url": "https://internal.example.invalid/app/grafana/d/nNb26fynk/uat-tui-song-ri-zhi-cha-xun-hou-tai-ce-shi-lin-shi-yong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 推送日志查询后台，测试临时用",
+    "tags": [
+      "[UAT] 推送日志查询后台，测试临时用"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana___tHklCSk": {
+    "name": "[UAT] 月度宝箱",
+    "url": "https://internal.example.invalid/app/grafana/d/__tHklCSk/uat-yue-du-bao-xiang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 月度宝箱",
+    "tags": [
+      "[UAT] 月度宝箱"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_o_lXyrTGk": {
+    "name": "[UAT] 查询设置直播间流信息",
+    "url": "https://internal.example.invalid/app/grafana/d/o_lXyrTGk/uat-cha-xun-she-zhi-zhi-bo-jian-liu-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 查询设置直播间流信息",
+    "tags": [
+      "[UAT] 查询设置直播间流信息"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_-YcoUSS7z": {
+    "name": "[UAT] 气泡框图片预览",
+    "url": "https://internal.example.invalid/app/grafana/d/-YcoUSS7z/uat-qi-pao-kuang-tu-pian-yu-lan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 气泡框图片预览",
+    "tags": [
+      "[UAT] 气泡框图片预览"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_xdITkNeGk": {
+    "name": "[UAT] 用户外观",
+    "url": "https://internal.example.invalid/app/grafana/d/xdITkNeGk/uat-yong-hu-wai-guan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 用户外观",
+    "tags": [
+      "[UAT] 用户外观"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_EjacH1gnk": {
+    "name": "外观配置后台（Grafana）",
+    "url": "https://internal.example.invalid/app/grafana/d/EjacH1gnk/uat-yong-hu-wai-guan-pei-zhi-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 用户外观配置后台",
+    "tags": [
+      "外观",
+      "外观配置",
+      "用户外观",
+      "appearance",
+      "[UAT] 用户外观配置后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_sz6RPQHMk": {
+    "name": "[UAT] 用户头像框",
+    "url": "https://internal.example.invalid/app/grafana/d/sz6RPQHMk/uat-yong-hu-tou-xiang-kuang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 用户头像框",
+    "tags": [
+      "[UAT] 用户头像框"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_81zRvt_4z": {
+    "name": "[UAT] 用户小鱼干日志 （暂不可用）",
+    "url": "https://internal.example.invalid/app/grafana/d/81zRvt_4z/uat-yong-hu-xiao-yu-gan-ri-zhi-zan-bu-ke-yong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 用户小鱼干日志 （暂不可用）",
+    "tags": [
+      "[UAT] 用户小鱼干日志 （暂不可用）"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_-K49CH9Gk": {
+    "name": "[UAT] 用户日志",
+    "url": "https://internal.example.invalid/app/grafana/d/-K49CH9Gk/uat-yong-hu-ri-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 用户日志",
+    "tags": [
+      "[UAT] 用户日志"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_9LRX7kknk": {
+    "name": "[UAT] 直播免费礼物订单后台",
+    "url": "https://internal.example.invalid/app/grafana/d/9LRX7kknk/uat-zhi-bo-mian-fei-li-wu-ding-dan-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播免费礼物订单后台",
+    "tags": [
+      "[UAT] 直播免费礼物订单后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_v6nLcmm7k": {
+    "name": "[UAT] 直播提问审核",
+    "url": "https://internal.example.invalid/app/grafana/d/v6nLcmm7k/uat-zhi-bo-ti-wen-shen-he?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播提问审核",
+    "tags": [
+      "[UAT] 直播提问审核"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_wqzHa8yGk": {
+    "name": "[UAT] 直播礼物管理",
+    "url": "https://internal.example.invalid/app/grafana/d/wqzHa8yGk/uat-zhi-bo-li-wu-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播礼物管理",
+    "tags": [
+      "[UAT] 直播礼物管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ypjDaaSMk": {
+    "name": "[UAT] 直播管理",
+    "url": "https://internal.example.invalid/app/grafana/d/ypjDaaSMk/uat-zhi-bo-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播管理",
+    "tags": [
+      "[UAT] 直播管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_jiVQf6oGz": {
+    "name": "[UAT] 直播间互动投票详情",
+    "url": "https://internal.example.invalid/app/grafana/d/jiVQf6oGz/uat-zhi-bo-jian-hu-dong-tou-piao-xiang-qing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播间互动投票详情",
+    "tags": [
+      "[UAT] 直播间互动投票详情"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_SzqxXSxGz": {
+    "name": "[UAT] 直播间奖励热度",
+    "url": "https://internal.example.invalid/app/grafana/d/SzqxXSxGz/uat-zhi-bo-jian-jiang-li-re-du?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播间奖励热度",
+    "tags": [
+      "[UAT] 直播间奖励热度"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_hQRmPwHGz": {
+    "name": "[UAT] 直播间开播列表角标",
+    "url": "https://internal.example.invalid/app/grafana/d/hQRmPwHGz/uat-zhi-bo-jian-kai-bo-lie-biao-jiao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播间开播列表角标",
+    "tags": [
+      "[UAT] 直播间开播列表角标"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_agyUQVZnz": {
+    "name": "[UAT] 直播间推荐资源位黑名单管理",
+    "url": "https://internal.example.invalid/app/grafana/d/agyUQVZnz/uat-zhi-bo-jian-tui-jian-zi-yuan-wei-hei-ming-dan-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播间推荐资源位黑名单管理",
+    "tags": [
+      "[UAT] 直播间推荐资源位黑名单管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_QYkRYTQGz": {
+    "name": "[UAT] 直播间活动图标",
+    "url": "https://internal.example.invalid/app/grafana/d/QYkRYTQGz/uat-zhi-bo-jian-huo-dong-tu-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播间活动图标",
+    "tags": [
+      "[UAT] 直播间活动图标"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_2loVRkI4z": {
+    "name": "[UAT] 直播间礼物墙公告管理",
+    "url": "https://internal.example.invalid/app/grafana/d/2loVRkI4z/uat-zhi-bo-jian-li-wu-qiang-gong-gao-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播间礼物墙公告管理",
+    "tags": [
+      "[UAT] 直播间礼物墙公告管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_KUNjX9IVz": {
+    "name": "[UAT] 直播间礼物墙周期点亮详情",
+    "url": "https://internal.example.invalid/app/grafana/d/KUNjX9IVz/uat-zhi-bo-jian-li-wu-qiang-zhou-qi-dian-liang-xiang-qing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播间礼物墙周期点亮详情",
+    "tags": [
+      "[UAT] 直播间礼物墙周期点亮详情"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_Q9mBigYHk": {
+    "name": "[UAT] 直播预告管理",
+    "url": "https://internal.example.invalid/app/grafana/d/Q9mBigYHk/uat-zhi-bo-yu-gao-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 直播预告管理",
+    "tags": [
+      "[UAT] 直播预告管理"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_pfVywycVk": {
+    "name": "[UAT] 礼包商品列表",
+    "url": "https://internal.example.invalid/app/grafana/d/pfVywycVk/uat-li-bao-shang-pin-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 礼包商品列表",
+    "tags": [
+      "[UAT] 礼包商品列表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_xVreTJhGk": {
+    "name": "[UAT] 神话推荐管理",
+    "url": "https://internal.example.invalid/app/grafana/d/xVreTJhGk/uat-shen-hua-tui-jian-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 神话推荐管理",
+    "tags": [
+      "[UAT] 神话推荐管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_eZoeE8W7k": {
+    "name": "[UAT] 福袋列表",
+    "url": "https://internal.example.invalid/app/grafana/d/eZoeE8W7k/uat-fu-dai-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 福袋列表",
+    "tags": [
+      "[UAT] 福袋列表"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_md2GJaW7k": {
+    "name": "[UAT] 福袋商品列表",
+    "url": "https://internal.example.invalid/app/grafana/d/md2GJaW7k/uat-fu-dai-shang-pin-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 福袋商品列表",
+    "tags": [
+      "[UAT] 福袋商品列表"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_HM-EBOoMk": {
+    "name": "[UAT] 管理员修改用户名",
+    "url": "https://internal.example.invalid/app/grafana/d/HM-EBOoMk/uat-guan-li-yuan-xiu-gai-yong-hu-ming?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 管理员修改用户名",
+    "tags": [
+      "[UAT] 管理员修改用户名"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_UNer5etGz": {
+    "name": "[UAT] 管理员注销和恢复注销用户",
+    "url": "https://internal.example.invalid/app/grafana/d/UNer5etGz/uat-guan-li-yuan-zhu-xiao-he-hui-fu-zhu-xiao-yong-hu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 管理员注销和恢复注销用户",
+    "tags": [
+      "[UAT] 管理员注销和恢复注销用户"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_QT_9CO8Ik": {
+    "name": "[UAT] 管理直播间亲密度倍数",
+    "url": "https://internal.example.invalid/app/grafana/d/QT_9CO8Ik/uat-guan-li-zhi-bo-jian-qin-mi-du-bei-shu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 管理直播间亲密度倍数",
+    "tags": [
+      "[UAT] 管理直播间亲密度倍数"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_QSk7N1LMk": {
+    "name": "[UAT] 背包礼物管理",
+    "url": "https://internal.example.invalid/app/grafana/d/QSk7N1LMk/uat-bei-bao-li-wu-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 背包礼物管理 - 发放背包礼物后台",
+    "tags": [
+      "[UAT] 背包礼物管理",
+      "背包礼物",
+      "背包",
+      "发放背包礼物",
+      "背包礼物发放",
+      "背包礼物管理",
+      "背包后台",
+      "backpack"
+    ],
+    "category": "UAT 直播超管后台",
+    "priority": 100
+  },
+  "grafana_HH2BhNeGz": {
+    "name": "[UAT] 补全贵族用户外观",
+    "url": "https://internal.example.invalid/app/grafana/d/HH2BhNeGz/uat-bu-quan-gui-zu-yong-hu-wai-guan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 补全贵族用户外观",
+    "tags": [
+      "[UAT] 补全贵族用户外观"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_Ylj_X-SHk": {
+    "name": "[UAT] 表情资源分配后台",
+    "url": "https://internal.example.invalid/app/grafana/d/Ylj_X-SHk/uat-biao-qing-zi-yuan-fen-pei-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 表情资源分配后台",
+    "tags": [
+      "[UAT] 表情资源分配后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ZSz9u-INk": {
+    "name": "[UAT] 表情资源后台",
+    "url": "https://internal.example.invalid/app/grafana/d/ZSz9u-INk/uat-biao-qing-zi-yuan-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 表情资源后台",
+    "tags": [
+      "[UAT] 表情资源后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_HR3UPALGz": {
+    "name": "[UAT] 设置主播的直播间背景图",
+    "url": "https://internal.example.invalid/app/grafana/d/HR3UPALGz/uat-she-zhi-zhu-bo-de-zhi-bo-jian-bei-jing-tu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 设置主播的直播间背景图",
+    "tags": [
+      "[UAT] 设置主播的直播间背景图"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_FdittSAGk": {
+    "name": "[UAT] 设置最低提现金额",
+    "url": "https://internal.example.invalid/app/grafana/d/FdittSAGk/uat-she-zhi-zui-di-ti-xian-jin-e?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 设置最低提现金额",
+    "tags": [
+      "[UAT] 设置最低提现金额"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_VXsxTYjGz": {
+    "name": "[UAT] 超粉嘉年华 - 福袋相关",
+    "url": "https://internal.example.invalid/app/grafana/d/VXsxTYjGz/uat-chao-fen-jia-nian-hua-fu-dai-xiang-guan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 超粉嘉年华 - 福袋相关",
+    "tags": [
+      "[UAT] 超粉嘉年华 - 福袋相关"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_nHYEqCTHz": {
+    "name": "[UAT] 首页直播页列表第四位干预后台",
+    "url": "https://internal.example.invalid/app/grafana/d/nHYEqCTHz/uat-shou-ye-zhi-bo-ye-lie-biao-di-si-wei-gan-yu-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT] 首页直播页列表第四位干预后台",
+    "tags": [
+      "[UAT] 首页直播页列表第四位干预后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_YCqGM0n4z": {
+    "name": "[UAT]单个用户许愿池回报率报表",
+    "url": "https://internal.example.invalid/app/grafana/d/YCqGM0n4z/uat-dan-ge-yong-hu-xu-yuan-chi-hui-bao-lu-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT]单个用户许愿池回报率报表",
+    "tags": [
+      "回报率",
+      "许愿池"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_IdzsK6cVk": {
+    "name": "[UAT]红包销售报表",
+    "url": "https://internal.example.invalid/app/grafana/d/IdzsK6cVk/uat-hong-bao-xiao-shou-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT]红包销售报表",
+    "tags": [
+      "礼物红包",
+      "红包",
+      "销售"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_rfl2kXiVk": {
+    "name": "[UAT]许愿池报表",
+    "url": "https://internal.example.invalid/app/grafana/d/rfl2kXiVk/uat-xu-yuan-chi-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT]许愿池报表",
+    "tags": [
+      "抽奖",
+      "掉率",
+      "许愿池"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_f2zORum4z": {
+    "name": "[UAT]许愿池抽奖报警",
+    "url": "https://internal.example.invalid/app/grafana/d/f2zORum4z/uat-xu-yuan-chi-chou-jiang-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT]许愿池抽奖报警",
+    "tags": [
+      "[UAT]许愿池抽奖报警"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_Na8pdiWVz": {
+    "name": "[UAT测试]直播间消费表（按日）",
+    "url": "https://internal.example.invalid/app/grafana/d/Na8pdiWVz/uatce-shi-zhi-bo-jian-xiao-fei-biao-an-ri?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [UAT测试]直播间消费表（按日）",
+    "tags": [
+      "[UAT测试]直播间消费表（按日）"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_Z8yEAGqGz": {
+    "name": "[线上] 外观资源状态",
+    "url": "https://internal.example.invalid/app/grafana/d/Z8yEAGqGz/xian-shang-wai-guan-zi-yuan-zhuang-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: [线上] 外观资源状态",
+    "tags": [
+      "[线上] 外观资源状态"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_shPndSIiz": {
+    "name": "Access",
+    "url": "https://internal.example.invalid/app/grafana/d/shPndSIiz/access?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: Access",
+    "tags": [
+      "Access"
+    ],
+    "category": "Server"
+  },
+  "grafana_1ybXenNGk": {
+    "name": "Access_UAT",
+    "url": "https://internal.example.invalid/app/grafana/d/1ybXenNGk/access_uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: Access_UAT",
+    "tags": [
+      "Access",
+      "UAT"
+    ],
+    "category": "Server"
+  },
+  "grafana_ZRx0DBpGz": {
+    "name": "B 站广告归因验证",
+    "url": "https://internal.example.invalid/app/grafana/d/ZRx0DBpGz/b-zhan-yan-gao-gui-yin-yan-zheng?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: B 站广告归因验证",
+    "tags": [
+      "B 站广告归因验证"
+    ],
+    "category": "广告"
+  },
+  "grafana_XLQYZFfNz": {
+    "name": "chuchuan",
+    "url": "https://internal.example.invalid/app/grafana/d/XLQYZFfNz/chuchuan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: chuchuan",
+    "tags": [
+      "chuchuan"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_VJzqUJank": {
+    "name": "databus 延时消息发送后台",
+    "url": "https://internal.example.invalid/app/grafana/d/VJzqUJank/databus-yan-shi-xiao-xi-fa-song-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: databus 延时消息发送后台",
+    "tags": [
+      "databus 延时消息发送后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_UKruVyXSk": {
+    "name": "demo",
+    "url": "https://internal.example.invalid/app/grafana/d/UKruVyXSk/demo?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: demo",
+    "tags": [
+      "demo"
+    ],
+    "category": "v_zhangruojing"
+  },
+  "grafana_UTY7KRbNk": {
+    "name": "Feed 流进实验数量（T-1）",
+    "url": "https://internal.example.invalid/app/grafana/d/UTY7KRbNk/feed-liu-jin-shi-yan-shu-liang-t-1?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: Feed 流进实验数量（T-1）",
+    "tags": [
+      "Feed 流进实验数量（T-1）"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_ISMs-zz7z": {
+    "name": "Grafana 角色权限看板",
+    "url": "https://internal.example.invalid/app/grafana/d/ISMs-zz7z/grafana-jiao-se-quan-xian-kan-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: Grafana 角色权限看板",
+    "tags": [
+      "Grafana 角色权限看板"
+    ],
+    "category": "权限查询"
+  },
+  "grafana_cyeLCLKWz": {
+    "name": "Home",
+    "url": "https://internal.example.invalid/app/grafana/d/cyeLCLKWz/home?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: Home",
+    "tags": [
+      "Home"
+    ],
+    "category": "其他"
+  },
+  "grafana_siLLePSnz": {
+    "name": "im 广播消息汇总后台",
+    "url": "https://internal.example.invalid/app/grafana/d/siLLePSnz/im-yan-bo-xiao-xi-hui-zong-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: im 广播消息汇总后台",
+    "tags": [
+      "im 广播消息汇总后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_WmGFHuPHz": {
+    "name": "missevan-mall",
+    "url": "https://internal.example.invalid/app/grafana/d/WmGFHuPHz/missevan-mall?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: missevan-mall",
+    "tags": [
+      "missevan-mall"
+    ],
+    "category": "其他"
+  },
+  "grafana_x6Fg8UoNk": {
+    "name": "mpush 定时任务信息",
+    "url": "https://internal.example.invalid/app/grafana/d/x6Fg8UoNk/mpush-ding-shi-ren-wu-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: mpush 定时任务信息",
+    "tags": [
+      "mpush 定时任务信息"
+    ],
+    "category": "开发后台"
+  },
+  "grafana__tksyH8Nk": {
+    "name": "New dashboard",
+    "url": "https://internal.example.invalid/app/grafana/d/_tksyH8Nk/new-dashboard?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: New dashboard",
+    "tags": [
+      "New dashboard"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_3_F7CsbHk": {
+    "name": "New dashboard",
+    "url": "https://internal.example.invalid/app/grafana/d/3_F7CsbHk/new-dashboard?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: New dashboard",
+    "tags": [
+      "New dashboard"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_I1bzLSS7k": {
+    "name": "New dashboard",
+    "url": "https://internal.example.invalid/app/grafana/d/I1bzLSS7k/new-dashboard?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: New dashboard",
+    "tags": [
+      "New dashboard"
+    ],
+    "category": "其他"
+  },
+  "grafana_rjGA0YXHz": {
+    "name": "New dashboard",
+    "url": "https://internal.example.invalid/app/grafana/d/rjGA0YXHz/new-dashboard?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: New dashboard",
+    "tags": [
+      "New dashboard"
+    ],
+    "category": "ziqing"
+  },
+  "grafana_7DR0rM3Nz": {
+    "name": "New dashboard",
+    "url": "https://internal.example.invalid/app/grafana/d/7DR0rM3Nz/new-dashboard?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: New dashboard",
+    "tags": [
+      "New dashboard"
+    ],
+    "category": "点播业务监控"
+  },
+  "grafana_QXLJjU67k": {
+    "name": "New dashboard Copy",
+    "url": "https://internal.example.invalid/app/grafana/d/QXLJjU67k/new-dashboard-copy?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: New dashboard Copy",
+    "tags": [
+      "New dashboard Copy"
+    ],
+    "category": "其他"
+  },
+  "grafana_GZ1pyPMIk": {
+    "name": "pia 戏白名单后台",
+    "url": "https://internal.example.invalid/app/grafana/d/GZ1pyPMIk/pia-xi-bai-ming-dan-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: pia 戏白名单后台",
+    "tags": [
+      "pia 戏白名单后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_cGk_828Hk": {
+    "name": "PK 排位赛用户段位查询",
+    "url": "https://internal.example.invalid/app/grafana/d/cGk_828Hk/pk-pai-wei-sai-yong-hu-duan-wei-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: PK 排位赛用户段位查询",
+    "tags": [
+      "PK 排位赛用户段位查询"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_cRkO05yNk": {
+    "name": "PK 排位赛配置信息",
+    "url": "https://internal.example.invalid/app/grafana/d/cRkO05yNk/pk-pai-wei-sai-pei-zhi-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: PK 排位赛配置信息",
+    "tags": [
+      "PK 排位赛配置信息"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_vX51oF4Nz": {
+    "name": "PROD 7 日新增播放量 TOP 100 剧集声优主播推荐表",
+    "url": "https://internal.example.invalid/app/grafana/d/vX51oF4Nz/prod-7-ri-xin-zeng-bo-fang-liang-top-100-ju-ji-sheng-you-zhu-bo-tui-jian-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: PROD 7 日新增播放量 TOP 100 剧集声优主播推荐表",
+    "tags": [
+      "PROD 7 日新增播放量 TOP 100 剧集声优主播推荐表"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_NVi_LHWIk": {
+    "name": "reward 列表",
+    "url": "https://internal.example.invalid/app/grafana/d/NVi_LHWIk/reward-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: reward 列表",
+    "tags": [
+      "reward 列表"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_GZituldIk": {
+    "name": "reward 列表",
+    "url": "https://internal.example.invalid/app/grafana/d/GZituldIk/reward-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: reward 列表",
+    "tags": [
+      "reward 列表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ashknQlNz": {
+    "name": "RTC 保障面板",
+    "url": "https://internal.example.invalid/app/grafana/d/ashknQlNz/rtc-bao-zhang-mian-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: RTC 保障面板",
+    "tags": [
+      "RTC 保障面板"
+    ],
+    "category": "直播业务监控"
+  },
+  "grafana_i8TEPxdGk": {
+    "name": "test",
+    "url": "https://internal.example.invalid/app/grafana/d/i8TEPxdGk/test?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: test",
+    "tags": [
+      "test"
+    ],
+    "category": "yinxuan"
+  },
+  "grafana_SwNDAUj7z": {
+    "name": "test",
+    "url": "https://internal.example.invalid/app/grafana/d/SwNDAUj7z/test?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: test",
+    "tags": [
+      "test"
+    ],
+    "category": "其他"
+  },
+  "grafana_iRZ9VCVNk": {
+    "name": "test - 表情资源分配",
+    "url": "https://internal.example.invalid/app/grafana/d/iRZ9VCVNk/test-biao-qing-zi-yuan-fen-pei?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: test - 表情资源分配",
+    "tags": [
+      "test - 表情资源分配"
+    ],
+    "category": "其他"
+  },
+  "grafana_N2leGLy4k": {
+    "name": "TestQueryClickHouse",
+    "url": "https://internal.example.invalid/app/grafana/d/N2leGLy4k/testqueryclickhouse?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: TestQueryClickHouse",
+    "tags": [
+      "TestQueryClickHouse"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_sznfEOsnz": {
+    "name": "tset",
+    "url": "https://internal.example.invalid/app/grafana/d/sznfEOsnz/tset?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: tset",
+    "tags": [
+      "tset"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_ik8-2qOW5": {
+    "name": "UAT - 埋点数据",
+    "url": "https://internal.example.invalid/app/grafana/d/ik8-2qOW5/uat-mai-dian-shu-ju?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT - 埋点数据",
+    "tags": [
+      "UAT - 埋点数据"
+    ],
+    "category": "Public"
+  },
+  "grafana_gL22CM1Hz": {
+    "name": "UAT - 首页 Feed 流点播干预卡管理",
+    "url": "https://internal.example.invalid/app/grafana/d/gL22CM1Hz/uat-shou-ye-feed-liu-dian-bo-gan-yu-qia-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT - 首页 Feed 流点播干预卡管理",
+    "tags": [
+      "UAT - 首页 Feed 流点播干预卡管理"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_OsMvsGlHz": {
+    "name": "UAT - 首页 Feed 流直播干预卡管理",
+    "url": "https://internal.example.invalid/app/grafana/d/OsMvsGlHz/uat-shou-ye-feed-liu-zhi-bo-gan-yu-qia-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT - 首页 Feed 流直播干预卡管理",
+    "tags": [
+      "UAT - 首页 Feed 流直播干预卡管理"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_hCsAoF4Hk": {
+    "name": "UAT 7 日新增播放量 TOP 100 剧集声优主播推荐表",
+    "url": "https://internal.example.invalid/app/grafana/d/hCsAoF4Hk/uat-7-ri-xin-zeng-bo-fang-liang-top-100-ju-ji-sheng-you-zhu-bo-tui-jian-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 7 日新增播放量 TOP 100 剧集声优主播推荐表",
+    "tags": [
+      "UAT 7 日新增播放量 TOP 100 剧集声优主播推荐表"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_SsmLujP7k": {
+    "name": "UAT BG 剧集推荐管理",
+    "url": "https://internal.example.invalid/app/grafana/d/SsmLujP7k/uat-bg-ju-ji-tui-jian-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT BG 剧集推荐管理",
+    "tags": [
+      "UAT BG 剧集推荐管理"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_vANr9Knnk": {
+    "name": "UAT KOC 关键词后台",
+    "url": "https://internal.example.invalid/app/grafana/d/vANr9Knnk/uat-koc-guan-jian-ci-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT KOC 关键词后台",
+    "tags": [
+      "UAT KOC 关键词后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_YYfNmPK4z": {
+    "name": "UAT PGC 分区设置",
+    "url": "https://internal.example.invalid/app/grafana/d/YYfNmPK4z/uat-pgc-fen-qu-she-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT PGC 分区设置",
+    "tags": [
+      "UAT PGC 分区设置"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_lOK8eJy7z": {
+    "name": "UAT RSS 订阅管理",
+    "url": "https://internal.example.invalid/app/grafana/d/lOK8eJy7z/uat-rss-ding-yue-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT RSS 订阅管理",
+    "tags": [
+      "UAT RSS 订阅管理"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_yZfmxiTVz": {
+    "name": "UAT UGC 分区设置",
+    "url": "https://internal.example.invalid/app/grafana/d/yZfmxiTVz/uat-ugc-fen-qu-she-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT UGC 分区设置",
+    "tags": [
+      "UAT UGC 分区设置"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_-HiEVu5Mz": {
+    "name": "UAT 上传歌词",
+    "url": "https://internal.example.invalid/app/grafana/d/-HiEVu5Mz/uat-shang-chuan-ge-ci?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 上传歌词",
+    "tags": [
+      "UAT 上传歌词"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_Ngp_XD3Mk": {
+    "name": "UAT 专属礼物发放",
+    "url": "https://internal.example.invalid/app/grafana/d/Ngp_XD3Mk/uat-zhuan-shu-li-wu-fa-fang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 专属礼物发放",
+    "tags": [
+      "UAT 专属礼物发放"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_cahO0PNNk": {
+    "name": "UAT 专属礼物批量配置",
+    "url": "https://internal.example.invalid/app/grafana/d/cahO0PNNk/uat-zhuan-shu-li-wu-pi-liang-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 专属礼物批量配置",
+    "tags": [
+      "UAT 专属礼物批量配置"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_TRUxhCcSz": {
+    "name": "UAT 个性词条",
+    "url": "https://internal.example.invalid/app/grafana/d/TRUxhCcSz/uat-ge-xing-ci-tiao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 个性词条",
+    "tags": [
+      "UAT 个性词条"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_1G6iqybHk": {
+    "name": "UAT 主播任务周维度数据报表",
+    "url": "https://internal.example.invalid/app/grafana/d/1G6iqybHk/uat-zhu-bo-ren-wu-zhou-wei-du-shu-ju-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 主播任务周维度数据报表",
+    "tags": [
+      "UAT 主播任务周维度数据报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_zpHREZEHk": {
+    "name": "UAT 主播任务赛道配置",
+    "url": "https://internal.example.invalid/app/grafana/d/zpHREZEHk/uat-zhu-bo-ren-wu-sai-dao-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 主播任务赛道配置",
+    "tags": [
+      "UAT 主播任务赛道配置"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_TkAWzfXIz": {
+    "name": "UAT 剧单后台",
+    "url": "https://internal.example.invalid/app/grafana/d/TkAWzfXIz/uat-ju-dan-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 剧单后台",
+    "tags": [
+      "UAT 剧单后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_s39BHb7Vk": {
+    "name": "UAT 剧集假发送词管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/s39BHb7Vk/uat-ju-ji-jia-fa-song-ci-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 剧集假发送词管理后台",
+    "tags": [
+      "UAT 剧集假发送词管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_138wK5mSk": {
+    "name": "UAT 剧集双人封面管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/138wK5mSk/uat-ju-ji-shuang-ren-feng-mian-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 剧集双人封面管理后台",
+    "tags": [
+      "UAT 剧集双人封面管理后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_iqqI2fhHk": {
+    "name": "UAT 剧集标签管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/iqqI2fhHk/uat-ju-ji-biao-qian-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 剧集标签管理后台",
+    "tags": [
+      "UAT 剧集标签管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana__ICXkyWVk": {
+    "name": "UAT 剧集角标管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/_ICXkyWVk/uat-ju-ji-jiao-biao-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 剧集角标管理后台",
+    "tags": [
+      "UAT 剧集角标管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_Nh-JtsNMz": {
+    "name": "UAT 发送告白",
+    "url": "https://internal.example.invalid/app/grafana/d/Nh-JtsNMz/uat-fa-song-gao-bai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 发送告白",
+    "tags": [
+      "UAT 发送告白"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_OKmLHemvk": {
+    "name": "UAT 喵喵暴击",
+    "url": "https://internal.example.invalid/app/grafana/d/OKmLHemvk/uat-miao-miao-bao-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 喵喵暴击",
+    "tags": [
+      "UAT 喵喵暴击"
+    ],
+    "category": "其他"
+  },
+  "grafana_50PeJosnk": {
+    "name": "UAT 大数据管理",
+    "url": "https://internal.example.invalid/app/grafana/d/50PeJosnk/uat-da-shu-ju-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 大数据管理",
+    "tags": [
+      "UAT 大数据管理"
+    ],
+    "category": "其他"
+  },
+  "grafana_eL7CyHUNz": {
+    "name": "UAT 宝盒用户任务收集进度",
+    "url": "https://internal.example.invalid/app/grafana/d/eL7CyHUNz/uat-bao-he-yong-hu-ren-wu-shou-ji-jin-du?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 宝盒用户任务收集进度",
+    "tags": [
+      "UAT 宝盒用户任务收集进度"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_Nf70TyxGk": {
+    "name": "UAT 客户端上报日志后台",
+    "url": "https://internal.example.invalid/app/grafana/d/Nf70TyxGk/uat-ke-hu-duan-shang-bao-ri-zhi-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 客户端上报日志后台",
+    "tags": [
+      "UAT 客户端上报日志后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_4-LWbEvGk": {
+    "name": "UAT 广告新客承接策略后台",
+    "url": "https://internal.example.invalid/app/grafana/d/4-LWbEvGk/uat-yan-gao-xin-ke-cheng-jie-ce-lue-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 广告新客承接策略后台",
+    "tags": [
+      "UAT 广告新客承接策略后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_voALTtG7k": {
+    "name": "UAT 弹幕设置为字幕",
+    "url": "https://internal.example.invalid/app/grafana/d/voALTtG7k/uat-dan-mu-she-zhi-wei-zi-mu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 弹幕设置为字幕",
+    "tags": [
+      "UAT 弹幕设置为字幕"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_0NdO1094z": {
+    "name": "UAT 惊封剧集播放量监控",
+    "url": "https://internal.example.invalid/app/grafana/d/0NdO1094z/uat-liang-feng-ju-ji-bo-fang-liang-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 惊封剧集播放量监控",
+    "tags": [
+      "UAT 惊封剧集播放量监控"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_2jZUWSAGz": {
+    "name": "UAT 控评黑名单",
+    "url": "https://internal.example.invalid/app/grafana/d/2jZUWSAGz/uat-kong-ping-hei-ming-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 控评黑名单",
+    "tags": [
+      "UAT 控评黑名单"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_HxDcfeCGk": {
+    "name": "UAT 推送后台",
+    "url": "https://internal.example.invalid/app/grafana/d/HxDcfeCGk/uat-tui-song-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 推送后台",
+    "tags": [
+      "UAT 推送后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_69dPbOY7z": {
+    "name": "UAT 搜索专题卡管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/69dPbOY7z/uat-sou-suo-zhuan-ti-qia-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 搜索专题卡管理后台",
+    "tags": [
+      "UAT 搜索专题卡管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_pMrvZ_pNz": {
+    "name": "UAT 日常任务配置",
+    "url": "https://internal.example.invalid/app/grafana/d/pMrvZ_pNz/uat-ri-chang-ren-wu-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 日常任务配置",
+    "tags": [
+      "UAT 日常任务配置"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_CL0Nk8Vnz": {
+    "name": "UAT 时间偏移后台",
+    "url": "https://internal.example.invalid/app/grafana/d/CL0Nk8Vnz/uat-shi-jian-pian-yi-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 时间偏移后台",
+    "tags": [
+      "UAT 时间偏移后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_lyrmnEJ7z": {
+    "name": "UAT 查看《猫耳星推官》答案",
+    "url": "https://internal.example.invalid/app/grafana/d/lyrmnEJ7z/uat-cha-kan-mao-er-xing-tui-guan-da-an?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 查看《猫耳星推官》答案",
+    "tags": [
+      "UAT 查看《猫耳星推官》答案"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_e-v-oM57k": {
+    "name": "UAT 查看《移动端游戏女性用户市场调研需求》答案",
+    "url": "https://internal.example.invalid/app/grafana/d/e-v-oM57k/uat-cha-kan-yi-dong-duan-you-xi-nu-xing-yong-hu-shi-chang-diao-yan-xu-qiu-da-an?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 查看《移动端游戏女性用户市场调研需求》答案",
+    "tags": [
+      "UAT 查看《移动端游戏女性用户市场调研需求》答案"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana__5fUbmPMz": {
+    "name": "UAT 查看问卷\b答案",
+    "url": "https://internal.example.invalid/app/grafana/d/_5fUbmPMz/uat-cha-kan-wen-juan-da-an?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 查看问卷\b答案",
+    "tags": [
+      "UAT 查看问卷\b答案"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_MquD-Z8Mz": {
+    "name": "UAT 标签管理",
+    "url": "https://internal.example.invalid/app/grafana/d/MquD-Z8Mz/uat-biao-qian-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 标签管理",
+    "tags": [
+      "UAT 标签管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ZbLYqnC7z": {
+    "name": "UAT 注销后台",
+    "url": "https://internal.example.invalid/app/grafana/d/ZbLYqnC7z/uat-zhu-xiao-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 注销后台",
+    "tags": [
+      "UAT 注销后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_r7IL73-Nz": {
+    "name": "UAT 活动 QPS",
+    "url": "https://internal.example.invalid/app/grafana/d/r7IL73-Nz/uat-huo-dong-qps?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 活动 QPS",
+    "tags": [
+      "UAT 活动 QPS"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana__nEQ3MgNz": {
+    "name": "UAT 活动打卡后台",
+    "url": "https://internal.example.invalid/app/grafana/d/_nEQ3MgNz/uat-huo-dong-da-qia-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 活动打卡后台",
+    "tags": [
+      "UAT 活动打卡后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_AJSVwxKMz": {
+    "name": "UAT 活动抽奖记录",
+    "url": "https://internal.example.invalid/app/grafana/d/AJSVwxKMz/uat-huo-dong-chou-jiang-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 活动抽奖记录",
+    "tags": [
+      "UAT 活动抽奖记录"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_TMQQ7fgNk": {
+    "name": "UAT 活动自动发放钻石监控",
+    "url": "https://internal.example.invalid/app/grafana/d/TMQQ7fgNk/uat-huo-dong-zi-dong-fa-fang-zuan-shi-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 活动自动发放钻石监控",
+    "tags": [
+      "UAT 活动自动发放钻石监控"
+    ],
+    "category": "开发后台"
+  },
+  "grafana__4kD6Pd4k": {
+    "name": "UAT 测试复杂问卷",
+    "url": "https://internal.example.invalid/app/grafana/d/_4kD6Pd4k/uat-ce-shi-fu-za-wen-juan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 测试复杂问卷",
+    "tags": [
+      "UAT 测试复杂问卷"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_cWmGV0TMk": {
+    "name": "UAT 游戏后台",
+    "url": "https://internal.example.invalid/app/grafana/d/cWmGV0TMk/uat-you-xi-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 游戏后台",
+    "tags": [
+      "UAT 游戏后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_vxAmD8tnk": {
+    "name": "UAT 游戏官网预约数据",
+    "url": "https://internal.example.invalid/app/grafana/d/vxAmD8tnk/uat-you-xi-guan-wang-yu-yue-shu-ju?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 游戏官网预约数据",
+    "tags": [
+      "UAT 游戏官网预约数据"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_Wdhrt_5Ik": {
+    "name": "UAT 游戏礼包管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/Wdhrt_5Ik/uat-you-xi-li-bao-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 游戏礼包管理后台",
+    "tags": [
+      "UAT 游戏礼包管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_p42YCn1Gk": {
+    "name": "UAT 热度",
+    "url": "https://internal.example.invalid/app/grafana/d/p42YCn1Gk/uat-re-du?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 热度",
+    "tags": [
+      "UAT 热度"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_7oKR6Ot7k": {
+    "name": "UAT 热搜词审核",
+    "url": "https://internal.example.invalid/app/grafana/d/7oKR6Ot7k/uat-re-sou-ci-shen-he?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 热搜词审核",
+    "tags": [
+      "UAT 热搜词审核"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_hQbmTkOnz": {
+    "name": "UAT 版权管理",
+    "url": "https://internal.example.invalid/app/grafana/d/hQbmTkOnz/uat-ban-quan-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 版权管理",
+    "tags": [
+      "UAT 版权管理"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_dBdSW_GHz": {
+    "name": "UAT 用户七日打赏主播排名",
+    "url": "https://internal.example.invalid/app/grafana/d/dBdSW_GHz/uat-yong-hu-qi-ri-da-shang-zhu-bo-pai-ming?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 用户七日打赏主播排名",
+    "tags": [
+      "UAT 用户七日打赏主播排名"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_POcqRjOMz": {
+    "name": "UAT 用户注册白名单",
+    "url": "https://internal.example.invalid/app/grafana/d/POcqRjOMz/uat-yong-hu-zhu-ce-bai-ming-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 用户注册白名单",
+    "tags": [
+      "UAT 用户注册白名单"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_B2pv6kt4z": {
+    "name": "UAT 盲盒剧场 banner 管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/B2pv6kt4z/uat-mang-he-ju-chang-banner-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 盲盒剧场 banner 管理后台",
+    "tags": [
+      "UAT 盲盒剧场 banner 管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_aHdLOoE4z": {
+    "name": "UAT 盲盒剧场猫猫图及排行榜背景图管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/aHdLOoE4z/uat-mang-he-ju-chang-mao-mao-tu-ji-pai-xing-bang-bei-jing-tu-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 盲盒剧场猫猫图及排行榜背景图管理后台",
+    "tags": [
+      "UAT 盲盒剧场猫猫图及排行榜背景图管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_oKvGkeuMz": {
+    "name": "UAT 直播在播列表",
+    "url": "https://internal.example.invalid/app/grafana/d/oKvGkeuMz/uat-zhi-bo-zai-bo-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 直播在播列表",
+    "tags": [
+      "UAT 直播在播列表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_YRBN8AOGz": {
+    "name": "UAT 直播活动配置",
+    "url": "https://internal.example.invalid/app/grafana/d/YRBN8AOGz/uat-zhi-bo-huo-dong-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 直播活动配置",
+    "tags": [
+      "UAT 直播活动配置"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_zy8tccsGk": {
+    "name": "UAT 直播间回放管理",
+    "url": "https://internal.example.invalid/app/grafana/d/zy8tccsGk/uat-zhi-bo-jian-hui-fang-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 直播间回放管理",
+    "tags": [
+      "UAT 直播间回放管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_YoKPhZhWz": {
+    "name": "UAT 直播间连麦管理",
+    "url": "https://internal.example.invalid/app/grafana/d/YoKPhZhWz/uat-zhi-bo-jian-lian-mai-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 直播间连麦管理",
+    "tags": [
+      "UAT 直播间连麦管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_X45guES7k": {
+    "name": "UAT 短信发送量监控",
+    "url": "https://internal.example.invalid/app/grafana/d/X45guES7k/uat-duan-xin-fa-song-liang-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 短信发送量监控",
+    "tags": [
+      "UAT 短信发送量监控"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_b3Kqnv9Mz": {
+    "name": "UAT 短信记录查询后台",
+    "url": "https://internal.example.invalid/app/grafana/d/b3Kqnv9Mz/uat-duan-xin-ji-lu-cha-xun-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 短信记录查询后台",
+    "tags": [
+      "UAT 短信记录查询后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_IO2Z-RvVk": {
+    "name": "UAT 管理直播间发言权限",
+    "url": "https://internal.example.invalid/app/grafana/d/IO2Z-RvVk/uat-guan-li-zhi-bo-jian-fa-yan-quan-xian?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 管理直播间发言权限",
+    "tags": [
+      "UAT 管理直播间发言权限"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_Vs4GXyCGz": {
+    "name": "UAT 补发礼物特效和飘屏",
+    "url": "https://internal.example.invalid/app/grafana/d/Vs4GXyCGz/uat-bu-fa-li-wu-te-xiao-he-piao-ping?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 补发礼物特效和飘屏",
+    "tags": [
+      "UAT 补发礼物特效和飘屏"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_44ZcBFb4k": {
+    "name": "UAT 设置贵族超粉过期",
+    "url": "https://internal.example.invalid/app/grafana/d/44ZcBFb4k/uat-she-zhi-gui-zu-chao-fen-guo-qi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 设置贵族超粉过期",
+    "tags": [
+      "UAT 设置贵族超粉过期"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_vzeKw3bMk": {
+    "name": "UAT 转码",
+    "url": "https://internal.example.invalid/app/grafana/d/vzeKw3bMk/uat-zhuan-ma?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 转码",
+    "tags": [
+      "UAT 转码"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_ocOA4BXSk": {
+    "name": "UAT 进房有奖配置后台",
+    "url": "https://internal.example.invalid/app/grafana/d/ocOA4BXSk/uat-jin-fang-you-jiang-pei-zhi-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 进房有奖配置后台",
+    "tags": [
+      "UAT 进房有奖配置后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_uICOR_gnk": {
+    "name": "UAT 闪屏管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/uICOR_gnk/uat-shan-ping-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 闪屏管理后台",
+    "tags": [
+      "UAT 闪屏管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_x1n3oqfGk": {
+    "name": "UAT 问卷后台",
+    "url": "https://internal.example.invalid/app/grafana/d/x1n3oqfGk/uat-wen-juan-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 问卷后台",
+    "tags": [
+      "UAT 问卷后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_LGt3fu17k": {
+    "name": "UAT 随机推荐语配置后台",
+    "url": "https://internal.example.invalid/app/grafana/d/LGt3fu17k/uat-sui-ji-tui-jian-yu-pei-zhi-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 随机推荐语配置后台",
+    "tags": [
+      "UAT 随机推荐语配置后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_lcs7hNZSz": {
+    "name": "UAT 飘屏气泡预览",
+    "url": "https://internal.example.invalid/app/grafana/d/lcs7hNZSz/uat-piao-ping-qi-pao-yu-lan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 飘屏气泡预览",
+    "tags": [
+      "UAT 飘屏气泡预览"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_np34_dmHz": {
+    "name": "UAT 飘屏配置",
+    "url": "https://internal.example.invalid/app/grafana/d/np34_dmHz/uat-piao-ping-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT 飘屏配置",
+    "tags": [
+      "UAT 飘屏配置"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_HLDRZj_Iz": {
+    "name": "UAT-广播剧福袋消费兑换月报",
+    "url": "https://internal.example.invalid/app/grafana/d/HLDRZj_Iz/uat-yan-bo-ju-fu-dai-xiao-fei-dui-huan-yue-bao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT-广播剧福袋消费兑换月报",
+    "tags": [
+      "UAT-广播剧福袋消费兑换月报"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_-BAWOhWIk": {
+    "name": "uat_408_活动监控",
+    "url": "https://internal.example.invalid/app/grafana/d/-BAWOhWIk/uat_408_huo-dong-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: uat_408_活动监控",
+    "tags": [
+      "uat_408_活动监控"
+    ],
+    "category": "其他"
+  },
+  "grafana_T6hHDr9Hz": {
+    "name": "UAT_主播工作室留资监控",
+    "url": "https://internal.example.invalid/app/grafana/d/T6hHDr9Hz/uat_zhu-bo-gong-zuo-shi-liu-zi-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: UAT_主播工作室留资监控",
+    "tags": [
+      "UAT_主播工作室留资监控"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_WxGoeifMk": {
+    "name": "Web 端浏览器类型分布",
+    "url": "https://internal.example.invalid/app/grafana/d/WxGoeifMk/web-duan-liu-lan-qi-lei-xing-fen-bu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: Web 端浏览器类型分布",
+    "tags": [
+      "Web 端浏览器类型分布"
+    ],
+    "category": "Web 分析"
+  },
+  "grafana_6j48x-CHk": {
+    "name": "【UAT】1135 - 国庆活动看板",
+    "url": "https://internal.example.invalid/app/grafana/d/6j48x-CHk/uat-1135-guo-qing-huo-dong-kan-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】1135 - 国庆活动看板",
+    "tags": [
+      "【UAT】1135 - 国庆活动看板"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_lyTNtjVHz": {
+    "name": "【UAT】2024年度活动收集报表",
+    "url": "https://internal.example.invalid/app/grafana/d/lyTNtjVHz/uat-2024nian-du-huo-dong-shou-ji-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】2024年度活动收集报表",
+    "tags": [
+      "【UAT】2024年度活动收集报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_MWNvJmSNk": {
+    "name": "【UAT】2024年度活动累消报表",
+    "url": "https://internal.example.invalid/app/grafana/d/MWNvJmSNk/uat-2024nian-du-huo-dong-lei-xiao-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】2024年度活动累消报表",
+    "tags": [
+      "【UAT】2024年度活动累消报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_0P-3NYKHz": {
+    "name": "【UAT】741 活动报表",
+    "url": "https://internal.example.invalid/app/grafana/d/0P-3NYKHz/uat-741-huo-dong-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】741 活动报表",
+    "tags": [
+      "【UAT】741 活动报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_4j1VtKdHz": {
+    "name": "【UAT】758 活动中奖名单",
+    "url": "https://internal.example.invalid/app/grafana/d/4j1VtKdHz/uat-758-huo-dong-zhong-jiang-ming-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】758 活动中奖名单",
+    "tags": [
+      "【UAT】758 活动中奖名单"
+    ],
+    "category": "其他"
+  },
+  "grafana_J2JpolS4z": {
+    "name": "【UAT】App 首页视频大卡后台",
+    "url": "https://internal.example.invalid/app/grafana/d/J2JpolS4z/uat-app-shou-ye-shi-pin-da-qia-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】App 首页视频大卡后台",
+    "tags": [
+      "【UAT】App 首页视频大卡后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_WegJuw-4z": {
+    "name": "【UAT】IP 归属地管理",
+    "url": "https://internal.example.invalid/app/grafana/d/WegJuw-4z/uat-ip-gui-shu-di-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】IP 归属地管理",
+    "tags": [
+      "【UAT】IP 归属地管理"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_ZG5thVf7z": {
+    "name": "【UAT】三方独家主播后台",
+    "url": "https://internal.example.invalid/app/grafana/d/ZG5thVf7z/uat-san-fang-du-jia-zhu-bo-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】三方独家主播后台",
+    "tags": [
+      "【UAT】三方独家主播后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_fAbpR2lIk": {
+    "name": "【UAT】三方独家主播后台 - 审核用",
+    "url": "https://internal.example.invalid/app/grafana/d/fAbpR2lIk/uat-san-fang-du-jia-zhu-bo-hou-tai-shen-he-yong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】三方独家主播后台 - 审核用",
+    "tags": [
+      "【UAT】三方独家主播后台 - 审核用"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ICHgBISnz": {
+    "name": "【UAT】个人主页封面图审核",
+    "url": "https://internal.example.invalid/app/grafana/d/ICHgBISnz/uat-ge-ren-zhu-ye-feng-mian-tu-shen-he?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】个人主页封面图审核",
+    "tags": [
+      "【UAT】个人主页封面图审核"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_2xVuw4eNk": {
+    "name": "【UAT】主播连线消息互通白名单",
+    "url": "https://internal.example.invalid/app/grafana/d/2xVuw4eNk/uat-zhu-bo-lian-xian-xiao-xi-hu-tong-bai-ming-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】主播连线消息互通白名单",
+    "tags": [
+      "【UAT】主播连线消息互通白名单"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_jvLrWyfSz": {
+    "name": "【UAT】全站喇叭配置后台",
+    "url": "https://internal.example.invalid/app/grafana/d/jvLrWyfSz/uat-quan-zhan-la-ba-pei-zhi-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】全站喇叭配置后台",
+    "tags": [
+      "【UAT】全站喇叭配置后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_YCoZ7pL4k": {
+    "name": "【UAT】公会会长短信验证码查询",
+    "url": "https://internal.example.invalid/app/grafana/d/YCoZ7pL4k/uat-gong-hui-hui-chang-duan-xin-yan-zheng-ma-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】公会会长短信验证码查询",
+    "tags": [
+      "【UAT】公会会长短信验证码查询"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_61lz0Smnz": {
+    "name": "【UAT】公会数据总览",
+    "url": "https://internal.example.invalid/app/grafana/d/61lz0Smnz/uat-gong-hui-shu-ju-zong-lan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】公会数据总览",
+    "tags": [
+      "【UAT】公会数据总览"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_Z6Binaz7z": {
+    "name": "【UAT】公会资料（变更/解散/转会）后台",
+    "url": "https://internal.example.invalid/app/grafana/d/Z6Binaz7z/uat-gong-hui-zi-liao-bian-geng-jie-san-zhuan-hui-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】公会资料（变更/解散/转会）后台",
+    "tags": [
+      "【UAT】公会资料（变更/解散/转会）后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_zAbSaeTIk": {
+    "name": "【UAT】剧集收益后台合作方手机号绑定后台",
+    "url": "https://internal.example.invalid/app/grafana/d/zAbSaeTIk/uat-ju-ji-shou-yi-hou-tai-he-zuo-fang-shou-ji-hao-bang-ding-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】剧集收益后台合作方手机号绑定后台",
+    "tags": [
+      "【UAT】剧集收益后台合作方手机号绑定后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_z9_XnvTHk": {
+    "name": "【UAT】剧集评论区小黄条管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/z9_XnvTHk/uat-ju-ji-ping-lun-qu-xiao-huang-tiao-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】剧集评论区小黄条管理后台",
+    "tags": [
+      "【UAT】剧集评论区小黄条管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_aI4Tl-RSz": {
+    "name": "【UAT】固定推荐剧集管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/aI4Tl-RSz/uat-gu-ding-tui-jian-ju-ji-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】固定推荐剧集管理后台",
+    "tags": [
+      "【UAT】固定推荐剧集管理后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_RrT0Lx6Ik": {
+    "name": "【UAT】国庆活动礼物收集报表",
+    "url": "https://internal.example.invalid/app/grafana/d/RrT0Lx6Ik/uat-guo-qing-huo-dong-li-wu-shou-ji-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】国庆活动礼物收集报表",
+    "tags": [
+      "【UAT】国庆活动礼物收集报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_NusjmQSnk": {
+    "name": "【UAT】广告代理商管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/NusjmQSnk/uat-yan-gao-dai-li-shang-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】广告代理商管理后台",
+    "tags": [
+      "【UAT】广告代理商管理后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_8D7qUNH7k": {
+    "name": "【UAT】广告消耗管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/8D7qUNH7k/uat-yan-gao-xiao-hao-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】广告消耗管理后台",
+    "tags": [
+      "【UAT】广告消耗管理后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_2f-5ztQSz": {
+    "name": "【UAT】广播剧福袋兑换情况查询",
+    "url": "https://internal.example.invalid/app/grafana/d/2f-5ztQSz/uat-yan-bo-ju-fu-dai-dui-huan-qing-kuang-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】广播剧福袋兑换情况查询",
+    "tags": [
+      "【UAT】广播剧福袋兑换情况查询"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_x79-0Krnk": {
+    "name": "【UAT】盲盒剧场精选评论管理",
+    "url": "https://internal.example.invalid/app/grafana/d/x79-0Krnk/uat-mang-he-ju-chang-jing-xuan-ping-lun-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】盲盒剧场精选评论管理",
+    "tags": [
+      "【UAT】盲盒剧场精选评论管理"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_-VOJNOQSz": {
+    "name": "【UAT】直播间喵喵福袋明细记录",
+    "url": "https://internal.example.invalid/app/grafana/d/-VOJNOQSz/uat-zhi-bo-jian-miao-miao-fu-dai-ming-xi-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】直播间喵喵福袋明细记录",
+    "tags": [
+      "【UAT】直播间喵喵福袋明细记录"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_iWAy_WpNk": {
+    "name": "【UAT】直播间回放下载",
+    "url": "https://internal.example.invalid/app/grafana/d/iWAy_WpNk/uat-zhi-bo-jian-hui-fang-xia-zai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】直播间回放下载",
+    "tags": [
+      "【UAT】直播间回放下载"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_AfUlyNeMk": {
+    "name": "礼物信息后台（Grafana）",
+    "url": "https://internal.example.invalid/app/grafana/d/AfUlyNeMk/uat-zhi-bo-jian-li-wu-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】直播间礼物信息 - 查询和管理礼物配置",
+    "tags": [
+      "礼物",
+      "礼物信息",
+      "礼物管理",
+      "礼物后台",
+      "礼物配置",
+      "直播间礼物",
+      "【UAT】直播间礼物信息"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_J5AI3cwSz": {
+    "name": "【UAT】直播间福袋实况",
+    "url": "https://internal.example.invalid/app/grafana/d/J5AI3cwSz/uat-zhi-bo-jian-fu-dai-shi-kuang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】直播间福袋实况",
+    "tags": [
+      "【UAT】直播间福袋实况"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_rxd8UscVz": {
+    "name": "【UAT】礼包销售报表（产品运营用）",
+    "url": "https://internal.example.invalid/app/grafana/d/rxd8UscVz/uat-li-bao-xiao-shou-bao-biao-chan-pin-yun-ying-yong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】礼包销售报表（产品运营用）",
+    "tags": [
+      "【UAT】礼包销售报表（产品运营用）"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_liPoVq9Hz": {
+    "name": "【UAT】福袋风控开白运营操作后台",
+    "url": "https://internal.example.invalid/app/grafana/d/liPoVq9Hz/uat-fu-dai-feng-kong-kai-bai-yun-ying-cao-zuo-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】福袋风控开白运营操作后台",
+    "tags": [
+      "【UAT】福袋风控开白运营操作后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_Mrea9z9Ik": {
+    "name": "【UAT】福袋黑白名单",
+    "url": "https://internal.example.invalid/app/grafana/d/Mrea9z9Ik/uat-fu-dai-hei-bai-ming-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】福袋黑白名单",
+    "tags": [
+      "【UAT】福袋黑白名单"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_oEJIOnqHk": {
+    "name": "【UAT】答题活动看版",
+    "url": "https://internal.example.invalid/app/grafana/d/oEJIOnqHk/uat-da-ti-huo-dong-kan-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】答题活动看版",
+    "tags": [
+      "【UAT】答题活动看版"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_Ibc9W-jNz": {
+    "name": "【UAT】答题活动看版",
+    "url": "https://internal.example.invalid/app/grafana/d/Ibc9W-jNz/uat-da-ti-huo-dong-kan-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】答题活动看版",
+    "tags": [
+      "【UAT】答题活动看版"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_nBEqEbuHk": {
+    "name": "【UAT】网络小说剧集 CV 管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/nBEqEbuHk/uat-wang-luo-xiao-shuo-ju-ji-cv-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】网络小说剧集 CV 管理后台",
+    "tags": [
+      "【UAT】网络小说剧集 CV 管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_WgS1tZ24z": {
+    "name": "【UAT】设置开播全站通知",
+    "url": "https://internal.example.invalid/app/grafana/d/WgS1tZ24z/uat-she-zhi-kai-bo-quan-zhan-tong-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【UAT】设置开播全站通知",
+    "tags": [
+      "【UAT】设置开播全站通知"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_3cSQkYKnz": {
+    "name": "【大盘】埋点数据监控表- 测试",
+    "url": "https://internal.example.invalid/app/grafana/d/3cSQkYKnz/da-pan-mai-dian-shu-ju-jian-kong-biao-ce-shi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【大盘】埋点数据监控表- 测试",
+    "tags": [
+      "【大盘】埋点数据监控表- 测试"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_glzL4vTHz": {
+    "name": "【线上】剧集评论区小黄条管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/glzL4vTHz/xian-shang-ju-ji-ping-lun-qu-xiao-huang-tiao-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【线上】剧集评论区小黄条管理后台",
+    "tags": [
+      "【线上】剧集评论区小黄条管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_9cXylkgIz": {
+    "name": "【邮件】三方主播签约到期提醒",
+    "url": "https://internal.example.invalid/app/grafana/d/9cXylkgIz/you-jian-san-fang-zhu-bo-qian-yue-dao-qi-ti-xing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 【邮件】三方主播签约到期提醒",
+    "tags": [
+      "【邮件】三方主播签约到期提醒"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_ztcawxdGk": {
+    "name": "上传、刷新资源文件",
+    "url": "https://internal.example.invalid/app/grafana/d/ztcawxdGk/shang-chuan-shua-xin-zi-yuan-wen-jian?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 上传、刷新资源文件",
+    "tags": [
+      "上传、刷新资源文件"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_ekM7h6QNk": {
+    "name": "业务大盘",
+    "url": "https://internal.example.invalid/app/grafana/d/ekM7h6QNk/ye-wu-da-pan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 业务大盘",
+    "tags": [
+      "业务大盘"
+    ],
+    "category": "直播业务监控"
+  },
+  "grafana_DhhKGRg4z": {
+    "name": "个人合同管理",
+    "url": "https://internal.example.invalid/app/grafana/d/DhhKGRg4z/ge-ren-he-tong-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 个人合同管理",
+    "tags": [
+      "个人合同管理"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_DhhKGRg4za": {
+    "name": "个人合同管理调试",
+    "url": "https://internal.example.invalid/app/grafana/d/DhhKGRg4za/ge-ren-he-tong-guan-li-diao-shi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 个人合同管理调试",
+    "tags": [
+      "个人合同管理调试"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_I8HXR8xHk": {
+    "name": "个人维度数据报表",
+    "url": "https://internal.example.invalid/app/grafana/d/I8HXR8xHk/ge-ren-wei-du-shu-ju-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 个人维度数据报表",
+    "tags": [
+      "个人维度数据报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_bXMX3SfNk": {
+    "name": "个人维度数据报表（线上）",
+    "url": "https://internal.example.invalid/app/grafana/d/bXMX3SfNk/ge-ren-wei-du-shu-ju-bao-biao-xian-shang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 个人维度数据报表（线上）",
+    "tags": [
+      "个人维度数据报表（线上）"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_cogQHs3nk": {
+    "name": "主播个人场",
+    "url": "https://internal.example.invalid/app/grafana/d/cogQHs3nk/zhu-bo-ge-ren-chang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 主播个人场",
+    "tags": [
+      "主播个人场"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_DYazbiV4z": {
+    "name": "主播个人场",
+    "url": "https://internal.example.invalid/app/grafana/d/DYazbiV4z/zhu-bo-ge-ren-chang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 主播个人场",
+    "tags": [
+      "主播个人场"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_X8HXR9xMz": {
+    "name": "主播直播数据监控",
+    "url": "https://internal.example.invalid/app/grafana/d/X8HXR9xMz/zhu-bo-zhi-bo-shu-ju-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 主播直播数据监控",
+    "tags": [
+      "主播直播数据监控"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_3xVk5PeNz": {
+    "name": "主播自提看板",
+    "url": "https://internal.example.invalid/app/grafana/d/3xVk5PeNz/zhu-bo-zi-ti-kan-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 主播自提看板",
+    "tags": [
+      "主播",
+      "提现",
+      "自提"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_x2-TgZPSk": {
+    "name": "主播解约金报表",
+    "url": "https://internal.example.invalid/app/grafana/d/x2-TgZPSk/zhu-bo-jie-yue-jin-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 主播解约金报表",
+    "tags": [
+      "主播解约金报表"
+    ],
+    "category": "caixiaowei"
+  },
+  "grafana_0nTpQjtHk": {
+    "name": "主播连线线上配置",
+    "url": "https://internal.example.invalid/app/grafana/d/0nTpQjtHk/zhu-bo-lian-xian-xian-shang-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 主播连线线上配置",
+    "tags": [
+      "主播连线线上配置"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_QTg2mkvVk": {
+    "name": "主站角色、任务权限看板",
+    "url": "https://internal.example.invalid/app/grafana/d/QTg2mkvVk/zhu-zhan-jiao-se-ren-wu-quan-xian-kan-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 主站角色、任务权限看板",
+    "tags": [
+      "主站角色、任务权限看板"
+    ],
+    "category": "产品技术用"
+  },
+  "grafana_HpJnDsWDz": {
+    "name": "人脸识别数据报表",
+    "url": "https://internal.example.invalid/app/grafana/d/HpJnDsWDz/ren-lian-shi-bie-shu-ju-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 人脸识别数据报表",
+    "tags": [
+      "人脸识别数据报表"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_BplhSDGvz": {
+    "name": "人脸识别数据表（正式）",
+    "url": "https://internal.example.invalid/app/grafana/d/BplhSDGvz/ren-lian-shi-bie-shu-ju-biao-zheng-shi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 人脸识别数据表（正式）",
+    "tags": [
+      "人脸识别数据表（正式）"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_54-adUyVz": {
+    "name": "付费剧集合同信息关联后台",
+    "url": "https://internal.example.invalid/app/grafana/d/54-adUyVz/fu-fei-ju-ji-he-tong-xin-xi-guan-lian-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 付费剧集合同信息关联后台",
+    "tags": [
+      "付费剧集合同信息关联后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_ls4t2UQ4k": {
+    "name": "企业合同管理",
+    "url": "https://internal.example.invalid/app/grafana/d/ls4t2UQ4k/qi-ye-he-tong-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 企业合同管理",
+    "tags": [
+      "企业合同管理"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_1PFT4pQNz": {
+    "name": "会员剧集状态",
+    "url": "https://internal.example.invalid/app/grafana/d/1PFT4pQNz/hui-yuan-ju-ji-zhuang-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 会员剧集状态",
+    "tags": [
+      "会员剧集状态"
+    ],
+    "category": "会员数据"
+  },
+  "grafana_G5j535QHk": {
+    "name": "会员数据面板",
+    "url": "https://internal.example.invalid/app/grafana/d/G5j535QHk/hui-yuan-shu-ju-mian-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 会员数据面板",
+    "tags": [
+      "会员数据面板"
+    ],
+    "category": "会员数据"
+  },
+  "grafana_kKcJIa-Iz": {
+    "name": "信息页修改记录",
+    "url": "https://internal.example.invalid/app/grafana/d/kKcJIa-Iz/xin-xi-ye-xiu-gai-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 信息页修改记录",
+    "tags": [
+      "信息页修改记录"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_15HzAg34k": {
+    "name": "兑换码兑换记录",
+    "url": "https://internal.example.invalid/app/grafana/d/15HzAg34k/dui-huan-ma-dui-huan-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 兑换码兑换记录",
+    "tags": [
+      "兑换码兑换记录"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_zRnNyg0nk": {
+    "name": "全站宝箱监控",
+    "url": "https://internal.example.invalid/app/grafana/d/zRnNyg0nk/quan-zhan-bao-xiang-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 全站宝箱监控",
+    "tags": [
+      "全站宝箱监控"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ptF77tYVz": {
+    "name": "公会会长短信验证码查询",
+    "url": "https://internal.example.invalid/app/grafana/d/ptF77tYVz/gong-hui-hui-chang-duan-xin-yan-zheng-ma-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 公会会长短信验证码查询",
+    "tags": [
+      "公会会长短信验证码查询"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_ueLsp8MDk": {
+    "name": "公会后台推荐热门位记录",
+    "url": "https://internal.example.invalid/app/grafana/d/ueLsp8MDk/gong-hui-hou-tai-tui-jian-re-men-wei-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 公会后台推荐热门位记录",
+    "tags": [
+      "公会后台推荐热门位记录"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_adiBo87Mk": {
+    "name": "分区互动量前 50（已迁至 BI）",
+    "url": "https://internal.example.invalid/app/grafana/d/adiBo87Mk/fen-qu-hu-dong-liang-qian-50-yi-qian-zhi-bi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 分区互动量前 50（已迁至 BI）",
+    "tags": [
+      "分区互动量前 50（已迁至 BI）"
+    ],
+    "category": "内容运营数据后台"
+  },
+  "grafana_12HHv7UVk": {
+    "name": "创建外观原型",
+    "url": "https://internal.example.invalid/app/grafana/d/12HHv7UVk/chuang-jian-wai-guan-yuan-xing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 创建外观原型",
+    "tags": [
+      "创建外观原型"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana__VzFM4nSk": {
+    "name": "剧集下首个音频信息",
+    "url": "https://internal.example.invalid/app/grafana/d/_VzFM4nSk/ju-ji-xia-shou-ge-yin-pin-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 剧集下首个音频信息",
+    "tags": [
+      "剧集下首个音频信息"
+    ],
+    "category": "项目管理"
+  },
+  "grafana_srzvXMnDz": {
+    "name": "剧集到期发送提醒邮件后台",
+    "url": "https://internal.example.invalid/app/grafana/d/srzvXMnDz/ju-ji-dao-qi-fa-song-ti-xing-you-jian-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 剧集到期发送提醒邮件后台",
+    "tags": [
+      "剧集到期发送提醒邮件后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_pcqdTciIk": {
+    "name": "剧集双人封面管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/pcqdTciIk/ju-ji-shuang-ren-feng-mian-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 剧集双人封面管理后台",
+    "tags": [
+      "剧集双人封面管理后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_oldjU9fNz": {
+    "name": "剧集打赏留言管理",
+    "url": "https://internal.example.invalid/app/grafana/d/oldjU9fNz/ju-ji-da-shang-liu-yan-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 剧集打赏留言管理",
+    "tags": [
+      "剧集打赏留言管理"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_La5vHvLIz": {
+    "name": "剧集相关信息",
+    "url": "https://internal.example.invalid/app/grafana/d/La5vHvLIz/ju-ji-xiang-guan-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 剧集相关信息",
+    "tags": [
+      "剧集相关信息"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_aaeBEHtHk": {
+    "name": "剧集评级管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/aaeBEHtHk/ju-ji-ping-ji-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 剧集评级管理后台",
+    "tags": [
+      "剧集评级管理后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_fDHJtg5Zk": {
+    "name": "单个房间热度",
+    "url": "https://internal.example.invalid/app/grafana/d/fDHJtg5Zk/dan-ge-fang-jian-re-du?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 单个房间热度",
+    "tags": [
+      "单个房间热度"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_kW1B_bnVk": {
+    "name": "单个用户许愿池回报率报表",
+    "url": "https://internal.example.invalid/app/grafana/d/kW1B_bnVk/dan-ge-yong-hu-xu-yuan-chi-hui-bao-lu-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 单个用户许愿池回报率报表",
+    "tags": [
+      "回报率",
+      "许愿池"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_orkpARw7k": {
+    "name": "单个礼物回报",
+    "url": "https://internal.example.invalid/app/grafana/d/orkpARw7k/dan-ge-li-wu-hui-bao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 单个礼物回报",
+    "tags": [
+      "单个礼物回报"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_rxLcRBlNk": {
+    "name": "单集数量汇总",
+    "url": "https://internal.example.invalid/app/grafana/d/rxLcRBlNk/dan-ji-shu-liang-hui-zong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 单集数量汇总",
+    "tags": [
+      "单集数量汇总"
+    ],
+    "category": "ziqing"
+  },
+  "grafana_gHzvnSsSk": {
+    "name": "发送通知短信（UAT）",
+    "url": "https://internal.example.invalid/app/grafana/d/gHzvnSsSk/fa-song-tong-zhi-duan-xin-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 发送通知短信（UAT）",
+    "tags": [
+      "发送通知短信（UAT）"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_cxHDjle7z": {
+    "name": "后台充值日志",
+    "url": "https://internal.example.invalid/app/grafana/d/cxHDjle7z/hou-tai-chong-zhi-ri-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 后台充值日志",
+    "tags": [
+      "后台充值日志"
+    ],
+    "category": "后台操作日记审计"
+  },
+  "grafana_yv2FQ3TMk": {
+    "name": "后台日志管理",
+    "url": "https://internal.example.invalid/app/grafana/d/yv2FQ3TMk/hou-tai-ri-zhi-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 后台日志管理",
+    "tags": [
+      "后台日志管理"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_kh6fpJAMk": {
+    "name": "后台管理剧集日志",
+    "url": "https://internal.example.invalid/app/grafana/d/kh6fpJAMk/hou-tai-guan-li-ju-ji-ri-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 后台管理剧集日志",
+    "tags": [
+      "后台管理剧集日志"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_5MCLp1AGz": {
+    "name": "后台管理直播日志",
+    "url": "https://internal.example.invalid/app/grafana/d/5MCLp1AGz/hou-tai-guan-li-zhi-bo-ri-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 后台管理直播日志",
+    "tags": [
+      "后台管理直播日志"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_vQjwbeHNk": {
+    "name": "回放异常查询处理",
+    "url": "https://internal.example.invalid/app/grafana/d/vQjwbeHNk/hui-fang-yi-chang-cha-xun-chu-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 回放异常查询处理",
+    "tags": [
+      "回放异常查询处理"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_W9W2UE_Hz": {
+    "name": "在线人数趋势",
+    "url": "https://internal.example.invalid/app/grafana/d/W9W2UE_Hz/zai-xian-ren-shu-qu-shi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 在线人数趋势",
+    "tags": [
+      "在线人数趋势"
+    ],
+    "category": "直播核心场景保障监控（高保密性）"
+  },
+  "grafana_mf57pP_Nz": {
+    "name": "夏季赛赛程：猫耳娘红包发送监控",
+    "url": "https://internal.example.invalid/app/grafana/d/mf57pP_Nz/xia-ji-sai-sai-cheng-mao-er-niang-hong-bao-fa-song-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 夏季赛赛程：猫耳娘红包发送监控",
+    "tags": [
+      "夏季赛赛程：猫耳娘红包发送监控"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_iIWR5e37k": {
+    "name": "外观添加及删除后台",
+    "url": "https://internal.example.invalid/app/grafana/d/iIWR5e37k/wai-guan-tian-jia-ji-shan-chu-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 外观添加及删除后台",
+    "tags": [
+      "外观添加及删除后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_u-4F9PaNz": {
+    "name": "奖品",
+    "url": "https://internal.example.invalid/app/grafana/d/u-4F9PaNz/jiang-pin?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 奖品",
+    "tags": [
+      "奖品"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_h6T_r8oHk": {
+    "name": "奖品中心",
+    "url": "https://internal.example.invalid/app/grafana/d/h6T_r8oHk/jiang-pin-zhong-xin?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 奖品中心",
+    "tags": [
+      "奖品中心"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_PZwDlyCMk": {
+    "name": "定制粉丝勋章推荐后台",
+    "url": "https://internal.example.invalid/app/grafana/d/PZwDlyCMk/ding-zhi-fen-si-xun-zhang-tui-jian-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 定制粉丝勋章推荐后台",
+    "tags": [
+      "定制粉丝勋章推荐后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_udyXoDIHk": {
+    "name": "宝盒玩法相关报表",
+    "url": "https://internal.example.invalid/app/grafana/d/udyXoDIHk/bao-he-wan-fa-xiang-guan-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 宝盒玩法相关报表",
+    "tags": [
+      "宝盒玩法相关报表"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_1Da_pzJHz": {
+    "name": "宝盒玩法相关报表",
+    "url": "https://internal.example.invalid/app/grafana/d/1Da_pzJHz/bao-he-wan-fa-xiang-guan-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 宝盒玩法相关报表",
+    "tags": [
+      "宝盒玩法相关报表"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_9kSRscUNz": {
+    "name": "宝盒用户任务收集进度",
+    "url": "https://internal.example.invalid/app/grafana/d/9kSRscUNz/bao-he-yong-hu-ren-wu-shou-ji-jin-du?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 宝盒用户任务收集进度",
+    "tags": [
+      "宝盒用户任务收集进度"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_jVMF_mAnk": {
+    "name": "宝箱超量领取报警",
+    "url": "https://internal.example.invalid/app/grafana/d/jVMF_mAnk/bao-xiang-chao-liang-ling-qu-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 宝箱超量领取报警",
+    "tags": [
+      "宝箱超量领取报警"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_jrJ0dw8Hk": {
+    "name": "宝箱配置 ID 占用查询",
+    "url": "https://internal.example.invalid/app/grafana/d/jrJ0dw8Hk/bao-xiang-pei-zhi-id-zhan-yong-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 宝箱配置 ID 占用查询",
+    "tags": [
+      "宝箱配置 ID 占用查询",
+      "宝箱",
+      "宝箱配置",
+      "ID占用"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_aRYjiaQHz": {
+    "name": "宝箱配置 ID 占用查询",
+    "url": "https://internal.example.invalid/app/grafana/d/aRYjiaQHz/bao-xiang-pei-zhi-id-zhan-yong-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 宝箱配置 ID 占用查询",
+    "tags": [
+      "宝箱配置 ID 占用查询",
+      "宝箱",
+      "宝箱配置",
+      "ID占用"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_Au7laRBMz": {
+    "name": "客户端上报日志后台",
+    "url": "https://internal.example.invalid/app/grafana/d/Au7laRBMz/ke-hu-duan-shang-bao-ri-zhi-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 客户端上报日志后台",
+    "tags": [
+      "客户端上报日志后台"
+    ],
+    "category": "客服"
+  },
+  "grafana_kkfyt10Gk": {
+    "name": "客服回复日志",
+    "url": "https://internal.example.invalid/app/grafana/d/kkfyt10Gk/ke-fu-hui-fu-ri-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 客服回复日志",
+    "tags": [
+      "客服回复日志"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_yq83JTe7k": {
+    "name": "小鱼干投食情况",
+    "url": "https://internal.example.invalid/app/grafana/d/yq83JTe7k/xiao-yu-gan-tou-shi-qing-kuang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 小鱼干投食情况",
+    "tags": [
+      "小鱼干投食情况"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_Mg9Q9_aGz": {
+    "name": "屏蔽词命中抽样结果",
+    "url": "https://internal.example.invalid/app/grafana/d/Mg9Q9_aGz/ping-bi-ci-ming-zhong-chou-yang-jie-guo?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 屏蔽词命中抽样结果",
+    "tags": [
+      "屏蔽词命中抽样结果"
+    ],
+    "category": "审核"
+  },
+  "grafana_AKVqk8mVk": {
+    "name": "干预搜索后台",
+    "url": "https://internal.example.invalid/app/grafana/d/AKVqk8mVk/gan-yu-sou-suo-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 干预搜索后台",
+    "tags": [
+      "干预搜索后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_HspiTGZDk": {
+    "name": "幻影 PK 相关看板",
+    "url": "https://internal.example.invalid/app/grafana/d/HspiTGZDk/huan-ying-pk-xiang-guan-kan-ban?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 幻影 PK 相关看板",
+    "tags": [
+      "幻影 PK 相关看板"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_zZzlwD9Sz": {
+    "name": "广播剧福袋 IP 抽奖情况报表",
+    "url": "https://internal.example.invalid/app/grafana/d/zZzlwD9Sz/yan-bo-ju-fu-dai-ip-chou-jiang-qing-kuang-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 广播剧福袋 IP 抽奖情况报表",
+    "tags": [
+      "广播剧福袋 IP 抽奖情况报表"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_tc1HOrwSz": {
+    "name": "广播剧福袋兑换情况查询",
+    "url": "https://internal.example.invalid/app/grafana/d/tc1HOrwSz/yan-bo-ju-fu-dai-dui-huan-qing-kuang-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 广播剧福袋兑换情况查询",
+    "tags": [
+      "广播剧福袋兑换情况查询"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_FgQ0OlXMk": {
+    "name": "弹幕字幕颜色查询",
+    "url": "https://internal.example.invalid/app/grafana/d/FgQ0OlXMk/dan-mu-zi-mu-yan-se-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 弹幕字幕颜色查询",
+    "tags": [
+      "弹幕字幕颜色查询"
+    ],
+    "category": "运营后台"
+  },
+  "grafana_kpjo7sBMz": {
+    "name": "弹幕查询",
+    "url": "https://internal.example.invalid/app/grafana/d/kpjo7sBMz/dan-mu-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 弹幕查询",
+    "tags": [
+      "弹幕查询"
+    ],
+    "category": "审核"
+  },
+  "grafana_iy_Vf4Bnk": {
+    "name": "当前连麦主播列表",
+    "url": "https://internal.example.invalid/app/grafana/d/iy_Vf4Bnk/dang-qian-lian-mai-zhu-bo-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 当前连麦主播列表",
+    "tags": [
+      "当前连麦主播列表"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_l7OCSavZz": {
+    "name": "房间历史收益效率",
+    "url": "https://internal.example.invalid/app/grafana/d/l7OCSavZz/fang-jian-li-shi-shou-yi-xiao-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 房间历史收益效率",
+    "tags": [
+      "房间历史收益效率"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_dc2o8eDVz": {
+    "name": "手动添加新人榜资格",
+    "url": "https://internal.example.invalid/app/grafana/d/dc2o8eDVz/shou-dong-tian-jia-xin-ren-bang-zi-ge?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 手动添加新人榜资格",
+    "tags": [
+      "手动添加新人榜资格"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_ZWUtO2vIz1": {
+    "name": "批量发送短信（UAT）",
+    "url": "https://internal.example.invalid/app/grafana/d/ZWUtO2vIz1/pi-liang-fa-song-duan-xin-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 批量发送短信（UAT）",
+    "tags": [
+      "批量发送短信（UAT）"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_iOVIgZ07z": {
+    "name": "指定直播间监控",
+    "url": "https://internal.example.invalid/app/grafana/d/iOVIgZ07z/zhi-ding-zhi-bo-jian-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 指定直播间监控",
+    "tags": [
+      "指定直播间监控"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_IRn7T1EVz": {
+    "name": "排行榜测试后台【测试用】",
+    "url": "https://internal.example.invalid/app/grafana/d/IRn7T1EVz/pai-xing-bang-ce-shi-hou-tai-ce-shi-yong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 排行榜测试后台【测试用】",
+    "tags": [
+      "排行榜测试后台【测试用】"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_8LCUAGAMk": {
+    "name": "控评黑名单",
+    "url": "https://internal.example.invalid/app/grafana/d/8LCUAGAMk/kong-ping-hei-ming-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 控评黑名单",
+    "tags": [
+      "控评黑名单"
+    ],
+    "category": "审核"
+  },
+  "grafana_mMky7t_Vk": {
+    "name": "摇光录活动",
+    "url": "https://internal.example.invalid/app/grafana/d/mMky7t_Vk/yao-guang-lu-huo-dong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 摇光录活动",
+    "tags": [
+      "摇光录活动"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_hcOU23C4k": {
+    "name": "摇光录游戏官网优化统计需求",
+    "url": "https://internal.example.invalid/app/grafana/d/hcOU23C4k/yao-guang-lu-you-xi-guan-wang-you-hua-tong-ji-xu-qiu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 摇光录游戏官网优化统计需求",
+    "tags": [
+      "摇光录游戏官网优化统计需求"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_LqPUh3CVz": {
+    "name": "摇光录游戏官网渠道统计",
+    "url": "https://internal.example.invalid/app/grafana/d/LqPUh3CVz/yao-guang-lu-you-xi-guan-wang-qu-dao-tong-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 摇光录游戏官网渠道统计",
+    "tags": [
+      "下载",
+      "摇光",
+      "渠道",
+      "游戏"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_-wx1yc57k": {
+    "name": "播放页的直播推荐",
+    "url": "https://internal.example.invalid/app/grafana/d/-wx1yc57k/bo-fang-ye-de-zhi-bo-tui-jian?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 播放页的直播推荐",
+    "tags": [
+      "播放页的直播推荐"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_4-k5UzlNk": {
+    "name": "支付交易 SLO 大盘",
+    "url": "https://internal.example.invalid/app/grafana/d/4-k5UzlNk/zhi-fu-jiao-yi-slo-da-pan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 支付交易 SLO 大盘",
+    "tags": [
+      "支付交易 SLO 大盘"
+    ],
+    "category": "直播业务监控"
+  },
+  "grafana_QN1HBHYVz": {
+    "name": "旧礼物特效数量统计",
+    "url": "https://internal.example.invalid/app/grafana/d/QN1HBHYVz/jiu-li-wu-te-xiao-shu-liang-tong-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 旧礼物特效数量统计",
+    "tags": [
+      "旧礼物特效数量统计"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_z9SN9tRIk": {
+    "name": "月度公会计提后台",
+    "url": "https://internal.example.invalid/app/grafana/d/z9SN9tRIk/yue-du-gong-hui-ji-ti-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 月度公会计提后台",
+    "tags": [
+      "月度公会计提后台"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_lrJox6mvz": {
+    "name": "月度宝箱消费记录",
+    "url": "https://internal.example.invalid/app/grafana/d/lrJox6mvz/yue-du-bao-xiang-xiao-fei-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 月度宝箱消费记录",
+    "tags": [
+      "月度宝箱消费记录"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_23J_vNXMk": {
+    "name": "有赞商城优惠券发放",
+    "url": "https://internal.example.invalid/app/grafana/d/23J_vNXMk/you-zan-shang-cheng-you-hui-quan-fa-fang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 有赞商城优惠券发放",
+    "tags": [
+      "有赞商城优惠券发放"
+    ],
+    "category": "主站后台管理"
+  },
+  "grafana_erfz8C_Mz": {
+    "name": "有赞商城优惠券发放【UAT】",
+    "url": "https://internal.example.invalid/app/grafana/d/erfz8C_Mz/you-zan-shang-cheng-you-hui-quan-fa-fang-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 有赞商城优惠券发放【UAT】",
+    "tags": [
+      "有赞商城优惠券发放【UAT】"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_hoFt2CvZz": {
+    "name": "某个时间段内开播房间最高在线人数",
+    "url": "https://internal.example.invalid/app/grafana/d/hoFt2CvZz/mou-ge-shi-jian-duan-nei-kai-bo-fang-jian-zui-gao-zai-xian-ren-shu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 某个时间段内开播房间最高在线人数",
+    "tags": [
+      "人数",
+      "在线",
+      "开播",
+      "房间",
+      "最高",
+      "直播"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_LDgoUncZk": {
+    "name": "某时刻热度统计",
+    "url": "https://internal.example.invalid/app/grafana/d/LDgoUncZk/mou-shi-ke-re-du-tong-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 某时刻热度统计",
+    "tags": [
+      "某时刻热度统计"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_1v87YZJMz": {
+    "name": "某礼物送出概况",
+    "url": "https://internal.example.invalid/app/grafana/d/1v87YZJMz/mou-li-wu-song-chu-gai-kuang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 某礼物送出概况",
+    "tags": [
+      "某礼物送出概况"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_6TY8qb5Mz": {
+    "name": "查询设置直播间流信息",
+    "url": "https://internal.example.invalid/app/grafana/d/6TY8qb5Mz/cha-xun-she-zhi-zhi-bo-jian-liu-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 查询设置直播间流信息",
+    "tags": [
+      "查询设置直播间流信息"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_eZFdEPtGk": {
+    "name": "查询连击",
+    "url": "https://internal.example.invalid/app/grafana/d/eZFdEPtGk/cha-xun-lian-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 查询连击",
+    "tags": [
+      "查询连击"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_0_YJ5vlHk": {
+    "name": "核心场景监控",
+    "url": "https://internal.example.invalid/app/grafana/d/0_YJ5vlHk/he-xin-chang-jing-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 核心场景监控",
+    "tags": [
+      "核心场景监控"
+    ],
+    "category": "点播业务监控"
+  },
+  "grafana_jQ1vn6tMk": {
+    "name": "注销和恢复注销用户",
+    "url": "https://internal.example.invalid/app/grafana/d/jQ1vn6tMk/zhu-xiao-he-hui-fu-zhu-xiao-yong-hu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 注销和恢复注销用户",
+    "tags": [
+      "注销和恢复注销用户"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_3UpnwouMk": {
+    "name": "活动 155 黑名单临时列表",
+    "url": "https://internal.example.invalid/app/grafana/d/3UpnwouMk/huo-dong-155-hei-ming-dan-lin-shi-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 活动 155 黑名单临时列表",
+    "tags": [
+      "活动 155 黑名单临时列表"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_01d-Y5WWk": {
+    "name": "活动统计情况",
+    "url": "https://internal.example.invalid/app/grafana/d/01d-Y5WWk/huo-dong-tong-ji-qing-kuang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 活动统计情况",
+    "tags": [
+      "活动统计情况"
+    ],
+    "category": "主站活动"
+  },
+  "grafana_bBvcu1RHk": {
+    "name": "活动自动发放钻石监控",
+    "url": "https://internal.example.invalid/app/grafana/d/bBvcu1RHk/huo-dong-zi-dong-fa-fang-zuan-shi-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 活动自动发放钻石监控",
+    "tags": [
+      "活动自动发放钻石监控"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_rurXHflHz": {
+    "name": "添加黑白名单",
+    "url": "https://internal.example.invalid/app/grafana/d/rurXHflHz/tian-jia-hei-bai-ming-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 添加黑白名单",
+    "tags": [
+      "添加黑白名单"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_1_BHoFznz": {
+    "name": "清凉贩卖机大奖掉落失常报警",
+    "url": "https://internal.example.invalid/app/grafana/d/1_BHoFznz/qing-liang-fan-mai-ji-da-jiang-diao-luo-shi-chang-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 清凉贩卖机大奖掉落失常报警",
+    "tags": [
+      "大奖",
+      "随机礼物"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_-IXxFzXnz": {
+    "name": "潜力上神用户列表 ( redis-uat)",
+    "url": "https://internal.example.invalid/app/grafana/d/-IXxFzXnz/qian-li-shang-shen-yong-hu-lie-biao-redis-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 潜力上神用户列表 ( redis-uat)",
+    "tags": [
+      "潜力上神用户列表 ( redis-uat)"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_EgkHZ8wnk": {
+    "name": "潜力上神用户列表 ( UAT )",
+    "url": "https://internal.example.invalid/app/grafana/d/EgkHZ8wnk/qian-li-shang-shen-yong-hu-lie-biao-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 潜力上神用户列表 ( UAT )",
+    "tags": [
+      "潜力上神用户列表 ( UAT )"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ve5rtOgDz": {
+    "name": "点播 L1 场景保障",
+    "url": "https://internal.example.invalid/app/grafana/d/ve5rtOgDz/dian-bo-l1-chang-jing-bao-zhang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 点播 L1 场景保障",
+    "tags": [
+      "点播 L1 场景保障"
+    ],
+    "category": "点播业务监控"
+  },
+  "grafana_P3_DoI_Hz": {
+    "name": "点播服务 HTTP 监控",
+    "url": "https://internal.example.invalid/app/grafana/d/P3_DoI_Hz/dian-bo-fu-wu-http-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 点播服务 HTTP 监控",
+    "tags": [
+      "点播服务 HTTP 监控"
+    ],
+    "category": "点播业务监控"
+  },
+  "grafana_TEWxrMqHz": {
+    "name": "点播核心场景（L0）保障",
+    "url": "https://internal.example.invalid/app/grafana/d/TEWxrMqHz/dian-bo-he-xin-chang-jing-l0-bao-zhang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 点播核心场景（L0）保障",
+    "tags": [
+      "点播核心场景（L0）保障"
+    ],
+    "category": "点播业务监控"
+  },
+  "grafana_d1tyBPvZz": {
+    "name": "热度相关参数统计",
+    "url": "https://internal.example.invalid/app/grafana/d/d1tyBPvZz/re-du-xiang-guan-can-shu-tong-ji?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 热度相关参数统计",
+    "tags": [
+      "热度相关参数统计"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_st8YOtl4k": {
+    "name": "猫粮领取情况",
+    "url": "https://internal.example.invalid/app/grafana/d/st8YOtl4k/mao-liang-ling-qu-qing-kuang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 猫粮领取情况",
+    "tags": [
+      "猫粮领取情况"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_zZ6eMscnk": {
+    "name": "猫耳联运游戏参数",
+    "url": "https://internal.example.invalid/app/grafana/d/zZ6eMscnk/mao-er-lian-yun-you-xi-can-shu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 猫耳联运游戏参数",
+    "tags": [
+      "猫耳联运游戏参数"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_fez7doczijbpce": {
+    "name": "猫耳送礼行为监控",
+    "url": "https://internal.example.invalid/app/grafana/d/fez7doczijbpce/mao-er-song-li-xing-wei-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 猫耳送礼行为监控",
+    "tags": [
+      "猫耳送礼行为监控"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_dGJGa0ZIz": {
+    "name": "用户余额",
+    "url": "https://internal.example.invalid/app/grafana/d/dGJGa0ZIz/yong-hu-yu-e?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 用户余额",
+    "tags": [
+      "用户余额"
+    ],
+    "category": "其他"
+  },
+  "grafana_Y2LfutQik": {
+    "name": "用户搜索词（已迁至 BI）",
+    "url": "https://internal.example.invalid/app/grafana/d/Y2LfutQik/yong-hu-sou-suo-ci-yi-qian-zhi-bi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 用户搜索词（已迁至 BI）",
+    "tags": [
+      "用户搜索词（已迁至 BI）"
+    ],
+    "category": "内容运营数据后台"
+  },
+  "grafana_7IfuQc4Sk": {
+    "name": "用户登录限制",
+    "url": "https://internal.example.invalid/app/grafana/d/7IfuQc4Sk/yong-hu-deng-lu-xian-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 用户登录限制",
+    "tags": [
+      "用户登录限制"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_k6JKVjCMz": {
+    "name": "用户粉丝勋章亲密度查询",
+    "url": "https://internal.example.invalid/app/grafana/d/k6JKVjCMz/yong-hu-fen-si-xun-zhang-qin-mi-du-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 用户粉丝勋章亲密度查询",
+    "tags": [
+      "用户粉丝勋章亲密度查询"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_IMu86JP4k": {
+    "name": "盲盒剧场猫猫图及排行榜背景图管理后台",
+    "url": "https://internal.example.invalid/app/grafana/d/IMu86JP4k/mang-he-ju-chang-mao-mao-tu-ji-pai-xing-bang-bei-jing-tu-guan-li-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 盲盒剧场猫猫图及排行榜背景图管理后台",
+    "tags": [
+      "盲盒剧场猫猫图及排行榜背景图管理后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_yK91SaHnk": {
+    "name": "盲盒礼物掉率异常警报",
+    "url": "https://internal.example.invalid/app/grafana/d/yK91SaHnk/mang-he-li-wu-diao-lu-yi-chang-jing-bao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 盲盒礼物掉率异常警报",
+    "tags": [
+      "盲盒礼物掉率异常警报"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_FiPY1UHnz": {
+    "name": "盲盒礼物掉率异常警报",
+    "url": "https://internal.example.invalid/app/grafana/d/FiPY1UHnz/mang-he-li-wu-diao-lu-yi-chang-jing-bao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 盲盒礼物掉率异常警报",
+    "tags": [
+      "盲盒礼物掉率异常警报"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_ucfZeAjNk": {
+    "name": "直播 L1 场景保障",
+    "url": "https://internal.example.invalid/app/grafana/d/ucfZeAjNk/zhi-bo-l1-chang-jing-bao-zhang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播 L1 场景保障",
+    "tags": [
+      "直播 L1 场景保障"
+    ],
+    "category": "直播场景保障"
+  },
+  "grafana_ESZM-pIDz": {
+    "name": "直播业务 QPS Copy",
+    "url": "https://internal.example.invalid/app/grafana/d/ESZM-pIDz/zhi-bo-ye-wu-qps-copy?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播业务 QPS Copy",
+    "tags": [
+      "直播业务 QPS Copy"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_pCsq6YPGz": {
+    "name": "直播主播消费记录对照榜单",
+    "url": "https://internal.example.invalid/app/grafana/d/pCsq6YPGz/zhi-bo-zhu-bo-xiao-fei-ji-lu-dui-zhao-bang-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播主播消费记录对照榜单",
+    "tags": [
+      "直播主播消费记录对照榜单"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_WQkfu9lVz": {
+    "name": "直播回放保存白名单后台 Copy",
+    "url": "https://internal.example.invalid/app/grafana/d/WQkfu9lVz/zhi-bo-hui-fang-bao-cun-bai-ming-dan-hou-tai-copy?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播回放保存白名单后台 Copy",
+    "tags": [
+      "直播回放保存白名单后台 Copy"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_4QHQk3UNk": {
+    "name": "直播大盘",
+    "url": "https://internal.example.invalid/app/grafana/d/4QHQk3UNk/zhi-bo-da-pan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播大盘",
+    "tags": [
+      "直播大盘"
+    ],
+    "category": "其他"
+  },
+  "grafana_wuadMIiSz": {
+    "name": "直播小时榜",
+    "url": "https://internal.example.invalid/app/grafana/d/wuadMIiSz/zhi-bo-xiao-shi-bang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播小时榜",
+    "tags": [
+      "直播小时榜"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_ch_p7MHNz": {
+    "name": "直播推荐干预后台",
+    "url": "https://internal.example.invalid/app/grafana/d/ch_p7MHNz/zhi-bo-tui-jian-gan-yu-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播推荐干预后台",
+    "tags": [
+      "直播推荐干预后台"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_iJTIe3QHz": {
+    "name": "直播推荐曝光",
+    "url": "https://internal.example.invalid/app/grafana/d/iJTIe3QHz/zhi-bo-tui-jian-pu-guang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播推荐曝光",
+    "tags": [
+      "直播推荐曝光"
+    ],
+    "category": "ziqing"
+  },
+  "grafana_Xzp7I-eNz": {
+    "name": "直播提现告警",
+    "url": "https://internal.example.invalid/app/grafana/d/Xzp7I-eNz/zhi-bo-ti-xian-gao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播提现告警",
+    "tags": [
+      "直播提现告警"
+    ],
+    "category": "直播业务监控"
+  },
+  "grafana_VYmN-V_Hk": {
+    "name": "直播服务 HTTP 监控",
+    "url": "https://internal.example.invalid/app/grafana/d/VYmN-V_Hk/zhi-bo-fu-wu-http-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播服务 HTTP 监控",
+    "tags": [
+      "直播服务 HTTP 监控"
+    ],
+    "category": "直播业务监控"
+  },
+  "grafana_aMAzY3rNz": {
+    "name": "直播核心场景（ L0 ）保障",
+    "url": "https://internal.example.invalid/app/grafana/d/aMAzY3rNz/zhi-bo-he-xin-chang-jing-l0-bao-zhang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播核心场景（ L0 ）保障",
+    "tags": [
+      "直播核心场景（ L0 ）保障"
+    ],
+    "category": "直播场景保障"
+  },
+  "grafana_6dwOK7BMk": {
+    "name": "直播系统流量",
+    "url": "https://internal.example.invalid/app/grafana/d/6dwOK7BMk/zhi-bo-xi-tong-liu-liang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播系统流量",
+    "tags": [
+      "直播系统流量"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_nmFcIOyMz": {
+    "name": "直播观察",
+    "url": "https://internal.example.invalid/app/grafana/d/nmFcIOyMz/zhi-bo-guan-cha?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播观察",
+    "tags": [
+      "直播观察"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_z97y_yGDz": {
+    "name": "直播送礼行为监控",
+    "url": "https://internal.example.invalid/app/grafana/d/z97y_yGDz/zhi-bo-song-li-xing-wei-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播送礼行为监控",
+    "tags": [
+      "直播送礼行为监控"
+    ],
+    "category": "直播核心场景保障监控（高保密性）"
+  },
+  "grafana_obsCfeTMk": {
+    "name": "直播间互动投票详情",
+    "url": "https://internal.example.invalid/app/grafana/d/obsCfeTMk/zhi-bo-jian-hu-dong-tou-piao-xiang-qing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间互动投票详情",
+    "tags": [
+      "直播间互动投票详情"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_aAJmsBuIk": {
+    "name": "直播间喵喵福袋相关报表",
+    "url": "https://internal.example.invalid/app/grafana/d/aAJmsBuIk/zhi-bo-jian-miao-miao-fu-dai-xiang-guan-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间喵喵福袋相关报表",
+    "tags": [
+      "直播间喵喵福袋相关报表"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_59kDDt-Zk": {
+    "name": "直播间回放处理进度",
+    "url": "https://internal.example.invalid/app/grafana/d/59kDDt-Zk/zhi-bo-jian-hui-fang-chu-li-jin-du?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间回放处理进度",
+    "tags": [
+      "直播间回放处理进度"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_oCsd83FIk": {
+    "name": "直播间快捷送礼管理",
+    "url": "https://internal.example.invalid/app/grafana/d/oCsd83FIk/zhi-bo-jian-kuai-jie-song-li-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间快捷送礼管理",
+    "tags": [
+      "直播间快捷送礼管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_5VbuEtx7k": {
+    "name": "直播间活动小窗管理",
+    "url": "https://internal.example.invalid/app/grafana/d/5VbuEtx7k/zhi-bo-jian-huo-dong-xiao-chuang-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间活动小窗管理",
+    "tags": [
+      "直播间活动小窗管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_eAWkqX4Sk111": {
+    "name": "直播间热门限制",
+    "url": "https://internal.example.invalid/app/grafana/d/eAWkqX4Sk111/zhi-bo-jian-re-men-xian-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间热门限制",
+    "tags": [
+      "直播间热门限制"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_EzrCSc8Hk": {
+    "name": "直播间粉丝成就达成后台",
+    "url": "https://internal.example.invalid/app/grafana/d/EzrCSc8Hk/zhi-bo-jian-fen-si-cheng-jiu-da-cheng-hou-tai?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间粉丝成就达成后台",
+    "tags": [
+      "直播间粉丝成就达成后台"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_QkHhXu4Ik": {
+    "name": "直播间粉丝牌增减明细",
+    "url": "https://internal.example.invalid/app/grafana/d/QkHhXu4Ik/zhi-bo-jian-fen-si-pai-zeng-jian-ming-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间粉丝牌增减明细",
+    "tags": [
+      "直播间粉丝牌增减明细"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_BiUZNHwHk": {
+    "name": "直播间聊天室消息查询",
+    "url": "https://internal.example.invalid/app/grafana/d/BiUZNHwHk/zhi-bo-jian-liao-tian-shi-xiao-xi-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间聊天室消息查询",
+    "tags": [
+      "直播间聊天室消息查询"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_KbpfD6fMk": {
+    "name": "直播间视频云原档",
+    "url": "https://internal.example.invalid/app/grafana/d/KbpfD6fMk/zhi-bo-jian-shi-pin-yun-yuan-dang?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间视频云原档",
+    "tags": [
+      "直播间视频云原档"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_rn6zSWRWz": {
+    "name": "直播间超管名单",
+    "url": "https://internal.example.invalid/app/grafana/d/rn6zSWRWz/zhi-bo-jian-chao-guan-ming-dan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 直播间超管名单",
+    "tags": [
+      "直播间超管名单"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_BgGObeGnk": {
+    "name": "礼包商品列表",
+    "url": "https://internal.example.invalid/app/grafana/d/BgGObeGnk/li-bao-shang-pin-lie-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 礼包商品列表",
+    "tags": [
+      "礼包商品列表"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_Jidse3CMk": {
+    "name": "礼包销售报表（产品运营用）",
+    "url": "https://internal.example.invalid/app/grafana/d/Jidse3CMk/li-bao-xiao-shou-bao-biao-chan-pin-yun-ying-yong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 礼包销售报表（产品运营用）",
+    "tags": [
+      "礼包销售报表（产品运营用）"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_V-kwwsS4z": {
+    "name": "礼物墙 - 周期详情",
+    "url": "https://internal.example.invalid/app/grafana/d/V-kwwsS4z/li-wu-qiang-zhou-qi-xiang-qing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 礼物墙 - 周期详情",
+    "tags": [
+      "礼物墙 - 周期详情"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_4krwoNIVk": {
+    "name": "礼物墙：上墙礼物管理",
+    "url": "https://internal.example.invalid/app/grafana/d/4krwoNIVk/li-wu-qiang-shang-qiang-li-wu-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 礼物墙：上墙礼物管理",
+    "tags": [
+      "礼物墙：上墙礼物管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_5G6BjfS4k": {
+    "name": "礼物墙：周期管理",
+    "url": "https://internal.example.invalid/app/grafana/d/5G6BjfS4k/li-wu-qiang-zhou-qi-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 礼物墙：周期管理",
+    "tags": [
+      "礼物墙：周期管理"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_xdo0gNL7k": {
+    "name": "礼物飘屏汇总",
+    "url": "https://internal.example.invalid/app/grafana/d/xdo0gNL7k/li-wu-piao-ping-hui-zong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 礼物飘屏汇总",
+    "tags": [
+      "礼物飘屏汇总"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_YHfNpE_Sz": {
+    "name": "福袋兑换异常的用户",
+    "url": "https://internal.example.invalid/app/grafana/d/YHfNpE_Sz/fu-dai-dui-huan-yi-chang-de-yong-hu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 福袋兑换异常的用户",
+    "tags": [
+      "福袋兑换异常的用户"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_jWUpBd7Dk": {
+    "name": "福袋销售报表-UAT Copy",
+    "url": "https://internal.example.invalid/app/grafana/d/jWUpBd7Dk/fu-dai-xiao-shou-bao-biao-uat-copy?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 福袋销售报表-UAT Copy",
+    "tags": [
+      "福袋销售报表-UAT Copy"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_whitelist-dashboard": {
+    "name": "福袋风控白名单管理",
+    "url": "https://internal.example.invalid/app/grafana/d/whitelist-dashboard/fu-dai-feng-kong-bai-ming-dan-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 福袋风控白名单管理",
+    "tags": [
+      "福袋风控白名单管理"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_aiu3L654k": {
+    "name": "红包销售报表",
+    "url": "https://internal.example.invalid/app/grafana/d/aiu3L654k/hong-bao-xiao-shou-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 红包销售报表",
+    "tags": [
+      "礼物红包",
+      "红包",
+      "销售"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_cRkO05yNkOnline": {
+    "name": "线上 PK 排位赛配置信息-待废弃",
+    "url": "https://internal.example.invalid/app/grafana/d/cRkO05yNkOnline/xian-shang-pk-pai-wei-sai-pei-zhi-xin-xi-dai-fei-qi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 线上 PK 排位赛配置信息-待废弃",
+    "tags": [
+      "线上 PK 排位赛配置信息-待废弃"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_LD4GGlMNk": {
+    "name": "线上 用户七日打赏主播排名",
+    "url": "https://internal.example.invalid/app/grafana/d/LD4GGlMNk/xian-shang-yong-hu-qi-ri-da-shang-zhu-bo-pai-ming?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 线上 用户七日打赏主播排名",
+    "tags": [
+      "线上 用户七日打赏主播排名"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_FkjeeY-Nz": {
+    "name": "织梦奇境相关报表",
+    "url": "https://internal.example.invalid/app/grafana/d/FkjeeY-Nz/zhi-meng-qi-jing-xiang-guan-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 织梦奇境相关报表",
+    "tags": [
+      "报警",
+      "超能魔方"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_wcjBYvaNz": {
+    "name": "织梦奇境相关报表（UAT）",
+    "url": "https://internal.example.invalid/app/grafana/d/wcjBYvaNz/zhi-meng-qi-jing-xiang-guan-bao-biao-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 织梦奇境相关报表（UAT）",
+    "tags": [
+      "织梦奇境相关报表（UAT）"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_ZaSMVI1Vz": {
+    "name": "综合搜索 UP 主卡片管理",
+    "url": "https://internal.example.invalid/app/grafana/d/ZaSMVI1Vz/zong-he-sou-suo-up-zhu-qia-pian-guan-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 综合搜索 UP 主卡片管理",
+    "tags": [
+      "综合搜索 UP 主卡片管理"
+    ],
+    "category": "UAT 开发后台"
+  },
+  "grafana_dsr6kCoGk": {
+    "name": "聊天消息卡顿关键词命中",
+    "url": "https://internal.example.invalid/app/grafana/d/dsr6kCoGk/liao-tian-xiao-xi-qia-dun-guan-jian-ci-ming-zhong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 聊天消息卡顿关键词命中",
+    "tags": [
+      "聊天消息卡顿关键词命中"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_J_4y2yfSz": {
+    "name": "补发喇叭",
+    "url": "https://internal.example.invalid/app/grafana/d/J_4y2yfSz/bu-fa-la-ba?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 补发喇叭",
+    "tags": [
+      "补发喇叭"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_8sYmE_CMz": {
+    "name": "补发礼物特效和飘屏",
+    "url": "https://internal.example.invalid/app/grafana/d/8sYmE_CMz/bu-fa-li-wu-te-xiao-he-piao-ping?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 补发礼物特效和飘屏",
+    "tags": [
+      "补发礼物特效和飘屏"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_n0FgI2iIz": {
+    "name": "表情资源",
+    "url": "https://internal.example.invalid/app/grafana/d/n0FgI2iIz/biao-qing-zi-yuan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 表情资源",
+    "tags": [
+      "表情资源"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_0t65ekZVz": {
+    "name": "许愿池报表",
+    "url": "https://internal.example.invalid/app/grafana/d/0t65ekZVz/xu-yuan-chi-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 许愿池报表",
+    "tags": [
+      "抽奖",
+      "掉率",
+      "许愿池"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_t3-Y7iW4k": {
+    "name": "许愿池抽奖报警",
+    "url": "https://internal.example.invalid/app/grafana/d/t3-Y7iW4k/xu-yuan-chi-chou-jiang-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 许愿池抽奖报警",
+    "tags": [
+      "报警",
+      "抽奖",
+      "许愿池"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_V2av4S0Mk": {
+    "name": "设置最低提现金额",
+    "url": "https://internal.example.invalid/app/grafana/d/V2av4S0Mk/she-zhi-zui-di-ti-xian-jin-e?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 设置最低提现金额",
+    "tags": [
+      "设置最低提现金额"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_JhpfQChMk": {
+    "name": "证件类型为非大陆用户",
+    "url": "https://internal.example.invalid/app/grafana/d/JhpfQChMk/zheng-jian-lei-xing-wei-fei-da-lu-yong-hu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 证件类型为非大陆用户",
+    "tags": [
+      "证件类型为非大陆用户"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_BWmcViZvk": {
+    "name": "语音厅相关",
+    "url": "https://internal.example.invalid/app/grafana/d/BWmcViZvk/yu-yin-ting-xiang-guan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 语音厅相关",
+    "tags": [
+      "语音厅相关"
+    ],
+    "category": "x0a"
+  },
+  "grafana_HrP9erRvk": {
+    "name": "账号封禁记录查询",
+    "url": "https://internal.example.invalid/app/grafana/d/HrP9erRvk/zhang-hao-feng-jin-ji-lu-cha-xun?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 账号封禁记录查询",
+    "tags": [
+      "账号封禁记录查询"
+    ],
+    "category": "其他"
+  },
+  "grafana_oiCYiIqMz": {
+    "name": "超粉相关报表",
+    "url": "https://internal.example.invalid/app/grafana/d/oiCYiIqMz/chao-fen-xiang-guan-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 超粉相关报表",
+    "tags": [
+      "总览",
+      "直播间",
+      "粉丝",
+      "超粉"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_Jx0XhUN7z": {
+    "name": "超能魔方相关报表",
+    "url": "https://internal.example.invalid/app/grafana/d/Jx0XhUN7z/chao-neng-mo-fang-xiang-guan-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 超能魔方相关报表",
+    "tags": [
+      "超能魔方相关报表",
+      "超能魔方",
+      "魔方",
+      "超能魔方配置",
+      "报表"
+    ],
+    "category": "开发后台"
+  },
+  "grafana_pPglA2Hnz": {
+    "name": "超能魔方相关报表（UAT）",
+    "url": "https://internal.example.invalid/app/grafana/d/pPglA2Hnz/chao-neng-mo-fang-xiang-guan-bao-biao-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 超能魔方相关报表（UAT）",
+    "tags": [
+      "超能魔方相关报表（UAT）"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_CreatorTaskDetails": {
+    "name": "达标主播详情",
+    "url": "https://internal.example.invalid/app/grafana/d/CreatorTaskDetails/da-biao-zhu-bo-xiang-qing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 达标主播详情",
+    "tags": [
+      "达标主播详情"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_z5mmuPS7k": {
+    "name": "过审公会信息",
+    "url": "https://internal.example.invalid/app/grafana/d/z5mmuPS7k/guo-shen-gong-hui-xin-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 过审公会信息",
+    "tags": [
+      "过审公会信息"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_CKSHqVQ4k": {
+    "name": "运营部答卷",
+    "url": "https://internal.example.invalid/app/grafana/d/CKSHqVQ4k/yun-ying-bu-da-juan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 运营部答卷",
+    "tags": [
+      "运营部答卷"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_I4XUE_7Sk": {
+    "name": "进入直播间发放奖励",
+    "url": "https://internal.example.invalid/app/grafana/d/I4XUE_7Sk/jin-ru-zhi-bo-jian-fa-fang-jiang-li?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 进入直播间发放奖励",
+    "tags": [
+      "进入直播间发放奖励"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_LIFR8q9Nk": {
+    "name": "违规词检测",
+    "url": "https://internal.example.invalid/app/grafana/d/LIFR8q9Nk/wei-gui-ci-jian-ce?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 违规词检测",
+    "tags": [
+      "违规词检测"
+    ],
+    "category": "其他"
+  },
+  "grafana_wbJbGoWDz": {
+    "name": "送礼行为监控",
+    "url": "https://internal.example.invalid/app/grafana/d/wbJbGoWDz/song-li-xing-wei-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 送礼行为监控",
+    "tags": [
+      "送礼行为监控"
+    ],
+    "category": "x0a"
+  },
+  "grafana_myNMaE0Gk": {
+    "name": "部分用户弹幕明细",
+    "url": "https://internal.example.invalid/app/grafana/d/myNMaE0Gk/bu-fen-yong-hu-dan-mu-ming-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 部分用户弹幕明细",
+    "tags": [
+      "部分用户弹幕明细"
+    ],
+    "category": "wujun"
+  },
+  "grafana_3UYCW7_mz": {
+    "name": "部分用户评论明细",
+    "url": "https://internal.example.invalid/app/grafana/d/3UYCW7_mz/bu-fen-yong-hu-ping-lun-ming-xi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 部分用户评论明细",
+    "tags": [
+      "部分用户评论明细"
+    ],
+    "category": "wujun"
+  },
+  "grafana_PHfpLAZIk": {
+    "name": "金主进直播间报警",
+    "url": "https://internal.example.invalid/app/grafana/d/PHfpLAZIk/jin-zhu-jin-zhi-bo-jian-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 金主进直播间报警",
+    "tags": [
+      "金主进直播间报警"
+    ],
+    "category": "其他"
+  },
+  "grafana_aIlvm0B7k": {
+    "name": "随机 PK 相关报表",
+    "url": "https://internal.example.invalid/app/grafana/d/aIlvm0B7k/sui-ji-pk-xiang-guan-bao-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机 PK 相关报表",
+    "tags": [
+      "PK",
+      "PK 总览数据",
+      "PK 白名单",
+      "PK 统计",
+      "正在 PK 列表",
+      "随机 PK"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_17w59qcNz": {
+    "name": "随机大奖掉落记录",
+    "url": "https://internal.example.invalid/app/grafana/d/17w59qcNz/sui-ji-da-jiang-diao-luo-ji-lu?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机大奖掉落记录",
+    "tags": [
+      "随机大奖掉落记录"
+    ],
+    "category": "UAT 主站后台管理"
+  },
+  "grafana_tTf-zl_Vz": {
+    "name": "随机礼物奖池配置表",
+    "url": "https://internal.example.invalid/app/grafana/d/tTf-zl_Vz/sui-ji-li-wu-jiang-chi-pei-zhi-biao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机礼物奖池配置表",
+    "tags": [
+      "奖池",
+      "掉率",
+      "档位",
+      "随机礼物"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_1yoFM_l4k": {
+    "name": "随机礼物奖池配置表（UAT）",
+    "url": "https://internal.example.invalid/app/grafana/d/1yoFM_l4k/sui-ji-li-wu-jiang-chi-pei-zhi-biao-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机礼物奖池配置表（UAT）",
+    "tags": [
+      "随机礼物",
+      "奖池",
+      "配置",
+      "奖池配置",
+      "随机礼物配置",
+      "随机礼物奖池",
+      "随机礼物奖池配置表（UAT）"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_g0R-6gtNk": {
+    "name": "随机礼物定时投放面板 UAT",
+    "url": "https://internal.example.invalid/app/grafana/d/g0R-6gtNk/sui-ji-li-wu-ding-shi-tou-fang-mian-ban-uat?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机礼物定时投放面板 UAT",
+    "tags": [
+      "随机礼物定时投放面板 UAT"
+    ],
+    "category": "UAT 直播超管后台"
+  },
+  "grafana_sbzxQnDNz": {
+    "name": "随机礼物报警",
+    "url": "https://internal.example.invalid/app/grafana/d/sbzxQnDNz/sui-ji-li-wu-bao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机礼物报警",
+    "tags": [
+      "报警",
+      "随机礼物"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_O6q5mKMvk": {
+    "name": "随机礼物新策略实时监控",
+    "url": "https://internal.example.invalid/app/grafana/d/O6q5mKMvk/sui-ji-li-wu-xin-ce-lue-shi-shi-jian-kong?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机礼物新策略实时监控",
+    "tags": [
+      "随机礼物新策略实时监控"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_FLc7O_7vk": {
+    "name": "随机礼物新策略监控告警",
+    "url": "https://internal.example.invalid/app/grafana/d/FLc7O_7vk/sui-ji-li-wu-xin-ce-lue-jian-kong-gao-jing?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机礼物新策略监控告警",
+    "tags": [
+      "随机礼物新策略监控告警"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_95ucewwGz": {
+    "name": "随机礼物赠送报表（股票）",
+    "url": "https://internal.example.invalid/app/grafana/d/95ucewwGz/sui-ji-li-wu-zeng-song-bao-biao-gu-piao?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 随机礼物赠送报表（股票）",
+    "tags": [
+      "随机礼物赠送报表（股票）"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_UNko25eHz": {
+    "name": "音频下载接口 QPM",
+    "url": "https://internal.example.invalid/app/grafana/d/UNko25eHz/yin-pin-xia-zai-jie-kou-qpm?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 音频下载接口 QPM",
+    "tags": [
+      "音频下载接口 QPM"
+    ],
+    "category": "点播业务监控"
+  },
+  "grafana_EbI7Z7S7k": {
+    "name": "飘屏气泡预览",
+    "url": "https://internal.example.invalid/app/grafana/d/EbI7Z7S7k/piao-ping-qi-pao-yu-lan?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 飘屏气泡预览",
+    "tags": [
+      "飘屏气泡预览"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_PcsLEbGHz": {
+    "name": "飘屏配置",
+    "url": "https://internal.example.invalid/app/grafana/d/PcsLEbGHz/piao-ping-pei-zhi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 飘屏配置",
+    "tags": [
+      "飘屏配置"
+    ],
+    "category": "直播表格 - 产品技术主用"
+  },
+  "grafana_-idjYWmvk": {
+    "name": "鸭鸭第二期",
+    "url": "https://internal.example.invalid/app/grafana/d/-idjYWmvk/ya-ya-di-er-qi?orgId=1",
+    "source": "grafana",
+    "description": "Grafana仪表板: 鸭鸭第二期",
+    "tags": [
+      "鸭鸭第二期"
+    ],
+    "category": "开发后台"
+  },
+  "user_management": {
+    "name": "用户管理（MySQL）",
+    "url": "https://internal.example.invalid/app/mysql/example_db/m_user",
+    "source": "mysql",
+    "description": "用户信息管理，包含用户ID、手机号、邮箱等",
+    "tags": [
+      "用户",
+      "用户管理",
+      "user",
+      "管理"
+    ],
+    "category": "用户管理"
+  },
+  "exclusive_gift": {
+    "name": "专属礼物管理（MySQL）",
+    "url": "https://internal.example.invalid/app/mysql/live/live_custom",
+    "source": "mysql",
+    "description": "专属礼物记录管理，包含用户专属、直播间专属等",
+    "tags": [
+      "专属礼物",
+      "礼物",
+      "exclusive",
+      "管理"
+    ],
+    "category": "礼物管理"
+  },
+  "mongo_UAT_fm_activity_params": {
+    "name": "Activity Params（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/activity_params/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.activity_params",
+    "tags": [
+      "activity_params",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "activity_params"
+  },
+  "mongo_UAT_fm_appearances": {
+    "name": "Appearances（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/appearances/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.appearances",
+    "tags": [
+      "appearances",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "appearances"
+  },
+  "mongo_UAT_fm_box_prizes": {
+    "name": "Box Prizes（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/box_prizes/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.box_prizes",
+    "tags": [
+      "box_prizes",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "box_prizes"
+  },
+  "mongo_UAT_fm_dla_medals": {
+    "name": "Dla Medals（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/dla_medals/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.dla_medals",
+    "tags": [
+      "dla_medals",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "dla_medals"
+  },
+  "mongo_UAT_fm_gift_draw_pool": {
+    "name": "Gift Draw Pool（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/gift_draw_pool/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.gift_draw_pool",
+    "tags": [
+      "gift_draw_pool",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "gift_draw_pool"
+  },
+  "mongo_UAT_fm_gift_wall_sponsor": {
+    "name": "Gift Wall Sponsor（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/gift_wall_sponsor/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.gift_wall_sponsor",
+    "tags": [
+      "gift_wall_sponsor",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "gift_wall_sponsor"
+  },
+  "mongo_UAT_fm_grafana_features": {
+    "name": "Grafana Features（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/grafana_features/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.grafana_features",
+    "tags": [
+      "grafana_features",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "grafana_features"
+  },
+  "mongo_UAT_fm_messages_tmp": {
+    "name": "Messages Tmp（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/messages_tmp/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.messages_tmp",
+    "tags": [
+      "messages_tmp",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "messages_tmp"
+  },
+  "mongo_UAT_fm_params": {
+    "name": "Params（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/params/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.params",
+    "tags": [
+      "params",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "params"
+  },
+  "mongo_UAT_fm_rewards": {
+    "name": "Rewards（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/rewards/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.rewards",
+    "tags": [
+      "rewards",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "rewards"
+  },
+  "mongo_UAT_fm_rooms": {
+    "name": "Rooms（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/rooms/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.rooms",
+    "tags": [
+      "rooms",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "rooms"
+  },
+  "mongo_UAT_fm_test_a": {
+    "name": "A（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_a/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_a",
+    "tags": [
+      "test_a",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_a"
+  },
+  "mongo_UAT_fm_test_activities": {
+    "name": "Activities（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_activities/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_activities",
+    "tags": [
+      "test_activities",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_activities"
+  },
+  "mongo_UAT_fm_test_activity_item_records": {
+    "name": "Activity Item Records（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_activity_item_records/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_activity_item_records",
+    "tags": [
+      "test_activity_item_records",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_activity_item_records"
+  },
+  "mongo_UAT_fm_test_activity_items": {
+    "name": "Activity Items（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_activity_items/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_activity_items",
+    "tags": [
+      "test_activity_items",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_activity_items"
+  },
+  "mongo_UAT_fm_test_activity_messages": {
+    "name": "Activity Messages（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_activity_messages/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_activity_messages",
+    "tags": [
+      "test_activity_messages",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_activity_messages"
+  },
+  "mongo_UAT_fm_test_activity_params": {
+    "name": "Activity Params（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_activity_params/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_activity_params",
+    "tags": [
+      "test_activity_params",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_activity_params"
+  },
+  "mongo_UAT_fm_test_activity_pk_params": {
+    "name": "Activity Pk Params（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_activity_pk_params/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_activity_pk_params",
+    "tags": [
+      "test_activity_pk_params",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_activity_pk_params"
+  },
+  "mongo_UAT_fm_test_appearance": {
+    "name": "Appearance（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_appearance/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_appearance",
+    "tags": [
+      "test_appearance",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_appearance"
+  },
+  "mongo_UAT_fm_test_appearances": {
+    "name": "外观配置（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_appearances/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_appearances - 外观配置数据，包含头像框、徽章、入场特效等",
+    "tags": [
+      "外观",
+      "外观配置",
+      "test_appearances",
+      "appearances",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_appearances"
+  },
+  "mongo_UAT_fm_test_banners": {
+    "name": "Banners（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_banners/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_banners",
+    "tags": [
+      "test_banners",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_banners"
+  },
+  "mongo_UAT_fm_test_box_prizes": {
+    "name": "Box Prizes（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_box_prizes/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_box_prizes",
+    "tags": [
+      "test_box_prizes",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_box_prizes"
+  },
+  "mongo_UAT_fm_test_bubbles": {
+    "name": "Bubbles（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_bubbles/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_bubbles",
+    "tags": [
+      "test_bubbles",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_bubbles"
+  },
+  "mongo_UAT_fm_test_categories": {
+    "name": "Categories（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_categories/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_categories",
+    "tags": [
+      "test_categories",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_categories"
+  },
+  "mongo_UAT_fm_test_creator_items": {
+    "name": "Creator Items（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_creator_items/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_creator_items",
+    "tags": [
+      "test_creator_items",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_creator_items"
+  },
+  "mongo_UAT_fm_test_diy_gift_dresses": {
+    "name": "Diy Gift Dresses（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_diy_gift_dresses/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_diy_gift_dresses",
+    "tags": [
+      "test_diy_gift_dresses",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_diy_gift_dresses"
+  },
+  "mongo_UAT_fm_test_diy_gift_effects": {
+    "name": "Diy Gift Effects（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_diy_gift_effects/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_diy_gift_effects",
+    "tags": [
+      "test_diy_gift_effects",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_diy_gift_effects"
+  },
+  "mongo_UAT_fm_test_diy_gifts": {
+    "name": "Diy Gifts（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_diy_gifts/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_diy_gifts",
+    "tags": [
+      "test_diy_gifts",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_diy_gifts"
+  },
+  "mongo_UAT_fm_test_draw_core_users": {
+    "name": "Draw Core Users（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_draw_core_users/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_draw_core_users",
+    "tags": [
+      "test_draw_core_users",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_draw_core_users"
+  },
+  "mongo_UAT_fm_test_gift_draw_pool": {
+    "name": "随机礼物奖池配置（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_gift_draw_pool/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_gift_draw_pool - 随机礼物奖池配置数据，包含奖池权重、保底机制等，支持超能魔方",
+    "tags": [
+      "随机礼物",
+      "奖池",
+      "配置",
+      "奖池配置",
+      "随机礼物配置",
+      "随机礼物奖池",
+      "超能魔方",
+      "魔方",
+      "超能魔方配置",
+      "test_gift_draw_pool",
+      "gift_draw_pool",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_gift_draw_pool"
+  },
+  "mongo_UAT_fm_test_gift_wall_activated_ranks": {
+    "name": "Gift Wall Activated Ranks（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_gift_wall_activated_ranks/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_gift_wall_activated_ranks",
+    "tags": [
+      "test_gift_wall_activated_ranks",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_gift_wall_activated_ranks"
+  },
+  "mongo_UAT_fm_test_gift_wall_activated_records": {
+    "name": "Gift Wall Activated Records（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_gift_wall_activated_records/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_gift_wall_activated_records",
+    "tags": [
+      "test_gift_wall_activated_records",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_gift_wall_activated_records"
+  },
+  "mongo_UAT_fm_test_gift_wall_gifts": {
+    "name": "Gift Wall Gifts（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_gift_wall_gifts/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_gift_wall_gifts",
+    "tags": [
+      "test_gift_wall_gifts",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_gift_wall_gifts"
+  },
+  "mongo_UAT_fm_test_gift_wall_periods": {
+    "name": "Gift Wall Periods（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_gift_wall_periods/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_gift_wall_periods",
+    "tags": [
+      "test_gift_wall_periods",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_gift_wall_periods"
+  },
+  "mongo_UAT_fm_test_gift_wall_sponsor": {
+    "name": "Gift Wall Sponsor（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_gift_wall_sponsor/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_gift_wall_sponsor",
+    "tags": [
+      "test_gift_wall_sponsor",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_gift_wall_sponsor"
+  },
+  "mongo_UAT_fm_test_gifts": {
+    "name": "礼物信息（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_gifts/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_gifts - 礼物基础信息，包含礼物ID、名称、价格、类型等",
+    "tags": [
+      "礼物",
+      "礼物信息",
+      "礼物配置",
+      "礼物后台",
+      "礼物管理",
+      "test_gifts",
+      "gifts",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_gifts"
+  },
+  "mongo_UAT_fm_test_guests": {
+    "name": "Guests（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_guests/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_guests",
+    "tags": [
+      "test_guests",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_guests"
+  },
+  "mongo_UAT_fm_test_im_messages": {
+    "name": "Im Messages（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_im_messages/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_im_messages",
+    "tags": [
+      "test_im_messages",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_im_messages"
+  },
+  "mongo_UAT_fm_test_im_user_logs": {
+    "name": "Im User Logs（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_im_user_logs/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_im_user_logs",
+    "tags": [
+      "test_im_user_logs",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_im_user_logs"
+  },
+  "mongo_UAT_fm_test_live_activities": {
+    "name": "Live Activities（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_activities/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_activities",
+    "tags": [
+      "test_live_activities",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_activities"
+  },
+  "mongo_UAT_fm_test_live_connects": {
+    "name": "Live Connects（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_connects/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_connects",
+    "tags": [
+      "test_live_connects",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_connects"
+  },
+  "mongo_UAT_fm_test_live_gashapon_user_rank": {
+    "name": "Live Gashapon User Rank（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_gashapon_user_rank/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_gashapon_user_rank",
+    "tags": [
+      "test_live_gashapon_user_rank",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_gashapon_user_rank"
+  },
+  "mongo_UAT_fm_test_live_gifts": {
+    "name": "Live Gifts（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_gifts/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_gifts",
+    "tags": [
+      "test_live_gifts",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_gifts"
+  },
+  "mongo_UAT_fm_test_live_listen_logs": {
+    "name": "Live Listen Logs（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_listen_logs/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_listen_logs",
+    "tags": [
+      "test_live_listen_logs",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_listen_logs"
+  },
+  "mongo_UAT_fm_test_live_logs": {
+    "name": "Live Logs（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_logs/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_logs",
+    "tags": [
+      "test_live_logs",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_logs"
+  },
+  "mongo_UAT_fm_test_live_medals": {
+    "name": "Live Medals（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_medals/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_medals",
+    "tags": [
+      "test_live_medals",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_medals"
+  },
+  "mongo_UAT_fm_test_live_members": {
+    "name": "Live Members（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_members/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_members",
+    "tags": [
+      "test_live_members",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_members"
+  },
+  "mongo_UAT_fm_test_live_meta": {
+    "name": "Live Meta（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_meta/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_meta",
+    "tags": [
+      "test_live_meta",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_meta"
+  },
+  "mongo_UAT_fm_test_live_pk_pool": {
+    "name": "Live Pk Pool（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_pk_pool/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_pk_pool",
+    "tags": [
+      "test_live_pk_pool",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_pk_pool"
+  },
+  "mongo_UAT_fm_test_live_pk_record": {
+    "name": "Live Pk Record（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_pk_record/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_pk_record",
+    "tags": [
+      "test_live_pk_record",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_pk_record"
+  },
+  "mongo_UAT_fm_test_live_questions": {
+    "name": "Live Questions（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_questions/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_questions",
+    "tags": [
+      "test_live_questions",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_questions"
+  },
+  "mongo_UAT_fm_test_live_records": {
+    "name": "Live Records（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_records/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_records",
+    "tags": [
+      "test_live_records",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_records"
+  },
+  "mongo_UAT_fm_test_live_red_packet": {
+    "name": "Live Red Packet（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_red_packet/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_red_packet",
+    "tags": [
+      "test_live_red_packet",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_red_packet"
+  },
+  "mongo_UAT_fm_test_live_red_packet_log": {
+    "name": "Live Red Packet Log（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_red_packet_log/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_red_packet_log",
+    "tags": [
+      "test_live_red_packet_log",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_red_packet_log"
+  },
+  "mongo_UAT_fm_test_live_revenues": {
+    "name": "Live Revenues（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_revenues/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_revenues",
+    "tags": [
+      "test_live_revenues",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_revenues"
+  },
+  "mongo_UAT_fm_test_live_settings": {
+    "name": "Live Settings（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_settings/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_settings",
+    "tags": [
+      "test_live_settings",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_settings"
+  },
+  "mongo_UAT_fm_test_live_show_users": {
+    "name": "Live Show Users（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_show_users/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_show_users",
+    "tags": [
+      "test_live_show_users",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_show_users"
+  },
+  "mongo_UAT_fm_test_live_shows": {
+    "name": "Live Shows（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_shows/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_shows",
+    "tags": [
+      "test_live_shows",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_shows"
+  },
+  "mongo_UAT_fm_test_live_statistics": {
+    "name": "Live Statistics（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_statistics/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_statistics",
+    "tags": [
+      "test_live_statistics",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_statistics"
+  },
+  "mongo_UAT_fm_test_live_user_operate_logs": {
+    "name": "Live User Operate Logs（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_user_operate_logs/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_user_operate_logs",
+    "tags": [
+      "test_live_user_operate_logs",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_user_operate_logs"
+  },
+  "mongo_UAT_fm_test_live_users": {
+    "name": "Live Users（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_users/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_users",
+    "tags": [
+      "test_live_users",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_users"
+  },
+  "mongo_UAT_fm_test_live_votes": {
+    "name": "Live Votes（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_live_votes/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_live_votes",
+    "tags": [
+      "test_live_votes",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_live_votes"
+  },
+  "mongo_UAT_fm_test_liveitems": {
+    "name": "Liveitems（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_liveitems/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_liveitems",
+    "tags": [
+      "test_liveitems",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_liveitems"
+  },
+  "mongo_UAT_fm_test_lucky_user": {
+    "name": "Lucky User（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_lucky_user/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_lucky_user",
+    "tags": [
+      "test_lucky_user",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_lucky_user"
+  },
+  "mongo_UAT_fm_test_lucky_users": {
+    "name": "Lucky Users（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_lucky_users/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_lucky_users",
+    "tags": [
+      "test_lucky_users",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_lucky_users"
+  },
+  "mongo_UAT_fm_test_messages": {
+    "name": "Messages（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_messages/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_messages",
+    "tags": [
+      "test_messages",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_messages"
+  },
+  "mongo_UAT_fm_test_notify_messages": {
+    "name": "Notify Messages（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_notify_messages/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_notify_messages",
+    "tags": [
+      "test_notify_messages",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_notify_messages"
+  },
+  "mongo_UAT_fm_test_params": {
+    "name": "Params（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_params/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_params",
+    "tags": [
+      "test_params",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_params"
+  },
+  "mongo_UAT_fm_test_playbacks": {
+    "name": "Playbacks（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_playbacks/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_playbacks",
+    "tags": [
+      "test_playbacks",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_playbacks"
+  },
+  "mongo_UAT_fm_test_playlists": {
+    "name": "Playlists（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_playlists/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_playlists",
+    "tags": [
+      "test_playlists",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_playlists"
+  },
+  "mongo_UAT_fm_test_prediction_rules": {
+    "name": "Prediction Rules（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_prediction_rules/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_prediction_rules",
+    "tags": [
+      "test_prediction_rules",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_prediction_rules"
+  },
+  "mongo_UAT_fm_test_prologues": {
+    "name": "Prologues（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_prologues/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_prologues",
+    "tags": [
+      "test_prologues",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_prologues"
+  },
+  "mongo_UAT_fm_test_quests": {
+    "name": "Quests（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_quests/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_quests",
+    "tags": [
+      "test_quests",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_quests"
+  },
+  "mongo_UAT_fm_test_rewards": {
+    "name": "奖励配置（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_rewards/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_rewards - 奖励配置数据，包含活动奖励、任务奖励、签到奖励等",
+    "tags": [
+      "奖励",
+      "奖励配置",
+      "test_rewards",
+      "rewards",
+      "活动奖励",
+      "任务奖励",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_rewards"
+  },
+  "mongo_UAT_fm_test_romms": {
+    "name": "Romms（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_romms/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_romms",
+    "tags": [
+      "test_romms",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_romms"
+  },
+  "mongo_UAT_fm_test_rooms": {
+    "name": "Rooms（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_rooms/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_rooms",
+    "tags": [
+      "test_rooms",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_rooms"
+  },
+  "mongo_UAT_fm_test_some_collection": {
+    "name": "Some Collection（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_some_collection/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_some_collection",
+    "tags": [
+      "test_some_collection",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_some_collection"
+  },
+  "mongo_UAT_fm_test_task_rank": {
+    "name": "Task Rank（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_task_rank/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_task_rank",
+    "tags": [
+      "test_task_rank",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_task_rank"
+  },
+  "mongo_UAT_fm_test_task_rank_config": {
+    "name": "Task Rank Config（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_task_rank_config/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_task_rank_config",
+    "tags": [
+      "test_task_rank_config",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_task_rank_config"
+  },
+  "mongo_UAT_fm_test_task_user_rank": {
+    "name": "Task User Rank（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_task_user_rank/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_task_user_rank",
+    "tags": [
+      "test_task_user_rank",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_task_user_rank"
+  },
+  "mongo_UAT_fm_test_user_appearances": {
+    "name": "User Appearances（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_appearances/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_appearances",
+    "tags": [
+      "test_user_appearances",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_appearances"
+  },
+  "mongo_UAT_fm_test_user_consumption": {
+    "name": "User Consumption（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_consumption/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_consumption",
+    "tags": [
+      "test_user_consumption",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_consumption"
+  },
+  "mongo_UAT_fm_test_user_diy_gifts": {
+    "name": "User Diy Gifts（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_diy_gifts/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_diy_gifts",
+    "tags": [
+      "test_user_diy_gifts",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_diy_gifts"
+  },
+  "mongo_UAT_fm_test_user_draw_status": {
+    "name": "User Draw Status（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_draw_status/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_draw_status",
+    "tags": [
+      "test_user_draw_status",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_draw_status"
+  },
+  "mongo_UAT_fm_test_user_items": {
+    "name": "用户背包礼物（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_items/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_items - 用户背包礼物数据，包含礼物数量、有效期等",
+    "tags": [
+      "背包",
+      "用户背包",
+      "背包礼物",
+      "test_user_items",
+      "user_items",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_items"
+  },
+  "mongo_UAT_fm_test_user_meta": {
+    "name": "User Meta（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_meta/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_meta",
+    "tags": [
+      "test_user_meta",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_meta"
+  },
+  "mongo_UAT_fm_test_user_nobles": {
+    "name": "User Nobles（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_nobles/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_nobles",
+    "tags": [
+      "test_user_nobles",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_nobles"
+  },
+  "mongo_UAT_fm_test_user_predictions": {
+    "name": "User Predictions（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_predictions/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_predictions",
+    "tags": [
+      "test_user_predictions",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_predictions"
+  },
+  "mongo_UAT_fm_test_user_quests": {
+    "name": "User Quests（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_user_quests/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_user_quests",
+    "tags": [
+      "test_user_quests",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_user_quests"
+  },
+  "mongo_UAT_fm_test_users": {
+    "name": "Users（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_users/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_users",
+    "tags": [
+      "test_users",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_users"
+  },
+  "mongo_UAT_fm_test_vehicles": {
+    "name": "Vehicles（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_vehicles/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_vehicles",
+    "tags": [
+      "test_vehicles",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_vehicles"
+  },
+  "mongo_UAT_fm_test_view_logs": {
+    "name": "View Logs（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_view_logs/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_view_logs",
+    "tags": [
+      "test_view_logs",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_view_logs"
+  },
+  "mongo_UAT_fm_test_wishes": {
+    "name": "Wishes（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/test_wishes/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.test_wishes",
+    "tags": [
+      "test_wishes",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "test_wishes"
+  },
+  "mongo_UAT_fm_testcols": {
+    "name": "Testcols（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/testcols/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.testcols",
+    "tags": [
+      "testcols",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "testcols"
+  },
+  "mongo_UAT_fm_user_quests": {
+    "name": "User Quests（MongoDB）",
+    "url": "https://internal.example.invalid/app/adminmongo/app/UAT/fm/user_quests/view/1",
+    "source": "mongo",
+    "description": "MongoDB集合: fm.user_quests",
+    "tags": [
+      "user_quests",
+      "fm",
+      "mongo",
+      "mongodb"
+    ],
+    "category": "MongoDB - fm",
+    "connection": "UAT",
+    "database": "fm",
+    "collection": "user_quests"
+  }
+}

@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# PID files
+*.pid
+.local_*.pid
+
+# Test reports
+test_report_*.json
+test_report_*.md
+*_test_results.log
+complete_test_report.md
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.uat
+config/local/agent_secrets.json
+.agent_memory/
+.mock_state/
+.venv/
+
+# Cache
+*.cache
+.cache/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+
+# Redis
+dump.rdb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Also ignore a locally linked virtual environment
+/.venv

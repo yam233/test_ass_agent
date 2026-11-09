@@ -1,0 +1,11 @@
+[
+  {"id":"normal","scenario":"normal","expected_quantity":10,"expected_status":"success"},
+  {"id":"missing_quantity","scenario":"missing","expected_quantity":0,"expected_status":"need_more_info"},
+  {"id":"denied","scenario":"denied","expected_quantity":0,"expected_status":"denied"},
+  {"id":"platform_403","scenario":"auth","expected_quantity":0,"expected_status":"failed"},
+  {"id":"partial_write","scenario":"partial","expected_quantity":5,"expected_status":"partial_success"},
+  {"id":"response_loss","scenario":"response_loss","expected_quantity":10,"expected_status":"success"},
+  {"id":"restart_before_confirmation","scenario":"restart","expected_quantity":10,"expected_status":"success"},
+  {"id":"duplicate_confirmation","scenario":"duplicate","expected_quantity":10,"expected_status":"success"},
+  {"id":"explicit_new_action","scenario":"new_action","expected_quantity":20,"expected_status":"success"}
+]

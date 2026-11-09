@@ -1,0 +1,38 @@
+{
+  "env_restriction": {
+    "allowed_envs": ["uat", "prod"],
+    "description": "系统支持 UAT 和 PROD 环境"
+  },
+  "risk_level": {
+    "low": [
+      "query_feature_url",
+      "list_features",
+      "get_enums",
+      "query_user_info",
+      "get_verify_code",
+      "check_appearance_config",
+      "check_appearance_configs_batch",
+      "check_reward_config",
+      "check_reward_configs_batch",
+      "query_pool_config",
+      "query_gift_records",
+      "check_gift_type",
+      "query_gift_by_name",
+      "list_gift_types"
+    ],
+    "medium": [
+      "execute_gift_issue",
+      "add_backpack_gift",
+      "add_user_gift",
+      "add_room_gift",
+      "top_up_diamond",
+      "delete_gift_record"
+    ],
+    "high": [
+      "update_pool_gift_weight_to_max",
+      "update_pool_ssr_weight_to_zero",
+      "verify_random_gift_pool_gifts",
+      "run_script"
+    ]
+  }
+}

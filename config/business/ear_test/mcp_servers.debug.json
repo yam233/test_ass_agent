@@ -1,0 +1,38 @@
+{
+  "mcp_servers": {
+    "feature-search-server": {
+      "base_url": "local",
+      "description": "地址定位-功能清单查询服务（使用本地业务逻辑）"
+    },
+    "gift-management-server": {
+      "base_url": "local",
+      "description": "礼物发放-专属礼物/背包礼物服务（使用本地业务逻辑）"
+    },
+    "test-tool-server": {
+      "base_url": "local",
+      "description": "测试工具联动-钻石/活动/直播间（使用本地业务逻辑）"
+    },
+    "user-info-server": {
+      "base_url": "local",
+      "description": "基础信息-用户/验证码查询（使用本地业务逻辑 - DEBUG 模式）"
+    },
+    "config-check-server": {
+      "base_url": "local",
+      "description": "配置核验-外观/奖励有效期（使用本地业务逻辑）"
+    },
+    "local_capabilities": {
+      "base_url": "local",
+      "description": "本地能力查询服务",
+      "tools": [
+        {
+          "toolName": "get_capabilities",
+          "description": "获取系统当前具备的所有业务功能能力",
+          "inputSchema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      ]
+    }
+  }
+}

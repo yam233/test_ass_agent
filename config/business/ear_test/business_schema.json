@@ -1,0 +1,121 @@
+{
+  "business_name": "ear_test",
+  "entities": [
+    {
+      "name": "用户",
+      "key": "user",
+      "primary_key": "user_id",
+      "aliases": [
+        "用户",
+        "账号",
+        "uid"
+      ]
+    },
+    {
+      "name": "礼物",
+      "key": "gift",
+      "primary_key": "gift_id",
+      "aliases": [
+        "礼物",
+        "礼品"
+      ]
+    },
+    {
+      "name": "外观",
+      "key": "appearance",
+      "primary_key": "appearance_id",
+      "aliases": [
+        "外观",
+        "外观配置",
+        "外观资源"
+      ]
+    },
+    {
+      "name": "奖池",
+      "key": "pool",
+      "primary_key": "pool_id",
+      "aliases": [
+        "奖池",
+        "随机礼物奖池",
+        "魔方奖池"
+      ]
+    },
+    {
+      "name": "后台功能",
+      "key": "feature",
+      "primary_key": "key",
+      "aliases": [
+        "后台",
+        "地址",
+        "url",
+        "链接",
+        "grafana",
+        "mongo"
+      ]
+    }
+  ],
+  "relations": [
+    "奖池 包含 礼物",
+    "礼物 关联 奖池",
+    "用户 拥有 外观"
+  ],
+  "supported_actions": [
+    "query",
+    "list",
+    "stats",
+    "metadata"
+  ],
+  "operation_mappings": {
+    "user": {
+      "query": {
+        "tool": "query_user_info",
+        "field_map": {
+          "user_id": "user_id",
+          "mobile": "mobile",
+          "room_id": "room_id",
+          "email": "email"
+        }
+      }
+    },
+    "gift": {
+      "query": {
+        "tool": "query_gift_info",
+        "field_map": {
+          "gift_id": "gift_id",
+          "gift_name": "gift_name"
+        }
+      }
+    },
+    "appearance": {
+      "query": {
+        "tool": "query_appearance_config",
+        "field_map": {
+          "appearance_id": "appearance_id"
+        }
+      }
+    },
+    "pool": {
+      "query": {
+        "tool": "query_pool_config",
+        "field_map": {
+          "gift_id": "gift_id",
+          "pool_id": "pool_id"
+        }
+      }
+    },
+    "feature": {
+      "query": {
+        "tool": "search_features",
+        "field_map": {
+          "keyword": "keyword",
+          "source": "source",
+          "limit": "limit"
+        }
+      },
+      "list": {
+        "tool": "list_features",
+        "field_map": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,212 @@
+[
+  {
+    "id": "seed",
+    "category": "normal",
+    "expected_quantity": 10,
+    "expected_batches": 1,
+    "expected_status": "completed"
+  },
+  {
+    "id": "seed_query",
+    "category": "normal",
+    "expected_quantity": 10,
+    "expected_batches": 1,
+    "expected_status": "completed"
+  },
+  {
+    "id": "script",
+    "category": "normal",
+    "expected_quantity": 10,
+    "expected_batches": 1,
+    "expected_status": "completed"
+  },
+  {
+    "id": "config_read",
+    "category": "normal",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "completed"
+  },
+  {
+    "id": "config_update",
+    "category": "normal",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "completed"
+  },
+  {
+    "id": "config_rollback",
+    "category": "normal",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "completed"
+  },
+  {
+    "id": "cleanup",
+    "category": "normal",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "completed"
+  },
+  {
+    "id": "scripts",
+    "category": "normal",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "completed"
+  },
+  {
+    "id": "empty_query",
+    "category": "normal",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "completed"
+  },
+  {
+    "id": "script_query",
+    "category": "normal",
+    "expected_quantity": 10,
+    "expected_batches": 1,
+    "expected_status": "completed"
+  },
+  {
+    "id": "maintenance",
+    "category": "normal",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "completed"
+  },
+  {
+    "id": "new_action",
+    "category": "normal",
+    "expected_quantity": 20,
+    "expected_batches": 2,
+    "expected_status": "completed"
+  },
+  {
+    "id": "missing_quantity",
+    "category": "ambiguity",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "clarification_wait"
+  },
+  {
+    "id": "missing_user",
+    "category": "ambiguity",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "clarification_wait"
+  },
+  {
+    "id": "missing_gift",
+    "category": "ambiguity",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "clarification_wait"
+  },
+  {
+    "id": "unknown_config",
+    "category": "ambiguity",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "clarification_wait"
+  },
+  {
+    "id": "multiple_candidates",
+    "category": "ambiguity",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "clarification_wait"
+  },
+  {
+    "id": "missing_batch",
+    "category": "ambiguity",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "clarification_wait"
+  },
+  {
+    "id": "bad_args_repair",
+    "category": "ambiguity",
+    "expected_quantity": 10,
+    "expected_batches": 1,
+    "expected_status": "completed"
+  },
+  {
+    "id": "invalid_table",
+    "category": "ambiguity",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "failed"
+  },
+  {
+    "id": "auth",
+    "category": "fault",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "failed"
+  },
+  {
+    "id": "transient",
+    "category": "fault",
+    "expected_quantity": 10,
+    "expected_batches": 1,
+    "expected_status": "completed"
+  },
+  {
+    "id": "timeout",
+    "category": "fault",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "failed"
+  },
+  {
+    "id": "half",
+    "category": "fault",
+    "expected_quantity": 5,
+    "expected_batches": 1,
+    "expected_status": "partial"
+  },
+  {
+    "id": "response_loss",
+    "category": "fault",
+    "expected_quantity": 10,
+    "expected_batches": 1,
+    "expected_status": "completed"
+  },
+  {
+    "id": "restart",
+    "category": "fault",
+    "expected_quantity": 10,
+    "expected_batches": 1,
+    "expected_status": "completed"
+  },
+  {
+    "id": "prod",
+    "category": "adversarial",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "failed"
+  },
+  {
+    "id": "tampered_approval",
+    "category": "adversarial",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "approval_wait"
+  },
+  {
+    "id": "changed_scope",
+    "category": "adversarial",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "approval_wait"
+  },
+  {
+    "id": "skip_approval",
+    "category": "adversarial",
+    "expected_quantity": 0,
+    "expected_batches": 0,
+    "expected_status": "approval_wait"
+  }
+]

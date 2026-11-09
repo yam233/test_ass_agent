@@ -1,0 +1,43 @@
+{
+  "mysql": {
+    "live_db": {
+      "host": "localhost",
+      "port": 3306,
+      "user": "example_user",
+      "password": "CHANGE_ME",
+      "database": "example_db",
+      "charset": "utf8mb3"
+    },
+    "user_db": {
+      "host": "localhost",
+      "port": 3306,
+      "user": "example_user",
+      "password": "CHANGE_ME",
+      "database": "example_db",
+      "charset": "utf8mb3"
+    }
+  },
+  "mongodb": {
+    "connection_string": "mongodb://localhost:27017/example",
+    "host": "localhost",
+    "port": 3717,
+    "username": "example_user",
+    "password": "CHANGE_ME",
+    "database": "example_db",
+    "auth_source": "admin",
+    "collections": {
+      "gifts": "test_gifts",
+      "rooms": "test_rooms",
+      "user_items": "test_user_items",
+      "appearances": "test_appearances",
+      "rewards": "test_rewards",
+      "pool": "test_gift_draw_pool"
+    }
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "password": "CHANGE_ME",
+    "db": 0
+  }
+}

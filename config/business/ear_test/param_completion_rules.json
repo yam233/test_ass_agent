@@ -1,0 +1,205 @@
+{
+  "completion_strategies": {
+    "execute_gift_issue": {
+      "duration_days": {
+        "default": 7,
+        "context_keys": ["last_duration", "default_duration"],
+        "description": "有效期天数，默认7天"
+      },
+      "issue_type": {
+        "infer_from": "gift_id",
+        "inference_rules": {
+          "^2\\d+$": "user",
+          "^7\\d+$": "room",
+          "^8\\d+$": "random"
+        },
+        "description": "从礼物ID推断发放类型"
+      },
+      "batch_count": {
+        "default": 1,
+        "context_keys": ["last_batch_count"],
+        "description": "批量数量，默认1"
+      }
+    },
+    "add_backpack_gift": {
+      "num": {
+        "default": 1,
+        "context_keys": ["last_gift_num"],
+        "description": "礼物数量，默认1"
+      },
+      "duration_days": {
+        "default": 7,
+        "context_keys": ["last_duration"],
+        "description": "有效期天数，默认7天"
+      }
+    },
+    "add_user_gift": {
+      "duration_days": {
+        "default": 7,
+        "context_keys": ["last_duration"],
+        "description": "有效期天数，默认7天"
+      }
+    },
+    "add_room_gift": {
+      "duration_days": {
+        "default": 7,
+        "context_keys": ["last_duration"],
+        "description": "有效期天数，默认7天"
+      }
+    },
+    "query_gift_records": {
+      "custom_type": {
+        "infer_from": "element_id",
+        "inference_rules": {
+          "context.room_id": 2,
+          "context.user_id": 3
+        },
+        "description": "从上下文推断类型"
+      }
+    },
+    "query_user_info": {
+      "user_id": {
+        "context_keys": ["user_id", "current_user_id"],
+        "description": "从上下文获取用户ID"
+      },
+      "room_id": {
+        "context_keys": ["room_id", "current_room_id"],
+        "description": "从上下文获取直播间ID"
+      }
+    },
+    "check_appearance_config": {
+      "appearance_id": {
+        "required": true,
+        "prompt": "请提供外观ID",
+        "description": "外观ID必填"
+      }
+    },
+    "check_reward_config": {
+      "reward_id": {
+        "context_keys": ["last_reward_id"],
+        "extract_patterns": [
+          {
+            "pattern": "奖励\\s*[IiDd]*\\s*(\\d+)",
+            "group": 1,
+            "description": "提取奖励ID"
+          }
+        ],
+        "description": "从上下文或文本中提取奖励ID"
+      },
+      "element_id": {
+        "context_keys": ["last_element_id"],
+        "extract_patterns": [
+          {
+            "pattern": "礼物\\s*[IiDd]*\\s*(\\d+)",
+            "group": 1,
+            "description": "提取单个礼物ID"
+          },
+          {
+            "pattern": "外观\\s*[IiDd]*\\s*(\\d+)",
+            "group": 1,
+            "description": "提取单个外观ID"
+          }
+        ],
+        "description": "从上下文或文本中提取礼物/外观ID"
+      },
+      "event_id": {
+        "context_keys": ["last_event_id"],
+        "extract_patterns": [
+          {
+            "pattern": "活动\\s*[IiDd]*[：:]*\\s*(\\d+)",
+            "group": 1,
+            "description": "提取活动ID"
+          }
+        ],
+        "description": "从上下文或文本中提取活动ID"
+      }
+    },
+    "check_reward_configs_batch": {
+      "element_ids": {
+        "extract_patterns": [
+          {
+            "pattern": "礼物\\s*[IiDd]*\\s*([\\d,，、\\s]+)",
+            "group": 1,
+            "split": "[,，、\\s]+",
+            "description": "提取多个礼物ID"
+          },
+          {
+            "pattern": "外观\\s*[IiDd]*\\s*([\\d,，、\\s]+)",
+            "group": 1,
+            "split": "[,，、\\s]+",
+            "description": "提取多个外观ID"
+          }
+        ],
+        "description": "从文本中提取多个礼物/外观ID"
+      },
+      "event_id": {
+        "context_keys": ["last_event_id"],
+        "extract_patterns": [
+          {
+            "pattern": "活动\\s*[IiDd]*[：:]*\\s*(\\d+)",
+            "group": 1,
+            "description": "提取活动ID"
+          }
+        ],
+        "description": "从上下文或文本中提取活动ID"
+      }
+    },
+    "top_up_diamond": {
+      "user_id": {
+        "context_keys": ["user_id", "current_user_id"],
+        "infer_from": "phone",
+        "description": "从上下文或手机号推断用户ID"
+      },
+      "phone": {
+        "context_keys": ["phone", "current_phone"],
+        "description": "从上下文获取手机号"
+      },
+      "diamond_100w_units": {
+        "extract_patterns": [
+          {
+            "pattern": "(\\d+)\\s*亿",
+            "transform": "value * 100",
+            "description": "识别'亿'单位，转换为100万单位（1亿=100个100万）"
+          },
+          {
+            "pattern": "(\\d+)\\s*千万",
+            "transform": "value * 10",
+            "description": "识别'千万'单位，转换为100万单位（1000万=10个100万）"
+          },
+          {
+            "pattern": "(\\d+)\\s*百万",
+            "transform": "value",
+            "description": "识别'百万'单位，直接使用数值"
+          },
+          {
+            "pattern": "(\\d+)\\s*万",
+            "transform": "value / 100",
+            "description": "识别'万'单位，转换为100万单位（100万=1个100万单位）"
+          }
+        ],
+        "required": true,
+        "description": "钻石数量（以100万为单位），支持自动识别万、百万、千万、亿等单位"
+      }
+    }
+  },
+  "global_rules": {
+    "operator": {
+      "context_keys": ["operator", "current_operator"],
+      "default": "test01",
+      "description": "操作人，从上下文获取或使用默认值"
+    },
+    "env": {
+      "context_keys": ["env", "current_env"],
+      "default": "uat",
+      "description": "环境，从上下文获取或使用默认值"
+    }
+  },
+  "config": {
+    "enable_completion": true,
+    "enable_context_inference": true,
+    "enable_param_inference": true,
+    "enable_default_values": true,
+    "prompt_for_required": true,
+    "description": "参数补全配置"
+  }
+}

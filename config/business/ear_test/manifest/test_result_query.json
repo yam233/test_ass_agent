@@ -1,0 +1,22 @@
+{
+  "skill_name": "test_result_query",
+  "display_name": "测试结果查询",
+  "description": "查询测试执行结果",
+  "skill_type": "query",
+  "parameters": {
+    "test_id": {
+      "type": "string",
+      "required": true,
+      "description": "测试ID"
+    },
+    "date_range": {
+      "type": "string",
+      "required": false,
+      "description": "日期范围"
+    }
+  },
+  "examples": [
+    "查询TEST-001的测试结果",
+    "最近一周的测试结果"
+  ]
+}

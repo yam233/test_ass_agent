@@ -1,0 +1,16 @@
+{
+  "skill_name": "query_capabilities",
+  "display_name": "查询系统能力",
+  "description": "查询系统当前具备的所有业务功能能力",
+  "skill_type": "query",
+  "server_name": "local_capabilities",
+  "tool_name": "get_capabilities",
+  "parameters": {},
+  "examples": [
+    "你具备什么能力",
+    "你有哪些功能",
+    "你可以做什么",
+    "系统支持哪些操作",
+    "列出所有能力"
+  ]
+}

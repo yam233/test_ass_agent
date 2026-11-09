@@ -1,0 +1,83 @@
+{
+  "gift_types": {
+    "1": {
+      "name": "常规礼物",
+      "support_exclusive_tab": false,
+      "support_backpack": false,
+      "target_param": "user_id",
+      "target_type": "user",
+      "description": "普通礼物"
+    },
+    "2": {
+      "name": "用户专属礼物",
+      "support_exclusive_tab": true,
+      "support_backpack": false,
+      "target_param": "user_id",
+      "target_type": "user",
+      "description": "只能发给用户的专属礼物"
+    },
+    "3": {
+      "name": "免费礼物",
+      "support_exclusive_tab": false,
+      "support_backpack": true,
+      "target_param": "user_id",
+      "target_type": "user",
+      "description": "可以发放到背包的免费礼物"
+    },
+    "4": {
+      "name": "白给礼物",
+      "support_exclusive_tab": false,
+      "support_backpack": true,
+      "target_param": "user_id",
+      "target_type": "user",
+      "description": "可以发放到背包的白给礼物"
+    },
+    "5": {
+      "name": "粉丝礼物",
+      "support_exclusive_tab": false,
+      "support_backpack": false,
+      "target_param": "user_id",
+      "target_type": "user",
+      "description": "粉丝专属礼物"
+    },
+    "6": {
+      "name": "贵族礼物",
+      "support_exclusive_tab": false,
+      "support_backpack": false,
+      "target_param": "user_id",
+      "target_type": "user",
+      "description": "贵族专属礼物"
+    },
+    "7": {
+      "name": "直播间专属礼物",
+      "support_exclusive_tab": true,
+      "support_backpack": false,
+      "target_param": "room_id",
+      "target_type": "room",
+      "description": "只能发给直播间的专属礼物"
+    },
+    "8": {
+      "name": "随机礼物",
+      "support_exclusive_tab": true,
+      "support_backpack": false,
+      "target_param": "user_id",
+      "target_type": "user_or_room",
+      "description": "可以发给用户或直播间的随机礼物"
+    },
+    "9": {
+      "name": "奖池礼物",
+      "support_exclusive_tab": false,
+      "support_backpack": false,
+      "target_param": "user_id",
+      "target_type": "user",
+      "description": "奖池类型礼物"
+    }
+  },
+  "validation": {
+    "id_range": {
+      "min": 1,
+      "max": 99999999999,
+      "message": "ID必须在1-99999999999之间"
+    }
+  }
+}

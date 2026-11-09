@@ -1,0 +1,29 @@
+{
+  "description": "环境限制配置 - 定义不同环境下的操作限制",
+  "restrictions": {
+    "prod": {
+      "description": "生产环境限制",
+      "allow_query": true,
+      "allow_execute": false,
+      "allow_analysis": true,
+      "reason": "生产环境仅允许只读操作，禁止所有写操作以保证数据安全"
+    },
+    "uat": {
+      "description": "UAT测试环境",
+      "allow_query": true,
+      "allow_execute": true,
+      "allow_analysis": true,
+      "reason": "UAT环境允许所有操作用于测试"
+    }
+  },
+  "error_messages": {
+    "prod_execute_forbidden": "生产环境禁止执行所有执行类操作，请在 UAT 环境测试",
+    "prod_high_risk_forbidden": "生产环境禁止执行高风险操作",
+    "invalid_env": "无效的环境标识，仅支持 uat/prod"
+  },
+  "notes": [
+    "所有执行类操作（写操作）必须在 UAT 环境测试",
+    "生产环境只允许查询类操作（只读）",
+    "如需在生产环境执行操作，请联系管理员评估风险"
+  ]
+}

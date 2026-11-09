@@ -1,0 +1,354 @@
+{
+  "intent_recognition": {
+    "system_prompt": "你是一个专业的意图识别助手，负责识别用户在猫耳测试助手中的意图。支持的意图类型包括：1) 测试操作意图（礼物发放、配置查询、脚本执行等）；2) 系统能力查询意图（询问系统具备什么功能）。",
+    "negative_examples": [
+      {
+        "user_input": "查询礼物记录",
+        "wrong_skill": "execute_gift_issue",
+        "correct_skill": "query_gift_records",
+        "reason": "包含'查询'关键词，应识别为查询类操作，而非执行类操作"
+      },
+      {
+        "user_input": "删除礼物发放记录",
+        "wrong_skill": "execute_gift_issue",
+        "correct_skill": "delete_gift_record",
+        "reason": "包含'删除'关键词，应识别为删除操作，而非发放操作"
+      },
+      {
+        "user_input": "查看外观配置",
+        "wrong_skill": "execute_gift_issue",
+        "correct_skill": "check_appearance_config",
+        "reason": "关键词是'外观'而非'礼物'，应识别为外观配置查询"
+      },
+      {
+        "user_input": "发放背包礼物",
+        "wrong_skill": "execute_gift_issue",
+        "correct_skill": "add_backpack_gift",
+        "reason": "包含'背包'关键词，应识别为背包礼物发放，而非专属礼物发放"
+      },
+      {
+        "user_input": "查询用户信息",
+        "wrong_skill": "execute_gift_issue",
+        "correct_skill": "query_user_info",
+        "reason": "关键词是'用户信息'而非'礼物'，应识别为用户信息查询"
+      }
+    ],
+    "disambiguation_rules": [
+      {
+        "similar_skills": ["query_gift_records", "query_gift_by_name", "check_gift_type"],
+        "key_differentiator": "查询目标和参数",
+        "rules": [
+          "查询+用户ID/直播间ID+礼物记录/历史 → query_gift_records（查询某个用户/直播间的礼物发放记录）",
+          "查询+礼物+具体名称（如猫粮、天使等文字，非数字ID） → query_gift_by_name（根据名称模糊查询礼物信息）",
+          "查询/检查+礼物+数字ID+类型 → check_gift_type（检查某个礼物ID的类型）"
+        ],
+        "examples": [
+          "查询用户10001的礼物记录 → query_gift_records（有用户ID）",
+          "查询直播间9075367的专属礼物记录 → query_gift_records（有直播间ID）",
+          "查询礼物猫粮 → query_gift_by_name（礼物名称是文字）",
+          "查询包含天使的礼物 → query_gift_by_name（礼物名称是文字）",
+          "搜索礼物温柔 → query_gift_by_name（礼物名称是文字）",
+          "检查礼物20123的类型 → check_gift_type（有礼物数字ID）"
+        ],
+        "critical_rule": "如果输入中只有'查询礼物'+文字名称，没有用户ID或直播间ID，必须使用query_gift_by_name"
+      },
+      {
+        "similar_skills": ["execute_gift_issue", "query_gift_records"],
+        "key_differentiator": "动作词",
+        "rules": [
+          "发放/添加/批量/发送 → execute_gift_issue（执行类）",
+          "查询/查看/查找/记录 → query_gift_records（查询类）"
+        ],
+        "examples": [
+          "给用户10001发放礼物20001 → execute_gift_issue",
+          "查询用户10001的礼物记录 → query_gift_records"
+        ]
+      },
+      {
+        "similar_skills": ["execute_gift_issue", "add_backpack_gift"],
+        "key_differentiator": "礼物类型",
+        "rules": [
+          "专属/用户专属/直播间专属/随机礼物 → execute_gift_issue",
+          "背包/背包礼物 → add_backpack_gift"
+        ],
+        "examples": [
+          "给用户10001发放专属礼物20001 → execute_gift_issue",
+          "给用户10001发放背包礼物30001 → add_backpack_gift"
+        ]
+      },
+      {
+        "similar_skills": ["add_backpack_gift", "query_gift_by_name"],
+        "key_differentiator": "动作词和礼物标识",
+        "rules": [
+          "发/发放/发送/给+用户ID+礼物ID（数字） → add_backpack_gift（发放操作）",
+          "查询/搜索/找+礼物+名称（文字） → query_gift_by_name（查询操作）"
+        ],
+        "examples": [
+          "给用户9075566发10个礼物301 → add_backpack_gift（有'发'和数字礼物ID）",
+          "给用户9075566，9075567发10个礼物301 → add_backpack_gift（有'发'和数字礼物ID）",
+          "查询礼物猫粮 → query_gift_by_name（有'查询'和文字名称）",
+          "搜索礼物天使 → query_gift_by_name（有'搜索'和文字名称）"
+        ],
+        "critical_rule": "如果输入包含'发'/'给'等发放动词和数字礼物ID，必须使用add_backpack_gift或execute_gift_issue，不能使用query_gift_by_name"
+      },
+      {
+        "similar_skills": ["execute_gift_issue", "delete_gift_record"],
+        "key_differentiator": "动作词",
+        "rules": [
+          "发放/添加/批量 → execute_gift_issue（执行类）",
+          "删除/撤回/移除 → delete_gift_record（删除类）"
+        ],
+        "examples": [
+          "给用户10001发放礼物20001 → execute_gift_issue",
+          "删除礼物记录123456 → delete_gift_record"
+        ]
+      },
+      {
+        "similar_skills": ["check_appearance_config", "check_reward_config"],
+        "key_differentiator": "配置类型",
+        "rules": [
+          "外观/外观配置/外观资源 → check_appearance_config",
+          "奖励/奖励配置/礼物配置 → check_reward_config"
+        ],
+        "examples": [
+          "查询外观10001的配置 → check_appearance_config",
+          "查询奖励20001的配置 → check_reward_config"
+        ]
+      },
+      {
+        "similar_skills": ["query_feature_url", "check_appearance_config"],
+        "key_differentiator": "是否在找后台地址/监控入口",
+        "rules": [
+          "出现 地址/URL/链接/网址/后台/grafana/mongo/状态/监控/健康 → query_feature_url",
+          "查询具体外观资源详情且有 appearance_id → check_appearance_config"
+        ],
+        "examples": [
+          "查询外观资源状态 → query_feature_url",
+          "查询外观配置grafana地址 → query_feature_url"
+        ]
+      },
+      {
+        "similar_skills": ["update_pool_gift_weight_to_max", "update_pool_ssr_weight_to_zero"],
+        "key_differentiator": "目标值",
+        "rules": [
+          "最大/改为最大/权重最大 → update_pool_gift_weight_to_max",
+          "0/改为0/权重为0 → update_pool_ssr_weight_to_zero"
+        ],
+        "examples": [
+          "把奖池30001的礼物40001权重改为最大 → update_pool_gift_weight_to_max",
+          "把奖池30001的大奖权重改为0 → update_pool_ssr_weight_to_zero"
+        ]
+      }
+    ],
+    "skill_type_rules": {
+      "query": {
+        "keywords": ["查询", "查看", "查找", "获取", "列出", "检查", "校验", "验证", "能力", "功能", "支持"],
+        "description": "查询类操作，不会修改数据，包括系统能力查询"
+      },
+      "execute": {
+        "keywords": ["发放", "添加", "批量", "修改", "更新", "删除", "撤回", "发送", "充值"],
+        "description": "执行类操作，会修改数据"
+      }
+    },
+    "confidence_adjustment": {
+      "high_confidence_indicators": [
+        "包含明确的动作词（发放、查询、删除等）",
+        "包含明确的对象（礼物、用户、外观等）",
+        "包含具体的ID或数值"
+      ],
+      "low_confidence_indicators": [
+        "缺少动作词",
+        "缺少对象",
+        "表述模糊或歧义"
+      ]
+    }
+  },
+  "param_extraction": {
+    "system_prompt": "你是一个专业的参数提取助手，负责从用户输入中提取结构化参数。",
+    "extraction_rules": {
+      "gift_id": {
+        "patterns": ["礼物(ID)?[:：]?\\s*(\\d+)", "(\\d{5,})"],
+        "type": "integer",
+        "validation": "必须是5位以上的数字",
+        "examples": [
+          "礼物20001 → 20001",
+          "发放礼物ID:20001 → 20001",
+          "20001礼物 → 20001"
+        ]
+      },
+      "user_id": {
+        "patterns": ["用户(ID)?[:：]?\\s*(\\d+)", "给用户(\\d+)"],
+        "type": "integer",
+        "validation": "必须是数字",
+        "examples": [
+          "用户10001 → 10001",
+          "给用户10001 → 10001",
+          "用户ID:10001 → 10001"
+        ]
+      },
+      "user_ids": {
+        "patterns": ["用户(ID)?[:：]?\\s*([\\d,，、\\s]+)", "给用户([\\d,，、\\s]+)"],
+        "type": "array",
+        "description": "用户ID列表（多个用户时使用）",
+        "extraction_rule": "提取所有用户ID，用逗号分隔",
+        "examples": [
+          "给用户9075566，9075567发礼物 → [9075566, 9075567]",
+          "用户9075566、9075567、9075568 → [9075566, 9075567, 9075568]",
+          "给用户9075566 9075567发礼物 → [9075566, 9075567]"
+        ],
+        "critical_note": "当输入包含多个用户ID时，必须提取为user_ids数组，不要只提取第一个！"
+      },
+      "room_id": {
+        "patterns": ["直播间(ID)?[:：]?\\s*(\\d+)", "房间(\\d+)"],
+        "type": "integer",
+        "validation": "必须是数字",
+        "examples": [
+          "直播间123456 → 123456",
+          "房间123456 → 123456"
+        ]
+      },
+      "duration_days": {
+        "patterns": ["有效期[:：]?\\s*(\\d+)天?", "(\\d+)天有效"],
+        "type": "integer",
+        "special_values": {
+          "永久": 1000,
+          "永久有效": 1000,
+          "一周": 7,
+          "一个月": 30
+        },
+        "examples": [
+          "有效期7天 → 7",
+          "永久有效 → 1000",
+          "一周 → 7"
+        ]
+      },
+      "batch_count": {
+        "patterns": ["批量(\\d+)个?", "(\\d+)个礼物"],
+        "type": "integer",
+        "validation": "必须在1-100之间",
+        "examples": [
+          "批量5个 → 5",
+          "发放10个礼物 → 10"
+        ]
+      },
+      "diamond_100w_units": {
+        "patterns": ["(\\d+)\\s*亿", "(\\d+)\\s*千万", "(\\d+)\\s*百万", "(\\d+)\\s*万"],
+        "type": "integer",
+        "description": "钻石数量（以100万为单位）",
+        "conversion_rules": {
+          "亿": "数值 * 100（1亿 = 100个100万）",
+          "千万": "数值 * 10（1000万 = 10个100万）",
+          "百万": "数值（100万 = 1个100万）",
+          "万": "数值 / 100（100万 = 1个100万，200万 = 2个100万）"
+        },
+        "examples": [
+          "200万钻石 → 2（200万 ÷ 100 = 2个100万单位）",
+          "300万钻石 → 3（300万 ÷ 100 = 3个100万单位）",
+          "1000万钻石 → 10（1000万 ÷ 100 = 10个100万单位）",
+          "1亿钻石 → 100（1亿 = 100个100万单位）",
+          "500万钻石 → 5（500万 ÷ 100 = 5个100万单位）"
+        ],
+        "critical_note": "必须将万单位转换为100万单位！200万 = 2个100万单位，不是200！"
+      },
+      "appearance_id": {
+        "patterns": ["外观(ID)?[:：]?\\s*(\\d+)", "(\\d{5,})"],
+        "type": "integer",
+        "validation": "必须是5位以上的数字",
+        "examples": [
+          "外观70244 → 70244",
+          "发放外观ID:70244 → 70244",
+          "70244外观 → 70244"
+        ]
+      },
+      "appearance_type": {
+        "patterns": ["外观类型[:：]?\\s*(\\d+)", "类型(\\d+)"],
+        "type": "integer",
+        "validation": "必须在1-11之间",
+        "special_values": {
+          "座驾": 1,
+          "头像框": 2,
+          "名片框": 3,
+          "气泡框": 4,
+          "称号": 5,
+          "挂件": 6,
+          "进场通知": 7,
+          "红包封面": 8,
+          "身份铭牌": 9,
+          "气泡框字色": 11
+        },
+        "examples": [
+          "外观类型7 → 7",
+          "进场通知 → 7",
+          "座驾 → 1"
+        ]
+      },
+      "num": {
+        "patterns": ["数量[:：]?\\s*(\\d+)", "(\\d+)个", "发(\\d+)个"],
+        "type": "integer",
+        "validation": "必须在1-1000之间",
+        "examples": [
+          "数量10 → 10",
+          "发10个礼物 → 10",
+          "给用户发5个 → 5"
+        ]
+      }
+    },
+    "type_inference": {
+      "gift_id_to_issue_type": {
+        "description": "根据礼物ID自动推断发放类型",
+        "rules": {
+          "^2\\d{4,}$": "user",
+          "^7\\d{4,}$": "room",
+          "^8\\d{4,}$": "random",
+          "^[34]\\d{4,}$": "backpack"
+        },
+        "examples": [
+          "20001 → user（用户专属）",
+          "70001 → room（直播间专属）",
+          "80001 → random（随机礼物）",
+          "30001 → backpack（背包礼物）"
+        ]
+      }
+    },
+    "error_handling": {
+      "missing_required_params": "如果缺少必填参数，返回空值，由系统自动补全",
+      "invalid_format": "如果参数格式错误，尝试修正或返回空值",
+      "ambiguous_params": "如果参数有歧义，选择最可能的解释"
+    }
+  },
+  "output_format": {
+    "intent_recognition": {
+      "required_fields": ["skill_name", "skill_type", "confidence", "reason"],
+      "optional_fields": ["params"],
+      "confidence_range": [0.0, 1.0],
+      "example": {
+        "skill_name": "execute_gift_issue",
+        "skill_type": "execute",
+        "confidence": 0.95,
+        "reason": "用户明确表示要发放礼物，包含'发放'和'礼物'关键词",
+        "params": {}
+      }
+    },
+    "param_extraction": {
+      "format": "JSON对象",
+      "type_conversion": {
+        "integer": "字符串转整数",
+        "string": "保持字符串",
+        "array": "逗号分隔转数组"
+      },
+      "example": {
+        "gift_id": 20001,
+        "target_id": 10001,
+        "duration_days": 7
+      }
+    }
+  },
+  "config": {
+    "enable_negative_examples": true,
+    "enable_disambiguation_rules": true,
+    "enable_type_inference": true,
+    "enable_confidence_adjustment": true,
+    "temperature": 0.1,
+    "description": "LLM Prompt 优化配置"
+  }
+}

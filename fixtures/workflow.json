@@ -1,0 +1,361 @@
+{
+  "source": "synthetic",
+  "cases": {
+    "list_scripts": {
+      "valid_request": {},
+      "extra_field_request": {
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "list_scripts",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "list_scripts",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    },
+    "query_config": {
+      "valid_request": {
+        "key": "gift_multiplier"
+      },
+      "extra_field_request": {
+        "key": "gift_multiplier",
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "query_config",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "query_config",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    },
+    "query_data": {
+      "valid_request": {
+        "table": "gifts"
+      },
+      "extra_field_request": {
+        "table": "gifts",
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "query_data",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "query_data",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "response_samples": [
+        {
+          "rows": [],
+          "row_count": 0
+        },
+        {
+          "rows": [
+            {
+              "batch_id": "sample-1",
+              "quantity": 10
+            }
+          ],
+          "row_count": 1
+        },
+        {
+          "rows": [
+            {
+              "batch_id": "sample-1",
+              "quantity": 10
+            },
+            {
+              "batch_id": "sample-2",
+              "quantity": 5
+            }
+          ],
+          "row_count": 2
+        },
+        {
+          "rows": "invalid_type"
+        }
+      ]
+    },
+    "update_config": {
+      "valid_request": {
+        "key": "gift_multiplier",
+        "value": 2
+      },
+      "extra_field_request": {
+        "key": "gift_multiplier",
+        "value": 2,
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "update_config",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "update_config",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    },
+    "seed_test_data": {
+      "valid_request": {
+        "table": "gifts",
+        "user_id": 123,
+        "gift_id": 301,
+        "quantity": 10
+      },
+      "extra_field_request": {
+        "table": "gifts",
+        "user_id": 123,
+        "gift_id": 301,
+        "quantity": 10,
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "seed_test_data",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "seed_test_data",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    },
+    "cleanup_data": {
+      "valid_request": {
+        "batch_id": "example-batch"
+      },
+      "extra_field_request": {
+        "batch_id": "example-batch",
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "cleanup_data",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "cleanup_data",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    },
+    "run_script": {
+      "valid_request": {
+        "script_id": "send_gifts",
+        "user_id": 123,
+        "gift_id": 301,
+        "quantity": 10
+      },
+      "extra_field_request": {
+        "script_id": "send_gifts",
+        "user_id": 123,
+        "gift_id": 301,
+        "quantity": 10,
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "run_script",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "run_script",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    },
+    "ask_clarification": {
+      "valid_request": {
+        "question": "需要发放几个？"
+      },
+      "extra_field_request": {
+        "question": "需要发放几个？",
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "ask_clarification",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "ask_clarification",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    },
+    "rollback_config": {
+      "valid_request": {
+        "change_id": "example-change"
+      },
+      "extra_field_request": {
+        "change_id": "example-change",
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "rollback_config",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "rollback_config",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    },
+    "read_ref": {
+      "valid_request": {
+        "ref_id": "example-ref",
+        "offset": 0,
+        "limit": 3
+      },
+      "extra_field_request": {
+        "ref_id": "example-ref",
+        "offset": 0,
+        "limit": 3,
+        "unexpected": "rejected"
+      },
+      "bad_args_response": {
+        "success": false,
+        "status": "failed",
+        "code": "BAD_ARGS",
+        "message": "参数不符合 schema",
+        "tool_name": "read_ref",
+        "data": {},
+        "hint": "按工具 schema 修复一次；缺必填参数时追问用户，不猜值",
+        "retryable": false,
+        "retry_after_ms": null
+      },
+      "permission_response": {
+        "success": false,
+        "status": "failed",
+        "code": "PERMISSION_DENIED",
+        "message": "当前环境或工具无权限",
+        "tool_name": "read_ref",
+        "data": {},
+        "hint": "需要对应测试环境与工具权限，不重试",
+        "retryable": false,
+        "retry_after_ms": null
+      }
+    }
+  }
+}

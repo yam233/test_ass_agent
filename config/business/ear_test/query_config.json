@@ -1,0 +1,28 @@
+{
+  "generic_terms": [
+    "信息",
+    "礼物信息",
+    "类型",
+    "礼物类型",
+    "详情",
+    "礼物详情",
+    "查询",
+    "礼物",
+    "礼品"
+  ],
+  "help_messages": {
+    "no_params": "请提供礼物ID或名称\n\n支持以下查询方式：\n• 按ID查询：检查礼物{example_gift_id}的类型\n• 按名称查询：查询礼物{example_gift_name}\n• 模糊搜索：查询包含{example_keyword}的礼物\n\n提示：输入\"列出所有礼物类型\"可查看礼物分类规则",
+    "generic_term": "请提供具体的礼物ID或名称\n\n支持以下查询方式：\n• 按ID查询：检查礼物{example_gift_id}的类型\n• 按名称查询：查询礼物{example_gift_name}\n• 模糊搜索：查询包含{example_keyword}的礼物\n\n提示：输入\"列出所有礼物类型\"可查看礼物分类规则"
+  },
+  "examples": {
+    "gift_id": 301,
+    "gift_name": "猫粮",
+    "keyword": "天使"
+  },
+  "response_icons": {
+    "success": "✅",
+    "error": "❌",
+    "warning": "⚠️",
+    "info": "ℹ️"
+  }
+}

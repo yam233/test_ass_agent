@@ -1,0 +1,25 @@
+{
+  "test_tool": {
+    "base_url": "https://internal.example.invalid",
+    "endpoints": {
+      "top_up": "/top_up"
+    },
+    "auth": {
+      "sid": "VjjAYA0oQ0voNZHgAAFj",
+      "cookies": {
+        "uid": "23978",
+        "username": "yuanyu",
+        "session": "eyJfcGVybWFuZW50Ijp0cnVlLCJzZXNzaW9uX2lkIjoiZjcyYzVhN2YxOWMxMzUzNjllNTU2ZDUxYTVhMTg1YWQiLCJ1c2VybmFtZSI6Inl1YW55dSJ9.aZdBBg.TnFpYkTk5b07nquDanGOLhTsKbM"
+      }
+    },
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "zh-CN,zh;q=0.9",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    "diamond_limits": {
+      "max_wan": 10000,
+      "comment": "最大支持1亿钻石（10000万）"
+    }
+  }
+}
