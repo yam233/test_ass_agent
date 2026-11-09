@@ -8,7 +8,12 @@ from agent_core.langgraph_agent.compat import BaseTool
 from agent_core.langgraph_agent.metadata import default_metadata_registry
 from agent_core.langgraph_agent.tools import DBQueryTool, ScriptRunTool
 from agent_core.managers.param_validator import ParamValidator
-from agent_core.result_status import STATUS_FAILED, STATUS_PARTIAL_SUCCESS, STATUS_SUCCESS, status_from_counts
+from agent_core.result_status import (
+    STATUS_FAILED,
+    STATUS_PARTIAL_SUCCESS,
+    STATUS_SUCCESS,
+    status_from_counts,
+)
 from agent_core.skills.standard import (
     BackendMetadataSkill,
     BackendGiftIssueSkill,
@@ -65,7 +70,11 @@ def test_batch_executor_reports_failed_items():
     async def run_query(params, index):
         if params["user_id"] == 2:
             return {"success": False, "message": "用户不存在", "data": {}}
-        return {"success": True, "message": "ok", "data": {"user_id": params["user_id"]}}
+        return {
+            "success": True,
+            "message": "ok",
+            "data": {"user_id": params["user_id"]},
+        }
 
     result = asyncio.run(
         BatchQueryExecutor.run_batch_queries(
@@ -84,34 +93,50 @@ def test_execute_confirmation_guard_defaults_on():
     agent = AsyncSkillAgent.__new__(AsyncSkillAgent)
     agent.intent_safety_config = {"execute_need_confirm": True}
 
-    assert agent._execute_requires_confirmation(
-        {"skill_type": "execute", "skill_name": "add_backpack_gift"},
-        {},
-    ) is True
+    assert (
+        agent._execute_requires_confirmation(
+            {"skill_type": "execute", "skill_name": "add_backpack_gift"},
+            {},
+        )
+        is True
+    )
 
-    assert agent._execute_requires_confirmation(
-        {"skill_type": "execute", "skill_name": "add_backpack_gift"},
-        {"execute_confirmed": True},
-    ) is False
+    assert (
+        agent._execute_requires_confirmation(
+            {"skill_type": "execute", "skill_name": "add_backpack_gift"},
+            {"execute_confirmed": True},
+        )
+        is False
+    )
 
-    assert agent._execute_requires_confirmation(
-        {"skill_type": "query", "skill_name": "query_gift_info"},
-        {},
-    ) is False
+    assert (
+        agent._execute_requires_confirmation(
+            {"skill_type": "query", "skill_name": "query_gift_info"},
+            {},
+        )
+        is False
+    )
 
 
 def test_safety_layer_opens_query_and_blocks_unconfirmed_execute():
     safety = SafetyLayer()
 
-    query_decision = safety.evaluate({"skill_type": "query"}, {"operator": "tester", "env": "uat"})
+    query_decision = safety.evaluate(
+        {"skill_type": "query"}, {"operator": "tester", "env": "uat"}
+    )
     assert query_decision.allowed is True
     assert query_decision.need_confirm is False
 
-    execute_decision = safety.evaluate({"skill_type": "execute", "risk_level": "medium"}, {"operator": "tester", "env": "uat"})
+    execute_decision = safety.evaluate(
+        {"skill_type": "execute", "risk_level": "medium"},
+        {"operator": "tester", "env": "uat"},
+    )
     assert execute_decision.allowed is True
     assert execute_decision.need_confirm is True
 
-    confirmed = safety.evaluate({"skill_type": "execute"}, {"execute_confirmed": True, "env": "uat"})
+    confirmed = safety.evaluate(
+        {"skill_type": "execute"}, {"execute_confirmed": True, "env": "uat"}
+    )
     assert confirmed.allowed is True
     assert confirmed.need_confirm is False
 
@@ -174,10 +199,12 @@ def test_backend_gift_issue_allows_batch_gift_params():
 
 
 def test_backend_metadata_skill_searches_entries():
-    skill = BackendMetadataSkill([
-        {"title": "随机礼物后台", "url": "https://example.test/random-gift"},
-        {"title": "外观配置", "url": "https://example.test/appearance"},
-    ])
+    skill = BackendMetadataSkill(
+        [
+            {"title": "随机礼物后台", "url": "https://example.test/random-gift"},
+            {"title": "外观配置", "url": "https://example.test/appearance"},
+        ]
+    )
 
     result = skill.search("随机礼物")
 
@@ -190,8 +217,7 @@ def test_universal_query_blocks_write_actions():
     executor = UniversalQueryExecutor("testops")
 
     result = executor.execute(
-        {"entity": "user", "action": "delete", "filters": {"user_id": 1}},
-        handlers={}
+        {"entity": "user", "action": "delete", "filters": {"user_id": 1}}, handlers={}
     )
 
     assert result["success"] is False
@@ -201,10 +227,7 @@ def test_universal_query_blocks_write_actions():
 def test_universal_query_returns_metadata_without_handler():
     executor = UniversalQueryExecutor("testops")
 
-    result = executor.execute(
-        {"entity": "用户", "action": "metadata"},
-        handlers={}
-    )
+    result = executor.execute({"entity": "用户", "action": "metadata"}, handlers={})
 
     assert result["success"] is True
     assert result["data"]["items"][0]["entity"] == "user"
@@ -276,7 +299,9 @@ def test_langgraph_agent_routes_backend_metadata_tool():
             return {
                 "success": True,
                 "message": "找到 1 个后台入口",
-                "data": {"features": [{"title": "礼物后台", "url": "https://example.test"}]},
+                "data": {
+                    "features": [{"title": "礼物后台", "url": "https://example.test"}]
+                },
             }
 
     agent = LangGraphAgent(tools={"backend_feature": FakeTool()})
@@ -310,7 +335,11 @@ def test_langgraph_agent_clarifies_missing_script_param_and_resumes(tmp_path):
     (repo / "case.py").write_text("print('ok')", encoding="utf-8")
     agent = LangGraphAgent(tools={"script_read": ScriptRunTool(repo_path=str(repo))})
 
-    first = asyncio.run(agent.ainvoke("读取脚本源码", context={"env": "uat", "operator": "alice", "session_id": "s1"}))
+    first = asyncio.run(
+        agent.ainvoke(
+            "读取脚本源码", context={"env": "uat", "operator": "alice", "session_id": "s1"}
+        )
+    )
 
     assert first["success"] is False
     assert first["code"] == "NEED_MORE_INFO"
@@ -320,10 +349,20 @@ def test_langgraph_agent_clarifies_missing_script_param_and_resumes(tmp_path):
 def test_langgraph_memory_is_isolated_by_operator():
     agent = LangGraphAgent(tools={})
 
-    asyncio.run(agent.ainvoke("读取脚本源码", context={"env": "uat", "operator": "alice", "session_id": "s1"}))
-    asyncio.run(agent.ainvoke("你好", context={"env": "uat", "operator": "bob", "session_id": "s1"}))
+    asyncio.run(
+        agent.ainvoke(
+            "读取脚本源码", context={"env": "uat", "operator": "alice", "session_id": "s1"}
+        )
+    )
+    asyncio.run(
+        agent.ainvoke(
+            "你好", context={"env": "uat", "operator": "bob", "session_id": "s1"}
+        )
+    )
 
-    assert agent.memory.get_pending({"operator": "alice", "session_id": "s1"}) is not None
+    assert (
+        agent.memory.get_pending({"operator": "alice", "session_id": "s1"}) is not None
+    )
     assert agent.memory.get_pending({"operator": "bob", "session_id": "s1"}) is None
 
 
@@ -336,7 +375,9 @@ def test_langgraph_agent_wraps_tool_exceptions():
 
     agent = LangGraphAgent(tools={"backend_feature": BrokenTool()})
 
-    result = asyncio.run(agent.ainvoke("礼物后台地址", context={"env": "uat", "operator": "tester"}))
+    result = asyncio.run(
+        agent.ainvoke("礼物后台地址", context={"env": "uat", "operator": "tester"})
+    )
 
     assert result["success"] is False
     assert result["code"] == "TOOL_EXECUTION_ERROR"
@@ -353,10 +394,16 @@ def test_langgraph_permission_honors_tool_whitelist():
 
     agent = LangGraphAgent(tools={"backend_feature": ShouldNotRunTool()})
 
-    result = asyncio.run(agent.ainvoke(
-        "礼物后台地址",
-        context={"env": "uat", "operator": "tester", "allowed_tools": ["script_scan"]},
-    ))
+    result = asyncio.run(
+        agent.ainvoke(
+            "礼物后台地址",
+            context={
+                "env": "uat",
+                "operator": "tester",
+                "allowed_tools": ["script_scan"],
+            },
+        )
+    )
 
     assert result["success"] is False
     assert result["code"] == "PERMISSION_DENIED"
@@ -365,7 +412,9 @@ def test_langgraph_permission_honors_tool_whitelist():
 def test_metadata_registry_uses_tool_platform_without_server_name():
     registry = default_metadata_registry()
 
-    tool_name = registry.resolve_tool_name({"intent": "event_time_shift", "params": {"event_id": 10001}})
+    tool_name = registry.resolve_tool_name(
+        {"intent": "event_time_shift", "params": {"event_id": 10001}}
+    )
     tool = registry.get_tool(tool_name)
 
     assert tool_name == "shift_event_time"
@@ -377,10 +426,12 @@ def test_metadata_registry_uses_tool_platform_without_server_name():
 def test_langgraph_metadata_routes_exclusive_gift_to_database_executor():
     agent = LangGraphAgent()
 
-    result = asyncio.run(agent.ainvoke(
-        "给用户123发放专属礼物20001",
-        context={"env": "uat", "operator": "tester", "execute_confirmed": True},
-    ))
+    result = asyncio.run(
+        agent.ainvoke(
+            "给用户123发放专属礼物20001",
+            context={"env": "uat", "operator": "tester", "execute_confirmed": True},
+        )
+    )
 
     assert result["success"] is True
     assert result["status"] == "planned"
@@ -394,10 +445,12 @@ def test_langgraph_metadata_routes_exclusive_gift_to_database_executor():
 def test_langgraph_metadata_routes_event_shift_to_backend_executor():
     agent = LangGraphAgent()
 
-    result = asyncio.run(agent.ainvoke(
-        "把活动10001的时间偏移到明天",
-        context={"env": "uat", "operator": "tester", "execute_confirmed": True},
-    ))
+    result = asyncio.run(
+        agent.ainvoke(
+            "把活动10001的时间偏移到明天",
+            context={"env": "uat", "operator": "tester", "execute_confirmed": True},
+        )
+    )
 
     assert result["success"] is True
     assert result["status"] == "planned"
@@ -412,10 +465,12 @@ def test_langgraph_metadata_routes_event_shift_to_backend_executor():
 def test_langgraph_metadata_routes_send_gifts_to_script_executor():
     agent = LangGraphAgent()
 
-    result = asyncio.run(agent.ainvoke(
-        "用用户123给直播间8888送礼物10001，送100次",
-        context={"env": "uat", "operator": "tester", "execute_confirmed": True},
-    ))
+    result = asyncio.run(
+        agent.ainvoke(
+            "用用户123给直播间8888送礼物10001，送100次",
+            context={"env": "uat", "operator": "tester", "execute_confirmed": True},
+        )
+    )
 
     assert result["success"] is True
     assert result["status"] == "planned"
@@ -444,14 +499,22 @@ def test_test_script_scan_and_read(tmp_path):
 
 
 def test_script_skills_can_be_created_from_registry():
-    skills_registry = ConfigLoader.load_business_config("testops", "skills_registry.json")
+    skills_registry = ConfigLoader.load_business_config(
+        "testops", "skills_registry.json"
+    )
     mcp_registry = ConfigLoader.load_business_config("testops", "mcp_registry.json")
-    script_skill_names = {"scan_test_scripts", "read_test_script", "execute_test_script"}
+    script_skill_names = {
+        "scan_test_scripts",
+        "read_test_script",
+        "execute_test_script",
+    }
 
     created = []
     for skill_config in skills_registry["skills"]:
         if skill_config.get("skill_name") in script_skill_names:
-            created.append(SkillFactory.create_skill(skill_config, mcp_registry, "testops"))
+            created.append(
+                SkillFactory.create_skill(skill_config, mcp_registry, "testops")
+            )
 
     assert len(created) == 3
 

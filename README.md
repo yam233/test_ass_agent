@@ -4,7 +4,7 @@
 
 ## 多步工作流入口
 
-四批改造提供 `/workflows`：原生工具调用、三重预算、逐步审批、持久化 checkpoint、配置回滚、批次清理、结果引用与评测。使用方法和边界见 [多步工作流指南](docs/workflow-guide.md)。`/agent/execute` 保留原单动作行为。
+`/workflows` 提供原生工具调用、三重预算、逐步审批、持久化 checkpoint、配置回滚、批次清理、结果引用与评测。本轮五批加固增加策略约束、审计、上下文预算、持久队列和取消恢复。使用方法见 [多步工作流指南](docs/workflow-guide.md)，实际验收见 [改造验收记录](docs/runtime-hardening-acceptance.md)。`/agent/execute` 保留原单动作行为。
 
 ## 当前运行方式：平台 mock + 可替换模型
 

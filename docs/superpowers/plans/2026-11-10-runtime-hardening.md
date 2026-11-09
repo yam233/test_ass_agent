@@ -1,6 +1,6 @@
 # TestOps Agent Runtime Hardening Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** 分五批完成两轮评审中有效的可靠性、治理、评测和单机调度改造。
 
@@ -8,7 +8,7 @@
 
 **Tech Stack:** Python 3.10+ 兼容语法、FastAPI、Pydantic 2、SQLite、httpx、pytest；不引入外部分布式队列。
 
-**Spec:** ../specs/2026-11-10-runtime-hardening-design.md（提案；此计划未开始执行）。
+**Spec:** ../specs/2026-11-10-runtime-hardening-design.md（已实施；验收记录见 ../../runtime-hardening-acceptance.md）。
 
 ## Global Constraints
 
@@ -41,10 +41,10 @@
 
 **Interfaces:** 核心环境提供 WorkflowRuntime 与工作流 API；完整依赖另支持兼容/旧架构入口。新环境不要求虚拟环境名为 .venv。
 
-- [ ] 在仓库外 venv 安装核心依赖，运行 `python -m pytest tests -q`，定位导入耦合并修复；旧测试以 `python -m pytest tests_legacy -q` 独立验证。
-- [ ] 把两处子进程解释器改为 sys.executable；验证提交前/后崩溃测试实际启动子进程且保持原语义。
-- [ ] CI 分核心和完整配置；无远程凭证执行，README 给出两套精确命令及覆盖边界，兼容入口不支持时返回明确说明。
-- [ ] 两套环境全部通过后提交，不靠 collect_ignore 隐藏失败。
+- [x] 在仓库外 venv 安装核心依赖，运行 `python -m pytest tests -q`，定位导入耦合并修复；旧测试以 `python -m pytest tests_legacy -q` 独立验证。
+- [x] 把两处子进程解释器改为 sys.executable；验证提交前/后崩溃测试实际启动子进程且保持原语义。
+- [x] CI 分核心和完整配置；无远程凭证执行，README 给出两套精确命令及覆盖边界，兼容入口不支持时返回明确说明。
+- [x] 两套环境全部通过后提交，不靠 collect_ignore 隐藏失败。
 
 ### Task 2：引用分页、不可升级的预演、最小状态版本
 
@@ -52,10 +52,10 @@
 
 **Interfaces:** `migrate_state(payload: dict) -> dict`；状态新增 schema_version=1、mode；`read_ref` data 增加 returned_count/next_offset/truncated；超大单行失败码 ROW_TOO_LARGE；预演 status=planned/stop_reason=dry_run。
 
-- [ ] 测试 runtime 读取 100 条小行保留全部行且 refs 不增加；中文大页分片无重漏，超大单行明确失败。
-- [ ] 测试 dry_run 创建/续跑均无 actions、receipts 和业务副作用，省略/修改 flag 不能升级；只预览第一个写步骤。
-- [ ] 测试无版本 v0→v1 幂等迁移、未知新版本拒绝；实现分页限额和持久 mode。
-- [ ] 运行上述测试及 tests/test_workflow_recovery.py、tests/test_write_reliability.py，更新契约/文档并提交。
+- [x] 测试 runtime 读取 100 条小行保留全部行且 refs 不增加；中文大页分片无重漏，超大单行明确失败。
+- [x] 测试 dry_run 创建/续跑均无 actions、receipts 和业务副作用，省略/修改 flag 不能升级；只预览第一个写步骤。
+- [x] 测试无版本 v0→v1 幂等迁移、未知新版本拒绝；实现分页限额和持久 mode。
+- [x] 运行上述测试及 tests/test_workflow_recovery.py、tests/test_write_reliability.py，更新契约/文档并提交。
 
 ## 第二批
 
@@ -65,11 +65,11 @@
 
 **Interfaces:** `resolve_policy(context: dict, saved: dict | None) -> dict` 返回有效工具集、policy_version、破坏性操作阈值；客户端限制只收窄；准备、审批、执行共用校验。破坏性确认通过 resume 的 `confirm_effect='delete_batch'` 和 `snapshot_hash` 绑定动作。
 
-- [ ] 测试缺 env/operator 的写入拒绝、prod 拒绝、未知工具拒绝；读默认身份不能自动获写权限。
-- [ ] 测试 resume 移除 allowed_tools 无法扩权，服务端撤销后旧动作不能执行，客户端伪造 grant 无效。
-- [ ] 测试更换 operator/session_id/env 的审批、续跑、取消和读取均拒绝；同 scope 操作继续兼容，不提供代批能力。
-- [ ] 测试 cleanup 缺删除确认、快照变化、影响量>1000 均拒绝；有效单批删除按绑定动作执行。
-- [ ] 更新调用示例和权限边界说明，通过审批/幂等回归后提交。
+- [x] 测试缺 env/operator 的写入拒绝、prod 拒绝、未知工具拒绝；读默认身份不能自动获写权限。
+- [x] 测试 resume 移除 allowed_tools 无法扩权，服务端撤销后旧动作不能执行，客户端伪造 grant 无效。
+- [x] 测试更换 operator/session_id/env 的审批、续跑、取消和读取均拒绝；同 scope 操作继续兼容，不提供代批能力。
+- [x] 测试 cleanup 缺删除确认、快照变化、影响量>1000 均拒绝；有效单批删除按绑定动作执行。
+- [x] 更新调用示例和权限边界说明，通过审批/幂等回归后提交。
 
 ### Task 4：审计与模型可靠性
 
@@ -77,11 +77,11 @@
 
 **Interfaces:** `append_event(db, event: dict) -> None` 在调用者事务内追加，事件有唯一 event_id；模型结果/异常含 attempt、usage、finish_reason 和版本指纹。
 
-- [ ] 注入审批提交/写回执后的崩溃，验证审批与回执事件不丢、不重复，且可还原 actor/action/args。
-- [ ] 假传输覆盖 429→成功、5xx 耗尽、鉴权立即失败、length→重试，以及重试预算不足；不得调用真实模型。
-- [ ] 输出 cap 默认1024，length 重试最多1次且不超2048；暂态重试最多2次、退避1/3秒；所有尝试计入预算和 trace。
-- [ ] 哈希覆盖 SYSTEM、工具契约与有效模型配置，并保存脱敏版本 artifact；验证变更指纹和历史可追溯。
-- [ ] 定向与审批恢复回归通过后提交。
+- [x] 注入审批提交/写回执后的崩溃，验证审批与回执事件不丢、不重复，且可还原 actor/action/args。
+- [x] 假传输覆盖 429→成功、5xx 耗尽、鉴权立即失败、length→重试，以及重试预算不足；不得调用真实模型。
+- [x] 输出 cap 默认1024，length 重试最多1次且不超2048；暂态重试最多2次、退避1/3秒；所有尝试计入预算和 trace。
+- [x] 哈希覆盖 SYSTEM、工具契约与有效模型配置，并保存脱敏版本 artifact；验证变更指纹和历史可追溯。
+- [x] 定向与审批恢复回归通过后提交。
 
 ## 第三批
 
@@ -91,9 +91,9 @@
 
 **Interfaces:** `save(state: dict, expected_revision: int) -> int` 冲突返回 STATE_CONFLICT；`expire_approvals(now: float) -> int`；`gc_refs(now: float, retention_days: int=7, dry_run: bool=True) -> dict`。取消控制独立持久化，不随 checkpoint 覆盖。
 
-- [ ] 测试旧任务迁移、审批与过期并发、取消标记与旧 revision 保存冲突、未知 schema 拒绝。
-- [ ] 测试 GC 只清终态过期 refs，活动引用/未对账动作/回执保留；reset dry-run 零变化且运行中实际 reset 被拒绝。
-- [ ] 实现维护命令、索引及迁移事务，核心与恢复套件通过后提交。
+- [x] 测试旧任务迁移、审批与过期并发、取消标记与旧 revision 保存冲突、未知 schema 拒绝。
+- [x] 测试 GC 只清终态过期 refs，活动引用/未对账动作/回执保留；reset dry-run 零变化且运行中实际 reset 被拒绝。
+- [x] 实现维护命令、索引及迁移事务，核心与恢复套件通过后提交。
 
 ### Task 6：有分区预算的消息构造
 
@@ -101,9 +101,9 @@
 
 **Interfaces:** `build_context(state: dict, tool_catalog: list, input_limit_bytes: int=32768) -> dict` 返回 messages、context_bytes、compaction_events；必要内容超限返回明确预算错误。
 
-- [ ] 以200条历史构造上下文，验证UTF-8总量、分区统计、完整工具消息对、任务及澄清保留。
-- [ ] 测试旧观察含指令文本仍按数据处理、巨大必要输入明确停止，读引用页仍可用于末步核验。
-- [ ] 用10–20步脚本轨迹验证实际运行；修正system摘要布局，跑核心工作流套件后提交。
+- [x] 以200条历史构造上下文，验证UTF-8总量、分区统计、完整工具消息对、任务及澄清保留。
+- [x] 测试旧观察含指令文本仍按数据处理、巨大必要输入明确停止，读引用页仍可用于末步核验。
+- [x] 用10–20步脚本轨迹验证实际运行；修正system摘要布局，跑核心工作流套件后提交。
 
 ## 第四批
 
@@ -113,11 +113,11 @@
 
 **Interfaces:** Environment `reset(seed:int)->None / snapshot()->dict / apply(action:dict)->dict / invariants()->list[dict]`，apply 委托真实 runtime/platform，禁止绕审批；runner 输出逐次 JSONL 与独立汇总。模型模式 fixture/chaos/replay/remote。
 
-- [ ] 先用固定现有用例比较新旧 runner 的原始状态判分完全一致，再迁移入口；baseline hash 不符拒绝比较。
-- [ ] 新增独立预期、读故障、6条3–5步链路；固定种子 chaos 同时统计误拒和漏拦，验证全部拒绝不能得高分。
-- [ ] 测试 replay 动态ID映射和观察不匹配拒绝；真实重复与复用记录不能混计；副作用分提交/尝试/新动作。
-- [ ] 提供 `python -m evals.runner --suite workflow --model fixture --repeat 4`；remote 缺显式token上限拒绝运行。范围固定12条选择+6条链路，小批验收时另行执行。
-- [ ] 验证按scope导出trace/audit无凭证，离线完整回归通过后提交。
+- [x] 先用固定现有用例比较新旧 runner 的原始状态判分完全一致，再迁移入口；baseline hash 不符拒绝比较。
+- [x] 新增独立预期、读故障、6条3–5步链路；固定种子 chaos 同时统计误拒和漏拦，验证全部拒绝不能得高分。
+- [x] 测试 replay 动态ID映射和观察不匹配拒绝；真实重复与复用记录不能混计；副作用分提交/尝试/新动作。
+- [x] 提供 `python -m evals.runner --suite workflow --model fixture --repeat 4`；remote 缺显式token上限拒绝运行。范围固定12条选择+6条链路，小批验收时另行执行。
+- [x] 验证按scope导出trace/audit无凭证，离线完整回归通过后提交。
 
 ## 第五批
 
@@ -127,13 +127,13 @@
 
 **Interfaces:** `enqueue(task_id:str)->dict` 幂等；`request_cancel(task_id:str,context:dict)->dict` 只持久化控制指令；`execute_tool(request:dict,deadline:float)->dict` 运行隔离工具并收集结果。HTTP `dispatch=queued` 返回202，默认inline等待同一队列的本段结果，不绕过执行池。
 
-- [ ] 写测试：8任务提交、并发<=2、队列满无孤儿、重复投递不重复执行、批准等待不占worker；API状态/取消在慢工具期间仍响应。
-- [ ] 混合 inline/queued 请求仍满足并发<=2；两种模式共用锁和恢复；直接 SDK 持锁时服务恢复扫描不得抢占。
-- [ ] 实现任务/job原子创建、批准/job原子激活、单调度器锁与独立控制字段；重启扫描和任务锁阻止双执行者。
-- [ ] 工具子进程内创建SQLite连接，5秒deadline+1秒回收宽限；测试sleep(200)及提交前后kill，确认旧执行者消失才重试/恢复。
-- [ ] 测试排队取消、待批取消、执行中取消、提交后取消；对账如实记录既成副作用，未知结果进入reconciliation_required。
-- [ ] SIGTERM 10秒宽限；测试重启恢复、锁仍持有不抢跑、丢失执行区间保守预算、不重复提交。
-- [ ] 全套核心/兼容/评测回归通过；更新部署边界和运行命令后提交。发布仍走脱敏副本，不推送原工作区历史。
+- [x] 写测试：8任务提交、并发<=2、队列满无孤儿、重复投递不重复执行、批准等待不占worker；API状态/取消在慢工具期间仍响应。
+- [x] 混合 inline/queued 请求仍满足并发<=2；两种模式共用锁和恢复；直接 SDK 持锁时服务恢复扫描不得抢占。
+- [x] 实现任务/job原子创建、批准/job原子激活、单调度器锁与独立控制字段；重启扫描和任务锁阻止双执行者。
+- [x] 工具子进程内创建SQLite连接，5秒deadline+1秒回收宽限；测试sleep(200)及提交前后kill，确认旧执行者消失才重试/恢复。
+- [x] 测试排队取消、待批取消、执行中取消、提交后取消；对账如实记录既成副作用，未知结果进入reconciliation_required。
+- [x] SIGTERM 10秒宽限；测试重启恢复、锁仍持有不抢跑、丢失执行区间保守预算、不重复提交。
+- [x] 全套核心/兼容/评测回归通过；更新部署边界和运行命令后提交。发布仍走脱敏副本，不推送原工作区历史。
 
 ## 可选后续
 

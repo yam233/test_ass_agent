@@ -21,12 +21,12 @@ class ExecuteRequest(BaseModel):
 
 
 class WorkflowRequest(ExecuteRequest):
-    dispatch: Literal['inline','queued'] = 'inline'
+    dispatch: Literal["inline", "queued"] = "inline"
     budget: Budget = Field(default_factory=Budget)
 
 
 class ResumeRequest(BaseModel):
-    dispatch: Literal['inline','queued'] = 'inline'
+    dispatch: Literal["inline", "queued"] = "inline"
     context: dict = Field(default_factory=dict)
     action_id: str | None = None
     decision: str | None = None
@@ -43,81 +43,139 @@ def create_app(agent=None, workflow=None, runner=None):
     @asynccontextmanager
     async def lifespan(app):
         await get_runner()
-        try: yield
+        try:
+            yield
         finally:
-            if app.state.runner is not None: await app.state.runner.stop()
-    app = FastAPI(title="TestOps Agent — local mock", version="3.0",lifespan=lifespan)
+            if app.state.runner is not None:
+                await app.state.runner.stop()
+
+    app = FastAPI(title="TestOps Agent — local mock", version="3.0", lifespan=lifespan)
     app.state.agent = agent
     app.state.workflow = workflow
     app.state.runner = runner
-    runner_lock=asyncio.Lock()
+    runner_lock = asyncio.Lock()
 
     def get_workflow():
         if app.state.workflow is None:
-            app.state.workflow = WorkflowRuntime(os.getenv("MOCK_DB_PATH", ".mock_state/platforms.sqlite"))
+            app.state.workflow = WorkflowRuntime(
+                os.getenv("MOCK_DB_PATH", ".mock_state/platforms.sqlite")
+            )
         return app.state.workflow
 
     async def get_runner():
         async with runner_lock:
             if app.state.runner is None:
-                app.state.runner=WorkflowRunner(get_workflow().store.db.path)
+                app.state.runner = WorkflowRunner(get_workflow().store.db.path)
             if not app.state.runner.accepting:
-                raise HTTPException(503,'服务正在停止接单')
+                raise HTTPException(503, "服务正在停止接单")
             await app.state.runner.start()
             return app.state.runner
 
     @app.exception_handler(ActionError)
     async def action_error(request, exc):
         from fastapi.responses import JSONResponse
-        return JSONResponse(status_code=409 if exc.code in {"RESOURCE_BUSY","STATE_CONFLICT"} else 429 if exc.code=="QUEUE_FULL" else 400, content={"code":exc.code,"message":str(exc)})
+
+        return JSONResponse(
+            status_code=409
+            if exc.code in {"RESOURCE_BUSY", "STATE_CONFLICT"}
+            else 429
+            if exc.code == "QUEUE_FULL"
+            else 400,
+            content={"code": exc.code, "message": str(exc)},
+        )
 
     @app.post("/workflows")
     async def start_workflow(request: WorkflowRequest):
         if request.business_code != "testops":
-            raise HTTPException(400,"Only testops is supported")
-        context=dict(request.context)
-        context.setdefault("session_id",str(uuid.uuid4()))
-        runner=await get_runner()
-        result=await asyncio.to_thread(runner.jobs.submit,request.user_input,context,request.budget)
-        if request.dispatch=='queued': return JSONResponse(status_code=202,content={**result,'session_id':context['session_id']})
-        result=await runner.wait(result['task_id'],context)
-        return {**result,'session_id':context['session_id']}
+            raise HTTPException(400, "Only testops is supported")
+        context = dict(request.context)
+        context.setdefault("session_id", str(uuid.uuid4()))
+        runner = await get_runner()
+        result = await asyncio.to_thread(
+            runner.jobs.submit, request.user_input, context, request.budget
+        )
+        if request.dispatch == "queued":
+            return JSONResponse(
+                status_code=202, content={**result, "session_id": context["session_id"]}
+            )
+        result = await runner.wait(result["task_id"], context)
+        return {**result, "session_id": context["session_id"]}
 
     @app.post("/workflows/{task_id}/resume")
     async def resume_workflow(task_id: str, request: ResumeRequest):
-        if request.decision not in {None,"approve","deny"}:
-            raise HTTPException(422,"decision must be approve or deny")
-        runner=await get_runner()
-        result=await asyncio.to_thread(runner.jobs.resume,task_id,request.context,request.action_id,request.decision,request.reply,request.confirm_effect,request.snapshot_hash)
-        if request.dispatch=='queued': return JSONResponse(status_code=202,content=result)
-        return await runner.wait(task_id,request.context)
+        if request.decision not in {None, "approve", "deny"}:
+            raise HTTPException(422, "decision must be approve or deny")
+        runner = await get_runner()
+        result = await asyncio.to_thread(
+            runner.jobs.resume,
+            task_id,
+            request.context,
+            request.action_id,
+            request.decision,
+            request.reply,
+            request.confirm_effect,
+            request.snapshot_hash,
+        )
+        if request.dispatch == "queued":
+            return JSONResponse(status_code=202, content=result)
+        return await runner.wait(task_id, request.context)
 
     @app.post("/workflows/{task_id}/status")
     async def workflow_status(task_id: str, request: ResumeRequest):
-        return await asyncio.to_thread(get_workflow().store.get,task_id,request.context)
+        return await asyncio.to_thread(
+            get_workflow().store.get, task_id, request.context
+        )
 
     @app.post("/workflows/{task_id}/refs")
     async def read_reference(task_id: str, request: ReferenceRequest):
-        return await asyncio.to_thread(get_workflow().store.read_ref,task_id,request.model_dump(exclude={"context"}),request.context)
+        return await asyncio.to_thread(
+            get_workflow().store.read_ref,
+            task_id,
+            request.model_dump(exclude={"context"}),
+            request.context,
+        )
 
     @app.post("/workflows/{task_id}/cancel")
     async def cancel_workflow(task_id: str, request: ResumeRequest):
-        runner=await get_runner()
-        result=await asyncio.to_thread(runner.jobs.cancel,task_id,request.context)
-        return JSONResponse(status_code=200 if result['status'] in {'cancelled','completed','failed','denied','planned','partial','expired'} else 202,content=result)
+        runner = await get_runner()
+        result = await asyncio.to_thread(runner.jobs.cancel, task_id, request.context)
+        return JSONResponse(
+            status_code=200
+            if result["status"]
+            in {
+                "cancelled",
+                "completed",
+                "failed",
+                "denied",
+                "planned",
+                "partial",
+                "expired",
+            }
+            else 202,
+            content=result,
+        )
 
     def get_agent():
         if app.state.agent is None:
             from agent_core.offline_runtime import build_offline_agent
-            app.state.agent = build_offline_agent(os.getenv("MOCK_DB_PATH", ".mock_state/platforms.sqlite"))
+
+            app.state.agent = build_offline_agent(
+                os.getenv("MOCK_DB_PATH", ".mock_state/platforms.sqlite")
+            )
         return app.state.agent
 
     @app.get("/")
     @app.get("/health")
     async def health():
         runtime = get_agent()
-        return {"status": "ok", "runtime_mode": "mock", "llm_mode": runtime.llm.mode,
-                "orchestrator": "langgraph" if runtime._graph is not None else "manual_fallback"}
+        return {
+            "status": "ok",
+            "runtime_mode": "mock",
+            "llm_mode": runtime.llm.mode,
+            "orchestrator": "langgraph"
+            if runtime._graph is not None
+            else "manual_fallback",
+        }
 
     @app.post("/agent/execute")
     @app.post("/agent/langgraph/execute")

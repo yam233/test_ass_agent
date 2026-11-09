@@ -301,7 +301,8 @@ stop_service() {
     # 优雅停止（SIGTERM）
     if kill "$PID" 2>/dev/null; then
         # 等待进程退出
-        for i in {1..10}; do
+        # Allow uvicorn's 15s request drain plus the scheduler's 10s shutdown.
+        for i in {1..30}; do
             if ! kill -0 "$PID" 2>/dev/null; then
                 print_success "服务已停止"
                 rm -f "$PID_FILE"
