@@ -1,5 +1,6 @@
 """Native function-calling adapter. It never parses Thought/Action prose."""
 import json
+import hashlib
 from agent_core.workflow_contracts import catalog
 
 SYSTEM = '''你是本地测试工作流助手。只使用给出的工具，所有平台都是合成 mock。
@@ -18,7 +19,9 @@ class ModelResponseError(ValueError):
 
 class NativeModel:
     name = 'remote'
-    prompt_version = 'workflow-v1'
+    @property
+    def prompt_version(self):
+        return hashlib.sha256(json.dumps([SYSTEM,catalog()],sort_keys=True,ensure_ascii=False).encode()).hexdigest()
     def __init__(self,llm): self.llm=llm
     async def next(self,messages,context,max_tokens=512):
         result = await self.llm._completion([{'role':'system','content':SYSTEM},*messages],context=context,

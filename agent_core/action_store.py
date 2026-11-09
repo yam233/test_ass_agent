@@ -6,6 +6,7 @@ import time
 import uuid
 from contextlib import contextmanager
 from pathlib import Path
+from agent_core.workflow_audit import initialize, audit_action
 
 
 def canonical(value):
@@ -41,6 +42,8 @@ class ActionStore:
                     action_id TEXT PRIMARY KEY, result_json TEXT NOT NULL
                 );
             ''')
+
+            initialize(db)
 
     @contextmanager
     def connection(self, write=False):
@@ -92,6 +95,7 @@ class ActionStore:
             action_id, now = str(uuid.uuid4()), time.time()
             db.execute("INSERT INTO actions VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, NULL, NULL)",
                        (action_id, owner, session, env, tool, canonical(args), fingerprint, request_id, now, now + 300))
+            audit_action(db,action_id,'prepare',context)
             return self.get(action_id, context, db)
 
     def latest(self, context, completed=False):
@@ -119,6 +123,7 @@ class ActionStore:
                     raise ActionError('CONFIRM_REQUIRED','清理需明确确认删除影响快照')
             if value["status"] == "pending":
                 db.execute("UPDATE actions SET status='approved', approved_at=? WHERE action_id=?", (time.time(), action_id))
+                audit_action(db,action_id,'approve',context)
             return self.get(action_id, context, db)
 
     def deny(self, action_id, context):
@@ -127,6 +132,7 @@ class ActionStore:
             if value["status"] not in {"pending", "approved", "denied"}:
                 raise ActionError("APPROVAL_INVALID", "该动作已开始或结束，不能取消为未执行")
             db.execute("UPDATE actions SET status='denied' WHERE action_id=?", (action_id,))
+            audit_action(db,action_id,'deny',context)
 
     def validate(self, action_id, tool, args, context, db, has_receipt=False):
         value = self.get(action_id, context, db)
@@ -148,6 +154,7 @@ class ActionStore:
             if value["expires_at"] < time.time():
                 raise ActionError("APPROVAL_EXPIRED", "审批已过期，请重新提交")
             db.execute("UPDATE actions SET status='running' WHERE action_id=?", (action_id,))
+            audit_action(db,action_id,'start',context)
 
     def complete(self, action_id, result):
         with self.connection(write=True) as db:
@@ -155,6 +162,8 @@ class ActionStore:
             # before updating this ledger, its receipt outranks a late failure.
             receipt = db.execute("SELECT result_json FROM platform_receipts WHERE action_id=?", (action_id,)).fetchone()
             if receipt is not None:
+                if not result.get('success'):
+                    audit_action(db,action_id,'reconcile',data={'source':'platform_receipt'})
                 result = json.loads(receipt["result_json"])
             status = result["status"]
             if result.get("code") in {"TIMEOUT", "TRANSIENT"}:

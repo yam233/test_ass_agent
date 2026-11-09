@@ -9,6 +9,7 @@ from agent_core.workflow_platform import WorkflowPlatform
 from agent_core.workflow_store import WorkflowStore, Budget
 from agent_core.workflow_model import NativeModel, SYSTEM
 from agent_core.workflow_policy import resolve_policy, check_tool
+from agent_core.model_call import next_decision
 from agent_core.langgraph_agent.llm import DeepSeekLLM
 
 from agent_core.workflow_state import TERMINAL
@@ -45,7 +46,7 @@ class WorkflowRuntime:
             state=self.store.get(task_id,context)
             if state['status'] in TERMINAL: return state
             policy = resolve_policy(context, state.get('policy'))
-            context = {**context, 'dry_run': state['mode'] == 'dry_run','allowed_tools':policy['allowed_tools']}
+            context = {**context, 'dry_run': state['mode'] == 'dry_run','allowed_tools':policy['allowed_tools'],'policy_version':policy['policy_version']}
             state['policy'] = policy
             context.update(confirm_effect=confirm_effect,snapshot_hash=snapshot_hash)
             if state['active_since'] is not None:
@@ -121,32 +122,8 @@ class WorkflowRuntime:
             messages=self._messages(state)
             # UTF-8 bytes plus framing is a conservative token reservation, not a tokenizer claim.
             prompt_bound=len(canonical([SYSTEM,catalog(),messages]).encode())+1024
-            cap=min(512,state['budget']['max_tokens']-state['tokens']-prompt_bound)
-            if cap<1: return self._stop(state,'budget')
-            reservation=prompt_bound+cap
-            state['tokens']+=reservation; state['model_calls']+=1
-            self.store.save(state) # Reserve before provider call, including crash/lost response.
-            started=time.monotonic()
-            try: decision=await self.model.next(messages,context,cap)
-            except Exception as exc:
-                # Provider errors never fall back to synthetic decisions.
-                state['result']=failure('LLM_ERROR',f'模型请求失败：{type(exc).__name__}')
-                usage=getattr(exc,'usage',None)
-                used=(usage or {}).get('total_tokens')
-                if type(used) is int and used>=0:
-                    state['tokens']+=used-reservation;state['reported_tokens']+=used
-                else: state['usage_complete']=False
-                state['trace'].append({'step':len(state['steps']),'kind':'model','model':getattr(self.model,'name','unknown'),'prompt_ver':'workflow-v1', 'latency_ms':round((time.monotonic()-started)*1000,2),'tokens':used,'cost':(usage or {}).get('cost'),'outcome':'LLM_ERROR','finish_reason':getattr(exc,'finish_reason',None),'stop_reason':'model_error'})
-                return self._stop(state,'model_error')
-            usage=decision.get('usage')
-            actual=usage.get('total_tokens') if isinstance(usage,dict) else None
-            if type(actual) is int and actual>=0:
-                state['tokens']+=actual-reservation; state['reported_tokens']+=actual
-            else: state['usage_complete']=False
-            state['trace'].append({'step':len(state['steps']),'kind':'model','model':decision.get('model',getattr(self.model,'name','unknown')),
-                'prompt_ver':decision.get('prompt_version','workflow-v1'),'latency_ms':round((time.monotonic()-started)*1000,2),
-                'tokens':actual,'prompt_tokens':(usage or {}).get('prompt_tokens'),'completion_tokens':(usage or {}).get('completion_tokens'),'cost':(usage or {}).get('cost'),'cost_unit':'provider_reported','outcome':'ok','stop_reason':None})
-            self.store.save(state)
+            decision=await next_decision(self,state,context,messages,prompt_bound)
+            if decision is None: return state
             if self._timed_out(state): return self._stop(state,'timeout')
             if state['tokens']>state['budget']['max_tokens']: return self._stop(state,'budget')
             if 'final' in decision:

@@ -50,6 +50,9 @@ asyncio.run(rt.resume(sys.argv[2],CTX,action_id=sys.argv[3],decision='approve'))
     assert result['status']=='completed'
     assert result['steps'][1]['result']['data']['total_quantity']==10
     assert len(restarted.platform.snapshot('gifts'))==1
+    with restarted.store.db.connection() as db:
+        assert db.execute("SELECT count(*) FROM workflow_audit WHERE event='approve'").fetchone()[0]==1
+        assert db.execute("SELECT count(*) FROM workflow_audit WHERE event='receipt'").fetchone()[0]==1
 
 
 def test_scoped_refs_pagination_and_compact_context(tmp_path):

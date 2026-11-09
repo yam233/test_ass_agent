@@ -1,3 +1,4 @@
+from agent_core.workflow_audit import audit_action
 """Transactional synthetic platform for the workflow contracts. No network calls."""
 import json
 from agent_core.action_store import ActionError, canonical, scope
@@ -147,5 +148,6 @@ class WorkflowPlatform(MockPlatforms):
                 data,status = {'key':key,'before':before,'after':after},'success'
             result = self._ok(tool,{**data,'action_id':aid},status)
             db.execute('INSERT INTO platform_receipts VALUES (?,?)',(aid,canonical(result)))
+            audit_action(db,aid,'receipt',context,{'status':result['status']})
         if context.get('fault_id')=='f_response_loss': return failure('OUTCOME_UNKNOWN','提交后丢失响应；查询回执核验',tool,'unknown')
         return result

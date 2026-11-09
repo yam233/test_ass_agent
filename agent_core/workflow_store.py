@@ -25,6 +25,7 @@ class WorkflowStore:
         with self.db.connection() as db:
             db.executescript('''
             CREATE TABLE IF NOT EXISTS workflow_tasks (task_id TEXT PRIMARY KEY, scope TEXT NOT NULL, request_id TEXT, input TEXT NOT NULL, payload TEXT NOT NULL, UNIQUE(scope,request_id));
+            CREATE TABLE IF NOT EXISTS workflow_artifacts (fingerprint TEXT PRIMARY KEY, payload TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS workflow_refs (ref_id TEXT PRIMARY KEY, task_id TEXT NOT NULL, payload TEXT NOT NULL);
             ''')
 
@@ -66,6 +67,12 @@ class WorkflowStore:
         with self.db.connection(write=True) as db:
             cur=db.execute('UPDATE workflow_tasks SET payload=? WHERE task_id=?',(canonical(state),state['task_id']))
             if cur.rowcount!=1: raise ActionError('TASK_NOT_FOUND','任务已被重置')
+
+    def record_artifact(self, artifact):
+        fingerprint=hashlib.sha256(canonical(artifact).encode()).hexdigest()
+        with self.db.connection(write=True) as db:
+            db.execute('INSERT OR IGNORE INTO workflow_artifacts VALUES (?,?)',(fingerprint,canonical(artifact)))
+        return fingerprint
 
     def externalize(self,task_id,result):
         if len(canonical(result).encode())<=1500: return result

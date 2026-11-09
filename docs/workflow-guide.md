@@ -105,3 +105,9 @@ pytest 只收集 tests/，避免误执行历史目录中需要旧平台的脚本
 创建任务时固定 operator/session_id/env，续跑与审批需使用相同 scope。写操作显式提供 operator/env；服务端 `config/workflow_policy.json` 决定工具权限，客户端 allowed_tools 仅能收窄。创建时权限与当前权限取交集，撤销即时生效。
 
 `cleanup_data` 还需在 resume 顶层传 `confirm_effect: "delete_batch"` 和待批响应中的 `snapshot_hash`；默认影响量上限 1000 个礼物。执行前影响量变化会拒绝旧审批。prod 禁写不能通过策略配置解除。本地身份声明不等于生产认证。
+
+### 审计与模型尝试
+
+`workflow_audit` 与动作状态/平台回执在同一事务中记录 prepare、approve、deny、start、receipt、reconcile；每个事件有任务、动作、scope、参数哈希和策略版本。`workflow_artifacts` 保存脱敏提示词、工具契约和模型配置，trace 的 prompt_ver 指向其内容哈希。
+
+模型默认输出上限 1024，可通过服务端 `WORKFLOW_OUTPUT_TOKENS` 配置（最大 2048）。暂态错误最多退避重试两次；截断最多扩大输出重试一次。全部尝试计入步骤、时间与 token 预算；缺失 usage 保守保留预算，不回退为模拟决策。

@@ -1,3 +1,4 @@
+from agent_core.workflow_audit import audit_action
 """Local, synthetic substitutes for the unavailable platforms. Never uses a network."""
 import json
 import sqlite3
@@ -190,6 +191,7 @@ class MockPlatforms:
                               status="success" if actual == expected else "partial_success")
             # Side effect and its receipt share one atomic platform transaction.
             db.execute("INSERT INTO platform_receipts VALUES (?, ?)", (action_id, canonical(result)))
+            audit_action(db,action_id,'receipt',context,{'status':result['status']})
         if fault == "f_response_loss":
             return self._error("OUTCOME_UNKNOWN", "平台响应丢失，结果待核验；请按 action_id 重试", tool, {"action_id": action_id}, "unknown")
         return result
