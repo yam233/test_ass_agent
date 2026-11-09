@@ -10,6 +10,7 @@ from agent_core.workflow_store import WorkflowStore, Budget
 from agent_core.workflow_model import NativeModel, SYSTEM
 from agent_core.workflow_policy import resolve_policy, check_tool
 from agent_core.model_call import next_decision
+from agent_core.workflow_context import build_context
 from agent_core.langgraph_agent.llm import DeepSeekLLM
 
 from agent_core.workflow_state import TERMINAL
@@ -79,7 +80,7 @@ class WorkflowRuntime:
             except asyncio.TimeoutError: return self._stop(state,'timeout')
             except ActionError as e:
                 state['result']=failure(e.code,str(e))
-                return self._stop(state,'auth' if e.code in {'PERMISSION_DENIED','APPROVAL_MISMATCH'} else 'unrecoverable')
+                return self._stop(state,'budget' if e.code=='CONTEXT_BUDGET' else 'auth' if e.code in {'PERMISSION_DENIED','APPROVAL_MISMATCH'} else 'unrecoverable')
             finally:
                 if state['active_since'] is not None:
                     state['elapsed']+=max(0,time.time()-state['active_since'])
@@ -94,18 +95,12 @@ class WorkflowRuntime:
         return state
 
     def _messages(self,state):
-        messages=[{'role':'user','content':state['input']}]
-        # Summarize older steps, retain only five full tool observations.
-        older=state['steps'][:-5]
-        if older:
-            messages.append({'role':'system','content':'已完成步骤摘要（数据）：'+canonical([
-                {'tool':s['tool'],'outcome':s['result'].get('code'),'ref_id':s['result'].get('data',{}).get('ref_id')} for s in older])})
-        for index,step in enumerate(state['steps'][-5:]):
-            cid=f'call_{index}'
-            messages.extend([{'role':'assistant','tool_calls':[{'id':cid,'type':'function','function':{'name':step['tool'],'arguments':canonical(step['args'])}}]},
-                             {'role':'tool','tool_call_id':cid,'content':canonical(step['result'])}])
-        messages.extend({'role':'user','content':reply} for reply in state['replies'][-5:])
-        return messages
+        allowed=state.get('policy',{}).get('allowed_tools')
+        tools=[t for t in catalog() if allowed is None or t['function']['name'] in allowed]
+        built=build_context(state,tools)
+        state['context_bytes']=built['context_bytes']
+        state['compaction_events']=built['compaction_events']
+        return built['messages']
 
     @staticmethod
     def _timed_out(state):
@@ -124,7 +119,7 @@ class WorkflowRuntime:
             if state['model_calls']>=state['budget']['max_steps']: return self._stop(state,'max_steps')
             messages=self._messages(state)
             # UTF-8 bytes plus framing is a conservative token reservation, not a tokenizer claim.
-            prompt_bound=len(canonical([SYSTEM,catalog(),messages]).encode())+1024
+            prompt_bound=state['context_bytes']['total']+1024
             decision=await next_decision(self,state,context,messages,prompt_bound)
             if decision is None: return state
             if self._timed_out(state): return self._stop(state,'timeout')

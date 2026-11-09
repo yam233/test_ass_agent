@@ -8,7 +8,7 @@ from agent_core.workflow_contracts import catalog, failure
 from agent_core import workflow_model
 
 
-def artifact(model, output_cap):
+def artifact(model, output_cap, tool_catalog=None):
     config={'model':getattr(model,'name','unknown'),'output_cap':output_cap,'parallel_tool_calls':False,'tool_choice':'auto'}
     llm=getattr(model,'llm',None)
     if llm is not None:
@@ -16,7 +16,7 @@ def artifact(model, output_cap):
         # Never persist credentials or query parameters from configuration.
         url=urlsplit(llm._setting('base_url') or '')
         config['endpoint']=(url.scheme+'://'+(url.hostname or '')+url.path) if url.scheme else ''
-    return {'system':workflow_model.SYSTEM,'tools':catalog(),'model_config':config}
+    return {'system':workflow_model.SYSTEM,'tools':catalog() if tool_catalog is None else tool_catalog,'model_config':config}
 
 
 def retryable(exc):
@@ -39,7 +39,8 @@ async def next_decision(runtime, state, context, messages, prompt_bound):
             runtime._stop(state,'budget'); return None
         reservation=prompt_bound+cap
         state['tokens']+=reservation;state['model_calls']+=1
-        fingerprint=runtime.store.record_artifact(artifact(runtime.model,cap))
+        visible=[t for t in catalog() if context.get('allowed_tools') is None or t['function']['name'] in context['allowed_tools']]
+        fingerprint=runtime.store.record_artifact(artifact(runtime.model,cap,visible))
         state.setdefault('artifact_ids',[])
         if fingerprint not in state['artifact_ids']: state['artifact_ids'].append(fingerprint)
         runtime.store.save(state)
@@ -57,6 +58,7 @@ async def next_decision(runtime, state, context, messages, prompt_bound):
         else: state['usage_complete']=False
         state['trace'].append({'step':len(state['steps']),'kind':'model','attempt':state['model_calls'],
             'model':getattr(runtime.model,'name','unknown'),'prompt_ver':fingerprint,
+            'context_bytes':state.get('context_bytes',{}),'compaction_events':state.get('compaction_events',[]),
             'latency_ms':round((time.monotonic()-started)*1000,2),'tokens':used,
             'prompt_tokens':usage.get('prompt_tokens'),'completion_tokens':usage.get('completion_tokens'),
             'cost':usage.get('cost'),'cost_unit':'provider_reported','output_cap':cap,

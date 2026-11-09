@@ -117,3 +117,7 @@ pytest 只收集 tests/，避免误执行历史目录中需要旧平台的脚本
 checkpoint 带 schema_version 和 revision；旧格式自动迁移，首次结构升级先保存 `.before-v1.sqlite` 备份；未知版本拒绝执行。并发旧 revision 保存返回 STATE_CONFLICT。取消标记独立持久化，不能被旧 checkpoint 覆盖。
 
 `python -m scripts.workflow_maintenance --db PATH` 清扫过期待批动作并预览引用清理；加 `--apply` 才删除终态任务保留 7 天后的引用。活动任务和未对账任务引用保留；动作、回执和审计不随引用清理删除。`python -m scripts.mock_state reset --dry-run` 只显示影响范围；实际 reset 在执行者存在或动作未对账时拒绝。
+
+### 上下文预算
+
+每次模型调用记录 system/tools/task/recent_tools/summary_refs 的 UTF-8 字节数，默认输入不超过 32 KiB；总 token 预算仍独立生效。压缩以完整工具调用/结果对为单位，保留任务、澄清、最新观察和最近一次成功写入证据；必要内容超限时明确停止。历史摘要以数据消息传入，不插入额外 system 指令。模型只看当前获准使用的工具契约。

@@ -25,7 +25,7 @@ class NativeModel:
     def __init__(self,llm): self.llm=llm
     async def next(self,messages,context,max_tokens=512):
         result = await self.llm._completion([{'role':'system','content':SYSTEM},*messages],context=context,
-            tools=catalog(),tool_choice='auto',parallel_tool_calls=False,max_tokens=max_tokens)
+            tools=[t for t in catalog() if context.get('allowed_tools') is None or t['function']['name'] in context['allowed_tools']],tool_choice='auto',parallel_tool_calls=False,max_tokens=max_tokens)
         message = result['choices'][0]['message']
         calls = message.get('tool_calls') or []
         usage = result.get('usage')
