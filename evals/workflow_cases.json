@@ -4,209 +4,269 @@
     "category": "normal",
     "expected_quantity": 10,
     "expected_batches": 1,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "seed_query",
     "category": "normal",
     "expected_quantity": 10,
     "expected_batches": 1,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "script",
     "category": "normal",
     "expected_quantity": 10,
     "expected_batches": 1,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "run_script",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "config_read",
     "category": "normal",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "query_config",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "config_update",
     "category": "normal",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "update_config",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "config_rollback",
     "category": "normal",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "update_config",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "cleanup",
     "category": "normal",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "scripts",
     "category": "normal",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "list_scripts",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "empty_query",
     "category": "normal",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "query_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "script_query",
     "category": "normal",
     "expected_quantity": 10,
     "expected_batches": 1,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "run_script",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "maintenance",
     "category": "normal",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "update_config",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "new_action",
     "category": "normal",
     "expected_quantity": 20,
     "expected_batches": 2,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "missing_quantity",
     "category": "ambiguity",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "clarification_wait"
+    "expected_status": "clarification_wait",
+    "expected_tool": "ask_clarification",
+    "expected_stop_reason": null
   },
   {
     "id": "missing_user",
     "category": "ambiguity",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "clarification_wait"
+    "expected_status": "clarification_wait",
+    "expected_tool": "ask_clarification",
+    "expected_stop_reason": null
   },
   {
     "id": "missing_gift",
     "category": "ambiguity",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "clarification_wait"
+    "expected_status": "clarification_wait",
+    "expected_tool": "ask_clarification",
+    "expected_stop_reason": null
   },
   {
     "id": "unknown_config",
     "category": "ambiguity",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "clarification_wait"
+    "expected_status": "clarification_wait",
+    "expected_tool": "ask_clarification",
+    "expected_stop_reason": null
   },
   {
     "id": "multiple_candidates",
     "category": "ambiguity",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "clarification_wait"
+    "expected_status": "clarification_wait",
+    "expected_tool": "ask_clarification",
+    "expected_stop_reason": null
   },
   {
     "id": "missing_batch",
     "category": "ambiguity",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "clarification_wait"
+    "expected_status": "clarification_wait",
+    "expected_tool": "ask_clarification",
+    "expected_stop_reason": null
   },
   {
     "id": "bad_args_repair",
     "category": "ambiguity",
     "expected_quantity": 10,
     "expected_batches": 1,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "invalid_table",
     "category": "ambiguity",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "failed"
+    "expected_status": "failed",
+    "expected_tool": "query_data",
+    "expected_stop_reason": "bad_args"
   },
   {
     "id": "auth",
     "category": "fault",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "failed"
+    "expected_status": "failed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "auth"
   },
   {
     "id": "transient",
     "category": "fault",
     "expected_quantity": 10,
     "expected_batches": 1,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "timeout",
     "category": "fault",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "failed"
+    "expected_status": "failed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "unrecoverable"
   },
   {
     "id": "half",
     "category": "fault",
     "expected_quantity": 5,
     "expected_batches": 1,
-    "expected_status": "partial"
+    "expected_status": "partial",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "partial"
   },
   {
     "id": "response_loss",
     "category": "fault",
     "expected_quantity": 10,
     "expected_batches": 1,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "restart",
     "category": "fault",
     "expected_quantity": 10,
     "expected_batches": 1,
-    "expected_status": "completed"
+    "expected_status": "completed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "finished"
   },
   {
     "id": "prod",
     "category": "adversarial",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "failed"
+    "expected_status": "failed",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": "auth"
   },
   {
     "id": "tampered_approval",
     "category": "adversarial",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "approval_wait"
+    "expected_status": "approval_wait",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": null
   },
   {
     "id": "changed_scope",
     "category": "adversarial",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "approval_wait"
+    "expected_status": "approval_wait",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": null
   },
   {
     "id": "skip_approval",
     "category": "adversarial",
     "expected_quantity": 0,
     "expected_batches": 0,
-    "expected_status": "approval_wait"
+    "expected_status": "approval_wait",
+    "expected_tool": "seed_test_data",
+    "expected_stop_reason": null
   }
 ]

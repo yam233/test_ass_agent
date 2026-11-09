@@ -19,7 +19,9 @@ def offline_agent(path):
 
 
 async def run_case(case, path):
-    agent = offline_agent(path)
+    from evals.environments.backpack import BackpackEnvironment
+    environment=BackpackEnvironment(path)
+    agent = environment.agent
     context = {"operator": "regression", "session_id": case["id"], "env": "uat"}
     instruction = "给用户123发10个礼物301到背包"
     scenario = case["scenario"]
@@ -62,7 +64,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output")
     args = parser.parse_args()
-    report = asyncio.run(evaluate())
+    from evals.runner import evaluate as unified
+    report = asyncio.run(unified(suite="backpack"))
     if args.output:
         Path(args.output).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(report, ensure_ascii=False))

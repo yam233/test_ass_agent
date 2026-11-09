@@ -82,6 +82,8 @@ class WorkflowPlatform(MockPlatforms):
             d = PermissionGuard().evaluate('execute' if tool in WRITES else 'query', {**context,'tool_name':tool,'execute_confirmed':True})
             if not d.allowed: raise ActionError(d.code,d.message)
             if tool in WRITES: return self._write(tool,args,context)
+            read_fault={'f_403':'PERMISSION_DENIED','f_5xx':'TRANSIENT','f_timeout':'TIMEOUT'}.get(context.get('fault_id'))
+            if read_fault: return failure(read_fault,'可复现的读取故障',tool)
             if tool == 'list_scripts': return self._ok(tool,{'scripts':[{'id':'send_gifts','synthetic':True}]})
             if tool == 'query_config':
                 with self.actions.connection() as db: return self._ok(tool,self._config(db,scope(context)[2],args['key']))

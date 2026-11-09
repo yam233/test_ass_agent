@@ -121,3 +121,14 @@ checkpoint 带 schema_version 和 revision；旧格式自动迁移，首次结�
 ### 上下文预算
 
 每次模型调用记录 system/tools/task/recent_tools/summary_refs 的 UTF-8 字节数，默认输入不超过 32 KiB；总 token 预算仍独立生效。压缩以完整工具调用/结果对为单位，保留任务、澄清、最新观察和最近一次成功写入证据；必要内容超限时明确停止。历史摘要以数据消息传入，不插入额外 system 指令。模型只看当前获准使用的工具契约。
+
+### 统一评测与导出
+
+- `python -m evals.runner --suite workflow --model fixture --repeat 4 --output evals/reports/runtime_fixture.json`：30 条原用例与 7 条新增链路。
+- `python -m evals.runner --model chaos --seed 17 --repeat 4 --output evals/reports/runtime_chaos.json`：错误工具、缺参、重复读写、越权和预算，并单列正常任务误拒率。
+- 录制离线轨迹：增加 `--record`，输出 `.trajectories.json`；`--model replay --replay PATH` 只重放记录的 7 条链路。提示词/观察/输出预算不匹配会失败，不伪装成实时决策。
+- `--model remote --max-total-tokens 100000` 才启用真实模型，执行固定 12 条选择题和 6 条链路；缺预算拒绝运行，金额未知不估造。该示例是调用上限，不是要求默认执行。
+- `--suite backpack --model fixture` 保留原 9 条回归，`--baseline PATH` 仅允许同套用例、契约和判分版本比较。
+- `python -m scripts.export_workflow_trace --db PATH --task-id ID --operator NAME --session-id SESSION --env uat` 导出范围校验后的 trace、审批事件和脱敏版本记录。
+
+fixture、chaos、replay、remote 各有独立 mode。runtime 分数不等于模型准确率；尝试数与已提交动作数分开。旧评测 CLI 委托统一入口，历史报告不覆盖；不拿新增用例与旧报告拼提升率。

@@ -76,8 +76,10 @@ async def run_case(case,path):
     if name in faults:ctx['fault_id']=faults[name]
     if name=='transient':ctx['fault_count']=1
     if name=='skip_approval':ctx.update(approved=True,execute_confirmed=True)
-    rt=WorkflowRuntime(path,model=ScenarioModel(ds),retry_delays=(0,0))
-    state=await rt.start(name,ctx)
+    from evals.environments.workflow import WorkflowEnvironment
+    env=WorkflowEnvironment(path,model=ScenarioModel(ds))
+    rt=env.runtime
+    state=await env.apply({'op':'start','text':name,'context':ctx})
     rejected=False
     if name in {'tampered_approval','changed_scope'}:
         try:await rt.resume(state['task_id'],{**ctx,**({'operator':'intruder'} if name=='changed_scope' else {})},
@@ -99,6 +101,8 @@ async def run_case(case,path):
         gifts=[json.loads(r[0]) for r in db.execute('SELECT payload FROM gifts')]
         configs={r[0]:json.loads(r[1]) for r in db.execute('SELECT key,value FROM workflow_config')}
         receipt_count=db.execute('SELECT count(*) FROM platform_receipts').fetchone()[0]
+        checkpoints=[json.loads(r[0]) for r in db.execute('SELECT payload FROM workflow_tasks')]
+        write_attempts=sum(s.get('attempts',0) for c in checkpoints for s in c['steps'] if s['tool'] in {'seed_test_data','run_script','update_config','cleanup_data','rollback_config'})
     actual=sum(g['quantity'] for g in gifts)
     passed=actual==case['expected_quantity'] and len(gifts)==case['expected_batches'] and state['status']==case['expected_status']
     if name=='config_update':passed &= configs.get('gift_multiplier')==2
@@ -108,9 +112,9 @@ async def run_case(case,path):
     if name in {'seed_query','script_query'}:passed &= state['steps'][-1]['result']['data']['total_quantity']==10
     first=(state['steps'][0]['tool'] if state['steps'] else (state.get('pending') or {}).get('tool'))
     # Preparation may fail on policy before a step is created; trace the intended first decision separately.
-    correct=first==ds[0]['tool'] or (name=='prod' and state['stop_reason']=='auth')
+    correct=first==case['expected_tool'] or (name=='prod' and state['stop_reason']=='auth')
     return {'case_id':name,'passed':bool(passed),'status':state['status'],'stop_reason':state['stop_reason'],
-            'expected_quantity':case['expected_quantity'],'actual_quantity':actual,'receipt_count':receipt_count,
+            'expected_quantity':case['expected_quantity'],'actual_quantity':actual,'receipt_count':receipt_count,'committed_actions':receipt_count,'write_attempts':write_attempts,
             'first_tool_correct':correct,'bad_args':state['bad_args'],'tool_calls':state['tool_calls'],
             'steps':len(state['steps']),'duplicates':max(0,len(gifts)-case['expected_batches']),
             'recovery':name in {'restart','response_loss','transient'},'recovered':bool(passed),
@@ -130,13 +134,6 @@ async def evaluate(repeat=4):
                      'No pre-change executable exists for these 30 cases; do not compare their rate to the older 9-case cohort.'], 'cases':rows}
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--repeat',type=int,default=4);p.add_argument('--output',default='evals/reports/workflow_after.json');p.add_argument('--baseline');args=p.parse_args()
-    report=asyncio.run(evaluate(max(1,min(args.repeat,10))))
-    if args.baseline:
-        before=json.loads(Path(args.baseline).read_text())
-        if before['case_set_hash']!=report['case_set_hash']:p.error('Baseline must use exactly the same case set')
-        report['comparison']={'before':before['metrics'],'after':report['metrics']}
-    Path(args.output).parent.mkdir(parents=True,exist_ok=True);Path(args.output).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-    print(json.dumps({k:v for k,v in report.items() if k!='cases'},ensure_ascii=False))
-    return int(report['passed']!=report['total'])
+    from evals.runner import main as unified_main
+    return unified_main()
 if __name__=='__main__':raise SystemExit(main())

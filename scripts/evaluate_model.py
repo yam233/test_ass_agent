@@ -88,11 +88,13 @@ async def evaluate(limit=12,previous=None):
             'reported_tokens_this_run':total+sum(r['tokens'] for r in chains),'selection_reused':len(existing),'cost_usd':None,'cost_note':'No verified per-token tariff configured; no invented monetary estimate.'}
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--remote',action='store_true');p.add_argument('--resume',action='store_true');p.add_argument('--limit',type=int,default=12);p.add_argument('--output',default='evals/reports/model_acceptance.json');args=p.parse_args()
-    if not args.remote:p.error('Supply --remote to authorize the bounded paid-provider run')
-    previous=json.loads(Path(args.output).read_text()) if args.resume and Path(args.output).exists() else None
-    report=asyncio.run(evaluate(max(1,min(args.limit,12)),previous))
-    Path(args.output).parent.mkdir(parents=True,exist_ok=True);Path(args.output).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-    print(json.dumps({k:v for k,v in report.items() if k not in {'selection_cases'}},ensure_ascii=False))
-    return int(report['selection_passed']!=report['selection_total'] or report['selection_total']<min(args.limit,12) or not all(c['passed'] for c in report['chains']))
+    from evals.runner import evaluate as unified
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--remote',action='store_true');p.add_argument('--max-total-tokens',type=int,required=True)
+    p.add_argument('--output',default='evals/reports/model_acceptance_new.json');args=p.parse_args()
+    if not args.remote:p.error('Supply --remote to authorize a budgeted provider run')
+    report=asyncio.run(unified(model='remote',max_total_tokens=args.max_total_tokens,record=True))
+    Path(args.output).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in report.items() if k!='cases'},ensure_ascii=False))
+    return int(not report['complete'] or report['passed']!=report['total'])
 if __name__=='__main__':raise SystemExit(main())

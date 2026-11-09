@@ -175,7 +175,7 @@ class WorkflowRuntime:
 
     def _record(self,state,tool,args,result):
         compact=result if tool=='read_ref' else self.store.externalize(state['task_id'],result)
-        state['steps'].append({'seq':len(state['steps']),'tool':tool,'args':args,'result':compact})
+        state['steps'].append({'seq':len(state['steps']),'tool':tool,'args':args,'result':compact,'attempts':(state.get('pending') or {}).get('attempts',0)})
         return compact
 
     async def _execute_pending(self,state,context):

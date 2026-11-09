@@ -1,0 +1,250 @@
+[
+  {
+    "id": "chain_seed_config_verify",
+    "text": "给用户123发10个礼物301，修改gift_multiplier为2，再查询本批次数量",
+    "decisions": [
+      {
+        "tool": "seed_test_data",
+        "args": {
+          "table": "gifts",
+          "user_id": 123,
+          "gift_id": 301,
+          "quantity": 10
+        }
+      },
+      {
+        "tool": "update_config",
+        "args": {
+          "key": "gift_multiplier",
+          "value": 2
+        }
+      },
+      {
+        "tool": "query_data",
+        "args": {
+          "table": "gifts",
+          "batch_id": "$batch"
+        }
+      }
+    ],
+    "quantity": 10,
+    "batches": 1,
+    "config": {
+      "gift_multiplier": 2
+    }
+  },
+  {
+    "id": "chain_seed_cleanup_verify",
+    "text": "给用户123发10个礼物301，查询本批次，再清理本批次并查询确认",
+    "decisions": [
+      {
+        "tool": "seed_test_data",
+        "args": {
+          "table": "gifts",
+          "user_id": 123,
+          "gift_id": 301,
+          "quantity": 10
+        }
+      },
+      {
+        "tool": "query_data",
+        "args": {
+          "table": "gifts",
+          "batch_id": "$batch"
+        }
+      },
+      {
+        "tool": "cleanup_data",
+        "args": {
+          "batch_id": "$batch"
+        }
+      },
+      {
+        "tool": "query_data",
+        "args": {
+          "table": "gifts"
+        }
+      }
+    ],
+    "quantity": 0,
+    "batches": 0,
+    "config": {}
+  },
+  {
+    "id": "chain_config_rollback_verify",
+    "text": "把gift_multiplier改成2并查询，再回滚本次修改并查询确认",
+    "decisions": [
+      {
+        "tool": "update_config",
+        "args": {
+          "key": "gift_multiplier",
+          "value": 2
+        }
+      },
+      {
+        "tool": "query_config",
+        "args": {
+          "key": "gift_multiplier"
+        }
+      },
+      {
+        "tool": "rollback_config",
+        "args": {
+          "change_id": "$change"
+        }
+      },
+      {
+        "tool": "query_config",
+        "args": {
+          "key": "gift_multiplier"
+        }
+      }
+    ],
+    "quantity": 0,
+    "batches": 0,
+    "config": {
+      "gift_multiplier": 1
+    }
+  },
+  {
+    "id": "chain_script_config_verify",
+    "text": "运行send_gifts给用户123发10个礼物301，打开maintenance_mode，再查询本批次脚本记录",
+    "decisions": [
+      {
+        "tool": "run_script",
+        "args": {
+          "script_id": "send_gifts",
+          "user_id": 123,
+          "gift_id": 301,
+          "quantity": 10
+        }
+      },
+      {
+        "tool": "update_config",
+        "args": {
+          "key": "maintenance_mode",
+          "value": true
+        }
+      },
+      {
+        "tool": "query_data",
+        "args": {
+          "table": "script_runs",
+          "batch_id": "$batch"
+        }
+      }
+    ],
+    "quantity": 10,
+    "batches": 1,
+    "config": {
+      "maintenance_mode": true
+    }
+  },
+  {
+    "id": "chain_two_batches_verify",
+    "text": "给用户123先发5个礼物301，再发10个，查询总数量",
+    "decisions": [
+      {
+        "tool": "seed_test_data",
+        "args": {
+          "table": "gifts",
+          "user_id": 123,
+          "gift_id": 301,
+          "quantity": 5
+        }
+      },
+      {
+        "tool": "seed_test_data",
+        "args": {
+          "table": "gifts",
+          "user_id": 123,
+          "gift_id": 301,
+          "quantity": 10
+        }
+      },
+      {
+        "tool": "query_data",
+        "args": {
+          "table": "gifts",
+          "user_id": 123
+        }
+      }
+    ],
+    "quantity": 15,
+    "batches": 2,
+    "config": {}
+  },
+  {
+    "id": "chain_deny_second_write",
+    "text": "给用户123发10个礼物301，查询本批次及gift_multiplier，再尝试把配置改成2",
+    "decisions": [
+      {
+        "tool": "seed_test_data",
+        "args": {
+          "table": "gifts",
+          "user_id": 123,
+          "gift_id": 301,
+          "quantity": 10
+        }
+      },
+      {
+        "tool": "query_data",
+        "args": {
+          "table": "gifts",
+          "batch_id": "$batch"
+        }
+      },
+      {
+        "tool": "query_config",
+        "args": {
+          "key": "gift_multiplier"
+        }
+      },
+      {
+        "tool": "update_config",
+        "args": {
+          "key": "gift_multiplier",
+          "value": 2
+        }
+      }
+    ],
+    "quantity": 10,
+    "batches": 1,
+    "config": {},
+    "deny_write": 2,
+    "status": "denied"
+  },
+  {
+    "id": "chain_rollback_conflict",
+    "text": "把gift_multiplier依次改成2、3，再尝试回滚第一次修改",
+    "decisions": [
+      {
+        "tool": "update_config",
+        "args": {
+          "key": "gift_multiplier",
+          "value": 2
+        }
+      },
+      {
+        "tool": "update_config",
+        "args": {
+          "key": "gift_multiplier",
+          "value": 3
+        }
+      },
+      {
+        "tool": "rollback_config",
+        "args": {
+          "change_id": "$first_change"
+        }
+      }
+    ],
+    "quantity": 0,
+    "batches": 0,
+    "config": {
+      "gift_multiplier": 3
+    },
+    "status": "failed",
+    "code": "CONFLICT"
+  }
+]
