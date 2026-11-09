@@ -11,12 +11,14 @@ from agent_core.workflow_model import NativeModel, SYSTEM
 from agent_core.workflow_policy import resolve_policy, check_tool
 from agent_core.model_call import next_decision
 from agent_core.workflow_context import build_context
+from agent_core.tool_executor import execute_tool, ISOLATED_FAULTS
+from agent_core.workflow_audit import audit_action
 from agent_core.langgraph_agent.llm import DeepSeekLLM
 
 from agent_core.workflow_state import TERMINAL
 
 class WorkflowRuntime:
-    def __init__(self,path='.mock_state/platforms.sqlite',model=None,retry_delays=(1,3)):
+    def __init__(self,path='.mock_state/platforms.sqlite',model=None,retry_delays=(1,3),tool_timeout=5.0,isolate_tools=True):
         self.platform=WorkflowPlatform(path)
         self.store=WorkflowStore(path)
         if model is None:
@@ -27,6 +29,8 @@ class WorkflowRuntime:
             else: model=NativeModel(llm)
         self.model=model
         self.retry_delays=retry_delays
+        self.tool_timeout=max(.01,float(tool_timeout))
+        self.isolate_tools=isolate_tools
 
     @staticmethod
     def _check_context(context):
@@ -46,7 +50,7 @@ class WorkflowRuntime:
         with self.store.lock(task_id):
             state=self.store.get(task_id,context)
             if state['status'] in TERMINAL: return state
-            if self.store.cancel_requested(task_id): return self._stop(state,'cancelled','cancelled')
+            if self.store.cancel_requested(task_id): return self._cancel(state,context)
             policy = resolve_policy(context, state.get('policy'))
             context = {**context, 'dry_run': state['mode'] == 'dry_run','allowed_tools':policy['allowed_tools'],'policy_version':policy['policy_version']}
             state['policy'] = policy
@@ -77,7 +81,9 @@ class WorkflowRuntime:
             try:
                 remaining=max(.000001,state['budget']['max_seconds']-state['elapsed'])
                 return await asyncio.wait_for(self._drive(state,context),timeout=remaining)
-            except asyncio.TimeoutError: return self._stop(state,'timeout')
+            except asyncio.TimeoutError:
+                self._settle_receipt(state,context)
+                return self._stop(state,'timeout')
             except ActionError as e:
                 state['result']=failure(e.code,str(e))
                 return self._stop(state,'budget' if e.code=='CONTEXT_BUDGET' else 'auth' if e.code in {'PERMISSION_DENIED','APPROVAL_MISMATCH'} else 'unrecoverable')
@@ -86,6 +92,35 @@ class WorkflowRuntime:
                     state['elapsed']+=max(0,time.time()-state['active_since'])
                     state['active_since']=None
                     self.store.save(state)
+
+    def _receipt(self, action_id, context):
+        # Reconciliation reads already-committed evidence even after grant revocation.
+        with self.platform.actions.connection() as db:
+            self.platform.actions.get(action_id,context,db)
+            row=db.execute('SELECT result_json FROM platform_receipts WHERE action_id=?',(action_id,)).fetchone()
+        return json.loads(row[0]) if row else None
+
+    def _settle_receipt(self,state,context):
+        pending=state.get('pending')
+        if not pending or not pending.get('action_id'): return False
+        receipt=self._receipt(pending['action_id'],context)
+        if receipt is None: return False
+        self.platform.actions.complete(pending['action_id'],receipt)
+        state['result']=self._record(state,pending['tool'],pending['args'],receipt)
+        state['pending']=None
+        with self.platform.actions.connection(write=True) as db:
+            audit_action(db,pending['action_id'],'reconcile',context,{'source':'platform_receipt'})
+        return True
+
+    def _cancel(self,state,context):
+        committed=self._settle_receipt(state,context)
+        pending=state.get('pending')
+        if pending and pending.get('action_id'):
+            with self.platform.actions.connection(write=True) as db:
+                db.execute("UPDATE actions SET status='cancelled' WHERE action_id=? AND status NOT IN ('success','partial_success')",(pending['action_id'],))
+                audit_action(db,pending['action_id'],'cancel',context)
+        if committed: state['cancelled_after_commit']=True
+        return self._stop(state,'cancelled','cancelled')
 
     def _stop(self,state,reason,status='failed'):
         state['status']=status; state['stop_reason']=reason
@@ -109,7 +144,7 @@ class WorkflowRuntime:
 
     async def _drive(self,state,context):
         while state['model_calls']<=state['budget']['max_steps']:
-            if self.store.cancel_requested(state['task_id']): return self._stop(state,'cancelled','cancelled')
+            if self.store.cancel_requested(state['task_id']): return self._cancel(state,context)
             if self._timed_out(state): return self._stop(state,'timeout')
             if state['pending'] is not None:
                 if state['pending'].get('phase')=='prepare': return self._prepare_pending(state,context)
@@ -180,11 +215,11 @@ class WorkflowRuntime:
 
     async def _execute_pending(self,state,context):
         pending=state['pending'];tool,args=pending['tool'],pending['args']
-        check_tool(tool,context,state['policy'])
         ctx={**context,'action_id':pending['action_id']}
-        receipt=self.platform.receipt(pending['action_id'],ctx) if tool in WRITES else None
+        receipt=self._receipt(pending['action_id'],ctx) if tool in WRITES else None
         if receipt is not None: result=receipt
         else:
+            check_tool(tool,context,state['policy'])
             if pending['attempts']>=3: return self._stop(state,'unrecoverable')
             if pending['attempts']:
                 await asyncio.sleep(self.retry_delays[min(pending['attempts']-1,1)])
@@ -198,8 +233,25 @@ class WorkflowRuntime:
             self.store.save(state) # Checkpoint before the side effect.
             if self._timed_out(state): return self._stop(state,'timeout')
             started=time.monotonic()
-            if tool=='read_ref': result=self.store.read_ref(state['task_id'],args,context)
-            else: result=self.platform.execute(tool,args,ctx)
+            execution_context={**ctx,'fault_id':None if fault in ISOLATED_FAULTS else fault}
+            operation=(lambda:self.store.read_ref(state['task_id'],args,context)) if tool=='read_ref' else (lambda:self.platform.execute(tool,args,execution_context))
+            if self.isolate_tools:
+                remaining=state['budget']['max_seconds']-state['elapsed']-max(0,time.time()-state['active_since'])
+                result=await execute_tool({'path':self.store.db.path,'tool':tool,'args':args,'context':execution_context,'fault_id':fault},
+                    time.monotonic()+min(self.tool_timeout,remaining),operation,lambda:self.store.cancel_requested(state['task_id']))
+            else: result=operation()
+            hard_timeout=result.get('hard_timeout',False)
+            if tool in WRITES:
+                receipt=self._receipt(pending['action_id'],ctx)
+                if receipt is not None: result=receipt;hard_timeout=False
+                elif result.get('code')=='OUTCOME_UNKNOWN' and result.get('executor_exited'):
+                    result=failure('TRANSIENT','本地执行者已退出且无回执，事务未提交；允许原动作重试',tool)
+            if result.get('code')=='CANCELLED': return self._cancel(state,context)
+            if hard_timeout:
+                if tool in WRITES: self.platform.actions.complete(pending['action_id'],failure('TOOL_TIMEOUT','工具期限已到',tool))
+                state['result']=self._record(state,tool,args,result)
+                state['pending']=None
+                return self._stop(state,'tool_timeout')
             state['trace'].append({'step':len(state['steps']),'kind':'tool','tool':tool,
                 'args_hash':hashlib.sha256(canonical(args).encode()).hexdigest(),
                 'latency_ms':round((time.monotonic()-started)*1000,2),'outcome':result['code'],'tokens':0,'cost':0,'stop_reason':None})

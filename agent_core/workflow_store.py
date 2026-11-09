@@ -5,7 +5,7 @@ import json
 import sqlite3
 import time
 import uuid
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from pathlib import Path
 from pydantic import BaseModel, ConfigDict, Field
 from agent_core.action_store import ActionError, ActionStore, canonical, scope
@@ -54,16 +54,16 @@ class WorkflowStore:
             try: yield
             finally: fcntl.flock(handle,fcntl.LOCK_UN)
 
-    def create(self,text,context,budget):
+    def create(self,text,context,budget,db=None):
         from agent_core.workflow_policy import resolve_policy
         policy = resolve_policy(context)
         owner=canonical(scope(context))
         request_id=context.get('request_id') or None
-        with self.db.connection(write=True) as db:
+        with (self.db.connection(write=True) if db is None else nullcontext(db)) as db:
             if request_id:
                 row=db.execute('SELECT payload,input FROM workflow_tasks WHERE scope=? AND request_id=?',(owner,request_id)).fetchone()
                 if row:
-                    if row['input']!=text: raise ActionError('REQUEST_CONFLICT','请求 ID 对应不同任务')
+                    if row['input']!=text or json.loads(row['payload']).get('mode','execute')!=('dry_run' if context.get('dry_run') else 'execute'): raise ActionError('REQUEST_CONFLICT','请求 ID 对应不同任务')
                     return migrate_state(json.loads(row['payload']))
             state={'revision':0,'policy':policy,'schema_version':1,'mode':'dry_run' if context.get('dry_run') else 'execute','task_id':str(uuid.uuid4()),'input':text,'scope':list(scope(context)), 'budget':budget.model_dump(),
                    'status':'ready','stop_reason':None,'steps':[],'trace':[],'pending':None,'replies':[],
@@ -73,22 +73,22 @@ class WorkflowStore:
             db.execute('INSERT INTO workflow_tasks (task_id,scope,request_id,input,payload) VALUES (?,?,?,?,?)',(state['task_id'],owner,request_id,text,canonical(state)))
             return state
 
-    def get(self,task_id,context):
-        with self.db.connection() as db: row=db.execute('SELECT scope,payload,revision FROM workflow_tasks WHERE task_id=?',(task_id,)).fetchone()
+    def get(self,task_id,context,db=None):
+        with (self.db.connection() if db is None else nullcontext(db)) as db: row=db.execute('SELECT scope,payload,revision FROM workflow_tasks WHERE task_id=?',(task_id,)).fetchone()
         if not row: raise ActionError('TASK_NOT_FOUND','任务不存在')
         if row['scope']!=canonical(scope(context)): raise ActionError('SCOPE_MISMATCH','操作人、会话或环境不匹配')
         state=migrate_state(json.loads(row['payload']))
         state['revision']=row['revision']
-        with self.db.connection() as db:
-            control=db.execute('SELECT cancel_requested FROM workflow_control WHERE task_id=?',(task_id,)).fetchone()
+        with self.db.connection() as control_db:
+            control=control_db.execute('SELECT cancel_requested FROM workflow_control WHERE task_id=?',(task_id,)).fetchone()
         state['cancel_requested']=bool(control and control[0])
         return state
 
-    def save(self,state,expected_revision=None):
+    def save(self,state,expected_revision=None,db=None):
         expected=state.get('revision',0) if expected_revision is None else expected_revision
         value={**state,'revision':expected+1}
         if value['status'] in TERMINAL: value.setdefault('finished_at',time.time())
-        with self.db.connection(write=True) as db:
+        with (self.db.connection(write=True) if db is None else nullcontext(db)) as db:
             cur=db.execute('UPDATE workflow_tasks SET payload=?,revision=? WHERE task_id=? AND revision=?',
                            (canonical(value),expected+1,state['task_id'],expected))
             if cur.rowcount!=1:

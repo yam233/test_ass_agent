@@ -4,7 +4,7 @@ import json
 import sqlite3
 import time
 import uuid
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from pathlib import Path
 from agent_core.workflow_audit import initialize, audit_action
 
@@ -110,8 +110,8 @@ class ActionStore:
                     raise ActionError("ACTION_ID_REQUIRED", "该会话曾替换待审批动作，请明确提供 action_id")
             return self.decode(row)
 
-    def approve(self, action_id, context):
-        with self.connection(write=True) as db:
+    def approve(self, action_id, context, db=None):
+        with (self.connection(write=True) if db is None else nullcontext(db)) as db:
             value = self.get(action_id, context, db)
             if value["status"] not in {"pending", "approved", "running", "retryable", "unknown", "success", "partial_success"}:
                 raise ActionError("APPROVAL_INVALID", "动作已取消、被替换或失败，请重新提交")
@@ -126,8 +126,8 @@ class ActionStore:
                 audit_action(db,action_id,'approve',context)
             return self.get(action_id, context, db)
 
-    def deny(self, action_id, context):
-        with self.connection(write=True) as db:
+    def deny(self, action_id, context, db=None):
+        with (self.connection(write=True) if db is None else nullcontext(db)) as db:
             value = self.get(action_id, context, db)
             if value["status"] not in {"pending", "approved", "denied"}:
                 raise ActionError("APPROVAL_INVALID", "该动作已开始或结束，不能取消为未执行")

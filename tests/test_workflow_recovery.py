@@ -30,7 +30,7 @@ import asyncio,os,sys,json
 from contextlib import contextmanager
 from agent_core.workflow import WorkflowRuntime
 from tests.test_workflow import SequenceModel,CTX
-rt=WorkflowRuntime(sys.argv[1],model=SequenceModel([]))
+rt=WorkflowRuntime(sys.argv[1],model=SequenceModel([]),isolate_tools=False)
 if sys.argv[4]=='after_receipt':
     rt.platform.actions.complete=lambda *a: os._exit(86)
 else:
@@ -106,11 +106,13 @@ def test_default_offline_chain_and_http_restart(tmp_path,monkeypatch):
             r=await client.post('/workflows',json={'user_input':'给用户123发10个礼物301到背包，然后查询核验','context':CTX})
             assert r.status_code==200,r.text
             state=r.json()
+        await app.state.runner.stop()
         app=create_app(workflow=WorkflowRuntime(path))
         async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),base_url='http://test') as client:
             r=await client.post('/workflows/'+state['task_id']+'/resume',json={'context':CTX,'action_id':state['pending']['action_id'],'decision':'approve'})
             assert r.json()['status']=='completed',r.text
             assert r.json()['steps'][1]['result']['data']['total_quantity']==10
+        await app.state.runner.stop()
     run(scenario())
 
 def test_unknown_environment_rejected_before_model_call(tmp_path):

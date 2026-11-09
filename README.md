@@ -1,6 +1,6 @@
 # TestOps Agent
 
-基于 LLM 的测试助手，支持用户查询、礼物发放、奖池配置、钻石充值、后台功能搜索和配置核验。
+基于可替换 LLM 的本地合成测试助手，支持礼物造数与查询、配置修改与回滚、批次清理和内置模拟脚本；提供审批、持久调度、取消、恢复和离线评测。
 
 ## 多步工作流入口
 
@@ -200,3 +200,5 @@ python -m compileall agent_core api agent_plugins tests utils
 两组测试均使用合成平台和假传输，不需要数据库权限或模型凭证；CI 在仓库外创建虚拟环境。
 
 写操作要求显式 `operator` 与 `env`。工作流工具授权在 `config/workflow_policy.json` 配置；默认仅列出的本地演示身份可写，未知身份只读。`allowed_tools` 只能收窄权限，续跑不能扩大原任务权限；本地身份声明不替代认证。
+
+运行与代码边界见 [架构边界](docs/architecture-boundaries.md)。工作流 HTTP 默认等待结果，`dispatch=queued` 返回 202；两种模式共用单机持久队列和两个执行槽。

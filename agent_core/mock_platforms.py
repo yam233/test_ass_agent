@@ -75,6 +75,8 @@ class MockPlatforms:
                    'workflow_config','workflow_changes','workflow_preconditions','workflow_control','workflow_artifacts','workflow_audit','workflow_jobs']
             counts={t:db.execute(f'SELECT count(*) FROM {t}').fetchone()[0] for t in names if t in tables}
             if not dry_run:
+                if 'workflow_jobs' in tables and db.execute("SELECT 1 FROM workflow_jobs WHERE status='running' LIMIT 1").fetchone():
+                    raise ActionError('RESOURCE_BUSY','存在执行中的调度任务，不能重置')
                 if db.execute("SELECT 1 FROM actions WHERE status IN ('running','unknown') LIMIT 1").fetchone():
                     raise ActionError('RESOURCE_BUSY','存在未对账动作，不能重置')
                 for table in counts: db.execute(f'DELETE FROM {table}')

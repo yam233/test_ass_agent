@@ -132,3 +132,13 @@ checkpoint 带 schema_version 和 revision；旧格式自动迁移，首次结�
 - `python -m scripts.export_workflow_trace --db PATH --task-id ID --operator NAME --session-id SESSION --env uat` 导出范围校验后的 trace、审批事件和脱敏版本记录。
 
 fixture、chaos、replay、remote 各有独立 mode。runtime 分数不等于模型准确率；尝试数与已提交动作数分开。旧评测 CLI 委托统一入口，历史报告不覆盖；不拿新增用例与旧报告拼提升率。
+
+### 持久调度与取消
+
+启动 `./start_server.sh start` 会初始化单个调度器。`POST /workflows` 与 `/resume` 接受 `dispatch: "queued"`，事务入队后返回 202；默认 `inline` 等待同一队列执行到完成/待批/待澄清。两种模式共用两个执行槽，最多100个排队任务；队列满返回429且不遗留半创建任务。
+
+`POST /workflows/{task_id}/cancel` 携带同 scope 的 context。排队和待批任务可直接取消；执行中先持久化取消标记、终止工具执行者并查询回执，再报告最终状态。取消不回滚已提交的数据。任务的取消状态不会被旧 checkpoint 覆盖。
+
+工具默认5秒时限，最多1秒终止回收；本地进程退出且无回执时，确认事务未提交，才允许原动作有限重试。已提交回执优先。任务总执行预算覆盖调用、执行和退避；排队与人工等待不消耗该预算。进程丢失的执行区间保守计入时间。
+
+故障注入新增 `f_tool_hang`（工具进程阻塞）、`f_crash_before_receipt`、`f_crash_after_commit`；配合 `fault_count:1` 可验证恢复。这些仅用于合成环境。停机不丢持久 job，重启不会自动批准待批动作，也不会抢占仍持有任务锁的旧执行者。

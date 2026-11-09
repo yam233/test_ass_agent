@@ -194,7 +194,7 @@ start_service() {
     echo ""
     
     # 使用 nohup 启动后台守护进程
-    nohup "$PYTHON_BIN" -m uvicorn "$AGENT_APP" \
+    nohup "$PYTHON_BIN" -m uvicorn "$AGENT_APP" --workers 1 --timeout-graceful-shutdown 15 \
         --host "$HOST" \
         --port "$PORT" \
         --log-level info \
