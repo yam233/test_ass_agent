@@ -93,3 +93,9 @@ pytest 只收集 tests/，避免误执行历史目录中需要旧平台的脚本
 指标包括任务验收通过率、工具选择匹配率、参数非法率、平均步骤、重复副作用、恢复成功率和每任务 token/成本。工程回归中的模型决策是可控 fixture，工具匹配率不能代表 LLM 准确率；真实选择准确率看 model_acceptance。all_runs_pass_rate 是连续多次全通过的稳定性，at_least_one_pass_rate 是至少一次通过，两者不要混称 pass@4。
 
 范围：四批运行时改造已实现。没有接回真实平台，没有生产身份系统、任意 SQL/脚本执行、前端、多智能体或自研/LangGraph 框架对照实验。旧单动作 LangGraph 入口保留，新多步入口为显式 Python 循环；尚未用两种框架实现同一工作流做对照。
+
+### 预演与引用页
+
+`context.dry_run=true` 固定为任务模式：运行到第一个写意图时返回 `planned` 和影响预览，不创建可审批动作。后续 resume 无法把它变成正式执行；正式执行需新建任务。预演不声称已验证依赖该写结果的后续步骤。
+
+`read_ref` 每页最多 100 行、16 KiB UTF-8 响应，返回 `returned_count/next_offset/truncated`。使用 `next_offset` 继续读取；单行超限返回 `ROW_TOO_LARGE`。读取页不会再次生成引用。

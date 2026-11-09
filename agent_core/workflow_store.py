@@ -9,6 +9,8 @@ from pathlib import Path
 from pydantic import BaseModel, ConfigDict, Field
 from agent_core.action_store import ActionError, ActionStore, canonical, scope
 
+from agent_core.workflow_state import migrate_state
+
 class Budget(BaseModel):
     model_config=ConfigDict(extra='forbid',strict=True)
     max_steps: int=Field(16,ge=1,le=100)
@@ -43,8 +45,8 @@ class WorkflowStore:
                 row=db.execute('SELECT payload,input FROM workflow_tasks WHERE scope=? AND request_id=?',(owner,request_id)).fetchone()
                 if row:
                     if row['input']!=text: raise ActionError('REQUEST_CONFLICT','请求 ID 对应不同任务')
-                    return json.loads(row['payload'])
-            state={'task_id':str(uuid.uuid4()),'input':text,'scope':list(scope(context)), 'budget':budget.model_dump(),
+                    return migrate_state(json.loads(row['payload']))
+            state={'schema_version':1,'mode':'dry_run' if context.get('dry_run') else 'execute','task_id':str(uuid.uuid4()),'input':text,'scope':list(scope(context)), 'budget':budget.model_dump(),
                    'status':'ready','stop_reason':None,'steps':[],'trace':[],'pending':None,'replies':[],
                    'model_calls':0,'tool_calls':0,'tokens':0,'reported_tokens':0,'usage_complete':True,
                    'elapsed':0.0,'active_since':None,'bad_args':0,'created_at':time.time(),
@@ -56,7 +58,7 @@ class WorkflowStore:
         with self.db.connection() as db: row=db.execute('SELECT scope,payload FROM workflow_tasks WHERE task_id=?',(task_id,)).fetchone()
         if not row: raise ActionError('TASK_NOT_FOUND','任务不存在')
         if row['scope']!=canonical(scope(context)): raise ActionError('SCOPE_MISMATCH','操作人、会话或环境不匹配')
-        return json.loads(row['payload'])
+        return migrate_state(json.loads(row['payload']))
 
     def save(self,state):
         with self.db.connection(write=True) as db:
@@ -64,7 +66,7 @@ class WorkflowStore:
             if cur.rowcount!=1: raise ActionError('TASK_NOT_FOUND','任务已被重置')
 
     def externalize(self,task_id,result):
-        if len(canonical(result))<=1500: return result
+        if len(canonical(result).encode())<=1500: return result
         rid=str(uuid.uuid4())
         data=result.get('data',{})
         rows=data.get('rows',[])
@@ -82,4 +84,20 @@ class WorkflowStore:
         rows=payload.get('data',{}).get('rows')
         if rows is None: rows=[payload]
         start=args.get('offset',0); limit=args.get('limit',20)
-        return {'success':True,'status':'success','code':'OK','data':{'rows':rows[start:start+limit], 'row_count':len(rows),'offset':start}}
+        from agent_core.workflow_contracts import Ref, failure
+        values = Ref(**args).model_dump()
+        start, limit = values['offset'], values['limit']
+        page = []
+        def response():
+            end = start + len(page)
+            return {'success':True,'status':'success','code':'OK','data':{
+                'rows':page,'row_count':len(rows),'offset':start,'returned_count':len(page),
+                'next_offset':end if end < len(rows) else None,'truncated':end < len(rows)}}
+        for item in rows[start:start+limit]:
+            page.append(item)
+            if len(canonical(response()).encode()) > 16384:
+                page.pop()
+                if not page:
+                    return failure('ROW_TOO_LARGE','单行超过引用页大小限制，请查询更小字段集','read_ref')
+                break
+        return response()

@@ -10,7 +10,7 @@ from agent_core.workflow_store import WorkflowStore, Budget
 from agent_core.workflow_model import NativeModel, SYSTEM
 from agent_core.langgraph_agent.llm import DeepSeekLLM
 
-TERMINAL={'completed','failed','denied','partial'}
+from agent_core.workflow_state import TERMINAL
 
 class WorkflowRuntime:
     def __init__(self,path='.mock_state/platforms.sqlite',model=None,retry_delays=(1,3)):
@@ -43,6 +43,7 @@ class WorkflowRuntime:
         with self.store.lock(task_id):
             state=self.store.get(task_id,context)
             if state['status'] in TERMINAL: return state
+            context = {**context, 'dry_run': state['mode'] == 'dry_run'}
             if state['active_since'] is not None:
                 state['elapsed']+=max(0,time.time()-state['active_since'])
                 state['active_since']=None
@@ -177,6 +178,11 @@ class WorkflowRuntime:
 
     def _prepare_pending(self,state,context):
         pending=state['pending'];tool,args=pending['tool'],pending['args']
+        if state['mode'] == 'dry_run':
+            self.platform.check_policy(tool, context)
+            state['result'] = {'success':True,'status':'planned','code':'OK','data':{'tool':tool,'params':args,'preview':self.platform.preview(tool,args,context)}}
+            state['pending'] = None
+            return self._stop(state,'dry_run','planned')
         action=self.platform.prepare(tool,args,{**context,'request_id':f"{state['task_id']}:{len(state['steps'])}"})
         pending.update(action_id=action['action_id'],snapshot={'tool':tool,'params':args,'scope':state['scope'],
             'risk':SPECS[tool][1],'impact':self.platform.preview(tool,args,context)},expires_at=action['expires_at'])
@@ -185,7 +191,7 @@ class WorkflowRuntime:
         return state
 
     def _record(self,state,tool,args,result):
-        compact=self.store.externalize(state['task_id'],result)
+        compact=result if tool=='read_ref' else self.store.externalize(state['task_id'],result)
         state['steps'].append({'seq':len(state['steps']),'tool':tool,'args':args,'result':compact})
         return compact
 
