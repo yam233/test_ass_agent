@@ -92,3 +92,83 @@ def test_shared_request_validation_matches_sdk_and_queue(tmp_path):
             operation()
     with jobs.store.db.connection() as db:
         assert db.execute("SELECT count(*) FROM workflow_tasks").fetchone()[0] == 0
+
+
+def committed_task(path, context=CTX):
+    from agent_core.workflow import WorkflowRuntime
+
+    runtime = WorkflowRuntime(
+        path, model=SequenceModel([call("seed_test_data", SEED), {"final": "done"}])
+    )
+    state = run(runtime.start("seed", context))
+    aid = state["pending"]["action_id"]
+    state = run(
+        runtime.resume(state["task_id"], context, action_id=aid, decision="approve")
+    )
+    assert state["status"] == "completed"
+    return runtime, state, aid
+
+
+def test_receipt_repository_enforces_task_and_scope_boundaries(tmp_path):
+    runtime, first, aid = committed_task(tmp_path / "db")
+    _, second, other = committed_task(tmp_path / "db")
+    store = runtime.platform.actions
+    assert store.receipt(aid, CTX)["data"]["actual"] == 10
+    assert set(store.task_receipts(first["task_id"], CTX)) == {aid}
+    assert set(store.task_receipts(second["task_id"], CTX)) == {other}
+    for context in (
+        {**CTX, "operator": "bob"},
+        {**CTX, "session_id": "other"},
+        {**CTX, "env": "dev"},
+    ):
+        with pytest.raises(ActionError):
+            store.receipt(aid, context)
+        assert store.task_receipts(first["task_id"], context) == {}
+    # Public task IDs must not be interpreted as SQL patterns.
+    assert store.task_receipts("%", CTX) == {}
+    assert store.task_receipts(first["task_id"][:-1], CTX) == {}
+
+
+def test_cancel_repository_keeps_audit_and_state_atomic(tmp_path, monkeypatch):
+    from agent_core.workflow import WorkflowRuntime
+
+    runtime = WorkflowRuntime(
+        tmp_path / "db", model=SequenceModel([call("seed_test_data", SEED)])
+    )
+    state = run(runtime.start("seed", CTX))
+    aid = state["pending"]["action_id"]
+    store = runtime.platform.actions
+    original = __import__(
+        "agent_core.action_store", fromlist=["audit_action"]
+    ).audit_action
+
+    def failed_audit(*args, **kwargs):
+        raise RuntimeError("injected audit failure")
+
+    monkeypatch.setattr("agent_core.action_store.audit_action", failed_audit)
+    with pytest.raises(RuntimeError):
+        store.cancel_action(aid, CTX)
+    assert store.get(aid, CTX)["status"] == "pending"
+    monkeypatch.setattr("agent_core.action_store.audit_action", original)
+    with pytest.raises(ActionError):
+        store.cancel_action(aid, {**CTX, "operator": "bob"})
+    store.cancel_action(aid, CTX)
+    assert store.get(aid, CTX)["status"] == "cancelled"
+    with store.connection() as db:
+        assert (
+            db.execute(
+                "SELECT count(*) FROM workflow_audit WHERE action_id=? AND event='cancel'",
+                (aid,),
+            ).fetchone()[0]
+            == 1
+        )
+    assert not runtime.platform.snapshot("gifts")
+
+
+def test_cancel_repository_preserves_committed_receipt_and_result(tmp_path):
+    runtime, _, aid = committed_task(tmp_path / "db")
+    store = runtime.platform.actions
+    before = store.get(aid, CTX)
+    assert store.cancel_action(aid, CTX) is False
+    assert store.get(aid, CTX) == before
+    assert store.receipt(aid, CTX)["data"]["actual"] == 10

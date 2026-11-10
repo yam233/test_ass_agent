@@ -31,6 +31,11 @@ class WorkflowPlatform(MockPlatforms):
     def normalize_write(tool, params):
         return normalize(tool, params)
 
+    def check_impact(self, tool, args, policy):
+        """Preflight through the platform; execution still rechecks in its transaction."""
+        with self.actions.connection() as db:
+            check_cleanup_impact(tool, args, policy, db)
+
     def _source(self, name, args, context, db):
         if name not in {"cleanup_data", "rollback_config"}:
             return

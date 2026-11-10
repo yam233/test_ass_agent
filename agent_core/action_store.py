@@ -87,6 +87,49 @@ class ActionStore:
             raise ActionError("APPROVAL_MISMATCH", "操作人、会话或环境与动作快照不一致")
         return value
 
+    def receipt(self, action_id, context):
+        """Read committed evidence with scope checks, including after grant revocation."""
+        with self.connection() as db:
+            self.get(action_id, context, db)
+            row = db.execute(
+                "SELECT result_json FROM platform_receipts WHERE action_id=?",
+                (action_id,),
+            ).fetchone()
+            return json.loads(row[0]) if row else None
+
+    def task_receipts(self, task_id, context):
+        """Return only this task's committed receipts within the caller's scope."""
+        prefix = task_id + ":"
+        with self.connection() as db:
+            rows = db.execute(
+                "SELECT a.action_id,r.result_json FROM actions a "
+                "JOIN platform_receipts r USING(action_id) "
+                "WHERE substr(a.request_id,1,?)=? AND a.operator=? AND a.session_id=? AND a.env=?",
+                (len(prefix), prefix, *scope(context)),
+            ).fetchall()
+            return {r[0]: json.loads(r[1]) for r in rows}
+
+    def record_reconciliation(self, action_id, context):
+        with self.connection(write=True) as db:
+            self.get(action_id, context, db)
+            audit_action(
+                db, action_id, "reconcile", context, {"source": "platform_receipt"}
+            )
+
+    def cancel_action(self, action_id, context):
+        """Cancel uncommitted work and its audit event in one transaction."""
+        with self.connection(write=True) as db:
+            self.get(action_id, context, db)
+            changed = db.execute(
+                "UPDATE actions SET status='cancelled' WHERE action_id=? "
+                "AND status NOT IN ('success','partial_success') "
+                "AND NOT EXISTS(SELECT 1 FROM platform_receipts WHERE action_id=?)",
+                (action_id, action_id),
+            ).rowcount
+            if changed:
+                audit_action(db, action_id, "cancel", context)
+            return bool(changed)
+
     def prepare(self, tool, args, context, supersede=True):
         owner, session, env = scope(context)
         fingerprint = hashlib.sha256(

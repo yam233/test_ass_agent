@@ -1,16 +1,14 @@
 """Bounded, durable single-agent function-call loop over synthetic platforms."""
 import asyncio
 import hashlib
-import json
 import time
 from agent_core.action_store import ActionError, canonical
 from agent_core.workflow_contracts import SPECS, WRITES, catalog, normalize, failure
 from agent_core.workflow_store import Budget
-from agent_core.workflow_policy import resolve_policy, check_tool, check_cleanup_impact
+from agent_core.workflow_policy import resolve_policy, check_tool
 from agent_core.model_call import next_decision
 from agent_core.workflow_context import build_context
 from agent_core.tool_executor import execute_tool, ISOLATED_FAULTS
-from agent_core.workflow_audit import audit_action
 from agent_core.workflow_factory import build_dependencies
 from agent_core.workflow_contracts import validate_context, validate_request
 
@@ -84,13 +82,9 @@ class WorkflowRuntime:
                 if decision == "deny":
                     self.platform.actions.deny(action_id, context)
                     return self._stop(state, "denied", "denied")
-                with self.platform.actions.connection() as db:
-                    check_cleanup_impact(
-                        state["pending"]["tool"],
-                        state["pending"]["args"],
-                        effective,
-                        db,
-                    )
+                self.platform.check_impact(
+                    state["pending"]["tool"], state["pending"]["args"], effective
+                )
                 self.platform.actions.approve(action_id, context)
                 state["status"] = "running"
                 state["pending"]["phase"] = "execute"
@@ -136,14 +130,7 @@ class WorkflowRuntime:
                     self.store.save(state)
 
     def _receipt(self, action_id, context):
-        # Reconciliation reads already-committed evidence even after grant revocation.
-        with self.platform.actions.connection() as db:
-            self.platform.actions.get(action_id, context, db)
-            row = db.execute(
-                "SELECT result_json FROM platform_receipts WHERE action_id=?",
-                (action_id,),
-            ).fetchone()
-        return json.loads(row[0]) if row else None
+        return self.platform.actions.receipt(action_id, context)
 
     def _settle_receipt(self, state, context):
         pending = state.get("pending")
@@ -155,26 +142,14 @@ class WorkflowRuntime:
         self.platform.actions.complete(pending["action_id"], receipt)
         state["result"] = self._record(state, pending["tool"], pending["args"], receipt)
         state["pending"] = None
-        with self.platform.actions.connection(write=True) as db:
-            audit_action(
-                db,
-                pending["action_id"],
-                "reconcile",
-                context,
-                {"source": "platform_receipt"},
-            )
+        self.platform.actions.record_reconciliation(pending["action_id"], context)
         return True
 
     def _cancel(self, state, context):
         committed = self._settle_receipt(state, context)
         pending = state.get("pending")
         if pending and pending.get("action_id"):
-            with self.platform.actions.connection(write=True) as db:
-                db.execute(
-                    "UPDATE actions SET status='cancelled' WHERE action_id=? AND status NOT IN ('success','partial_success')",
-                    (pending["action_id"],),
-                )
-                audit_action(db, pending["action_id"], "cancel", context)
+            self.platform.actions.cancel_action(pending["action_id"], context)
         if committed:
             state["cancelled_after_commit"] = True
         return self._stop(state, "cancelled", "cancelled")
@@ -243,13 +218,9 @@ class WorkflowRuntime:
                 if not any(s["result"].get("success") for s in state["steps"]):
                     state["result"] = failure("NO_EVIDENCE", "模型未调用工具，不能声称任务已执行")
                     return self._stop(state, "no_evidence")
-                with self.platform.actions.connection() as db:
-                    rows = db.execute(
-                        "SELECT a.action_id,r.result_json FROM actions a JOIN platform_receipts r USING(action_id) WHERE a.request_id LIKE ? AND a.operator=? AND a.session_id=? AND a.env=?",
-                        (state["task_id"] + ":%", *state["scope"]),
-                    ).fetchall()
                 state["result"] = finalize_outcome(
-                    state, {r[0]: json.loads(r[1]) for r in rows}
+                    state,
+                    self.platform.actions.task_receipts(state["task_id"], context),
                 )
                 if state["result"]["unfulfilled"]:
                     return self._stop(state, "no_evidence")
@@ -336,8 +307,7 @@ class WorkflowRuntime:
         check_tool(tool, context, state["policy"])
         if state["mode"] == "dry_run":
             policy = self.platform.check_policy(tool, context, state["policy"])
-            with self.platform.actions.connection() as db:
-                check_cleanup_impact(tool, args, policy, db)
+            self.platform.check_impact(tool, args, policy)
             state["result"] = {
                 "success": True,
                 "status": "planned",
