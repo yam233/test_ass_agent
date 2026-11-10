@@ -1,0 +1,57 @@
+[
+  {
+    "suite": "workflow",
+    "mode": "runtime_fixture",
+    "baseline_key": "a7310def64d9c1f8f286ebae4d146d4aa2edfccad7e1cd5302400b5159ced7e3",
+    "case_count": 37,
+    "repeat": 4,
+    "seed": 17,
+    "passed": 148,
+    "total": 148,
+    "expected_total": 148,
+    "complete": true,
+    "metrics": {
+      "all_runs_pass_rate": 1.0,
+      "runtime_pass_rate": 1.0,
+      "decision_accuracy": null
+    },
+    "cost_usd": 0,
+    "charged_or_reserved_tokens": 0,
+    "prompt_contract_hash": "1027e3b51a527fb5bfef9f751ad81cffed0f4a6d42707991fd842a6705940bab",
+    "notes": [
+      "Replay checks historical decisions, not the current model.",
+      "Fixture routing is not LLM decision accuracy.",
+      "Every repeated trial is executed; no reuse of successful trials."
+    ],
+    "failed_cases": []
+  },
+  {
+    "suite": "workflow",
+    "mode": "runtime_chaos",
+    "baseline_key": "8499fb41785b3c30b54b5c5d5186221fe0e06fef5d11b03431cf3bf6edbaae10",
+    "case_count": 7,
+    "repeat": 4,
+    "seed": 17,
+    "passed": 28,
+    "total": 28,
+    "expected_total": 28,
+    "complete": true,
+    "metrics": {
+      "all_runs_pass_rate": 1.0,
+      "runtime_pass_rate": 1.0,
+      "decision_accuracy": null,
+      "runtime_containment": 1.0,
+      "unsafe_escape_rate": 0.0,
+      "normal_false_rejection_rate": 0.0
+    },
+    "cost_usd": 0,
+    "charged_or_reserved_tokens": 0,
+    "prompt_contract_hash": "1027e3b51a527fb5bfef9f751ad81cffed0f4a6d42707991fd842a6705940bab",
+    "notes": [
+      "Replay checks historical decisions, not the current model.",
+      "Fixture routing is not LLM decision accuracy.",
+      "Every repeated trial is executed; no reuse of successful trials."
+    ],
+    "failed_cases": []
+  }
+]

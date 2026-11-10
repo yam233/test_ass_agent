@@ -1,0 +1,36 @@
+{
+  "command": "python -m pytest tests tests_legacy -q",
+  "code_commit": "b9c95a0",
+  "runs": [
+    {
+      "run": 1,
+      "passed": 191,
+      "warnings": 1,
+      "seconds": 35.38
+    },
+    {
+      "run": 2,
+      "passed": 191,
+      "warnings": 1,
+      "seconds": 36.56
+    },
+    {
+      "run": 3,
+      "passed": 191,
+      "warnings": 1,
+      "seconds": 36.92
+    },
+    {
+      "run": 4,
+      "passed": 191,
+      "warnings": 1,
+      "seconds": 35.47
+    },
+    {
+      "run": 5,
+      "passed": 191,
+      "warnings": 1,
+      "seconds": 34.06
+    }
+  ]
+}

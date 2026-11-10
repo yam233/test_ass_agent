@@ -13,7 +13,7 @@
 
 模型 `deepseek-v4.1-flash`；五类操作加缺数量续跑，共6/6通过。使用临时 SQLite mock，审批只接受用例指定的工具和精确参数；判分读取实际数据与回执。清理用例预先创建一个合成批次，其两张回执分别来自准备和清理。
 
-模型接口报告共40,612 tokens，低于显式设置的80,000上限。只运行这一轮付费样本，没有扩大评测。报告：[usability-remote.json](../reports/usability-remote.json)。这证明这些用例可用，不是大规模决策准确率，也不证明真实外部平台权限或事务能力。
+模型接口报告共40,612 tokens，低于显式设置的80,000上限。只运行这一轮付费样本，没有扩大评测。远程样本之后新增的清理核验表约束以离线回归复核，没有重复调用付费接口。报告：[usability-remote.json](../reports/usability-remote.json)。这证明这些用例可用，不是大规模决策准确率，也不证明真实外部平台权限或事务能力。
 
 复现（会调用付费接口）：
 
@@ -23,7 +23,9 @@ python -m scripts.verify_workflow_usability --config config/local/agent_secrets.
 
 ## 离线验证
 
-完整回归命令为 `python -m pytest tests tests_legacy -q`，包含原有幂等、回执对账、审批、并发、进程关闭/重启、故障注入和新增可用性边界。最终连续运行结果和巡检实测在完成验证后填入本节。
+完整回归命令为 `python -m pytest tests tests_legacy -q`，包含原有幂等、回执对账、审批、并发、进程关闭/重启、故障注入和新增可用性边界。连续5轮全部通过，每轮191项；每轮约34–37秒，保留1条原有 Pydantic 弃用提醒。测试记录：[usability-tests.json](../reports/usability-tests.json)。另外 fixture 148/148、chaos 28/28；录播7条及原有9条背包回归包含在完整测试中。离线评测记录：[usability-offline.json](../reports/usability-offline.json)。
+
+历史终态任务每条额外填充17KB，150 / 1,500 / 5,000条，各测10次；恢复加审批到期筛选的中位耗时分别为0.629 / 0.587 / 0.607ms。报告：[usability-maintenance.json](../reports/usability-maintenance.json)。这是历史终态负载下的本机实测，不代表任意活跃任务量都为常数耗时。运行时只对实际可恢复候选加载状态，每批最多100个；仍需处理活跃/崩溃任务本身的工作。
 
 ## 边界
 

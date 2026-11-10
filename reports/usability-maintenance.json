@@ -1,0 +1,23 @@
+[
+  {
+    "terminal_tasks": 150,
+    "payload_padding_bytes": 17000,
+    "runs": 10,
+    "median_recover_plus_expiry_ms": 0.629,
+    "max_ms": 0.973
+  },
+  {
+    "terminal_tasks": 1500,
+    "payload_padding_bytes": 17000,
+    "runs": 10,
+    "median_recover_plus_expiry_ms": 0.587,
+    "max_ms": 1.181
+  },
+  {
+    "terminal_tasks": 5000,
+    "payload_padding_bytes": 17000,
+    "runs": 10,
+    "median_recover_plus_expiry_ms": 0.607,
+    "max_ms": 0.922
+  }
+]
