@@ -184,6 +184,7 @@ def test_health_describes_primary_runtime_without_initializing_legacy(
     def unexpected(*args, **kwargs):
         raise AssertionError("health must not initialize legacy agent")
 
+    monkeypatch.setenv("LLM_MODE", "offline")
     monkeypatch.setattr("agent_core.offline_runtime.build_offline_agent", unexpected)
     runtime = WorkflowRuntime(tmp_path / "db", model=SequenceModel([]))
     app = create_app(workflow=runtime)
@@ -198,7 +199,7 @@ def test_health_describes_primary_runtime_without_initializing_legacy(
                 data = response.json()
                 assert data["primary_endpoint"] == "/workflows"
                 assert data["orchestrator"] == "workflow_runtime"
-                assert data["llm_mode"] == "custom"
+                assert data["llm_mode"] == "offline"
                 assert data["compatibility"]["initialized"] is False
                 assert data["compatibility"]["orchestrator"] is None
 
@@ -206,13 +207,14 @@ def test_health_describes_primary_runtime_without_initializing_legacy(
     assert app.state.agent is None
 
 
-def test_health_separates_initialized_legacy_and_primary_models(tmp_path):
+def test_health_separates_initialized_legacy_and_primary_models(tmp_path, monkeypatch):
     import httpx
     from types import SimpleNamespace
     from api.offline_server import create_app
     from agent_core.workflow import WorkflowRuntime
     from agent_core.workflow_rules import RuleModel
 
+    monkeypatch.setenv("LLM_MODE", "offline")
     runtime = WorkflowRuntime(tmp_path / "db", model=RuleModel())
     legacy = SimpleNamespace(llm=SimpleNamespace(mode="remote"), _graph=object())
     app = create_app(workflow=runtime, agent=legacy)
@@ -227,5 +229,45 @@ def test_health_separates_initialized_legacy_and_primary_models(tmp_path):
             assert data["compatibility"]["initialized"] is True
             assert data["compatibility"]["orchestrator"] == "langgraph"
             assert data["compatibility"]["llm_mode"] == "remote"
+
+    run(scenario())
+
+
+def test_health_matches_worker_default_when_sdk_model_is_injected(
+    tmp_path, monkeypatch
+):
+    import httpx
+    from api.offline_server import create_app
+    from agent_core.workflow import WorkflowRuntime
+
+    monkeypatch.setenv("LLM_MODE", "offline")
+    injected = SequenceModel([])
+    runtime = WorkflowRuntime(tmp_path / "db", model=injected)
+    app = create_app(workflow=runtime)
+
+    async def scenario():
+        try:
+            async with httpx.AsyncClient(
+                transport=httpx.ASGITransport(app=app), base_url="http://test"
+            ) as client:
+                health = (await client.get("/health")).json()
+                assert health["llm_mode"] == "offline"
+                assert health["model_scope"] == "configured_worker_default"
+                response = await client.post(
+                    "/workflows", json={"user_input": "查询用户123的礼物记录", "context": CTX}
+                )
+                assert response.status_code == 200
+                state = response.json()
+                assert state["status"] == "completed"
+                models = {
+                    event["model"]
+                    for event in state["trace"]
+                    if event["kind"] == "model"
+                }
+                assert models == {"offline_rules"}
+                assert injected.calls == 0
+        finally:
+            if app.state.runner is not None:
+                await app.state.runner.stop()
 
     run(scenario())

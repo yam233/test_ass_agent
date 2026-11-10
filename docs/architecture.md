@@ -2,6 +2,8 @@
 
 主链路：`/workflows` → 持久队列/调度 → 工作进程 → `WorkflowRuntime`。Python SDK 可以直接调用同一 Runtime。旧 `/agent/*` 是兼容链路，与主链路分别说明。
 
+模型注入用于直接调用 Python SDK。HTTP 工作进程使用 factory 按配置创建默认模型；给 `create_app` 注入的 workflow 用于存储/状态访问，不会将其模型对象传递到子进程。健康检查报告的是默认 worker 配置，不是已注入 SDK 对象或已运行 worker 的实时状态。
+
 ```mermaid
 flowchart TD
     API[HTTP /workflows] --> Jobs[JobStore 持久入队与交互]

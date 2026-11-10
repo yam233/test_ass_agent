@@ -51,7 +51,7 @@ curl http://127.0.0.1:8002/workflows/TASK_ID/resume -H 'Content-Type: applicatio
 | `/health`、`/` | 返回主链路状态，旧链路状态放在 `compatibility` 字段 |
 | `/agent/execute`、`/agent/langgraph/execute` | 保留的单动作兼容链路 |
 
-健康检查的顶层 `orchestrator` 为 `workflow_runtime`，`llm_mode` 描述主链路。兼容 Agent 未初始化时，`compatibility.initialized=false`，编排和模型信息为 null。它不会把主工作流误报为 LangGraph。
+健康检查的顶层 `orchestrator` 为 `workflow_runtime`，`llm_mode` 描述 HTTP 工作进程的默认模型配置，`model_scope=configured_worker_default`。它不调用模型服务，也不证明服务连通性。兼容 Agent 未初始化时，`compatibility.initialized=false`，编排和模型信息为 null。它不会把主工作流误报为 LangGraph。
 
 ## 模型配置
 

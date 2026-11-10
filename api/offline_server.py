@@ -7,6 +7,7 @@ import uuid
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from agent_core.workflow_runner import WorkflowRunner
+from agent_core.workflow_factory import build_model
 from pydantic import BaseModel, Field
 from agent_core.workflow import WorkflowRuntime
 from agent_core.workflow_store import Budget
@@ -170,14 +171,16 @@ def create_app(agent=None, workflow=None, runner=None):
     @app.get("/")
     @app.get("/health")
     async def health():
-        runtime = get_workflow()
-        model = runtime.model
+        # HTTP workers construct the default model independently of any SDK
+        # runtime injected for storage/status endpoints. Report that configuration.
+        model = build_model()
         llm = getattr(model, "llm", None)
         legacy = app.state.agent
         return {
             "status": "ok",
             "runtime_mode": "mock",
             "primary_endpoint": "/workflows",
+            "model_scope": "configured_worker_default",
             "orchestrator": "workflow_runtime",
             "llm_mode": getattr(llm, "mode", None)
             or (
