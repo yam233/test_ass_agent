@@ -360,7 +360,7 @@ def test_mixed_http_dispatch_modes_share_pool(tmp_path):
     run(scenario())
 
 
-def test_recovery_never_steals_direct_sdk_task_lock(tmp_path):
+def test_recovery_never_steals_direct_sdk_task_lock(tmp_path, monkeypatch):
     from agent_core.workflow import WorkflowRuntime
     from tests.test_workflow import SequenceModel
 
@@ -371,6 +371,11 @@ def test_recovery_never_steals_direct_sdk_task_lock(tmp_path):
         runner.recover()
         with rt.store.db.connection() as db:
             assert db.execute("SELECT count(*) FROM workflow_jobs").fetchone()[0] == 0
+    runner.recover()  # cursor wraps; the lock failure is still in cooldown
+    with rt.store.db.connection() as db:
+        assert db.execute("SELECT count(*) FROM workflow_jobs").fetchone()[0] == 0
+    later = time.monotonic() + 6
+    monkeypatch.setattr("agent_core.workflow_runner.time.monotonic", lambda: later)
     runner.recover()
     with rt.store.db.connection() as db:
         assert db.execute("SELECT count(*) FROM workflow_jobs").fetchone()[0] == 1

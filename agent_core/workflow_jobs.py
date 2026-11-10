@@ -6,6 +6,7 @@ from agent_core.workflow_store import WorkflowStore
 from agent_core.workflow_state import TERMINAL
 from agent_core.workflow_policy import resolve_policy, check_tool, check_cleanup_impact
 from agent_core.workflow_audit import audit_action
+from agent_core.workflow_clarification import accept_reply
 
 
 class JobStore:
@@ -19,6 +20,10 @@ class JobStore:
                 """CREATE TABLE IF NOT EXISTS workflow_jobs (
                 task_id TEXT PRIMARY KEY,status TEXT NOT NULL,context TEXT NOT NULL,
                 generation INTEGER NOT NULL DEFAULT 0,started_at REAL,pid INTEGER,last_error TEXT)"""
+            )
+
+            db.execute(
+                "CREATE INDEX IF NOT EXISTS workflow_jobs_status ON workflow_jobs(status)"
             )
 
     def _enqueue(self, db, state, context):
@@ -118,8 +123,7 @@ class JobStore:
             if state["status"] == "clarification_wait":
                 if not isinstance(reply, str) or not reply or len(reply) > 2000:
                     raise ActionError("BAD_ARGS", "需要1..2000字补充信息")
-                state["replies"].append(reply)
-                state["status"] = "running"
+                accept_reply(state, reply)
             state["policy"] = policy
             self.store.save(state, db=db)
             # A prior worker may have returned its wait state but not yet exited.

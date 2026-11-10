@@ -142,3 +142,13 @@ fixture、chaos、replay、remote 各有独立 mode。runtime 分数不等于模
 工具默认5秒时限，最多1秒终止回收；本地进程退出且无回执时，确认事务未提交，才允许原动作有限重试。已提交回执优先。任务总执行预算覆盖调用、执行和退避；排队与人工等待不消耗该预算。进程丢失的执行区间保守计入时间。
 
 故障注入新增 `f_tool_hang`（工具进程阻塞）、`f_crash_before_receipt`、`f_crash_after_commit`；配合 `fault_count:1` 可验证恢复。这些仅用于合成环境。停机不丢持久 job，重启不会自动批准待批动作，也不会抢占仍持有任务锁的旧执行者。
+
+### 现有能力的完成与恢复语义
+
+最终 `result` 使用工具记录与平台回执生成，包含 `effects`（实际写入）、`observations`（读取结果）、`verification`（逐项核验）和 `unfulfilled`。模型自由文本不作为执行证明。`completion_scope=observed_operations` 表示只保证已观察到的操作；支持的明确写操作短语缺少回执会以 `no_evidence` 结束。该检查不是通用自然语言意图判定器，不能把 `completed` 理解为任意复杂需求的语义正确性证明。
+
+工具 schema 缺必填项时会持久化 `missing_fields` 并进入 `clarification_wait`。单字段可以补 `10` / `10个`，多字段使用 JSON 对象；只能补缺失字段，不能同时改掉已提供参数。非法补充值保持等待，合法补充后的写操作仍走独立审批。模型主动发出的普通追问仍由模型理解后续回复。缺少显式写入身份/环境的工具决策以 `bad_args` 结束，不再误归为 `unrecoverable`；由于自然语言创建请求尚未确定工具，不承诺创建入口能识别所有写意图并立即400。
+
+孤儿任务按索引每秒巡检，每批最多100个候选；任务锁竞争后等待5秒再尝试，旧任务不会因创建时间较早而被排除。审批过期扫描只锁已到期的待批任务。HTTP409中的 `RESOURCE_BUSY` / `STATE_CONFLICT` 附带 `Retry-After: 1`，调用方应保留原 task/action ID，查状态后再重试；不重试权限拒绝，也不重新创建写任务。
+
+小样本真实模型验收见 [可用性验收](usability-acceptance.md)。

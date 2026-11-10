@@ -26,6 +26,9 @@ class WorkflowRunner:
         self.accepting = True
         self._task = None
         self._lock = None
+        self._orphan_cursor = ""
+        self._retry_after = {}
+        self._next_recovery = 0
 
     async def start(self):
         if self._task is not None:
@@ -47,7 +50,12 @@ class WorkflowRunner:
             raise
         self._task = asyncio.create_task(self._loop())
 
-    def recover(self):
+    def recover(self, force=True):
+        now = time.monotonic()
+        if not force and now < self._next_recovery:
+            return
+        self._next_recovery = now + 1.0
+        self._retry_after = {k: v for k, v in self._retry_after.items() if v > now}
         with self.jobs.store.db.connection() as db:
             rows = [
                 dict(r)
@@ -56,7 +64,7 @@ class WorkflowRunner:
                 )
             ]
         for job in rows:
-            if job["task_id"] in self.active:
+            if job["task_id"] in self.active or job["task_id"] in self._retry_after:
                 continue
             try:
                 with self.jobs.store.lock(
@@ -104,17 +112,22 @@ class WorkflowRunner:
             except ActionError as exc:
                 if exc.code not in {"RESOURCE_BUSY", "STATE_CONFLICT"}:
                     raise
+                self._defer(job["task_id"], now)
         # Tasks left by direct SDK calls are only recovered when no executor holds their lock.
         with self.jobs.store.db.connection() as db:
             rows = [
                 dict(r)
                 for r in db.execute(
-                    "SELECT t.task_id,t.scope,t.payload FROM workflow_tasks t LEFT JOIN workflow_jobs j USING(task_id) WHERE j.task_id IS NULL"
+                    "SELECT t.task_id,t.scope FROM workflow_tasks t LEFT JOIN workflow_jobs j USING(task_id) "
+                    "WHERE json_extract(t.payload,'$.status') IN ('ready','running') AND t.task_id>? AND j.task_id IS NULL ORDER BY t.task_id LIMIT 100",
+                    (self._orphan_cursor,),
                 )
             ]
+        if not rows:
+            self._orphan_cursor = ""
         for row in rows:
-            state = json.loads(row["payload"])
-            if state["status"] not in {"ready", "running"}:
+            self._orphan_cursor = row["task_id"]
+            if row["task_id"] in self._retry_after:
                 continue
             owner, session, env = json.loads(row["scope"])
             ctx = {"operator": owner, "session_id": session, "env": env}
@@ -124,6 +137,14 @@ class WorkflowRunner:
             except ActionError as exc:
                 if exc.code not in {"RESOURCE_BUSY", "QUEUE_FULL"}:
                     raise
+                if exc.code == "RESOURCE_BUSY":
+                    self._defer(row["task_id"], now)
+
+    def _defer(self, task_id, now):
+        # Bound memory even if external SDK workers hold many independent locks.
+        if len(self._retry_after) >= 1000:
+            self._retry_after.pop(next(iter(self._retry_after)))
+        self._retry_after[task_id] = now + 5.0
 
     def _reap(self):
         for task_id, (process, generation) in list(self.active.items()):
@@ -209,11 +230,11 @@ class WorkflowRunner:
                 )
 
     async def _loop(self):
-        last_maintenance = 0
+        last_maintenance = time.monotonic()
         while self.accepting or self.active:
             await asyncio.to_thread(self._reap)
             if self.accepting:
-                await asyncio.to_thread(self.recover)
+                await asyncio.to_thread(self.recover, False)
                 await asyncio.to_thread(self._dispatch)
                 if time.monotonic() - last_maintenance > 30:
                     await asyncio.to_thread(
@@ -306,7 +327,9 @@ def worker(path, task_id, tool_timeout):
         with jobs.store.lock(task_id):
             state = jobs.store.get(task_id, context)
             state["result"] = {"code": exc.code, "message": "执行被拒绝"}
-            runtime._stop(state, "unrecoverable")
+            runtime._stop(
+                state, "bad_args" if exc.code == "BAD_ARGS" else "unrecoverable"
+            )
     except Exception as exc:
         with jobs.store.lock(task_id):
             state = jobs.store.get(task_id, context)

@@ -34,6 +34,8 @@ class WorkflowStore:
             CREATE TABLE IF NOT EXISTS workflow_artifacts (fingerprint TEXT PRIMARY KEY, payload TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS workflow_refs (ref_id TEXT PRIMARY KEY, task_id TEXT NOT NULL, payload TEXT NOT NULL, created_at REAL NOT NULL DEFAULT 0);
             CREATE INDEX IF NOT EXISTS refs_task ON workflow_refs(task_id);
+            CREATE INDEX IF NOT EXISTS workflow_recovery_candidates ON workflow_tasks(task_id) WHERE json_extract(payload,'$.status') IN ('ready','running');
+            CREATE INDEX IF NOT EXISTS workflow_waiting_approvals ON workflow_tasks(json_extract(payload,'$.pending.action_id')) WHERE json_extract(payload,'$.status')='approval_wait';
             CREATE TABLE IF NOT EXISTS workflow_control (task_id TEXT PRIMARY KEY, cancel_requested INTEGER NOT NULL DEFAULT 0);
             """
             )
@@ -200,7 +202,13 @@ class WorkflowStore:
     def expire_approvals(self, now):
         count = 0
         with self.db.connection() as db:
-            rows = list(db.execute("SELECT task_id,scope FROM workflow_tasks"))
+            rows = list(
+                db.execute(
+                    "SELECT t.task_id FROM workflow_tasks t JOIN actions a ON a.action_id=json_extract(t.payload,'$.pending.action_id') "
+                    "WHERE json_extract(t.payload,'$.status')='approval_wait' AND a.status='pending' AND a.expires_at<=?",
+                    (now,),
+                )
+            )
         for row in rows:
             try:
                 with self.lock(row["task_id"]), self.db.connection(write=True) as db:

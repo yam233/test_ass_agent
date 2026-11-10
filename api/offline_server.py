@@ -82,6 +82,9 @@ def create_app(agent=None, workflow=None, runner=None):
             if exc.code == "QUEUE_FULL"
             else 400,
             content={"code": exc.code, "message": str(exc)},
+            headers={"Retry-After": "1"}
+            if exc.code in {"RESOURCE_BUSY", "STATE_CONFLICT"}
+            else None,
         )
 
     @app.post("/workflows")

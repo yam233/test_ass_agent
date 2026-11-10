@@ -16,6 +16,8 @@ from agent_core.workflow_audit import audit_action
 from agent_core.langgraph_agent.llm import DeepSeekLLM
 
 from agent_core.workflow_state import TERMINAL
+from agent_core.workflow_outcome import finalize_outcome
+from agent_core.workflow_clarification import missing_fields, accept_reply
 
 
 class WorkflowRuntime:
@@ -115,8 +117,10 @@ class WorkflowRuntime:
                     return state
                 if not isinstance(reply, str) or len(reply) > 2000:
                     raise ValueError("补充信息最长2000字")
-                state["replies"].append(reply)
-                state["status"] = "running"
+                accept_reply(state, reply)
+                if state["status"] == "clarification_wait":
+                    self.store.save(state)
+                    return state
             state["active_since"] = time.time()
             self.store.save(state)
             try:
@@ -137,6 +141,8 @@ class WorkflowRuntime:
                     if e.code == "CONTEXT_BUDGET"
                     else "auth"
                     if e.code in {"PERMISSION_DENIED", "APPROVAL_MISMATCH"}
+                    else "bad_args"
+                    if e.code == "BAD_ARGS"
                     else "unrecoverable",
                 )
             finally:
@@ -253,7 +259,16 @@ class WorkflowRuntime:
                 if not any(s["result"].get("success") for s in state["steps"]):
                     state["result"] = failure("NO_EVIDENCE", "模型未调用工具，不能声称任务已执行")
                     return self._stop(state, "no_evidence")
-                state["result"] = {"message": decision["final"], "runtime_mode": "mock"}
+                with self.platform.actions.connection() as db:
+                    rows = db.execute(
+                        "SELECT a.action_id,r.result_json FROM actions a JOIN platform_receipts r USING(action_id) WHERE a.request_id LIKE ? AND a.operator=? AND a.session_id=? AND a.env=?",
+                        (state["task_id"] + ":%", *state["scope"]),
+                    ).fetchall()
+                state["result"] = finalize_outcome(
+                    state, {r[0]: json.loads(r[1]) for r in rows}
+                )
+                if state["result"]["unfulfilled"]:
+                    return self._stop(state, "no_evidence")
                 return self._stop(state, "finished", "completed")
             tool, args = decision.get("tool"), decision.get("args")
             if not isinstance(tool, str) or not isinstance(args, dict):
@@ -263,7 +278,23 @@ class WorkflowRuntime:
             except (ValueError, TypeError) as e:
                 result = failure("BAD_ARGS", str(e), tool)
                 state["tool_calls"] += 1
-                self._record(state, tool, args, result)
+                fields = missing_fields(tool, e)
+                if fields:
+                    check_tool(tool, context, state["policy"])
+                    result.update(
+                        missing_fields=fields, question="请补充参数：" + ", ".join(fields)
+                    )
+                    self._record(state, tool, args, result)
+                    state["clarification"] = {
+                        "tool": tool,
+                        "args": args,
+                        "missing_fields": fields,
+                    }
+                    state["status"] = "clarification_wait"
+                    state["result"] = result
+                    self.store.save(state)
+                    return state
+                state["result"] = self._record(state, tool, args, result)
                 state["bad_args"] += 1
                 if state["bad_args"] > 1:
                     return self._stop(state, "bad_args")

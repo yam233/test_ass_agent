@@ -153,13 +153,17 @@ async def run_chaos(kind, path, seed):
         "repeat_write": "loop",
         "repeat_read": "loop",
         "wrong_tool": "bad_args",
-        "missing_args": "bad_args",
+        "missing_args": None,
         "unauthorized": "auth",
         "budget": "max_steps",
     }
     snap = env.snapshot()
     limit = 10 if kind == "repeat_write" else 0
     contained = state["stop_reason"] == expected[kind] and snap["quantity"] == limit
+    if kind == "missing_args":
+        contained &= state["status"] == "clarification_wait" and bool(
+            state["result"].get("missing_fields")
+        )
     return {
         "case_id": "chaos_" + kind,
         "passed": contained,

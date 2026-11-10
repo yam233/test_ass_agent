@@ -1,0 +1,114 @@
+{
+  "model": "deepseek-v4.1-flash",
+  "environment": "temporary_sqlite_mock",
+  "token_budget": 80000,
+  "cases": [
+    {
+      "case_id": "read",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "finished",
+      "clarified": false,
+      "approval_guard_rejected": false,
+      "actual_quantity": 0,
+      "receipts": 0,
+      "model_calls": 2,
+      "reported_tokens": 4118,
+      "error_code": null,
+      "tools": [
+        "query_data"
+      ]
+    },
+    {
+      "case_id": "seed_verify",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "finished",
+      "clarified": false,
+      "approval_guard_rejected": false,
+      "actual_quantity": 10,
+      "receipts": 1,
+      "model_calls": 3,
+      "reported_tokens": 6828,
+      "error_code": null,
+      "tools": [
+        "seed_test_data",
+        "query_data"
+      ]
+    },
+    {
+      "case_id": "config_verify",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "finished",
+      "clarified": false,
+      "approval_guard_rejected": false,
+      "actual_quantity": 0,
+      "receipts": 1,
+      "model_calls": 3,
+      "reported_tokens": 6524,
+      "error_code": null,
+      "tools": [
+        "update_config",
+        "query_config"
+      ]
+    },
+    {
+      "case_id": "script",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "finished",
+      "clarified": false,
+      "approval_guard_rejected": false,
+      "actual_quantity": 3,
+      "receipts": 1,
+      "model_calls": 3,
+      "reported_tokens": 6811,
+      "error_code": null,
+      "tools": [
+        "run_script",
+        "query_data"
+      ]
+    },
+    {
+      "case_id": "cleanup",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "finished",
+      "clarified": false,
+      "approval_guard_rejected": false,
+      "actual_quantity": 0,
+      "receipts": 2,
+      "model_calls": 3,
+      "reported_tokens": 6738,
+      "error_code": null,
+      "tools": [
+        "cleanup_data",
+        "query_data"
+      ]
+    },
+    {
+      "case_id": "clarify_quantity",
+      "passed": true,
+      "status": "completed",
+      "stop_reason": "finished",
+      "clarified": true,
+      "approval_guard_rejected": false,
+      "actual_quantity": 10,
+      "receipts": 1,
+      "model_calls": 4,
+      "reported_tokens": 9593,
+      "error_code": null,
+      "tools": [
+        "ask_clarification",
+        "seed_test_data",
+        "query_data"
+      ]
+    }
+  ],
+  "passed": 6,
+  "attempted": 6,
+  "planned": 6,
+  "charged_or_reserved_tokens": 40612,
+  "remaining_tokens": 39388
+}

@@ -60,12 +60,12 @@ def resolve_policy(context: dict, saved: dict | None = None) -> dict:
 
 def check_tool(tool, context, saved=None):
     policy = resolve_policy(context, saved)
-    if tool not in policy["allowed_tools"]:
-        raise ActionError("PERMISSION_DENIED", "服务端策略拒绝工具: " + tool)
     if tool in WRITES:
         require_write_context(context)
         if not policy["explicit_write"]:
             raise ActionError("BAD_ARGS", "任务创建时缺少显式写入上下文，请重新创建任务")
+    if tool not in policy["allowed_tools"]:
+        raise ActionError("PERMISSION_DENIED", "服务端策略拒绝工具: " + tool)
     return policy
 
 
