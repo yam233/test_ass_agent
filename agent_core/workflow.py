@@ -5,15 +5,14 @@ import json
 import time
 from agent_core.action_store import ActionError, canonical
 from agent_core.workflow_contracts import SPECS, WRITES, catalog, normalize, failure
-from agent_core.workflow_platform import WorkflowPlatform
-from agent_core.workflow_store import WorkflowStore, Budget
-from agent_core.workflow_model import NativeModel, SYSTEM
+from agent_core.workflow_store import Budget
 from agent_core.workflow_policy import resolve_policy, check_tool, check_cleanup_impact
 from agent_core.model_call import next_decision
 from agent_core.workflow_context import build_context
 from agent_core.tool_executor import execute_tool, ISOLATED_FAULTS
 from agent_core.workflow_audit import audit_action
-from agent_core.langgraph_agent.llm import DeepSeekLLM
+from agent_core.workflow_factory import build_dependencies
+from agent_core.workflow_contracts import validate_context, validate_request
 
 from agent_core.workflow_state import TERMINAL
 from agent_core.workflow_outcome import finalize_outcome
@@ -29,31 +28,16 @@ class WorkflowRuntime:
         tool_timeout=5.0,
         isolate_tools=True,
     ):
-        self.platform = WorkflowPlatform(path)
-        self.store = WorkflowStore(path)
-        if model is None:
-            llm = DeepSeekLLM()
-            if llm.mode == "offline":
-                from agent_core.workflow_rules import RuleModel
-
-                model = RuleModel()
-            else:
-                model = NativeModel(llm)
-        self.model = model
+        self.platform, self.store, self.model = build_dependencies(path, model)
         self.retry_delays = retry_delays
         self.tool_timeout = max(0.01, float(tool_timeout))
         self.isolate_tools = isolate_tools
 
-    @staticmethod
-    def _check_context(context):
-        env = str(context.get("env") or context.get("environment") or "uat").lower()
-        if env not in {"uat", "staging", "dev", "test", "prod"}:
-            raise ActionError("BAD_ARGS", "环境必须为 uat/staging/dev/test/prod")
+    # Retain the former private entry point for callers transitioning to contracts.
+    _check_context = staticmethod(validate_context)
 
     async def start(self, text, context, budget=None):
-        self._check_context(context)
-        if not isinstance(text, str) or not text.strip() or len(text) > 10000:
-            raise ValueError("输入不能为空或超过10000字")
+        validate_request(text, context)
         state = self.store.create(text, context, budget or Budget())
         return await self.resume(state["task_id"], context)
 
@@ -67,7 +51,7 @@ class WorkflowRuntime:
         confirm_effect=None,
         snapshot_hash=None,
     ):
-        self._check_context(context)
+        validate_context(context)
         # File locks are released by the OS even if a process is killed mid-commit.
         with self.store.lock(task_id):
             state = self.store.get(task_id, context)

@@ -1,7 +1,7 @@
 """Explicit deterministic demo rules, never a fallback for remote failures."""
 import json
 import re
-from agent_core.langgraph_agent.llm import DeepSeekLLM
+from agent_core.model_client import DeepSeekLLM
 
 class RuleModel:
     name='offline_rules'

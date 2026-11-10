@@ -5,7 +5,7 @@ import json
 import tempfile
 import time
 from pathlib import Path
-from agent_core.langgraph_agent.llm import DeepSeekLLM
+from agent_core.model_client import DeepSeekLLM
 from agent_core.workflow_model import NativeModel
 from agent_core.workflow_contracts import normalize
 from agent_core.workflow import WorkflowRuntime
@@ -173,7 +173,7 @@ async def evaluate(limit=12, previous=None):
                 )
     return {
         "mode": "remote_native_function_calls",
-        "model": llm._setting("model"),
+        "model": llm.setting("model"),
         "prompt_version": "workflow-v1",
         "selection_cases": results,
         "selection_passed": sum(r["passed"] for r in results),

@@ -5,7 +5,7 @@ import json
 import tempfile
 from pathlib import Path
 from agent_core.layers import LocalConfigLayer
-from agent_core.langgraph_agent.llm import DeepSeekLLM
+from agent_core.model_client import DeepSeekLLM
 from agent_core.workflow import WorkflowRuntime
 from agent_core.workflow_model import NativeModel
 from agent_core.workflow_store import Budget
@@ -45,7 +45,7 @@ async def verify(config, token_budget):
         ),
     ]
     report = {
-        "model": llm._setting("model"),
+        "model": llm.setting("model"),
         "environment": "temporary_sqlite_mock",
         "token_budget": token_budget,
         "cases": [],

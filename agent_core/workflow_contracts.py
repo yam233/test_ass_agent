@@ -194,3 +194,18 @@ def failure(code, message, tool="", status="failed"):
         "retryable": code in {"TRANSIENT", "TIMEOUT"},
         "retry_after_ms": 1000 if code in {"TRANSIENT", "TIMEOUT"} else None,
     }
+
+
+def validate_context(context):
+    """Validate execution environment without granting write authority."""
+    from agent_core.action_store import ActionError
+
+    env = str(context.get("env") or context.get("environment") or "uat").lower()
+    if env not in {"uat", "staging", "dev", "test", "prod"}:
+        raise ActionError("BAD_ARGS", "环境必须为 uat/staging/dev/test/prod")
+
+
+def validate_request(text, context):
+    validate_context(context)
+    if not isinstance(text, str) or not text.strip() or len(text) > 10000:
+        raise ValueError("输入不能为空或超过10000字")

@@ -74,7 +74,7 @@ def test_artifact_tracks_effective_prompt_without_credentials(tmp_path, monkeypa
     from agent_core.workflow_model import NativeModel
 
     class Settings:
-        def _setting(self, name):
+        def setting(self, name):
             return {
                 "model": "demo",
                 "base_url": "https://user:secret@example.test/v1?key=secret",

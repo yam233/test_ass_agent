@@ -32,7 +32,7 @@ class NativeModel:
         self.llm = llm
 
     async def next(self, messages, context, max_tokens=512):
-        result = await self.llm._completion(
+        result = await self.llm.completion(
             [{"role": "system", "content": SYSTEM}, *messages],
             context=context,
             tools=[
@@ -50,7 +50,7 @@ class NativeModel:
         usage = result.get("usage")
         out = {
             "usage": usage,
-            "model": result.get("model") or self.llm._setting("model"),
+            "model": result.get("model") or self.llm.setting("model"),
             "prompt_version": self.prompt_version,
         }
         finish = result["choices"][0].get("finish_reason")

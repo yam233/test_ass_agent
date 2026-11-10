@@ -5,7 +5,7 @@ import json
 import tempfile
 from pathlib import Path
 
-from agent_core.langgraph_agent.llm import DeepSeekLLM
+from agent_core.model_client import DeepSeekLLM
 from agent_core.layers.local_config import LocalConfigLayer
 from agent_core.offline_runtime import build_offline_agent
 

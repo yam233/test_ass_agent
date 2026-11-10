@@ -7,6 +7,7 @@ from agent_core.workflow_state import TERMINAL
 from agent_core.workflow_policy import resolve_policy, check_tool, check_cleanup_impact
 from agent_core.workflow_audit import audit_action
 from agent_core.workflow_clarification import accept_reply
+from agent_core.workflow_contracts import validate_request
 
 
 class JobStore:
@@ -66,11 +67,7 @@ class JobStore:
             return self._enqueue(db, self.store.get(task_id, context, db), context)
 
     def submit(self, text, context, budget):
-        from agent_core.workflow import WorkflowRuntime
-
-        WorkflowRuntime._check_context(context)
-        if not isinstance(text, str) or not text.strip() or len(text) > 10000:
-            raise ValueError("输入不能为空或超过10000字")
+        validate_request(text, context)
         with self.store.db.connection(write=True) as db:
             state = self.store.create(text, context, budget, db)
             self._enqueue(db, state, context)

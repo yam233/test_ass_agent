@@ -233,7 +233,7 @@ async def evaluate(
         cases = CHAIN_CASES
     remote = None
     if model == "remote":
-        from agent_core.langgraph_agent.llm import DeepSeekLLM
+        from agent_core.model_client import DeepSeekLLM
         from agent_core.workflow_model import NativeModel
         from scripts.evaluate_model import CASES as SELECTION
 

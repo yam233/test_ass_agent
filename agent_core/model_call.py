@@ -17,9 +17,9 @@ def artifact(model, output_cap, tool_catalog=None):
     }
     llm = getattr(model, "llm", None)
     if llm is not None:
-        config["model"] = llm._setting("model")
+        config["model"] = llm.setting("model")
         # Never persist credentials or query parameters from configuration.
-        url = urlsplit(llm._setting("base_url") or "")
+        url = urlsplit(llm.setting("base_url") or "")
         config["endpoint"] = (
             (url.scheme + "://" + (url.hostname or "") + url.path) if url.scheme else ""
         )
