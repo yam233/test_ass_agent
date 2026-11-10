@@ -61,3 +61,9 @@ Runtime 使用 `ActionStore.receipt` / `task_receipts` 查询事实；`cancel_ac
 先读 `workflow_contracts.py` 的支持范围，再读 `workflow.py` 的 start/resume/drive；随后看 `workflow_factory.py`、模型适配器和平台写入事务。需要理解 HTTP 并发与恢复时再读 JobStore/Runner，最后看评测与测试。
 
 兼容路径在 [legacy-runtime.md](legacy-runtime.md)，使用示例在 [workflow-guide.md](workflow-guide.md)。
+
+## 本轮验证
+
+2026-11-10：完整核心与兼容回归 `python -m pytest tests tests_legacy -q` 为201项通过，含10项新增架构边界测试，保留1条原有 Pydantic 弃用提醒。仅核心依赖下的边界及导入检查为11项通过。
+
+独立审查发现的健康信息口径问题已修复：测试对比健康响应与实际 HTTP 工作进程选用的模型。没有新增付费模型调用，也没有把历史真实模型样本当成本轮验证。

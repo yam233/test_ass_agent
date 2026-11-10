@@ -15,18 +15,25 @@ Approved scope: make the existing workflow understandable; no new tools, framewo
 
 ### Task 1: Public boundaries and assembly
 Files: workflow_contracts, workflow, workflow_jobs, model_client, legacy llm shim, workflow_model, model_call, workflow_rules, workflow_factory; affected model mocks.
-- [ ] RED: public-client NativeModel contract, legacy client identity, configured/default/custom factory selection, shared validation.
-- [ ] Implement public interfaces and centralized assembly; retain compatibility aliases.
-- [ ] Targeted model/contracts/SDK/job/recovery regression; commit.
+- [x] RED: public-client NativeModel contract, legacy client identity, configured/default/custom factory selection, shared validation.
+- [x] Implement public interfaces and centralized assembly; retain compatibility aliases.
+- [x] Targeted model/contracts/SDK/job/recovery regression; commit.
 
 ### Task 2: Runtime storage boundary
 Files: action_store, workflow_platform, workflow; scoped repository tests.
-- [ ] RED: task-scoped receipts and scope rejection, cancellation audit rollback, committed action preservation.
-- [ ] Move queries behind public methods without changing transaction scopes.
-- [ ] Run approval/jobs/policy/recovery/usability tests; commit.
+- [x] RED: task-scoped receipts and scope rejection, cancellation audit rollback, committed action preservation.
+- [x] Move queries behind public methods without changing transaction scopes.
+- [x] Run approval/jobs/policy/recovery/usability tests; commit.
 
 ### Task 3: Primary entry and documentation
 Files: api/offline_server, README, docs/architecture, docs/legacy-runtime, API boundary tests.
-- [ ] RED: health reports primary workflow and leaves compatibility uninitialized; initialized legacy status separate.
-- [ ] Implement health and current/legacy documentation; preserve endpoint behavior.
-- [ ] Full offline core+legacy suite, one independent whole-branch review and necessary fix pass, sync changed source to original; commit evidence.
+- [x] RED: health reports primary workflow and leaves compatibility uninitialized; initialized legacy status separate.
+- [x] Implement health and current/legacy documentation; preserve endpoint behavior.
+- [x] Full offline core+legacy suite, one independent whole-branch review and necessary fix pass, sync changed source to original; commit evidence.
+
+## Validation
+- Public boundary regression:53 passed; receipt/policy/recovery/lifecycle regression:83 passed.
+- Final full suite:201 passed,1 inherited Pydantic warning (35.68s).
+- Core-only boundary/import smoke:11 passed. No paid model or real-platform calls.
+- Independent review found one P2 health metadata discrepancy between injected SDK and default HTTP worker models. Reproduced RED then GREEN with real subprocess execution; full suite passed after correction.
+- Historical documentation remains labelled history. SDK injection remains available; HTTP workers use configured defaults. Production authentication and real-platform guarantees remain outside this cleanup.

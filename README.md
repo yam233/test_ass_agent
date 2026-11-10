@@ -68,9 +68,9 @@ curl http://127.0.0.1:8002/workflows/TASK_ID/resume -H 'Content-Type: applicatio
 
 ```bash
 # 核心测试
-LLM_MODE=offline .venv/bin/python -m pytest tests -q
+.venv/bin/python -m pytest tests -q
 # 完整兼容依赖安装后，还可运行历史架构测试
-LLM_MODE=offline .venv/bin/python -m pytest tests tests_legacy -q
+.venv/bin/python -m pytest tests tests_legacy -q
 # 固定回归与故障评测，不调用付费模型
 .venv/bin/python -m evals.runner --model fixture --repeat 4
 .venv/bin/python -m evals.runner --model chaos --seed 17 --repeat 4
