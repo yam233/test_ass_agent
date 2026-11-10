@@ -175,6 +175,9 @@ class WorkflowRuntime:
             t for t in catalog() if allowed is None or t["function"]["name"] in allowed
         ]
         if state.get("agent_protocol")==2:
+            from agent_core.workflow_memory import SessionMemory
+            if "session_memory" not in state:
+                state["session_memory"] = SessionMemory(self.store.db).recent(state["scope"],state["task_id"])
             tools = decision_catalog(allowed)
         built = build_context(state, tools)
         state["context_bytes"] = built["context_bytes"]
@@ -242,6 +245,9 @@ class WorkflowRuntime:
                     parsed = CONTROLS[tool][0](**args).model_dump()
                     if tool == "update_task":
                         result = update_task(state,parsed)
+                    elif tool == "recall_memory":
+                        from agent_core.workflow_memory import SessionMemory
+                        result={"success":True,"code":"OK","data":{"history":SessionMemory(self.store.db).recent(state["scope"],state["task_id"],**parsed)}}
                     else:
                         raise ValueError("control not implemented yet")
                     self._record(state,tool,parsed,result)

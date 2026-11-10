@@ -7,6 +7,9 @@ from agent_core import workflow_model
 def build_context(
     state: dict, tool_catalog: list, input_limit_bytes: int = 32768
 ) -> dict:
+    if state.get("agent_protocol")==2:
+        from agent_core.workflow_agent_context import build_agent_context
+        return build_agent_context(state,tool_catalog,input_limit_bytes)
     steps = state.get("steps", [])
     required = set([len(steps) - 1]) if steps else set()
     writes = [

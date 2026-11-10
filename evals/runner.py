@@ -17,6 +17,7 @@ CHAIN_CASES = json.loads((ROOT / "evals/workflow_chain_cases.json").read_text())
 class RemoteBudget:
     def __init__(self, model, total):
         self.model = model
+        self.agent_protocol = getattr(model,"agent_protocol",1)
         self.remaining = total
         self.spent = 0
         self.name = "remote_budgeted"
@@ -25,8 +26,10 @@ class RemoteBudget:
     async def next(self, messages, context, max_tokens):
         from agent_core.workflow_model import SYSTEM
 
+        from agent_core.workflow_decisions import decision_catalog
+        tools = decision_catalog(context.get("allowed_tools")) if self.agent_protocol==2 else catalog()
         reservation = (
-            len(canonical([SYSTEM, catalog(), messages]).encode()) + 1024 + max_tokens
+            len(canonical([SYSTEM, tools, messages]).encode()) + 1024 + max_tokens
         )
         if reservation > self.remaining:
             raise ValueError("remote_budget_exhausted")

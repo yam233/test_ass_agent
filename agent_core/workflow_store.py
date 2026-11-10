@@ -11,6 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from agent_core.action_store import ActionError, ActionStore, canonical, scope
 
 from agent_core.workflow_state import migrate_state, TERMINAL
+from agent_core.workflow_memory import SessionMemory
 from agent_core.workflow_locks import maintenance_lock
 from agent_core.workflow_audit import append_event, audit_action
 
@@ -28,6 +29,7 @@ class WorkflowStore:
         self.lockdir = Path(str(path) + ".locks")
         self.lockdir.mkdir(parents=True, exist_ok=True)
         with self.db.connection() as db:
+            SessionMemory.initialize(db)
             db.executescript(
                 """
             CREATE TABLE IF NOT EXISTS workflow_tasks (task_id TEXT PRIMARY KEY, scope TEXT NOT NULL, request_id TEXT, input TEXT NOT NULL, payload TEXT NOT NULL, revision INTEGER NOT NULL DEFAULT 0, UNIQUE(scope,request_id));
@@ -166,6 +168,8 @@ class WorkflowStore:
                 raise ActionError(
                     "STATE_CONFLICT" if exists else "TASK_NOT_FOUND", "状态版本冲突或任务已被重置"
                 )
+            if value["status"] in TERMINAL:
+                SessionMemory.save(db,value)
         state.update(value)
         return expected + 1
 
