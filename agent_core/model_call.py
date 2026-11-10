@@ -6,6 +6,7 @@ from urllib.parse import urlsplit
 import httpx
 from agent_core.workflow_contracts import catalog, failure
 from agent_core import workflow_model
+from agent_core.workflow_decisions import decision_catalog
 
 
 def artifact(model, output_cap, tool_catalog=None):
@@ -69,6 +70,8 @@ async def next_decision(runtime, state, context, messages, prompt_bound):
             if context.get("allowed_tools") is None
             or t["function"]["name"] in context["allowed_tools"]
         ]
+        if state.get("agent_protocol")==2:
+            visible = decision_catalog(context.get("allowed_tools"))
         fingerprint = runtime.store.record_artifact(
             artifact(runtime.model, cap, visible)
         )

@@ -6,7 +6,7 @@ from agent_core.workflow_store import WorkflowStore
 from agent_core.workflow_state import TERMINAL
 from agent_core.workflow_policy import resolve_policy, check_tool, check_cleanup_impact
 from agent_core.workflow_audit import audit_action
-from agent_core.workflow_clarification import accept_reply
+from agent_core.workflow_clarification import accept_reply, revise_waiting
 from agent_core.workflow_contracts import validate_request
 
 
@@ -95,6 +95,8 @@ class JobStore:
                 "confirm_effect": confirm_effect,
                 "snapshot_hash": snapshot_hash,
             }
+            if revise_waiting(self.store,state,context,reply,decision,db):
+                reply = None
             if state["status"] == "approval_wait":
                 if decision is None:
                     return state

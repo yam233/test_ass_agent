@@ -62,6 +62,7 @@ class IdMap:
 class RecordingModel:
     def __init__(self, model):
         self.model = model
+        self.agent_protocol = getattr(model,"agent_protocol",1)
         self.records = []
         self.ids = IdMap()
         self.name = getattr(model, "name", "recorded")
@@ -72,6 +73,7 @@ class RecordingModel:
         decision = await self.model.next(messages, context, max_tokens)
         self.records.append(
             {
+                "agent_protocol": self.agent_protocol,
                 "signature": signature(),
                 "observation": observation,
                 "output_cap": max_tokens,
@@ -86,6 +88,8 @@ class ReplayModel:
     name = "historical_replay"
 
     def __init__(self, records):
+        records = list(records)
+        self.agent_protocol = records[0].get("agent_protocol",1) if records else 1
         self.records = iter(records)
         self.ids = IdMap()
 

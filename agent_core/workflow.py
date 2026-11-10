@@ -14,7 +14,8 @@ from agent_core.workflow_contracts import validate_context, validate_request
 
 from agent_core.workflow_state import TERMINAL
 from agent_core.workflow_outcome import finalize_outcome
-from agent_core.workflow_clarification import missing_fields, accept_reply
+from agent_core.workflow_clarification import missing_fields, accept_reply, revise_waiting
+from agent_core.workflow_decisions import CONTROLS, decision_catalog, update_task, check_intent
 
 
 class WorkflowRuntime:
@@ -53,6 +54,8 @@ class WorkflowRuntime:
         # File locks are released by the OS even if a process is killed mid-commit.
         with self.store.lock(task_id):
             state = self.store.get(task_id, context)
+            if "agent_protocol" not in state:
+                state["agent_protocol"] = getattr(self.model,"agent_protocol",1)
             if state["status"] in TERMINAL:
                 return state
             if self.store.cancel_requested(task_id):
@@ -69,6 +72,8 @@ class WorkflowRuntime:
             if state["active_since"] is not None:
                 state["elapsed"] += max(0, time.time() - state["active_since"])
                 state["active_since"] = None
+            if revise_waiting(self.store,state,context,reply,decision):
+                reply = None
             if state["status"] == "approval_wait":
                 if decision is None:
                     return state
@@ -169,6 +174,8 @@ class WorkflowRuntime:
         tools = [
             t for t in catalog() if allowed is None or t["function"]["name"] in allowed
         ]
+        if state.get("agent_protocol")==2:
+            tools = decision_catalog(allowed)
         built = build_context(state, tools)
         state["context_bytes"] = built["context_bytes"]
         state["compaction_events"] = built["compaction_events"]
@@ -214,6 +221,8 @@ class WorkflowRuntime:
                 return self._stop(state, "timeout")
             if state["tokens"] > state["budget"]["max_tokens"]:
                 return self._stop(state, "budget")
+            if "final" in decision and state.get("agent_protocol")==2:
+                decision = {"tool":"finish_task", "args":{}}
             if "final" in decision:
                 if not any(s["result"].get("success") for s in state["steps"]):
                     state["result"] = failure("NO_EVIDENCE", "模型未调用工具，不能声称任务已执行")
@@ -229,7 +238,18 @@ class WorkflowRuntime:
             if not isinstance(tool, str) or not isinstance(args, dict):
                 return self._stop(state, "model_error")
             try:
+                if state.get("agent_protocol")==2 and tool in CONTROLS:
+                    parsed = CONTROLS[tool][0](**args).model_dump()
+                    if tool == "update_task":
+                        result = update_task(state,parsed)
+                    else:
+                        raise ValueError("control not implemented yet")
+                    self._record(state,tool,parsed,result)
+                    self.store.save(state)
+                    continue
                 args = normalize(tool, args)
+                if state.get("agent_protocol")==2 and tool!="ask_clarification":
+                    check_intent(state,tool,args)
             except (ValueError, TypeError) as e:
                 result = failure("BAD_ARGS", str(e), tool)
                 state["tool_calls"] += 1
@@ -344,6 +364,8 @@ class WorkflowRuntime:
         return state
 
     def _record(self, state, tool, args, result):
+        if state.get("agent_protocol")==2:
+            result = {**result,"seq":len(state["steps"])}
         compact = (
             result
             if tool == "read_ref"
@@ -352,6 +374,7 @@ class WorkflowRuntime:
         state["steps"].append(
             {
                 "seq": len(state["steps"]),
+                "user_revision": len(state["replies"]),
                 "tool": tool,
                 "args": args,
                 "result": compact,
