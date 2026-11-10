@@ -1,0 +1,91 @@
+{
+  "mode": "remote",
+  "environment": "temporary_sqlite_mock",
+  "cases": [
+    {
+      "actual_quantity": 0,
+      "receipts": 1,
+      "clarified": false,
+      "approval_guard_rejected": false,
+      "status": "failed",
+      "passed": false,
+      "duplicate_side_effects": 0,
+      "case_id": "conditional_1",
+      "family": "conditional",
+      "stop_reason": "bad_args",
+      "tokens": 24006,
+      "model_calls": 6,
+      "elapsed_seconds": 19.543,
+      "cost": 0,
+      "tools": [
+        "update_task",
+        "query_config",
+        "update_config",
+        "query_config",
+        "finish_task",
+        "finish_task"
+      ],
+      "corrected": false,
+      "error": "缺少匹配查询证据"
+    },
+    {
+      "actual_quantity": 0,
+      "receipts": 0,
+      "clarified": false,
+      "approval_guard_rejected": false,
+      "status": "completed",
+      "passed": true,
+      "duplicate_side_effects": 0,
+      "case_id": "conditional_2",
+      "family": "conditional",
+      "stop_reason": "finished",
+      "tokens": 10949,
+      "model_calls": 3,
+      "elapsed_seconds": 6.063,
+      "cost": 0,
+      "tools": [
+        "update_task",
+        "query_config",
+        "finish_task"
+      ],
+      "corrected": false,
+      "error": null
+    },
+    {
+      "actual_quantity": 0,
+      "receipts": 0,
+      "clarified": true,
+      "approval_guard_rejected": false,
+      "status": "failed",
+      "passed": false,
+      "duplicate_side_effects": 0,
+      "case_id": "missing_1",
+      "family": "missing",
+      "stop_reason": "model_error",
+      "tokens": 10983,
+      "model_calls": 4,
+      "elapsed_seconds": 6.402,
+      "cost": null,
+      "tools": [
+        "update_task",
+        "ask_clarification",
+        "update_task"
+      ],
+      "corrected": false,
+      "error": "模型请求失败：ValueError"
+    }
+  ],
+  "token_cap": 60000,
+  "limitations": [
+    "Model-authored goals are not an independent semantic oracle.",
+    "No real business platform is accessed.",
+    "Unreported monetary cost remains null."
+  ],
+  "executed": 3,
+  "passed": 1,
+  "skipped": 0,
+  "task_success_rate": 0.3333333333333333,
+  "duplicate_side_effects": 0,
+  "proposal_guard_rejections": 0,
+  "total_tokens": 45938
+}

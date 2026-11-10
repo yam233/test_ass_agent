@@ -70,7 +70,7 @@ async def next_decision(runtime, state, context, messages, prompt_bound):
             if context.get("allowed_tools") is None
             or t["function"]["name"] in context["allowed_tools"]
         ]
-        if state.get("agent_protocol")==2:
+        if state.get("agent_protocol") == 2:
             visible = decision_catalog(context.get("allowed_tools"))
         fingerprint = runtime.store.record_artifact(
             artifact(runtime.model, cap, visible)
@@ -123,6 +123,10 @@ async def next_decision(runtime, state, context, messages, prompt_bound):
         if error is None:
             state.pop("model_retry", None)
             return decision
+        if getattr(error, "finish_reason", None) == "budget":
+            state["result"] = failure("MODEL_BUDGET", "外部模型调用总预算不足，未发送请求")
+            runtime._stop(state, "budget")
+            return None
         state["result"] = failure("LLM_ERROR", "模型请求失败：" + type(error).__name__)
         if getattr(error, "finish_reason", None) == "length" and attempts["length"] < 1:
             attempts["length"] += 1

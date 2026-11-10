@@ -7,6 +7,7 @@ import re
 from agent_core.action_store import canonical
 from agent_core import workflow_model
 from agent_core.workflow_contracts import catalog
+from agent_core.workflow_decisions import decision_catalog
 
 UUID = re.compile(
     r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b", re.I
@@ -15,7 +16,7 @@ UUID = re.compile(
 
 def signature():
     return hashlib.sha256(
-        canonical([workflow_model.SYSTEM, catalog()]).encode()
+        canonical([workflow_model.SYSTEM, catalog(), decision_catalog()]).encode()
     ).hexdigest()
 
 
@@ -62,7 +63,7 @@ class IdMap:
 class RecordingModel:
     def __init__(self, model):
         self.model = model
-        self.agent_protocol = getattr(model,"agent_protocol",1)
+        self.agent_protocol = getattr(model, "agent_protocol", 1)
         self.records = []
         self.ids = IdMap()
         self.name = getattr(model, "name", "recorded")
@@ -89,8 +90,9 @@ class ReplayModel:
 
     def __init__(self, records):
         records = list(records)
-        self.agent_protocol = records[0].get("agent_protocol",1) if records else 1
+        self.agent_protocol = records[0].get("agent_protocol", 1) if records else 1
         self.records = iter(records)
+        self.history = []
         self.ids = IdMap()
 
     async def next(self, messages, context, max_tokens):
@@ -102,6 +104,7 @@ class ReplayModel:
             or row["output_cap"] != max_tokens
         ):
             raise ReplayIncompatible("replay_incompatible: 提示词、观察或预算与录播不匹配")
+        self.history.append(row)
         return {**self.ids.restore(row["decision"]), "replay": True}
 
 

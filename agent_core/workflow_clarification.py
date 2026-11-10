@@ -61,34 +61,40 @@ def accept_reply(state, reply):
 
 def accept_model_reply(state, reply):
     """Preserve verbatim corrections for the model; never interpret natural text as approval."""
-    if not isinstance(reply,str) or not reply.strip() or len(reply)>2000:
-        raise ActionError('BAD_ARGS','补充信息需要1..2000字')
-    state.setdefault('reply_events',[]).append({'after_step':len(state['steps']), 'text':reply})
-    state['replies'].append(reply)
-    state.pop('clarification',None)
-    state['pending']=None
-    state['status']='running'
-    state['bad_args']=0
+    if not isinstance(reply, str) or not reply.strip() or len(reply) > 2000:
+        raise ActionError("BAD_ARGS", "补充信息需要1..2000字")
+    state.setdefault("reply_events", []).append(
+        {"after_step": len(state["steps"]), "text": reply}
+    )
+    state["replies"].append(reply)
+    state.pop("clarification", None)
+    state["pending"] = None
+    state["status"] = "running"
+    state["bad_args"] = 0
 
 
 def revise_waiting(store, state, context, reply, decision, db=None):
     """Called under task lock; approval revocation and new user input commit atomically."""
     if reply is not None and decision is not None:
-        raise ActionError('BAD_ARGS','补充/更正与审批不能同时提交')
-    if reply is None or state.get('agent_protocol') != 2:
+        raise ActionError("BAD_ARGS", "补充/更正与审批不能同时提交")
+    if reply is None or state.get("agent_protocol") != 2:
         return False
-    if state['status'] not in {'approval_wait','clarification_wait'}:
-        raise ActionError('STATE_CONFLICT','仅等待补充或审批时可更正；已执行动作不能改写')
+    if state["status"] not in {"approval_wait", "clarification_wait"}:
+        raise ActionError("STATE_CONFLICT", "仅等待补充或审批时可更正；已执行动作不能改写")
     from contextlib import nullcontext
     from agent_core.workflow_audit import audit_action
+
     with store.db.connection(write=True) if db is None else nullcontext(db) as tx:
-        pending=state.get('pending')
-        if pending and pending.get('action_id'):
-            aid=pending['action_id']
-            changed=tx.execute("UPDATE actions SET status='cancelled' WHERE action_id=? AND status='pending'",(aid,))
-            if changed.rowcount!=1:
-                raise ActionError('STATE_CONFLICT','动作已非待审批，不能修改')
-            audit_action(tx,aid,'cancel',context)
-        accept_model_reply(state,reply)
-        store.save(state,db=tx)
+        pending = state.get("pending")
+        if pending and pending.get("action_id"):
+            aid = pending["action_id"]
+            changed = tx.execute(
+                "UPDATE actions SET status='cancelled' WHERE action_id=? AND status='pending'",
+                (aid,),
+            )
+            if changed.rowcount != 1:
+                raise ActionError("STATE_CONFLICT", "动作已非待审批，不能修改")
+            audit_action(tx, aid, "cancel", context)
+        accept_model_reply(state, reply)
+        store.save(state, db=tx)
     return True

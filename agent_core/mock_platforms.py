@@ -107,6 +107,7 @@ class MockPlatforms:
                 "workflow_artifacts",
                 "workflow_audit",
                 "workflow_jobs",
+                "workflow_memory",
             ]
             counts = {
                 t: db.execute(f"SELECT count(*) FROM {t}").fetchone()[0]

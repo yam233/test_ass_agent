@@ -1,3 +1,5 @@
+> 模型自主决策、自然语言更正和会话记忆：参见 [模型驱动 Agent 指南](docs/model-driven-agent.md)。真实模型与离线规则的验收分别报告。
+
 # TestOps Agent
 
 面向测试运维场景的单 Agent Runtime。当前使用 SQLite 有状态 mock，支持查询、礼物造数、配置修改与回滚、批次清理、内置模拟脚本；所有写入都经过审批。

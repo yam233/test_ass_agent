@@ -14,8 +14,17 @@ from agent_core.workflow_contracts import validate_context, validate_request
 
 from agent_core.workflow_state import TERMINAL
 from agent_core.workflow_outcome import finalize_outcome
-from agent_core.workflow_clarification import missing_fields, accept_reply, revise_waiting
-from agent_core.workflow_decisions import CONTROLS, decision_catalog, update_task, check_intent
+from agent_core.workflow_clarification import (
+    missing_fields,
+    accept_reply,
+    revise_waiting,
+)
+from agent_core.workflow_decisions import (
+    CONTROLS,
+    decision_catalog,
+    update_task,
+    check_intent,
+)
 
 
 class WorkflowRuntime:
@@ -55,7 +64,7 @@ class WorkflowRuntime:
         with self.store.lock(task_id):
             state = self.store.get(task_id, context)
             if "agent_protocol" not in state:
-                state["agent_protocol"] = getattr(self.model,"agent_protocol",1)
+                state["agent_protocol"] = getattr(self.model, "agent_protocol", 1)
             if state["status"] in TERMINAL:
                 return state
             if self.store.cancel_requested(task_id):
@@ -72,7 +81,7 @@ class WorkflowRuntime:
             if state["active_since"] is not None:
                 state["elapsed"] += max(0, time.time() - state["active_since"])
                 state["active_since"] = None
-            if revise_waiting(self.store,state,context,reply,decision):
+            if revise_waiting(self.store, state, context, reply, decision):
                 reply = None
             if state["status"] == "approval_wait":
                 if decision is None:
@@ -85,14 +94,17 @@ class WorkflowRuntime:
                     state["pending"]["tool"], context, state["policy"]
                 )
                 if decision == "deny":
-                    self.platform.actions.deny(action_id, context)
-                    return self._stop(state, "denied", "denied")
+                    with self.store.db.connection(write=True) as db:
+                        self.platform.actions.deny(action_id, context, db)
+                        return self._stop(state, "denied", "denied", db=db)
                 self.platform.check_impact(
                     state["pending"]["tool"], state["pending"]["args"], effective
                 )
-                self.platform.actions.approve(action_id, context)
-                state["status"] = "running"
-                state["pending"]["phase"] = "execute"
+                with self.store.db.connection(write=True) as db:
+                    self.platform.actions.approve(action_id, context, db)
+                    state["status"] = "running"
+                    state["pending"]["phase"] = "execute"
+                    self.store.save(state, db=db)
             elif decision is not None:
                 raise ActionError("APPROVAL_INVALID", "当前没有待审批动作")
             if state["status"] == "clarification_wait":
@@ -159,14 +171,14 @@ class WorkflowRuntime:
             state["cancelled_after_commit"] = True
         return self._stop(state, "cancelled", "cancelled")
 
-    def _stop(self, state, reason, status="failed"):
+    def _stop(self, state, reason, status="failed", db=None):
         state["status"] = status
         state["stop_reason"] = reason
         if status in TERMINAL:
             state["finished_at"] = time.time()
         if state["trace"]:
             state["trace"][-1]["stop_reason"] = reason
-        self.store.save(state)
+        self.store.save(state, db=db)
         return state
 
     def _messages(self, state):
@@ -174,10 +186,13 @@ class WorkflowRuntime:
         tools = [
             t for t in catalog() if allowed is None or t["function"]["name"] in allowed
         ]
-        if state.get("agent_protocol")==2:
+        if state.get("agent_protocol") == 2:
             from agent_core.workflow_memory import SessionMemory
+
             if "session_memory" not in state:
-                state["session_memory"] = SessionMemory(self.store.db).recent(state["scope"],state["task_id"])
+                state["session_memory"] = SessionMemory(self.store.db).recent(
+                    state["scope"], state["task_id"]
+                )
             tools = decision_catalog(allowed)
         built = build_context(state, tools)
         state["context_bytes"] = built["context_bytes"]
@@ -224,8 +239,8 @@ class WorkflowRuntime:
                 return self._stop(state, "timeout")
             if state["tokens"] > state["budget"]["max_tokens"]:
                 return self._stop(state, "budget")
-            if "final" in decision and state.get("agent_protocol")==2:
-                decision = {"tool":"finish_task", "args":{}}
+            if "final" in decision and state.get("agent_protocol") == 2:
+                decision = {"tool": "finish_task", "args": {}}
             if "final" in decision:
                 if not any(s["result"].get("success") for s in state["steps"]):
                     state["result"] = failure("NO_EVIDENCE", "模型未调用工具，不能声称任务已执行")
@@ -241,26 +256,55 @@ class WorkflowRuntime:
             if not isinstance(tool, str) or not isinstance(args, dict):
                 return self._stop(state, "model_error")
             try:
-                if state.get("agent_protocol")==2 and tool in CONTROLS:
+                if state.get("agent_protocol") == 2 and tool in CONTROLS:
                     parsed = CONTROLS[tool][0](**args).model_dump()
                     if tool == "update_task":
-                        result = update_task(state,parsed)
+                        result = update_task(state, parsed)
                     elif tool == "recall_memory":
                         from agent_core.workflow_memory import SessionMemory
-                        result={"success":True,"code":"OK","data":{"history":SessionMemory(self.store.db).recent(state["scope"],state["task_id"],**parsed)}}
+
+                        result = {
+                            "success": True,
+                            "code": "OK",
+                            "data": {
+                                "history": SessionMemory(self.store.db).recent(
+                                    state["scope"], state["task_id"], **parsed
+                                )
+                            },
+                        }
                     else:
                         from agent_core.workflow_completion import finish_task
-                        state["result"] = finish_task(state,parsed,self.platform.actions.task_receipts(state["task_id"],context))
-                        self._record(state,tool,parsed,{"success":not state["result"]["unfulfilled"],"code":"OK","data":{"unfulfilled":state["result"]["unfulfilled"]}})
+
+                        state["result"] = finish_task(
+                            state,
+                            parsed,
+                            self.platform.actions.task_receipts(
+                                state["task_id"], context
+                            ),
+                        )
+                        self._record(
+                            state,
+                            tool,
+                            parsed,
+                            {
+                                "success": not state["result"]["unfulfilled"],
+                                "code": "OK",
+                                "data": {"unfulfilled": state["result"]["unfulfilled"]},
+                            },
+                        )
                         if state["result"]["unfulfilled"]:
-                            return self._stop(state,"no_evidence","partial" if state["result"]["effects"] else "failed")
-                        return self._stop(state,"finished","completed")
-                    self._record(state,tool,parsed,result)
+                            return self._stop(
+                                state,
+                                "no_evidence",
+                                "partial" if state["result"]["effects"] else "failed",
+                            )
+                        return self._stop(state, "finished", "completed")
+                    self._record(state, tool, parsed, result)
                     self.store.save(state)
                     continue
                 args = normalize(tool, args)
-                if state.get("agent_protocol")==2 and tool!="ask_clarification":
-                    check_intent(state,tool,args)
+                if state.get("agent_protocol") == 2 and tool != "ask_clarification":
+                    check_intent(state, tool, args)
             except (ValueError, TypeError) as e:
                 result = failure("BAD_ARGS", str(e), tool)
                 state["tool_calls"] += 1
@@ -375,8 +419,8 @@ class WorkflowRuntime:
         return state
 
     def _record(self, state, tool, args, result):
-        if state.get("agent_protocol")==2:
-            result = {**result,"seq":len(state["steps"])}
+        if state.get("agent_protocol") == 2:
+            result = {**result, "seq": len(state["steps"])}
         compact = (
             result
             if tool == "read_ref"

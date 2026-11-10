@@ -15,9 +15,10 @@ CHAIN_CASES = json.loads((ROOT / "evals/workflow_chain_cases.json").read_text())
 
 
 class RemoteBudget:
-    def __init__(self, model, total):
+    def __init__(self, model, total, audit_path=None):
         self.model = model
-        self.agent_protocol = getattr(model,"agent_protocol",1)
+        self.agent_protocol = getattr(model, "agent_protocol", 1)
+        self.audit_path = audit_path
         self.remaining = total
         self.spent = 0
         self.name = "remote_budgeted"
@@ -27,20 +28,51 @@ class RemoteBudget:
         from agent_core.workflow_model import SYSTEM
 
         from agent_core.workflow_decisions import decision_catalog
-        tools = decision_catalog(context.get("allowed_tools")) if self.agent_protocol==2 else catalog()
+
+        tools = (
+            decision_catalog(context.get("allowed_tools"))
+            if self.agent_protocol == 2
+            else catalog()
+        )
         reservation = (
             len(canonical([SYSTEM, tools, messages]).encode()) + 1024 + max_tokens
         )
         if reservation > self.remaining:
-            raise ValueError("remote_budget_exhausted")
+            from agent_core.workflow_model import ModelResponseError
+
+            raise ModelResponseError(
+                "remote_budget_exhausted", {"total_tokens": 0}, "budget"
+            )
         self.remaining -= reservation
         self.spent += reservation
-        result = await self.model.next(messages, context, max_tokens)
+        self.audit("reserved")
+        try:
+            result = await self.model.next(messages, context, max_tokens)
+        except BaseException:
+            self.audit("uncertain_charged_reservation")
+            raise
         actual = (result.get("usage") or {}).get("total_tokens")
         if type(actual) is int and actual >= 0:
             self.remaining += reservation - actual
             self.spent += actual - reservation
+        self.audit("settled")
         return result
+
+    def audit(self, event):
+        if self.audit_path:
+            from pathlib import Path
+
+            with Path(self.audit_path).open("a") as out:
+                out.write(
+                    canonical(
+                        {
+                            "event": event,
+                            "spent_upper_bound": self.spent,
+                            "remaining": self.remaining,
+                        }
+                    )
+                    + "\n"
+                )
 
 
 def baseline_key(suite, cases, mode):

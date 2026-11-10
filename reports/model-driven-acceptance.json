@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-10",
+  "base_commit": "e23ec91",
+  "branch": "codex/model-driven-agent",
+  "engineering_tests": {
+    "command": "python -m pytest tests tests_legacy -q",
+    "passed": 231,
+    "warnings": 1,
+    "seconds": 37.78,
+    "warning": "inherited Pydantic V1 validator deprecation"
+  },
+  "code_batches_completed": 4,
+  "dataset_variants": 24,
+  "real_model_full_acceptance": false,
+  "initial_remote": {
+    "attempted_completed_cases": 5,
+    "passed_at_run_time": 1,
+    "reported_tokens": 65368,
+    "interrupted_request_usage": "unknown"
+  },
+  "fixed_remote": {
+    "attempted_cases": 3,
+    "passed_at_run_time": 1,
+    "reported_tokens": 45938,
+    "notes": [
+      "conditional_1 runtime historical-read rejection fixed and replayed",
+      "missing_1 correct parameter revision observed; next call blocked by global reservation budget"
+    ]
+  },
+  "current_real_trajectory_replay": {
+    "cases": [
+      "conditional_1",
+      "conditional_2"
+    ],
+    "passed": 2,
+    "api_calls": 0
+  },
+  "known_reported_api_tokens": 111306,
+  "conservative_total_token_upper_bound": 165938,
+  "limitations": [
+    "all business operations remain SQLite mock",
+    "24 variants not all remotely evaluated",
+    "final natural language uses model-arranged verified fact placeholders",
+    "memory is scoped session history, not cross-session personalization"
+  ]
+}

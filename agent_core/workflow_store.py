@@ -169,7 +169,7 @@ class WorkflowStore:
                     "STATE_CONFLICT" if exists else "TASK_NOT_FOUND", "状态版本冲突或任务已被重置"
                 )
             if value["status"] in TERMINAL:
-                SessionMemory.save(db,value)
+                SessionMemory.save(db, value)
         state.update(value)
         return expected + 1
 

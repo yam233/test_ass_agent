@@ -95,7 +95,7 @@ class JobStore:
                 "confirm_effect": confirm_effect,
                 "snapshot_hash": snapshot_hash,
             }
-            if revise_waiting(self.store,state,context,reply,decision,db):
+            if revise_waiting(self.store, state, context, reply, decision, db):
                 reply = None
             if state["status"] == "approval_wait":
                 if decision is None:
