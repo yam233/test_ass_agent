@@ -59,7 +59,7 @@ def verified_effect(effect, steps):
     return False
 
 
-def finalize_outcome(state, receipts):
+def finalize_outcome(state, receipts, check_request=True):
     effects = []
     for step in state["steps"]:
         if step["tool"] not in WRITES:
@@ -95,9 +95,9 @@ def finalize_outcome(state, receipts):
         {"action_id": e["action_id"], "verified": verified_effect(e, state["steps"])}
         for e in effects
     ]
-    required = requested_effects(state["input"])
+    required = requested_effects(state["input"]) if check_request else set()
     unfulfilled = sorted(required - {e["tool"] for e in effects})
-    needs_verification = bool(re.search(r"核验|验证|然后查询|再查询", state["input"]))
+    needs_verification = check_request and bool(re.search(r"核验|验证|然后查询|再查询", state["input"]))
     verified = [v["verified"] for v in verification]
     # Explicit general verification covers all effects; a query-after-write phrase
     # only establishes that a relevant write was checked (other effects stay labelled).

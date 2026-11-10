@@ -249,7 +249,12 @@ class WorkflowRuntime:
                         from agent_core.workflow_memory import SessionMemory
                         result={"success":True,"code":"OK","data":{"history":SessionMemory(self.store.db).recent(state["scope"],state["task_id"],**parsed)}}
                     else:
-                        raise ValueError("control not implemented yet")
+                        from agent_core.workflow_completion import finish_task
+                        state["result"] = finish_task(state,parsed,self.platform.actions.task_receipts(state["task_id"],context))
+                        self._record(state,tool,parsed,{"success":not state["result"]["unfulfilled"],"code":"OK","data":{"unfulfilled":state["result"]["unfulfilled"]}})
+                        if state["result"]["unfulfilled"]:
+                            return self._stop(state,"no_evidence","partial" if state["result"]["effects"] else "failed")
+                        return self._stop(state,"finished","completed")
                     self._record(state,tool,parsed,result)
                     self.store.save(state)
                     continue
