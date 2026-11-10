@@ -205,7 +205,8 @@ def test_http_entry_supports_existing_url_without_old_platform_startup(tmp_path)
         ) as client:
             health = (await client.get("/health")).json()
             assert health["runtime_mode"] == "mock"
-            assert health["llm_mode"] == "offline"
+            assert health["orchestrator"] == "workflow_runtime"
+            assert health["compatibility"]["llm_mode"] == "offline"
             context = {"operator": "tester", "session_id": "http-case", "env": "uat"}
             first = (
                 await client.post(

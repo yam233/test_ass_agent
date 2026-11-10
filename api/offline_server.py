@@ -170,14 +170,29 @@ def create_app(agent=None, workflow=None, runner=None):
     @app.get("/")
     @app.get("/health")
     async def health():
-        runtime = get_agent()
+        runtime = get_workflow()
+        model = runtime.model
+        llm = getattr(model, "llm", None)
+        legacy = app.state.agent
         return {
             "status": "ok",
             "runtime_mode": "mock",
-            "llm_mode": runtime.llm.mode,
-            "orchestrator": "langgraph"
-            if runtime._graph is not None
-            else "manual_fallback",
+            "primary_endpoint": "/workflows",
+            "orchestrator": "workflow_runtime",
+            "llm_mode": getattr(llm, "mode", None)
+            or (
+                "offline"
+                if getattr(model, "name", None) == "offline_rules"
+                else "custom"
+            ),
+            "compatibility": {
+                "endpoints": ["/agent/execute", "/agent/langgraph/execute"],
+                "initialized": legacy is not None,
+                "orchestrator": None
+                if legacy is None
+                else ("langgraph" if legacy._graph is not None else "manual_fallback"),
+                "llm_mode": None if legacy is None else legacy.llm.mode,
+            },
         }
 
     @app.post("/agent/execute")
